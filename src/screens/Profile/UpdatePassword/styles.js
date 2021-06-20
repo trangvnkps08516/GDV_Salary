@@ -4,10 +4,7 @@ import { height, width } from "../../../utils/Dimenssion";
 import { fontScale } from "../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.primary
-    },
+    container: {flex: 1,backgroundColor: colors.primary},
     topShape: { flex: 9 },
     authTitle: { marginLeft: fontScale(35) },
     ipUsn: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },

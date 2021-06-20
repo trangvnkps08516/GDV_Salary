@@ -4,8 +4,10 @@ import Input from "./input";
 import Header from "./header";
 import ListItem from "./listItem";
 import MenuItem from "./menuItem";
-import Triangle from "./triangle"
+import Triangle from "./triangle";
 import AuthTitle from "./authtitle";
+import DateView from "./dateview";
+import Body from "./body"
 
 export {
     Button,
@@ -15,5 +17,7 @@ export {
     ListItem,
     MenuItem,
     Triangle,
-    AuthTitle
+    AuthTitle,
+    DateView,
+    Body
 }
