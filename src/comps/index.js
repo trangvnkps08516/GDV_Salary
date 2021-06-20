@@ -5,6 +5,7 @@ import Header from "./header";
 import ListItem from "./listItem";
 import MenuItem from "./menuItem";
 import Triangle from "./triangle"
+import AuthTitle from "./authtitle";
 
 export {
     Button,
@@ -13,5 +14,6 @@ export {
     Header,
     ListItem,
     MenuItem,
-    Triangle
+    Triangle,
+    AuthTitle
 }
