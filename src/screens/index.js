@@ -20,26 +20,26 @@ import UpdateProfile from "./Profile/UpdateProfile"
 
 import RecoveryPassword from './Auth/RecoveryPassword';
 import SignIn from './Auth/SignIn';
-import SignOut from './Signout'
+import SignOut from './SignOut'
 
-// export const HomeScreen = () => {return <Home />}
-// export const KPIByMonthDashboardScreen = () => <KPIByMonthDashboard />
-// export const AchieveScreen = () => <Achieve />
-// export const TempSalaryDashboardScreen = () => <TempSalaryDashboard />
-// export const TempSalaryContractScreen = () => <TempSalaryContract />
-// export const TempSalaryFixedwageScreen = () => <TempSalaryFixedwage />
-// export const SalaryByMonthDashboardScreen = () => <SalaryByMonthDashboard />
-// export const SalaryByMonthFixedwageScreen = () => <SalaryByMonthFixedwage />
-// export const SalaryByMonthContractScreen = () => <SalaryByMonthContract />
-// export const SalaryByMonthArrearsScreen = () => <SalaryByMonthArrears />
-// export const AvgIncomeDashboardScreen = () => <AvgIncomeDashboard />
-// export const AvgIncomeByMonthScreen = () => <AvgIncomeByMonth />
-// export const AvgIncomeByQuarterScreen = () => <AvgIncomeByQuarter />
-// export const SubscriberQualityScreen = () => <SubscriberQuality />
-// export const ProfileScreen = () => <Profile />
-// export const UpdatePasswordScreen = () => <UpdatePassword />
-// export const UpdateProfileScreen = () => <UpdateProfile />
+export const HomeScreen = () => {return <Home />}
+export const KPIByMonthDashboardScreen = () => <KPIByMonthDashboard />
+export const AchieveScreen = () => <Achieve />
+export const TempSalaryDashboardScreen = () => <TempSalaryDashboard />
+export const TempSalaryContractScreen = () => <TempSalaryContract />
+export const TempSalaryFixedwageScreen = () => <TempSalaryFixedwage />
+export const SalaryByMonthDashboardScreen = () => <SalaryByMonthDashboard />
+export const SalaryByMonthFixedwageScreen = () => <SalaryByMonthFixedwage />
+export const SalaryByMonthContractScreen = () => <SalaryByMonthContract />
+export const SalaryByMonthArrearsScreen = () => <SalaryByMonthArrears />
+export const AvgIncomeDashboardScreen = () => <AvgIncomeDashboard />
+export const AvgIncomeByMonthScreen = () => <AvgIncomeByMonth />
+export const AvgIncomeByQuarterScreen = () => <AvgIncomeByQuarter />
+export const SubscriberQualityScreen = () => <SubscriberQuality />
+export const ProfileScreen = () => <Profile />
+export const UpdatePasswordScreen = () => <UpdatePassword />
+export const UpdateProfileScreen = () => <UpdateProfile />
 
-// export const RecoveryPasswordScreen = () => <RecoveryPassword />
-// export const SigninScreen = () => <SignIn />
-// export const SignOutScreen = () => <SignOut />
+export const RecoveryPasswordScreen = () => <RecoveryPassword />
+export const SigninScreen = () => <SignIn />
+export const SignOutScreen = () => <SignOut />

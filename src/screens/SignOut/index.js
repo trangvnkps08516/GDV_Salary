@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
-const DashBoard=(props) => {
+const SignOut=(props) => {
     return (
         <SafeAreaView>
 
@@ -9,4 +9,4 @@ const DashBoard=(props) => {
     );
 }
 
-export default DashBoard;
+export default SignOut;

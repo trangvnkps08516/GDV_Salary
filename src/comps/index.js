@@ -4,6 +4,7 @@ import Input from "./input";
 import Header from "./header";
 import ListItem from "./listItem";
 import MenuItem from "./menuItem";
+import Triangle from "./triangle"
 
 export {
     Button,
@@ -12,5 +13,5 @@ export {
     Header,
     ListItem,
     MenuItem,
-    DatePicker
+    Triangle
 }
