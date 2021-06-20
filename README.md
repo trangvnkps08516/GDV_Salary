@@ -44,10 +44,7 @@
 #   UpdateProfile: Cập nhật thông tin cá nhân
 # Signout: Đăng xuất
 
-#   JSON
-#   KPIByMonth > Achieve
-#   data:{
-#       dateRange:""
-#       sumKpi:""
-#            
-# }
+#   *** Descriptions
+#   KPI TBTT: KPI thuê bao trả trước
+#   KPI TBTS: KPI thuê bao trả sau
+#   KPI KHTT: KPI kế hoạch trọng tâm

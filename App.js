@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { DateView } from './src/comps';
+import { MenuItem } from './src/comps';
 import Achieve from './src/screens/Home/KPIByMonth/Achieve/index';
 // import UpdatePassword from "./src/screens/Profile/UpdatePassword/index";
 
