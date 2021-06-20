@@ -43,3 +43,11 @@
 #   UpdatePassword: Cập nhật mật khẩu
 #   UpdateProfile: Cập nhật thông tin cá nhân
 # Signout: Đăng xuất
+
+#   JSON
+#   KPIByMonth > Achieve
+#   data:{
+#       dateRange:""
+#       sumKpi:""
+#            
+# }

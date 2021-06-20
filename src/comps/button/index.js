@@ -1,13 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View,Text,TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
 const Button = (props) => {
-    const {title} = props;
+    const {
+        label,
+        width,
+        center,
+        style,
+        onPress
+    } = props;
     return (
-        <View>
-            <Text>This is Button of screen</Text>
-        </View>
+        <TouchableOpacity style={[styles.container,{width:width,alignSelf:center ? "center" : "auto"},style]} onPress={onPress}>
+            <Text style={styles.label}>{label}</Text>
+        </TouchableOpacity>
     );
 }
 
