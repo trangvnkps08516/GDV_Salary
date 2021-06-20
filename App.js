@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SignIn from "./src/screens/Auth/SignIn/index";
+import Achieve from './src/screens/Home/KPIByMonth/Achieve/index';
 
 export default function App() {
   return <Achieve/>

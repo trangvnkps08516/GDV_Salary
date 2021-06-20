@@ -5,8 +5,6 @@ import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 import { styles } from './style';
-import { width } from '../../../utils/Dimenssion'
-// import { Circle, Triangle,Trapezoid,Pentagon,Hexagon } from 'react-native-shape';
 
 const SignIn = (props) => {
     return (
