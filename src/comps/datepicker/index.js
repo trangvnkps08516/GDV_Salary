@@ -1,64 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
-import MonthYearPicker from 'react-native-simple-month-year-picker';
 import { images } from '../../utils/Images';
 import { colors } from '../../utils/Colors';
 import { fontScale } from '../../utils/Fonts';
+import MonthYearPicker from 'react-native-simple-month-year-picker';
 
 const YearMonthPicker = (props) => {
-    const [isShow, setIsShow] = useState(false);
-    const [year, setYear] = useState(null);
     const [month, setMonth] = useState(null);
-    const [date, setDate] = useState('');
+    const [showDate, setShowDate] = useState(false)
 
     return (
-        <View>
-            <TouchableOpacity key={(index: any) => index} onPress={() => setIsShow(!isShow)} style={[styles.selectedDate, { width: props.width, marginTop: props.top,height:props.height }, props.style]}>
-                {
-                    <Text style={[styles.selectedMonth, { width: props.width - 21 }]}>{typeof(props.date)=='undefined' ? 'Tháng '+props.defaultDate: 'Tháng '+props.date}</Text>
-                }
-                {/* <Text style={[styles.selectedMonth, { width: props.width - 21, marginRight: 21 }]}>Tháng {props.defaultValue ? props.defaultValue : JSON.stringify(month+'/'+year)}</Text> */}
-                <Image source={images.dropdown} resizeMode="cover" style={styles.dropIcon} />
+        <View style={{ flex: 1 }}>
+            <TouchableOpacity style={[{ flexDirection:"row",backgroundColor: "#fff",borderRadius:fontScale(8), padding: fontScale(10), width: props.width },props.style]} onPress={() => setShowDate(!showDate)}>
+                <Text style={{textAlign:"center",flex:1}}>{month == null ? 'Tháng ' + props.month : month}</Text>
+                <Image source={images.dropdown} style={{position:"absolute",right:0,margin:fontScale(12)}}/>
             </TouchableOpacity>
 
             <MonthYearPicker
-                isShow={isShow}
-                yearLabel={props.yearLabel}
-                close={() => setIsShow(false)} //setState isShow to false
-                onChangeYear={(year) => setYear(year) }
-                onChangeMonth={(month) => setMonth(month) }
-                onChangeText={(date) => setDate(date) }
-                onChangeDate={(date) => {props.onChangeDate(date);setDate(date)} }
+                isShow={showDate}
+                close={() => setShowDate(false)}
+                onChangeYear={(year) => { }}
+                onChangeMonth={(month) => { }}
+                onChangeText={(date) => { }}
+                onChangeDate={(date) => {setMonth(date);props.onChangeDate(date.substring(6,date.length))}}
             />
         </View>
-
-
-
     );
 }
-const styles = StyleSheet.create({
-    selectedDate: {
-        backgroundColor: colors.white,
-        padding: fontScale(5),
-        height:fontScale(39),
-        borderRadius: fontScale(5),
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    selectedMonth: {
-        textAlign: 'center',
-        marginRight:fontScale(7),
-        textAlignVertical: 'center',
-        color: '#C2B60E',
-        fontSize:fontScale(14),
-        fontWeight: 'bold'
-    },
-    dropIcon: {
-        width: fontScale(14),
-        height: fontScale(14),
-        right: 0,
-        position: 'absolute',
-        margin: (25 / 2) - 4
-    }
-})
+
 export default YearMonthPicker;
