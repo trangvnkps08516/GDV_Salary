@@ -4,6 +4,7 @@ import { images } from '../../utils/Images';
 import { colors } from '../../utils/Colors';
 import { fontScale } from '../../utils/Fonts';
 import MonthYearPicker from 'react-native-simple-month-year-picker';
+import { styles } from './styles';
 
 const YearMonthPicker = (props) => {
     const [month, setMonth] = useState(null);
@@ -11,9 +12,13 @@ const YearMonthPicker = (props) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <TouchableOpacity style={[{ flexDirection:"row",backgroundColor: "#fff",borderRadius:fontScale(8), padding: fontScale(10), width: props.width },props.style]} onPress={() => setShowDate(!showDate)}>
-                <Text style={{textAlign:"center",flex:1}}>{month == null ? 'Tháng ' + props.month : month}</Text>
-                <Image source={images.dropdown} style={{position:"absolute",right:0,margin:fontScale(12)}}/>
+            <TouchableOpacity style={[styles.container, {width: props.width }, props.style]} onPress={() => setShowDate(!showDate)}>
+                <Text style={{
+                    textAlign: "center", flex: 1, color: "#BAB400",
+                    fontWeight: "bold",
+                    fontSize: fontScale(14)
+                }}>{month == null ? 'Tháng ' + props.month : month}</Text>
+                <Image source={images.dropdown} style={{ position: "absolute", right: 0, margin: fontScale(12) }} />
             </TouchableOpacity>
 
             <MonthYearPicker
@@ -22,7 +27,7 @@ const YearMonthPicker = (props) => {
                 onChangeYear={(year) => { }}
                 onChangeMonth={(month) => { }}
                 onChangeText={(date) => { }}
-                onChangeDate={(date) => {setMonth(date);props.onChangeDate(date.substring(6,date.length))}}
+                onChangeDate={(date) => { setMonth(date); props.onChangeDate(date.substring(6, date.length)) }}
             />
         </View>
     );
