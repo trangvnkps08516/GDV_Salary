@@ -28,7 +28,9 @@ export const text = {
   kpiPrepaidSubscribers: "KPI TBTT",
   kpiPostpaidSubscribers: "KPI TBTS",
   kpiVas: "KPI VAS",
-
+  kpiImportant:"KPI Kế hoạch trọng tâm",
+  retailSales:"Doanh thu bán lẻ",
+  subRatio:"Tỉ lệ đăng ký gói",
 
 
   // Lương tạm tính, Lương khoán, Lương theo tháng
@@ -41,6 +43,7 @@ export const text = {
   cardRechargeFee: "Phí thẻ nạp",
   terminalServiceFee: "Phí thiết bị đầu cuối",
   orderServiceFee: "Phí dịch vụ khác",
+  ordersServiceFee:"Phí dịch vụ, thu cước, EZ, thẻ cào",
   numberOfCustomers: "Lượt KH",
   transactions: "Lượt giao dịch",
   metricStatus: "Trạng thái số liệu",

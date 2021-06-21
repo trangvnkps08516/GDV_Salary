@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, View, Text, StatusBar } from 'react-native';
-import { DateView, Header, Body, MenuItem } from '../../../../comps';
+import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
-import { fontScale } from '../../../../utils/Fonts';
+import { images } from '../../../../utils/Images';
+import { text } from '../../../../utils/Text';
 import { width } from '../../../../utils/Dimenssion';
-// import test from "../../../assets/testicon";
+import moment from 'moment';
+import YearMonthPicker from '../../../../comps/datepicker';
 
 const Achieve = (props) => {
     let test = require("../../../../assets/testicon.png")
+    const [data, setData] = useState({
+        dateRange: "01/06/2021 - 20/06/2021",
+        sumKpi: "100",
+        prePaid: "100/100\n(90 TB OSP)",
+        postPaid: "100/100\n(90 TB OSP)",
+        vas: "190,000/200,000",
+        importantKpi: "190,000/200,000\n(Theo kế hoạch MNP)",
+        retailSales: "1,000,000"
+    });
+    const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
+    
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar translucent backgroundColor={colors.primary} barStyle="dark-content" />
-            <Header title="KPI đạt được" />
-            <DateView dateLabel={"01/06/2021 - 20/06/2021"} />
-            <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={{ marginTop: fontScale(27) }} />
+            <StatusBar translucent backgroundColor={colors.primary} />
+            <Header title={text.kpiAchieved} />
+            <DateView dateLabel={"01/06/2021 - 20/06/2021"} style={styles.dateView} />
+            <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
-                <View style={{ flexDirection: "row" }}>
-                    <Text style={{ color: colors.black }}>KPI Tổng: </Text>
-                    <Text style={{ color: colors.primary }}>100%</Text>
+                <View style={styles.sumKpiContainer}>
+                    <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
+                    <Text style={styles.sumKpi}>{data.sumKpi}%</Text>
+                </View>
+                <View style={styles.detailInfo}>
+                    <ListItem icon={images.sim5g} title={text.prepaidSubscriptionFee} price={data.prePaid} />
+                    <ListItem icon={images.sim5g} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
+                    <ListItem icon={images.rose} title={text.kpiVas} price={data.vas} />
+                    <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi} />
+                    <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
+                </View>
+                <View style={styles.detailInfo}>
+                    <ListItem icon={images.percent} title={text.subRatio} justTitle />
+                    <View>
+                        <ListItem icon={images.sim5g} title={text.prepaidSubscriptionFee} price={data.prePaid} />
+                        <ListItem icon={images.sim5g} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>

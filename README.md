@@ -21,8 +21,8 @@
 
 # Home
 #   Dashboard: Dashboard màn hình Home
-#   KPIByMonth: KPI theo tháng
-#       Dashboard: Dashboard KPI theo tháng
+#   KPIByMonth: KPI tháng hiện tại
+#       Dashboard: Dashboard KPI tháng hiện tại
 #       Achieve: KPI đạt được
 #       TempSalary: Lương tạm tính
 #           Dashboard: Dashboard lương tạm tính
