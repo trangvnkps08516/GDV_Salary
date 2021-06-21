@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../../utils/Colors";
+import { width } from "../../../../utils/Dimenssion";
 import { fontScale } from "../../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -17,8 +18,11 @@ export const styles = StyleSheet.create({
         shadowRadius: 3.84,    
         elevation: 5
     },
-    dateView:{marginTop:15},
+    dateView:{marginTop:fontScale(15)},
     monthPicker:{
         
+    },
+    subDetail:{
+        marginLeft:fontScale(40)
     }
 })

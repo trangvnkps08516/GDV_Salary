@@ -8,4 +8,6 @@ export const images = {
     retailsales:require("../assets/retailsales.png"),
     terminaldevice:require("../assets/device.png"),
     percent:require("../assets/percent.png"),
+    vas:require("../assets/vas.png"),
+    dropdown:require("../assets/dropdown.png")
 }
