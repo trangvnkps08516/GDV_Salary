@@ -8,6 +8,9 @@ import Triangle from "./triangle";
 import AuthTitle from "./authtitle";
 import DateView from "./dateview";
 import Body from "./body"
+import MetricStatus from "./metricstatus";
+import TotalSalary from "./totalsalry";
+
 
 export {
     Button,
@@ -19,5 +22,7 @@ export {
     Triangle,
     AuthTitle,
     DateView,
-    Body
+    Body,
+    MetricStatus,
+    TotalSalary
 }

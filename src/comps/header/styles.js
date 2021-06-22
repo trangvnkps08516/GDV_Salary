@@ -8,11 +8,12 @@ export const styles = StyleSheet.create({
         backgroundColor:colors.primary,
         flexDirection:"row",
         paddingVertical:fontScale(5),
-        marginTop:statusbarHeight
+        marginTop:statusbarHeight,
+        marginBottom: 10
     },
     backIcon:{
         width:fontScale(50),
-        left:-fontScale(50)
+        left:-fontScale(30)
     },
     title:{
         textAlign:"center",
@@ -22,6 +23,7 @@ export const styles = StyleSheet.create({
         color:colors.white,
         width:width-fontScale(100),
         height:fontScale(50),
-        paddingVertical:fontScale(13)
+        paddingVertical:fontScale(13),
+       
     }
 })
