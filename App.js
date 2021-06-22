@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Achieve from './src/screens/Home/KPIByMonth/ExpectedSalary/index';
+import Dashboard from './src/screens/Home/Dashboard';
 
-const App=()=> {
-  return <Achieve/>
+export default function App() {
+  return <Dashboard/>
 }
-
-export default App;
 
 const styles = StyleSheet.create({
   container: {

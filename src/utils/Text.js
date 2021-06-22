@@ -1,6 +1,9 @@
 // define all of text uses in prj here
 
 export const text = {
+
+
+  dashboard: "Trang chủ",  
   //Login, Logout,...
   username: "Username",
   password: "Mật khẩu",
@@ -13,14 +16,15 @@ export const text = {
   errorRepeatPassword: "Mật khẩu và xác nhận mật khẩu không giống nhau",
 
   //Home
-  kpiByMonth: "KPI theo tháng",
+  kpiByMonth: "KPI tháng hiện tại",
   salaryByMonth: "Lương theo tháng",
   averageIncome: "Bình quân thu nhập",
   subscriberQuality: "Chất lượng thuê bao",
+  transactionInformation: "Thông tin giao dịch",
 
   //KPI theo tháng
   kpiAchieved: "KPI đạt được", 
-  provisionalSalary: "Lương tạm tính",
+  provisionalSalary: "Tổng lương dự kiến",
 
 
   //KPI đạt được
@@ -35,7 +39,8 @@ export const text = {
 
   // Lương tạm tính, Lương khoán, Lương theo tháng
   fixedSalary: "Lương cố định",
-  upSalary: "Lương khoán",
+  upSalary: "Lương khoán sp",
+  total: "Tổng lương: ",
   prepaidSubscriptionFee: "Phí TBTT",
   postpaidSSubscriptionFee: "Phí TBTS",
   vasFee: "Phí VAS",
@@ -48,6 +53,9 @@ export const text = {
   transactions: "Lượt giao dịch",
   metricStatus: "Trạng thái số liệu",
   arrears: "Truy thu",
+  incentiveCost: "Chi phí khuyến khích",
+  punishment: "Chế tài",
+  otherExpenses: "Chi khác",
 
   // Tổng lương dự kiến
   expectedSalary:"Tổng lương dự kiến",

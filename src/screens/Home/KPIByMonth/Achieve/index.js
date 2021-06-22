@@ -27,7 +27,6 @@ const Achieve = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiAchieved} />
-            {/* <DatePicker month={month} width={width-fontScale(120)} style={{alignSelf:"center"}} onChangeDate={(date)=>console.log(date)}/> */}
             <DateView dateLabel={"01/06/2021 - 20/06/2021"} style={styles.dateView} />
             <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
