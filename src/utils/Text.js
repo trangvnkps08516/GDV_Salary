@@ -49,6 +49,8 @@ export const text = {
   metricStatus: "Trạng thái số liệu",
   arrears: "Truy thu",
 
+  // Tổng lương dự kiến
+  expectedSalary:"Tổng lương dự kiến",
 
   // Bình quân thu nhập
   averageMonthlySalary: "Bình quân lương các tháng",

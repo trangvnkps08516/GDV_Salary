@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -35,22 +35,24 @@ const Achieve = (props) => {
                     <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
                     <Text style={styles.sumKpi}>{data.sumKpi}%</Text>
                 </View>
-                <View style={styles.detailInfo}>
-                    <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid} />
-                    <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
-                    <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
-                    <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi} />
-                    <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
-                </View>
-                <View style={styles.detailInfo}>
-                    <ListItem icon={images.percent} title={text.subRatio} justTitle />
-                    <View style={styles.subDetail}>
+                <ScrollView style={{flex:1,paddingBottom:fontScale(10)}} showsVerticalScrollIndicator={false}>
+                    <View style={styles.detailInfo}>
                         <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid} />
                         <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
+                        <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
+                        <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi} />
+                        <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
                     </View>
-                </View>
+                    <View style={styles.detailInfo}>
+                        <ListItem icon={images.percent} title={text.subRatio} justTitle />
+                        <View style={styles.subDetail}>
+                            <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid} />
+                            <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
-           
+
         </SafeAreaView>
     );
 }

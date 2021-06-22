@@ -19,13 +19,16 @@ const ExpectedSalary = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
-            <Header title={text.upSalary} />
+            <Header title={text.expectedSalary} />
             <DateView dateLabel={"01/06/2021 - 20/06/2021"} />
             <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 <View style={styles.sumKpiContainer}>
-                    <Text style={styles.sumKpiTitle}>{text.upSalary}: </Text>
+                    <Text style={styles.sumKpiTitle}>{text.expectedSalary}: </Text>
                     <Text style={styles.sumKpi}>{thoundsandSep(data.contractSalary)}</Text>
+                </View>
+                <View>
+                    
                 </View>
                 <View style={styles.detailInfo}>
                     <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />

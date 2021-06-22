@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Achieve from './src/screens/Home/KPIByMonth/Achieve/index';
+import Achieve from './src/screens/Home/KPIByMonth/ExpectedSalary/index';
 
 const App=()=> {
   return <Achieve/>
