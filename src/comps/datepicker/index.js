@@ -10,9 +10,9 @@ const YearMonthPicker = (props) => {
     const [showDate, setShowDate] = useState(false)
 
     return (
-        <View style={{ flex: 1 }}>
+        <View>
             <TouchableOpacity style={[{ flexDirection:"row",backgroundColor: "#fff",borderRadius:fontScale(8), padding: fontScale(10), width: props.width },props.style]} onPress={() => setShowDate(!showDate)}>
-                <Text style={{textAlign:"center",flex:1}}>{month == null ? 'Tháng ' + props.month : month}</Text>
+                <Text style={{textAlign:"center",flex:1,color:colors.darkYellow,fontWeight:"bold"}}>{month == null ? 'Tháng ' + props.month : month}</Text>
                 <Image source={images.dropdown} style={{position:"absolute",right:0,margin:fontScale(12)}}/>
             </TouchableOpacity>
 

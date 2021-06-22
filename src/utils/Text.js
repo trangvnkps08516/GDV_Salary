@@ -57,6 +57,7 @@ export const text = {
   upAverageSalary: "Bình quân lương khoán",
   averageIncentiveSpending: "Bình quân chi khuyến khích",
   averageOtherCosts: "Bình quân chi khác", 
+  averageAndAmount:"Bình quân tháng & Tổng thu nhập",
 
 
   // Chất lượng thuê bao
@@ -67,7 +68,11 @@ export const text = {
   totalDebt90: "Tổng nợ 90",
   debtRatioRevenue: "Tỉ lệ nợ/ Doanh thu",
 
-
+//  Thông tin giao dịch
+  transactionsInfo:"Thông tin giao dịch",
+  customersCount:"Lượt khách hàng",
+  transAmount:"Số lượng TBTS chuyển sang TBTT",
+  trans2CAmount:"Số lượng TBTS đang bị chặn 2c",
 
   // Profile
   profile: "Thông tin cá nhân",

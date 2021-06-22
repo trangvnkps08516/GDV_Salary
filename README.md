@@ -24,20 +24,18 @@
 #   KPIByMonth: KPI tháng hiện tại
 #       Dashboard: Dashboard KPI tháng hiện tại
 #       Achieve: KPI đạt được
-#       TempSalary: Lương tạm tính
-#           Dashboard: Dashboard lương tạm tính
-#           Fixedwage: Lương cố định
-#           Contract: Lương khoán
+#       ExpectedSalary: Tổng lương dự kiến
 #   SalaryByMonth: Lương theo tháng
 #       Dashboard: Dashboard lương theo tháng
 #       Fixedwage: Lương cố định
-#       Contract: Lương khoán
-#       Arrears: Truy thu
+#       Contract: Lương khoán SP
+#       EncourageSalary: Chi phí khuyến khích
+#       Arrears: Chế tài
 #   AvgIncome: Bình quân thu nhập
 #       Dashboard: Dashboard bình quân thu nhập
-#       AvgIncomeByMonth: Bình quân thu nhập các tháng
-#       AvgIncomeByQuarter: Bình quân thu nhập các quý
+#       AvgIncomeByMonth: Bình quân tháng & Tổng thu nhập
 #   SubscriberQuality: Chất lượng thuê bao
+#   TransactionInfo: Thông tin giao dịch
 # Profile
 #   Dashboard: Thông tin cá nhân
 #   UpdatePassword: Cập nhật mật khẩu

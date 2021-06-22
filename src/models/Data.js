@@ -131,7 +131,7 @@ export const User= {
     "userId": {
       "id": 0,
       "userName": "",
-      "password": null,
+      "password": "",
       "displayName": "",
       "status": "",
       "userGroupId": {
@@ -144,7 +144,7 @@ export const User= {
         "shopCode": "",
         "shopName": "",
         "shopTypeId": 0,
-        "parentShopId": shopId
+        "parentShopId": ""
       },
       "gdvId": {
         "id": 0,
