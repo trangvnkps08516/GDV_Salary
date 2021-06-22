@@ -68,6 +68,7 @@ export const text = {
   averageIncentiveSpending: "Bình quân chi khuyến khích",
   averageOtherCosts: "Bình quân chi khác", 
   averageAndAmount:"Bình quân tháng & Tổng thu nhập",
+  upSalaryProduct:"Lương khoán sp",
 
 
   // Chất lượng thuê bao

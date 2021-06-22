@@ -6,6 +6,8 @@ import { colors } from '../../../../utils/Colors';
 import { text } from '../../../../utils/Text';
 import { images } from '../../../../utils/Images';
 import { thoundsandSep } from '../../../../utils/Logistics';
+import { width } from '../../../../utils/Dimenssion';
+import { fontScale } from '../../../../utils/Fonts';
 
 const ExpectedSalary = (props) => {
     const [data, setData] = useState({
@@ -28,14 +30,15 @@ const ExpectedSalary = (props) => {
                     <Text style={styles.sumKpi}>{thoundsandSep(data.contractSalary)}</Text>
                 </View>
                 <View>
-                    
+                    <MenuItem style={{ marginTop: 50 }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.contractSalary)} />
                 </View>
                 <View style={styles.detailInfo}>
+                    <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.prePaid)} />
                     <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />
                     <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={thoundsandSep(data.postPaid)} />
-                    <ListItem icon={images.rose} title={text.vasFee} price={thoundsandSep(data.vas)} />
+                    <ListItem icon={images.vas} title={text.vasFee} price={thoundsandSep(data.vas)} />
                     <ListItem icon={images.sim5g} title={text.ordersServiceFee} price={thoundsandSep(data.otherService)} />
-                    <ListItem icon={images.terminaldevice} title={text.terminalServiceFee} price={thoundsandSep(data.otherService)} />
+                    <ListItem icon={images.phone} title={text.terminalServiceFee} price={thoundsandSep(data.otherService)} />
                 </View>
             </View>
         </SafeAreaView>
