@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, StatusBar, TouchableOpacity } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
@@ -9,6 +9,7 @@ import { width } from '../../../../utils/Dimenssion';
 import moment from 'moment';
 // import MonthPicker from '../../../../comps/datepicker';
 import { fontScale } from '../../../../utils/Fonts';
+import { getKPIByMonthAchieve } from '../../../../api';
 
 const Achieve = (props) => {
     let test = require("../../../../assets/testicon.png")
@@ -22,12 +23,35 @@ const Achieve = (props) => {
         retailSales: "1,000,000"
     });
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
-    const [showDate, setShowDate] = useState(false)
+    const [showDate, setShowDate] = useState(false);
+    const [loading,setLoading] = useState(true)
+
+
+    const getData = async()=> {
+        await getKPIByMonthAchieve().then((res) => {
+            console.log(res)
+
+            if(res.status == "success") {
+                setData(res.data)
+            }
+            if(res.status=="failed"){
+
+            }
+        })
+        
+    }
+
+    useEffect(() => {
+       
+            getData()
+        
+    }, [""]);
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiAchieved} />
-            <DateView dateLabel={"01/06/2021 - 20/06/2021"} style={styles.dateView} />
+            <DateView dateLabel={data.dateRange} style={styles.dateView} />
             <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 <View style={styles.sumKpiContainer}>
