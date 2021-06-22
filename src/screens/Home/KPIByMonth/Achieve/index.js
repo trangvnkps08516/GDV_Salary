@@ -68,8 +68,8 @@ const Achieve = (props) => {
                 <View style={styles.detailInfo}>
                     <ListItem icon={images.percent} title={text.subRatio} justTitle />
                     <View style={styles.subDetail}>
-                        <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid} />
-                        <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
+                        <ListItem icon={images.sim} title={text.prepaidSubscription} price={data.ratePrePaid} />
+                        <ListItem icon={images.sim} title={text.ratingpostpaidSSubscriptionFee} price={data.ratePostPaid} />
                     </View>
                 </View>
             </View>
