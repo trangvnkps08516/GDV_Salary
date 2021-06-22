@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native';
 const SubscriberQuality=(props) => {
     return (
         <SafeAreaView>
-
+                
         </SafeAreaView>
     );
 }

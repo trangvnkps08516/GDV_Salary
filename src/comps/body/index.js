@@ -7,7 +7,7 @@ const index=(props)=> {
     return (
         <View style={props.style}>
             <Text style={styles.userInfo}>{props.userInfo}</Text>
-            <View style={{marginTop:fontScale(6.5),backgroundColor:"#fff",height:fontScale(50),borderTopLeftRadius:fontScale(30),borderTopRightRadius:fontScale(30)}}>
+            <View style={{marginTop:fontScale(6.5),backgroundColor:"#fff",height:fontScale(50),borderTopLeftRadius:fontScale(50),borderTopRightRadius:fontScale(50)}}>
 
             </View>
         </View>

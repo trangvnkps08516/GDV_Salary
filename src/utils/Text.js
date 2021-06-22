@@ -32,7 +32,9 @@ export const text = {
   kpiPrepaidSubscribers: "KPI TBTT",
   kpiPostpaidSubscribers: "KPI TBTS",
   kpiVas: "KPI VAS",
-
+  kpiImportant:"KPI Kế hoạch trọng tâm",
+  retailSales:"Doanh thu bán lẻ",
+  subRatio:"Tỉ lệ đăng ký gói",
 
 
   // Lương tạm tính, Lương khoán, Lương theo tháng
@@ -46,6 +48,7 @@ export const text = {
   cardRechargeFee: "Phí thẻ nạp",
   terminalServiceFee: "Phí thiết bị đầu cuối",
   orderServiceFee: "Phí dịch vụ khác",
+  ordersServiceFee:"Phí dịch vụ, thu cước, EZ, thẻ cào",
   numberOfCustomers: "Lượt KH",
   transactions: "Lượt giao dịch",
   metricStatus: "Trạng thái số liệu",
@@ -62,6 +65,7 @@ export const text = {
   upAverageSalary: "Bình quân lương khoán",
   averageIncentiveSpending: "Bình quân chi khuyến khích",
   averageOtherCosts: "Bình quân chi khác", 
+  averageAndAmount:"Bình quân tháng & Tổng thu nhập",
 
 
   // Chất lượng thuê bao
@@ -72,7 +76,11 @@ export const text = {
   totalDebt90: "Tổng nợ 90",
   debtRatioRevenue: "Tỉ lệ nợ/ Doanh thu",
 
-
+//  Thông tin giao dịch
+  transactionsInfo:"Thông tin giao dịch",
+  customersCount:"Lượt khách hàng",
+  transAmount:"Số lượng TBTS chuyển sang TBTT",
+  trans2CAmount:"Số lượng TBTS đang bị chặn 2c",
 
   // Profile
   profile: "Thông tin cá nhân",

@@ -12,6 +12,8 @@ export default function App() {
   return <Dashboard/>
 }
 
+export default App;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
