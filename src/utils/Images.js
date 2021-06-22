@@ -9,5 +9,8 @@ export const images = {
     terminaldevice:require("../assets/device.png"),
     percent:require("../assets/percent.png"),
     vas:require("../assets/vas.png"),
-    dropdown:require("../assets/dropdown.png")
+    dropdown:require("../assets/dropdown.png"),
+    customer:require("../assets/cus.png"),
+    trans:require("../assets/trans.png"),
+    nonesim:require("../assets/nonesim.png")
 }

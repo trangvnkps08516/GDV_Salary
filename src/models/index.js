@@ -1,6 +1,22 @@
 // this will export all of model to store object in prj
-import User from "./User";
+
+import {
+    KPIByMonthDashboard, KPIByMonthAchieve, TempSalaryDashboard, DetailTempContract,
+    SalaryByMonth, ContractSalaryByMonth, AvgIncomeDashboard, AvgIncomeByMonth,
+    SubscriberQuality, TransactionInfo, Profile, User
+} from "./Data";
 
 export {
-    User
+    User,
+    KPIByMonthDashboard,
+    KPIByMonthAchieve,
+    TempSalaryDashboard,
+    DetailTempContract,
+    SalaryByMonth,
+    ContractSalaryByMonth,
+    AvgIncomeDashboard,
+    AvgIncomeByMonth,
+    SubscriberQuality,
+    TransactionInfo,
+    Profile
 }

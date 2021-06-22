@@ -1,12 +1,12 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
-const Dashboard=(props) => {
+const EncourageSalary=(props) => {
     return (
         <SafeAreaView>
-
+            
         </SafeAreaView>
     );
 }
 
-export default Dashboard;
+export default EncourageSalary;
