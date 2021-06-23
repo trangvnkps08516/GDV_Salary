@@ -13,7 +13,7 @@ import SalaryByMonthContract from "./Home/SalaryByMonth/Contract";
 import SalaryByMonthArrears from "./Home/SalaryByMonth/Arrears";
 import AvgIncomeDashboard from "./Home/AvgIncome/Dashboard"
 import AvgIncomeByMonth from "./Home/AvgIncome/AvgIncomeByMonth";
-// import AvgIncomeByQuarter from "./Home/AvgIncome/";
+import TransactionInfo from "./Home/TransactionInfo";
 import SubscriberQuality from "./Home/SubscriberQuality"
 import Profile from "./Profile/Dashboard"
 import UpdatePassword from "./Profile/UpdatePassword"
@@ -33,12 +33,13 @@ export const SalaryByMonthContractScreen = () => {return <SalaryByMonthContract 
 export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />}
 export const AvgIncomeDashboardScreen = () => {return <AvgIncomeDashboard />}
 export const AvgIncomeByMonthScreen = () => {return <AvgIncomeByMonth />}
-// export const EncourageSalaryScreen = () => <EncourageSalary />
+export const TransactionInfoScreen = () => {return <TransactionInfo />}
+// TransactionInfo
 export const SubscriberQualityScreen = () => {return <SubscriberQuality />}
 export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}
 export const UpdateProfileScreen = () => {return <UpdateProfile />}
 
 export const RecoveryPasswordScreen = () => {return <RecoveryPassword />}
-export const SigninScreen = () => {return <SignIn />}
+export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, StatusBar } from "react-native";
+import { SafeAreaView, View, StatusBar, ActivityIndicator } from "react-native";
 import { Body, DateView, Header, MenuItem } from "../../../../comps";
 import { styles } from "../../../../comps/body/style";
 import { colors } from "../../../../utils/Colors";
@@ -24,8 +24,10 @@ const DashBoard = (props) => {
     await getKPIByMonthDashboard().then((res) => {
       if (res.status == "success") {
         setData(res.data);
+        setLoading(false)
       }
       if (res.status == "failed") {
+        setLoading(false)
       }
     });
   };
@@ -43,22 +45,27 @@ const DashBoard = (props) => {
         style={{ marginTop: fontScale(27) }}
       />
       <View style={styles.body}>
-        <MenuItem
-          style={{ marginTop: fontScale(30) }}
-          title={text.kpiAchieved}
-          icon={images.kpiByMonth}
-          value={data.achieveKPI}
-          width={width - fontScale(60)}
-          onPress={() => navigation.navigate("Achieve")}
-        />
-        <MenuItem
-          style={{ marginTop: fontScale(60) }}
-          title={text.provisionalSalary}
-          icon={images.salaryByMonth}
-          value={data.provSal}
-          width={width - fontScale(60)}
-          onPress={() => navigation.navigate("ExpectedSalary")}
-        />
+        {
+          loading == true ? <ActivityIndicator size="small" color={colors.primary}/> :
+            <>
+              <MenuItem
+                style={{ marginTop: fontScale(30) }}
+                title={text.kpiAchieved}
+                icon={images.kpiByMonth}
+                value={data.achieveKPI}
+                width={width - fontScale(60)}
+                onPress={() => navigation.navigate("Achieve")}
+              />
+              <MenuItem
+                style={{ marginTop: fontScale(60) }}
+                title={text.provisionalSalary}
+                icon={images.salaryByMonth}
+                value={data.provSal}
+                width={width - fontScale(60)}
+                onPress={() => navigation.navigate("ExpectedSalary")}
+              />
+            </>
+        }
       </View>
     </SafeAreaView>
   );

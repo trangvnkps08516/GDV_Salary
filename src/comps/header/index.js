@@ -10,9 +10,10 @@ const Header = (props) => {
     return (
         <View style={styles.container}>
             <View style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-                <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack()}>
+                {props.showBack==false ? <View style={styles.backIcon} /> : <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack()}>
                     <Image source={require("../../assets/backicon.png")} />
                 </TouchableOpacity>
+                }
                 <Text style={styles.title}>{title}</Text>
             </View>
         </View>

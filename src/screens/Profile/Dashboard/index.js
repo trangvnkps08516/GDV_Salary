@@ -5,12 +5,13 @@ import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import {styles} from './styles'
+
 const DashBoard=(props) => {
     const [loading,setLoading] = useState(false)
     return (
         <SafeAreaView style={styles.container}>
         <StatusBar translucent backgroundColor={colors.primary} />
-        <Header title={text.PDF} />
+        <Header title={text.profile} />
             <Image source={images.profileHeader} resizeMode="cover" style={styles.headerShape} />
             <View style={styles.personInfo}>
                 <Text style={styles.staffCode}>{'Admin'}</Text>

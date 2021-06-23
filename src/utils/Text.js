@@ -14,6 +14,7 @@ export const text = {
   newPassword: "Mật khẩu mới",
   repeatPassword: "Xác nhận mật khẩu",
   errorRepeatPassword: "Mật khẩu và xác nhận mật khẩu không giống nhau",
+  logoutMessage:"Bạn có muốn đăng xuất?",
 
   //Home
   kpiByMonth: "KPI tháng hiện tại",

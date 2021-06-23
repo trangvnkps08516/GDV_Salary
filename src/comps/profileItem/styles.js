@@ -1,38 +1,37 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils/Colors";
 import { height } from "../../utils/Dimenssion";
+import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        padding: height * 0.018472906
+        padding: fontScale(15)
     },
     textContent: {
-        marginTop: -height * 0.006157635,
-        marginLeft: height * 0.006157635,
+        marginTop: -fontScale(5),
+        marginLeft: fontScale(5),
         fontWeight: 'bold',
         color: '#1C5858',
-        fontSize: height * 0.020935961
+        fontSize: fontScale(17)
     },
     title: {
         color: "#9FAEAE",
-        padding: height * 0.006157635,
-        fontSize: height * 0.0197044334975369,
-        fontWeight: 'bold'
+        padding: fontScale(5),
+        fontSize: fontScale(18),
     },
     inputContent: {
         borderBottomWidth: 1,
         borderBottomColor: '#d6d6d6',
         color: '#068782',
-        fontSize: height * 0.020935961,
-        marginLeft: height * 0.006157635,
-        paddingTop: height * 0.012315271,
-        marginTop: -height * 0.012315271,
-        height: height * 0.043103448
+        fontSize: fontScale(17),
+        marginLeft: fontScale(5),
+        paddingTop: fontScale(10),
+        marginTop: -fontScale(10),
+        height: fontScale(35)
     },
     icon: {
-        width: height * 0.039408867,
-        height: height * 0.039408867,
-        marginVertical: height * 0.006157635
+        width: fontScale(32),
+        height: fontScale(32),
+        marginVertical: fontScale(5)
     }
 })

@@ -5,10 +5,10 @@ import { fontScale } from "../../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
+    flex: 1, backgroundColor: colors.primary,
   },
   body: {
-    backgroundColor: colors.white,
+    flex: 1,backgroundColor: colors.white,
   },
   menu: {
     backgroundColor: colors.white,
@@ -49,10 +49,11 @@ export const styles = StyleSheet.create({
     fontSize: fontScale(18),
     flex: 1,
     right: -fontScale(15)
-    },
-    text: {
-        color: "#F8F8F8",
-        alignSelf: "center",
-        fontSize: fontScale(15)
-    }
+  },
+  text: {
+    color: "#F8F8F8",
+    alignSelf: "center",
+    fontSize: fontScale(15),
+    marginTop: fontScale(15)
+  }
 });

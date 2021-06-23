@@ -3,12 +3,17 @@ import { colors } from "../../../utils/Colors";
 import { height, statusbarHeight, width } from "../../../utils/Dimenssion";
 
 export const styles = StyleSheet.create( {
+    container:{
+        backgroundColor:colors.white,
+        flex:1
+    },
     headerShape: {
         width: width,
         height: height * 0.3386699507389163,
         marginTop: -statusbarHeight - 50,
         zIndex: -10,
-        position: 'relative'
+        position: 'relative',
+        tintColor:colors.primary
     },
     personInfo: {
         width: width / 2,

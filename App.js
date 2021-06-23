@@ -1,11 +1,63 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AchieveScreen, AvgIncomeByMonthScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SigninScreen, SubscriberQualityScreen, UpdatePasswordScreen } from './src/screens';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AchieveScreen, AvgIncomeByMonthScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen } from './src/screens';
+import { colors } from './src/utils/Colors';
+import { images } from './src/utils/Images';
 const Stack = createStackNavigator();
-// const AuthStack = createStackNavigator();s
+const Tab = createBottomTabNavigator();
+
+const BottomTab = () => {
+  return (
+    <Tab.Navigator tabBarOptions={
+      {
+        activeTintColor: colors.primary,
+        inactiveTintColor: '#A2A1A1'
+      }
+    }
+    >
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStack}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size, focused }) => {
+            return <Image style={{ width: size, height: size, tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.user} />
+          }
+        }} />
+      <Tab.Screen
+        name="Home"
+        component={GDVStack}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size, focused }) => {
+            return <Image style={{ width: size, height: size, tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.home} />
+          }
+        }} />
+      <Tab.Screen
+        name="SignOut"
+        component={SignOutScreen}
+        options={{
+          tabBarLabel: 'Logout',
+          tabBarIcon: ({ color, size, focused }) => {
+            return <Image style={{ width: size, height: size, tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.logout} />
+          }
+        }} />
+    </Tab.Navigator>
+  );
+}
+
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+
+    </Stack.Navigator>
+  )
+}
 
 const GDVStack = () => {
   return (
@@ -15,38 +67,31 @@ const GDVStack = () => {
       {/* Home > KPI Tháng hiện tại */}
       <Stack.Screen name="KPIByMonthKPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
       {/* Home > Lương theo tháng */}
-      <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} /> 
+      <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
       {/* Home > Lương Theo Tháng > Lương cố định */}
-      <Stack.Screen name="SalaryByMonthFixedwage" component={SalaryByMonthFixedwageScreen} /> 
-       {/* Home > Lương Theo Tháng > Lương cố định */}
+      <Stack.Screen name="SalaryByMonthFixedwage" component={SalaryByMonthFixedwageScreen} />
+      {/* Home > Lương Theo Tháng > Lương khoán sản phẩm */}
       <Stack.Screen name="SalaryByMonthContract" component={SalaryByMonthContractScreen} />
-
-      <Stack.Screen name="AvgIncome" component={AvgIncomeByMonthScreen} />
-      <Stack.Screen name="SubscriberQuality" component={SubscriberQualityScreen}/>
+      {/* Home > Bình Quân Thu Nhập */}
+      <Stack.Screen name="AvgIncomeDashboard" component={AvgIncomeDashboardScreen} />
+      {/* Home > Bình Quân Thu Nhập > Bình Quân Tháng & Tổng Thu Nhập*/}
+      <Stack.Screen name="AvgIncomeByMonth" component={AvgIncomeByMonthScreen} />
+      {/* AvgIncomeByMonth */}
+      <Stack.Screen name="SubscriberQuality" component={SubscriberQualityScreen} />
       <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="ExpectedSalary" component={ExpectedSalaryScreen} />
-      
-      {/* ExpectedSalary */}
-      {/* <Stack.Screen name="AvgIncome" component={KPIByMonthDashboardScreen} /> */}
-      {/* AvgIncome */}
-      {/* <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="District" component={DistrictScreen} />
-      <Stack.Screen name="Station" component={StationScreen} />
-      <Stack.Screen name="Aqi" component={AQIScreen} />
-      <Stack.Screen name="Test" component={TestScreen} /> */}
+      {/* Home > Thông tin giao dịch */}
+      <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
+
     </Stack.Navigator>
   )
 }
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="SignIn" component={SigninScreen} />
-      {/* <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="District" component={DistrictScreen} />
-      <Stack.Screen name="Station" component={StationScreen} />
-      <Stack.Screen name="Aqi" component={AQIScreen} />
-      <Stack.Screen name="Test" component={TestScreen} /> */}
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Screen name="Home" component={BottomTab} />
     </Stack.Navigator>
   )
 }
@@ -55,19 +100,10 @@ const AuthStack = () => {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Signin" component={AuthStack} />
+      <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="SignIn" component={AuthStack} />
         <Stack.Screen name="Home" component={GDVStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

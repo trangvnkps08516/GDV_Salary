@@ -12,7 +12,6 @@ import { getSubscriberQuality } from '../../../api';
 
 
 const SubscriberQuality = (props) => {
-    // let test = require("../../../../assets/testicon.png")
     const [data, setData] = useState({
         "beginMonth": "",
         "endMonth": "",
@@ -27,7 +26,6 @@ const SubscriberQuality = (props) => {
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true)
-
 
     const getData = async () => {
         await getSubscriberQuality().then((res) => {

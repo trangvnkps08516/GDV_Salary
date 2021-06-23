@@ -46,7 +46,6 @@ function AvgIncomeByMonth(props) {
     }
 
     const onChangeSMonth = async (sMonth) => {
-        console.log(month +' ' + sMonth)
         if (month > sMonth == true) {
             
         } else {
