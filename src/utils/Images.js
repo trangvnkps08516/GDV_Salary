@@ -28,4 +28,12 @@ export const images = {
     otheroutcome:require('../../assets/otheroutcome.png'),
     headphone:require('../../assets/headphone.png'),
     arrears:require('../../assets/arrears.png'),
+    debtPercent:require('../../assets/ic_debtPercent.png'),
+    totalDebtNinety:require('../../assets/ic_totalDebtNinety.png'),
+    totalRevenue:require('../../assets/ic_totalRevenue.png'),
+    newSubPrePaid:require('../../assets/ic_newSubPrePaid.png'),
+    revokeAmount:require('../../assets/ic_revokeAmount.png'),
+    preToPostPaid:require('../../assets/ic_preToPostPaid.png'),
+    denyTwoC:require('../../assets/ic_denyTwoC.png'),
+    
 }

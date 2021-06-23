@@ -32,17 +32,48 @@ export const getProfile = async () => {
 
 // 3. Home > KPI Tháng hiện tại
 export const getKPIByMonthDashboard = async () => {
-    const data = {
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: "GET",
+        url: "http://hochiminh.mobifone.vn/luongGDV/api/dashBoard/getKPIByMonthDashboard",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
-
+    });
     return data;
+
 }
 
 // 4. Home > KPI Tháng hiện tại > KPI Đạt Được
@@ -92,19 +123,52 @@ export const getKPIByMonthAchieve = async () => {
 }
 
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
-export const getTempSalary = () => {
-    const data = {
+export const getTempSalary = async() => {
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: "GET",
+        url: "http://hochiminh.mobifone.vn/luongGDV/api/actionItemKpi/getTempSalary",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
-
+    });
     return data;
+
 }
+
+
 
 // 6. Home > KPI Tháng hiện tại > Lương tạm tính
 export const getDetailTempContract = () => {
@@ -243,20 +307,50 @@ export const getAvgIncomeByMonth = async(beginMonth, endMonth) => {
 }
 
 // 11. Home > Chất Lượng Thuê Bao
-export const getSubscriberQuality = () => {
-    const data = {
+export const getSubscriberQuality = async () => {
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: "GET",
+        url: "http://hochiminh.mobifone.vn/luongGDV/api/dashBoard/getSubscriberQuality",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
-
+    });
     return data;
-}
 
+}
 // 12. Home > Thông tin giao dịch
 export const getTransactionInfo = (month) => {
     const data = {

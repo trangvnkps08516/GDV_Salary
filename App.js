@@ -12,9 +12,10 @@ import { AchieveScreen, AvgIncomeByMonthScreen, ExpectedSalaryScreen, HomeScreen
 // import DashBoard from './src/screens/Home/KPIByMonth/DashBoard';
 // import Dashboard from './src/screens/Home/SalaryByMonth/Dashboard';
 // import Dashboard from './src/screens/Home/AvgIncome/Dashboard';
+import SubscriberQuality from './src/screens/Home/SubscriberQuality/index';
 
 const Stack = createStackNavigator();
-// const AuthStack = createStackNavigator();
+// const AuthStack = createStackNavigator();s
 
 const GDVStack = () => {
   return (
