@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
   },
   statusData: {
     color: "#FCFCFC",
+    fontSize:fontScale(15)
   },
   
 });

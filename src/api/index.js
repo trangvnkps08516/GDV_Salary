@@ -1,5 +1,7 @@
 import { GET, POST, PUT, PATCH, DELETE } from "./method";
-import axios from 'axios';
+import { baseUrl } from "./untils";
+import axios from "axios"
+
 // 1. Login Screen
 export const login = async (userName, password) => {
     const data = {
@@ -44,7 +46,7 @@ export const getKPIByMonthDashboard = async () => {
 }
 
 // 4. Home > KPI Tháng hiện tại > KPI Đạt Được
-export const getKPIByMonthAchieve = async() => {
+export const getKPIByMonthAchieve = async () => {
     let data = {
         message: '',
         status: '',
@@ -52,43 +54,45 @@ export const getKPIByMonthAchieve = async() => {
         loading: null,
         error: {}
     }
-await axios({
-    method: "GET",
-    url: "http://hochiminh.mobifone.vn/luongGDV/api/actionItemKpi/getKPIByMonthAchieve",
-    headers: {'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 1} 
+    await axios({
+        method: "GET",
+        url: "http://hochiminh.mobifone.vn/luongGDV/api/actionItemKpi/getKPIByMonthAchieve",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
-}).then((res) => {
-    if(res.status == 200) {
-        if (Object.values(res.data).length > 0) {
-            data = {
-                'data': res.data.data,
-                'isLoading': false,
-                'status': 'success',
-                'length': Object.values(res.data).length,
-                'error': null
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
             }
         }
-    }
-}).catch(async (error) => {
-    if (error) {
-        data = {
-            'message': error.response.data.message,
-            'isLoading': false,
-            'status': 'failed',
-            'length': 0,
-            'error': error.response.data
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
         }
-    }
-    
-});
-return data;
+
+    });
+    return data;
 
 }
 
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
-export const getTempSalaryDashboard = () => {
+export const getGetProvSalaryDashboard = () => {
     const data = {
         message: '',
         status: '',

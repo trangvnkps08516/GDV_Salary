@@ -17,11 +17,14 @@ export const styles = StyleSheet.create({
   },
   total: {
     color: "#2E2E31",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize:fontScale(15)
+
   },
   salary: {
     color: "#00BECC",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize:fontScale(15)
   },
   
 });

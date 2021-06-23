@@ -13,7 +13,6 @@ export default function App() {
   return <Achieve/>
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

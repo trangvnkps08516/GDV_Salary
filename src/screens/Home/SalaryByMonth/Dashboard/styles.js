@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../../utils/Colors";
+import { colors } from "../../../../utils/Colors";
+// import { colors } from "../../../utils/Colors";
 
 export const styles = StyleSheet.create({
     container:{
@@ -7,5 +8,8 @@ export const styles = StyleSheet.create({
     },
     body:{
         backgroundColor:colors.white
+    },
+    datePicker:{
+        alignSelf:"center"
     }
 })

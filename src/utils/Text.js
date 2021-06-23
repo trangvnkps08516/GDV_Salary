@@ -59,6 +59,8 @@ export const text = {
   punishment: "Chế tài",
   otherExpenses: "Chi khác",
 
+  // Tổng lương dự kiến
+  expectedSalary:"Tổng lương dự kiến",
 
   // Bình quân thu nhập
   averageMonthlySalary: "Bình quân lương các tháng",
@@ -68,6 +70,7 @@ export const text = {
   averageIncentiveSpending: "Bình quân chi khuyến khích",
   averageOtherCosts: "Bình quân chi khác", 
   averageAndAmount:"Bình quân tháng & Tổng thu nhập",
+  upSalaryProduct:"Lương khoán sp",
 
 
   // Chất lượng thuê bao
