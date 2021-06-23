@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, TouchableOpacity,ScrollView } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -30,7 +30,6 @@ const Achieve = (props) => {
     const getData = async()=> {
         await getKPIByMonthAchieve().then((res) => {
             console.log(res)
-
             if(res.status == "success") {
                 setData(res.data)
             }
