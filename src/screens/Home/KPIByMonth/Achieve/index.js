@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, TouchableOpacity,ScrollView } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -24,26 +24,23 @@ const Achieve = (props) => {
     });
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
-    const [loading,setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
 
 
-    const getData = async()=> {
+    const getData = async () => {
         await getKPIByMonthAchieve().then((res) => {
-            console.log(res)
-            if(res.status == "success") {
+            if (res.status == "success") {
                 setData(res.data)
             }
-            if(res.status=="failed"){
+            if (res.status == "failed") {
 
             }
         })
-        
+
     }
 
     useEffect(() => {
-       
-            getData()
-        
+        getData();
     }, [""]);
 
     return (
@@ -57,15 +54,15 @@ const Achieve = (props) => {
                     <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
                     <Text style={styles.sumKpi}>{data.sumKpi} %</Text>
                 </View>
-                <ScrollView style={{flex:1}} showsVerticalScrollIndicator={false}>
+                <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                     <View style={styles.detailInfo}>
-                        <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid}/>
+                        <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid} />
                         <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
                         <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
                         <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi} />
                         <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
                     </View>
-                    <View style={[styles.detailInfo,{marginBottom:fontScale(20)}]}>
+                    <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
                         <ListItem icon={images.percent} title={text.subRatio} justTitle />
                         <View style={styles.subDetail}>
                             <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.ratePrePaid} />

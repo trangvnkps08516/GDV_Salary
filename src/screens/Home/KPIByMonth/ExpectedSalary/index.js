@@ -18,6 +18,7 @@ const ExpectedSalary = (props) => {
         otherService: 600000,
         terminalDevice: 100000
     })
+    
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />

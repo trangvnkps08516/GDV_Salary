@@ -48,6 +48,7 @@ export const text = {
   cardRechargeFee: "Phí thẻ nạp",
   terminalServiceFee: "Phí thiết bị đầu cuối",
   orderServiceFee: "Phí dịch vụ khác",
+  orderFee: "Phí khác",
   ordersServiceFee:"Phí dịch vụ, thu cước, EZ, thẻ cào",
   numberOfCustomers: "Lượt KH",
   transactions: "Lượt giao dịch",
@@ -64,12 +65,18 @@ export const text = {
   averageMonthlySalary: "Bình quân lương các tháng",
   averageSalaryInTheFirstQuarter: "Bình quân lương quý 1",
   fixedAverageSalary: "Bình quân lương cố định",
+  totalAverageSalary: "Tổng lương cố định",
   upAverageSalary: "Bình quân lương khoán",
+  totalupAverageSalary: "Tổng lương khoán",
+
   averageIncentiveSpending: "Bình quân chi khuyến khích",
+  totalIncentiveSpending:"Tổng chi khuyến khích",
   averageOtherCosts: "Bình quân chi khác", 
+  totalOtherCosts: "Tổng chi khác", 
+  averageMonth:"Bình quân tháng" ,
   averageAndAmount:"Bình quân tháng & Tổng thu nhập",
   upSalaryProduct:"Lương khoán sp",
-
+  totalIncome:"Tổng thu nhập",
 
   // Chất lượng thuê bao
   numberOfPostpaidSubscribers: "Số lượng TBTS",

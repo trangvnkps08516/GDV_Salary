@@ -4,9 +4,11 @@ import { Input, Button, AuthTitle, MenuItem } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
+import { useNavigation } from '@react-navigation/core';
 import { styles } from './style';
 
 const SignIn = (props) => {
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
@@ -25,7 +27,7 @@ const SignIn = (props) => {
                         <Text style={styles.forgotText}>Quên mật khẩu</Text>
                     </TouchableOpacity>
                 </View>
-                <Button width={fontScale(150)} label={"Đăng nhập"} center style={styles.loginButton} />
+                <Button width={fontScale(150)} label={"Đăng nhập"} center style={styles.loginButton} onPress={()=>navigation.navigate('Home')}/>
             </View>
         </SafeAreaView>
     );

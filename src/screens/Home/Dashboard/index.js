@@ -9,11 +9,11 @@ import { text } from '../../../utils/Text';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 import { colors } from '../../../utils/Colors';
+import { useNavigation } from '@react-navigation/core';
 
-
-function Dashboard(props) {
+const Dashboard=(props)=> {
+  const navigation = useNavigation();
     return (
-        
         <SafeAreaView style={styles.container}>
         <StatusBar translucent backgroundColor={colors.primary}/>
         <Header title={text.dashboard} />

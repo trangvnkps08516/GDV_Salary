@@ -76,7 +76,7 @@ export const AvgIncomeDashboard = {
 }
 
 // Home > Bình Quân Thu Nhập > Bình Quân Tháng & Tổng Thu Nhập | getAvgIncomeByMonth
-export const AvgIncomeByMonth = {
+export const M_AvgIncomeByMonth = {
     "notification": "",
     "avgByMonth": 0,
     "avgPermanentSalary": 0,

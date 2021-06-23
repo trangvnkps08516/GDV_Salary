@@ -20,8 +20,12 @@ export const images = {
     subscriberQuality: require('../../assets/ic_subscriberQuality.png'),
     transactionInformation: require('../../assets/ic_transactionInformation.png'),
     upSalary: require('../../assets/ic_luongkhoan.png'),
+    incentive:require('../../assets/incentive.png'),
     incentiveCost: require('../../assets/ic_incentiveCost.png'),
     punishment: require('../../assets/ic_punishment.png'),
     otherExpenses: require('../../assets/ic_otherExpenses.png'),
-    arrowdown:require('../assets/dropdown.png')
+    arrowdown:require('../assets/dropdown.png'),
+    otheroutcome:require('../../assets/otheroutcome.png'),
+    headphone:require('../../assets/headphone.png'),
+    arrears:require('../../assets/arrears.png'),
 }

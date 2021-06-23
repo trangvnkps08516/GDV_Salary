@@ -92,7 +92,7 @@ export const getKPIByMonthAchieve = async () => {
 }
 
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
-export const getGetProvSalaryDashboard = () => {
+export const getTempSalary = () => {
     const data = {
         message: '',
         status: '',
@@ -136,18 +136,48 @@ export const getSalaryByMonth = (month) => {
     return data;
 }
 
-// 8. Home > Lương Theo Tháng > Lương Khoán
-export const getContractSalaryByMonth = (month) => {
-    const data = {
+// 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm    
+export const getContractSalaryByMonth = async(month) => {
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: "GET",
+        url: `${baseUrl}actionItemKpi/getContractSalaryByMonth?month=01/${month}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
-
+    });
     return data;
 }
 
@@ -167,17 +197,48 @@ export const getAvgIncomeDashboard = (beginMonth, endMonth) => {
 }
 
 // 10. Home > Bình Quân Thu Nhập > Bình Quân Tháng & Tổng Thu Nhập
-export const getAvgIncomeByMonth = (beginMonth, endMonth) => {
-    const data = {
+export const getAvgIncomeByMonth = async(beginMonth, endMonth) => {
+  
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: "GET",
+        url: `${baseUrl}actionItemKpi/getAvgIncomeByMonth?fromMonth=01/${beginMonth}&toMonth=01/${endMonth}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
-
+    });
     return data;
 }
 

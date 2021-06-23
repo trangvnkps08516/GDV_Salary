@@ -28,7 +28,7 @@
 #   SalaryByMonth: Lương theo tháng
 #       Dashboard: Dashboard lương theo tháng
 #       Fixedwage: Lương cố định
-#       Contract: Lương khoán SP
+#       Contract: Lương khoán SP    
 #       EncourageSalary: Chi phí khuyến khích
 #       Arrears: Chế tài
 #   AvgIncome: Bình quân thu nhập
