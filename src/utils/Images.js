@@ -23,5 +23,13 @@ export const images = {
     incentiveCost: require('../../assets/ic_incentiveCost.png'),
     punishment: require('../../assets/ic_punishment.png'),
     otherExpenses: require('../../assets/ic_otherExpenses.png'),
-    arrowdown:require('../assets/dropdown.png')
+    arrowdown:require('../assets/dropdown.png'),
+    debtPercent:require('../../assets/ic_debtPercent.png'),
+    totalDebtNinety:require('../../assets/ic_totalDebtNinety.png'),
+    totalRevenue:require('../../assets/ic_totalRevenue.png'),
+    newSubPrePaid:require('../../assets/ic_newSubPrePaid.png'),
+    revokeAmount:require('../../assets/ic_revokeAmount.png'),
+    preToPostPaid:require('../../assets/ic_preToPostPaid.png'),
+    denyTwoC:require('../../assets/ic_denyTwoC.png'),
+    
 }

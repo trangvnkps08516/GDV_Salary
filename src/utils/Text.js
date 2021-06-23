@@ -74,12 +74,15 @@ export const text = {
 
 
   // Chất lượng thuê bao
-  numberOfPostpaidSubscribers: "Số lượng TBTS",
-  numberOfCutsAndCancellations: "Số lượng cắt hủy",
-  cancellationRate: "Tỉ lệ cắt hủy",
+  debtPercent: "Tỉ lệ nợ/ Doanh thu",
+  totalDebtNinety: "Tổng nợ >= 90  ngày",
   totalRevenue: "Tổng doanh thu",
-  totalDebt90: "Tổng nợ 90",
-  debtRatioRevenue: "Tỉ lệ nợ/ Doanh thu",
+  newSubPrePaid: "Tổng TBTS PTM",
+  revokeAmount: "TBTS cắt hủy",
+  preToPostPaid: "TBTS chuyển sang TBTT",
+  denyTwoC: "TBTS đang bị chặn 2c",
+
+
 
 //  Thông tin giao dịch
   transactionsInfo:"Thông tin giao dịch",
