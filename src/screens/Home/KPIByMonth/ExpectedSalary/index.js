@@ -11,6 +11,7 @@ import { fontScale } from '../../../../utils/Fonts';
 import moment from 'moment';
 import { getTempSalary } from '../../../../api';
 
+
 const ExpectedSalary = (props) => {
     const [data, setData] = useState({
         contractSalary: 1000000,

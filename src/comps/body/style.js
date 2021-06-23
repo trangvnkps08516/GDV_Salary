@@ -10,9 +10,11 @@ export const styles = StyleSheet.create({
         color:colors.white
     },
     container:{
+        flex:1,
         backgroundColor:colors.primary    
     },
     body:{
-        backgroundColor:colors.white
+        backgroundColor:colors.white,
+        flex:1
     }
 })

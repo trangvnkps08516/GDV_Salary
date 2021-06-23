@@ -33,7 +33,7 @@ export const SalaryByMonthContractScreen = () => {return <SalaryByMonthContract 
 export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />}
 export const AvgIncomeDashboardScreen = () => {return <AvgIncomeDashboard />}
 export const AvgIncomeByMonthScreen = () => {return <AvgIncomeByMonth />}
-// export const AvgIncomeByQuarterScreen = () => <AvgIncomeByQuarter />
+// export const EncourageSalaryScreen = () => <EncourageSalary />
 export const SubscriberQualityScreen = () => {return <SubscriberQuality />}
 export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}

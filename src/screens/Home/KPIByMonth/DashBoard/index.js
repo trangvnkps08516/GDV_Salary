@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, StatusBar } from "react-native";
 import { Body, DateView, Header, MenuItem } from "../../../../comps";
-import { DatePicker } from "../../../../comps";
 import { styles } from "../../../../comps/body/style";
 import { colors } from "../../../../utils/Colors";
-import { value } from "../../../../utils/Values";
 import { width } from "../../../../utils/Dimenssion";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
@@ -12,17 +10,18 @@ import { text } from "../../../../utils/Text";
 import { getKPIByMonthDashboard } from "../../../../api";
 import moment from "moment";
 import { KPIByMonthDashboard } from "../../../../models/Data";
+import { useNavigation } from '@react-navigation/core';
 
 const DashBoard = (props) => {
   const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
   const [showDate, setShowDate] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(KPIByMonthDashboard)
+  const [data, setData] = useState(KPIByMonthDashboard);
+
+  const navigation = useNavigation()
 
   const getData = async () => {
     await getKPIByMonthDashboard().then((res) => {
-      console.log(res);
-
       if (res.status == "success") {
         setData(res.data);
       }

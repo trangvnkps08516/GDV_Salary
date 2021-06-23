@@ -8,7 +8,7 @@ import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
-import { changeDate, changeSecondDate, thoundsandSep } from '../../../../utils/Logistics';
+import { thoundsandSep } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
 
@@ -36,7 +36,7 @@ function AvgIncomeByMonth(props) {
     }, []);
 
     const onChangeMonth = async (month) => {
-        
+        console.log(month +' ' + sMonth)
         if (month > sMonth == true) {
             
         } else {
@@ -46,7 +46,7 @@ function AvgIncomeByMonth(props) {
     }
 
     const onChangeSMonth = async (sMonth) => {
-        setSMonth(sMonth)
+        console.log(month +' ' + sMonth)
         if (month > sMonth == true) {
             
         } else {

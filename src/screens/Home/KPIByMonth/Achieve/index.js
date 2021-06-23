@@ -5,9 +5,7 @@ import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { images } from '../../../../utils/Images';
 import { text } from '../../../../utils/Text';
-import { width } from '../../../../utils/Dimenssion';
 import moment from 'moment';
-// import MonthPicker from '../../../../comps/datepicker';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve } from '../../../../api';
 

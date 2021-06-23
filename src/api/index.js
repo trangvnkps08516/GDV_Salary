@@ -186,16 +186,48 @@ export const getDetailTempContract = () => {
 }
 
 // 7. Home > Lương Theo Tháng
-export const getSalaryByMonth = (month) => {
-    const data = {
+export const getSalaryByMonth = async (month) => {
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    
+    await axios({
+        method: "GET",
+        url: `${baseUrl}dashBoard/getSalaryByMonth?month=01/${month}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
+    });
 
     return data;
 }

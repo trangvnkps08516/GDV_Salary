@@ -4,7 +4,6 @@ import { images } from '../../utils/Images';
 import { colors } from '../../utils/Colors';
 import { fontScale } from '../../utils/Fonts';
 import MonthYearPicker from 'react-native-simple-month-year-picker';
-import { styles } from './styles';
 
 const YearMonthPicker = (props) => {
     const [month, setMonth] = useState(null);
@@ -39,6 +38,7 @@ const YearMonthPicker = (props) => {
                 onChangeMonth={(month) => { }}
                 onChangeText={(date) => { }}
                 onChangeDate={(date) => { setMonth(date); props.onChangeDate(date.substring(6, date.length)) }}
+                // onChangeDate={(date) => { console.log(date) }}
             />
         </View>
     );
