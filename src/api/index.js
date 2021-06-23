@@ -4,14 +4,46 @@ import axios from "axios"
 
 // 1. Login Screen
 export const login = async (userName, password) => {
-    const data = {
+    let data = {
         message: '',
         status: '',
-        data: null,
+        res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: POST,
+        url: `http://hochiminh.mobifone.vn/luongGDV/api/login?password=${password}&userName=${userName}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'token'
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
+
+    });
     return data;
 }
 
