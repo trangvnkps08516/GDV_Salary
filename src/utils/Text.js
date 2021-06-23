@@ -81,6 +81,7 @@ export const text = {
   totalIncome:"Tổng thu nhập",
 
   // Chất lượng thuê bao
+  subscriberQuality: "Chất lượng thuê bao", 
   debtPercent: "Tỉ lệ nợ/ Doanh thu",
   totalDebtNinety: "Tổng nợ >= 90  ngày",
   totalRevenue: "Tổng doanh thu",
@@ -103,5 +104,7 @@ export const text = {
   workingShop: "Cửa hàng làm việc",
   traderRating: "Xếp hạng giao dịch viên",
   storeRating: "Xếp loại cửa hàng",
+  PDF: "PDF",
+  profile: " Thông tin cá nhân"  
 
 };

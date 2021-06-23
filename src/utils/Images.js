@@ -35,5 +35,19 @@ export const images = {
     revokeAmount:require('../../assets/ic_revokeAmount.png'),
     preToPostPaid:require('../../assets/ic_preToPostPaid.png'),
     denyTwoC:require('../../assets/ic_denyTwoC.png'),
+    profileHeader: require('../../assets/profileheader.png'),
+    avatar: require('../../assets/trang.jpg'),
+    day: require('../../assets/ic_day.png'),
+    workingShop: require('../../assets/ic_workingShop.png'),
+    traderRating: require('../../assets/ic_traderRating.png'),
+    pdf: require('../../assets/ic_pdf.png'),
+    
+
+
     
 }
+// profile: "Thông tin cá nhân",
+//   workingDay: "Ngày vào làm",
+//   workingShop: "Cửa hàng làm việc",
+//   traderRating: "Xếp hạng giao dịch viên",
+//   storeRating: "Xếp loại cửa hàng",

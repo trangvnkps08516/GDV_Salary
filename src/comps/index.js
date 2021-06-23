@@ -10,6 +10,7 @@ import DateView from "./dateview";
 import Body from "./body"
 import MetricStatus from "./metricstatus";
 import TotalSalary from "./totalsalry";
+import ProfileItem from "./profileItem";
 
 
 export {
@@ -24,5 +25,6 @@ export {
     DateView,
     Body,
     MetricStatus,
-    TotalSalary
+    TotalSalary,
+    ProfileItem,
 }

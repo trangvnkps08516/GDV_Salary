@@ -49,30 +49,21 @@ const SubscriberQuality = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
-            <Header title={text.kpiAchieved} />
-            <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1, marginLeft: -width / 6 }}>
-                    <DateView dateLabel={data.beginMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
-                </View>
-                <View style={{ flex: 1, marginLeft: -width / 4 }}>
-                    <DateView dateLabel={data.endMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
-                </View>
+            <Header title={text.subscriberQuality} />
+            <View style={{flexDirection: "row"}}>
+           <View style={{flex:1,marginLeft:-width/6}}>
+                <DateView dateLabel={data.beginMonth} style={styles.dateView} width={width/2 - fontScale(50)}/>
+           </View>
+           <View style={{flex:1,marginLeft:-width/4}}>
+           <DateView dateLabel={data.endMonth} style={styles.dateView} width={width/2 - fontScale(50)}/>
+           </View>
             </View>
             <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
-                {/* <View style={styles.sumKpiContainer}>
-                    <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
-                    <Text style={styles.sumKpi}>{data.sumKpi} %</Text>
-                </View> */}
-                <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-                    {/* <View style={styles.detailInfo}>
-                        <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid}/>
-                        <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
-                        <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
-                        <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi} />
-                        <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
-                    </View> */}
-                    <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
+             
+                <ScrollView style={{flex:1}} showsVerticalScrollIndicator={false}>
+                   
+                    <View style={[styles.detailInfo,{marginBottom:fontScale(20)}]}>
                         <ListItem icon={images.debtPercent} title={text.debtPercent} price={data.debtPercent} />
                         <View style={styles.subDetail}>
                             <ListItem icon={images.totalDebtNinety} title={text.totalDebtNinety} price={data.totalDebtNinety} />
