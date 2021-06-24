@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, View, StatusBar,ActivityIndicator } from 'react-native';
+import { SafeAreaView, View, StatusBar,ActivityIndicator, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import { MenuItem } from '../../../comps';
 import { Header } from '../../../comps';
@@ -23,11 +23,13 @@ const Dashboard = (props) => {
       <Header showBack={false} profile avatar={images.avatar}/>
       <Body style={{ marginTop: fontScale(27) }} />
       <View style={styles.body}>
+      <TouchableOpacity style={styles.menu}>
         <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />
         <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryByMonth} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthDashboard")} />
         <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeDashboard")} />
         <MenuItem style={{ marginTop: fontScale(60) }} title={text.subscriberQuality} icon={images.subscriberQuality} width={width - fontScale(60)} onPress={() => navigation.navigate("SubscriberQuality")} />
         <MenuItem style={{ marginTop: fontScale(60) }} title={text.transactionInformation} icon={images.transactionInformation} width={width - fontScale(60)} onPress={() => navigation.navigate("TransactionInfo")} />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
