@@ -12,11 +12,11 @@ export const styles = StyleSheet.create({
     authTitle:{marginLeft:fontScale(35)},
     ipUsn:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
     ipPwd:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
-    bottomShape: { flex: 2,width:width,bottom:0,height:2/3*height},
+    bottomShape: { flex: 2,width:width,bottom:-fontScale(27)},
     background: {
         width: width, height: height, bottom: 0, position: "absolute"
     },
-    mbfLogoContainer:{ flex: 1, top: -fontScale(130) },
+    mbfLogoContainer:{ flex: 1, top: -fontScale(30) },
     logo:{ width: width * 2 / 3, alignSelf: "center" },
     forgotText:{alignSelf:"flex-end",fontSize:fontScale(17),color:colors.white},
     forgotTextContainer:{

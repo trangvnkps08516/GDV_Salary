@@ -1,6 +1,7 @@
 import { GET, POST, PUT, PATCH, DELETE } from "./method";
 import { baseUrl } from "./untils";
 import axios from "axios"
+import { _removeData, _retrieveData } from "../utils/Storage";
 
 // 1. Login Screen
 export const login = async (userName, password) => {
@@ -310,8 +311,8 @@ export const getContractSalaryByMonth = async(month) => {
 }
 
 // 9. Home > Bình Quân Thu Nhập
-export const getAvgIncomeDashboard = (beginMonth, endMonth) => {
-    const data = {
+export const getAvgIncomeDashboard = async(beginMonth, endMonth) => {
+    let data = {
         message: '',
         status: '',
         res: null,
@@ -319,8 +320,39 @@ export const getAvgIncomeDashboard = (beginMonth, endMonth) => {
         error: {}
     }
 
+    await axios({
+        method: "GET",
+        url: `${baseUrl}dashBoard/getAvgIncomeDashboard?fromMonth=01/${beginMonth}&toMonth=01/${endMonth}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
+    });
     return data;
 }
 
@@ -416,17 +448,47 @@ export const getSubscriberQuality = async () => {
 
 }
 // 12. Home > Thông tin giao dịch
-export const getTransactionInfo = (month) => {
-    const data = {
+export const getTransactionInfo = async(month) => {
+    let data = {
         message: '',
         status: '',
         res: null,
         loading: null,
         error: {}
     }
+    await axios({
+        method: "GET",
+        url: `http://hochiminh.mobifone.vn/luongGDV/api/dashBoard/getTransactionInfo?month=01/${month}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 1
+        }
 
+    }).then((res) => {
+        if (res.status == 200) {
+            if (Object.values(res.data).length > 0) {
+                data = {
+                    'data': res.data.data,
+                    'isLoading': false,
+                    'status': 'success',
+                    'length': Object.values(res.data).length,
+                    'error': null
+                }
+            }
+        }
+    }).catch(async (error) => {
+        if (error) {
+            data = {
+                'message': error.response.data.message,
+                'isLoading': false,
+                'status': 'failed',
+                'length': 0,
+                'error': error.response.data
+            }
+        }
 
-
+    });
     return data;
 }
 
@@ -471,6 +533,70 @@ export const updatePassword = (oldPassword, newPassword, phoneNumber) => {
     }
 
 
+
+    return data;
+}
+
+// 15. UpdatePassword
+export const signoutUser = async(navigation) => {
+    let data = {
+        message: '',
+        status: '',
+        res: null,
+        loading: null,
+        error: {}
+    }
+
+    await _retrieveData("userInfo").then(async(stoData)=>{
+        if(stoData!=undefined){
+            let data = {
+                message: '',
+                status: '',
+                res: null,
+                loading: null,
+                error: {}
+            }
+            let token = stoData.accesstoken;
+            console.log(token)
+            await axios({
+                method: "GET",
+                url: "http://hochiminh.mobifone.vn/luongGDV/api/logout",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 1
+                }
+        
+            }).then(async(res) => {
+                if (res.status == 200) {
+                    console.log(res)
+                    if (Object.values(res.data).length > 0) {
+                        data = {
+                            'data': res.data.data,
+                            'isLoading': false,
+                            'status': 'success',
+                            'length': Object.values(res.data).length,
+                            'error': null
+                        }
+                        await _removeData(userInfo);
+                    }
+                }
+            }).catch(async (error) => {
+                if (error) {
+                    data = {
+                        'message': error.response.data.message,
+                        'isLoading': false,
+                        'status': 'failed',
+                        'length': 0,
+                        'error': error.response.data
+                    }
+                }
+        
+            });
+        }else{
+            navigation.navigate("SignIn")
+        }
+    })
 
     return data;
 }

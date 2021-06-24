@@ -8,6 +8,7 @@ import { text } from '../../../../utils/Text';
 import moment from 'moment';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve } from '../../../../api';
+import { checkn } from '../../../../utils/Logistics';
 
 const Achieve = (props) => {
     let test = require("../../../../assets/testicon.png")
@@ -60,10 +61,10 @@ const Achieve = (props) => {
                             </View>
                             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                                 <View style={styles.detailInfo}>
-                                    <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.prePaid} />
-                                    <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.postPaid} />
+                                    <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={checkn(data.prePaid)} />
+                                    <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={checkn(data.postPaid)} />
                                     <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
-                                    <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi} />
+                                    <ListItem icon={images.important} title={text.kpiImportant} price={checkn(data.importantKpi)} />
                                     <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
                                 </View>
                                 <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>

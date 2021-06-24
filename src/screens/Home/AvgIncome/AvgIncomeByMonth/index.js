@@ -11,11 +11,13 @@ import { images } from '../../../../utils/Images';
 import { thoundsandSep } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
+import { useRoute } from '@react-navigation/native';
 
 // Bình Quân Tháng và Tổng Thu Nhập
 function AvgIncomeByMonth(props) {
-    const [month, setMonth] = useState(moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
-    const [sMonth, setSMonth] = useState(moment(new Date()).format("MM/YYYY"));
+    const route = useRoute()
+    const [month, setMonth] = useState(route.params?.dateRange.beginMonth || moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
+    const [sMonth, setSMonth] = useState(route.params?.dateRange.endMonth || moment(new Date()).format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(M_AvgIncomeByMonth);
 
@@ -36,7 +38,6 @@ function AvgIncomeByMonth(props) {
     }, []);
 
     const onChangeMonth = async (month) => {
-        console.log(month +' ' + sMonth)
         if (month > sMonth == true) {
             
         } else {

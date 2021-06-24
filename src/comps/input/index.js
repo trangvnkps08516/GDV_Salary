@@ -13,6 +13,7 @@ const Input = (props) => {
         title, // title của input
         width, // độ dài
         style, // thuộc tính tùy biến
+        onKeyPress
     } = props;
     return (
         <>

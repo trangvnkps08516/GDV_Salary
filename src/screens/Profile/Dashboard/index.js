@@ -14,10 +14,9 @@ const DashBoard=(props) => {
         <Header title={text.profile} />
             <Image source={images.profileHeader} resizeMode="cover" style={styles.headerShape} />
             <View style={styles.personInfo}>
-                <Text style={styles.staffCode}>{'Admin'}</Text>
+                <Text style={styles.staffCode}>{'Võ Ngọc Kim Trang'}</Text>
                 <Text style={styles.staffName}>{'(GDV - 1.009)'}</Text>
-                <Image style={styles.avatar}
-                    source={images.avatar} />
+                <Image style={styles.avatar} source={images.avatar} />
             </View>
             <View>
                 {/* <ScreenTitle title={text.personInfo} style={{ marginTop: 15, marginBottom: 21 }} /> */}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
+  ActivityIndicator
 } from "react-native";
 import {
   Body,
@@ -22,37 +23,85 @@ import { text } from "../../../../utils/Text";
 import { styles } from "./style";
 import moment from "moment";
 import { useNavigation } from '@react-navigation/core';
+import { getAvgIncomeDashboard } from '../../../../api';
+import { AvgIncomeDashboard } from '../../../../models/Data';
+import { thoundsandSep } from '../../../../utils/Logistics';
+import { useRoute, useIsFocused } from "@react-navigation/native";
 
 const Dashboard = (props) => {
-  const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
   const navigation = useNavigation();
+  const route = useRoute()
+  const [month, setMonth] = useState(moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
+  const [sMonth, setSMonth] = useState(moment(new Date()).format("MM/YYYY"));
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(AvgIncomeDashboard);
+  const isFocused = useIsFocused();
+
+  const getData = async (beginMonth, endMonth) => {
+    setLoading(true)
+    await getAvgIncomeDashboard(beginMonth, endMonth).then((data) => {
+      if (data.status == "success") {
+        setData(data.data)
+        setLoading(false)
+      } else if (data.status == "failed") {
+        setLoading(false);
+      }
+    })
+  }
+
+  useEffect(() => {
+    getData(month, sMonth);
+  }, [month]);
+
+  const onChangeMonth = async (month) => {
+    if (month > sMonth == true) {
+
+    } else {
+      setMonth(month)
+      await getData(month, sMonth);
+    }
+  }
+
+  const onChangeSMonth = async (sMonth) => {
+    if (month > sMonth == true) {
+
+    } else {
+      setSMonth(sMonth)
+      await getData(month, sMonth);
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.averageIncome} />
-      <DatePicker month={month} width={width / 2 - fontScale(40)} style={{ alignSelf:"center" }} onChangeDate={(date) => console.log(date)} />
-
-      <Text style={styles.text}>Số liệu từ tháng 01/2021 đến tháng 03/2021</Text>
+      <View style={styles.dateContainer}>
+        <DatePicker month={month} width={width / 2 - fontScale(40)} style={{ marginLeft: fontScale(30) }} onChangeDate={(date) => onChangeMonth(date)} />
+        <DatePicker month={sMonth} width={width / 2 - fontScale(40)} style={{ marginLeft: fontScale(20) }} onChangeDate={(date) => onChangeSMonth(date)} />
+      </View>
+      <Text style={styles.text}>{data.notification}</Text>
       <Body
         userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"}
         style={{ marginTop: fontScale(15) }}
       />
       <View style={styles.body}>
-        <TouchableOpacity style={styles.menu} onPress={()=>navigation.navigate("AvgIncomeByMonth")}>
-          <Image style={styles.icon} source={images.avgIcome}></Image>
+        {
+          loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
+            <TouchableOpacity style={styles.menu} onPress={() => navigation.navigate("AvgIncomeByMonth", { "dateRange": { "beginMonth": month, "endMonth": sMonth } })}>
+              <Image style={styles.icon} source={images.avgIcome}></Image>
 
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", marginTop: fontScale(50), paddingVertical: fontScale(5) }}>
-            <Text style={styles.avg}>Bình quân tháng: </Text>
-            <Text style={styles.money}>9,000,000</Text>
-          </View>
+              <View style={{ flexDirection: 'row', justifyContent: "space-around", marginTop: fontScale(50), paddingVertical: fontScale(5) }}>
+                <Text style={styles.avg}>{text.averageMonth}: </Text>
+                <Text style={styles.money}>{thoundsandSep(data.avgIncomeByMonth)}</Text>
+              </View>
 
-          <View style={{ flexDirection: 'row', justifyContent: "space-around", paddingVertical: fontScale(10) }}>
-            <Text style={styles.avg}>Tổng thu nhập: </Text>
-            <Text style={styles.money}>9,000,000</Text>
-          </View>
+              <View style={{ flexDirection: 'row', justifyContent: "space-around", paddingVertical: fontScale(10) }}>
+                <Text style={styles.avg}>{text.totalIncome}: </Text>
+                <Text style={styles.money}>{thoundsandSep(data.totalIncome)}</Text>
+              </View>
 
-        </TouchableOpacity>
+            </TouchableOpacity>
+        }
       </View>
     </SafeAreaView>
   );

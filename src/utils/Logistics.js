@@ -1,21 +1,31 @@
 // This file to define functions about logistics (Array, Timer, Compare,...)
 
 import moment from "moment";
+import { _retrieveData } from "./Storage";
 
 export const thoundsandSep = (x = '') => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export const checkn = (str = '') => {
-    let char = ''
-    for (let i = 0; i < str.length; i++) {
-        const element = str[i];
-        char = element
-    }
-    if (char == "n") {
-        return char
-    }
-}
+  let element; 
+  let index = 0;
+  let strFrs='';
+  let strSnd='';
+  for (let i = 0; i < str.length; i++) {
+     element = str[i];
+     if(element=='n'){
+       index = i;
+     }
+   } 
+
+   if(typeof(index)!==undefined){
+    strFrs = str.substr(0,index-1);
+    strSnd =  str.substr(index+1,str.length);
+  }
+   
+   return strFrs+'\n'+strSnd;
+  }
 
 export const changeDate = (date = '') => {
     let month = Number.parseInt(date.substring(0, 2))
@@ -122,4 +132,6 @@ export const changeSecondDate = (date = '') => {
     return data;
   }
   
-  
+  export const getLoginInfo = async() => {
+    await _retrieveData("userInfo").then((data)=>{return data})
+  }

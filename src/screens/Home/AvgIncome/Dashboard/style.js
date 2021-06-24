@@ -8,7 +8,11 @@ export const styles = StyleSheet.create({
     flex: 1, backgroundColor: colors.primary,
   },
   body: {
-    flex: 1,backgroundColor: colors.white,
+    flex: 1, backgroundColor: colors.white,
+  },
+  dateContainer: {
+    flexDirection: "row",
+    position: "absolute", top: fontScale(110)
   },
   menu: {
     backgroundColor: colors.white,
@@ -54,6 +58,6 @@ export const styles = StyleSheet.create({
     color: "#F8F8F8",
     alignSelf: "center",
     fontSize: fontScale(15),
-    marginTop: fontScale(15)
+    marginTop: fontScale(70)
   }
 });

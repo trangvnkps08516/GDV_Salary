@@ -11,6 +11,9 @@ export const styles = StyleSheet.create({
         marginTop:statusbarHeight,
         marginBottom: 10
     },
+    uInfoContainer:{
+        marginLeft:fontScale(10)
+    },
     backIcon:{
         width:fontScale(50),
         left:-fontScale(30)
@@ -25,5 +28,19 @@ export const styles = StyleSheet.create({
         height:fontScale(50),
         paddingVertical:fontScale(13),
        
+    },
+    uInfo:{
+        marginLeft:fontScale(10),
+        textAlignVertical:"center",
+        color:'#FCEEEE',
+        fontWeight:"bold",
+        marginTop:fontScale(5)
+    },
+    uStaff:{
+        marginLeft:fontScale(10),
+        textAlignVertical:"center",
+        color:'#AFBFC1',
+        fontWeight:"bold",
+        marginTop:fontScale(2)
     }
 })

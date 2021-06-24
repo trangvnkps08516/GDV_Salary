@@ -22,6 +22,7 @@ import UpdateProfile from "./Profile/UpdateProfile"
 import RecoveryPassword from './Auth/RecoveryPassword';
 import SignIn from './Auth/SignIn';
 import SignOut from './SignOut'
+import Splash from './Auth/Splash';
 
 export const HomeScreen = () => {return <Home />}
 export const KPIByMonthDashboardScreen = () => {return <KPIByMonthDashboard />}
@@ -43,3 +44,4 @@ export const UpdateProfileScreen = () => {return <UpdateProfile />}
 export const RecoveryPasswordScreen = () => {return <RecoveryPassword />}
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}
+export const SplashScreen = ()=>{return <Splash/>}

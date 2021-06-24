@@ -46,7 +46,9 @@ export const images = {
     logout: require('../../assets/logout.png'),
     logoutbg: require('../../assets/logoutbg.png'),
     cancle:require('../../assets/cancle.png'),
-    check:require('../../assets/check.png')
+    check:require('../../assets/check.png'),
+    splashshape:require('../../assets/splashshape.png'),
+    logo:require('../../assets/logo.png')
 
 
 }

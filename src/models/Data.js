@@ -104,7 +104,7 @@ export const SubscriberQuality = {
 }
 
 // Home > Thông tin giao dịch | getTransactionInfo
-export const TransactionInfo = {
+export const Transactioninfo = {
     "customerAmount": 0,
     "dealingsCount": 0,
     "preToPostPaid": 0,
