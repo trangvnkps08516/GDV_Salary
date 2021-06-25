@@ -11,7 +11,7 @@ const ProfileItem = (props) => {
             <View style={styles.textContent}>
                 <Text style={styles.title}>{props.title}</Text>
                 {
-                    props.editMode == true ? <TextInput keyboardType={props.type == "email" ? "email-address" : props.type == "number" ? "number-pad" : props.type == "phone" ? "phone-pad" : "default"} style={[styles.inputContent, { width: width - 90 }]} onChangeText={props.onChangeText} defaultValue={props.defaultValue} value={props.value} /> : <Text style={styles.textContent}>{props.value ? props.value : '...'}</Text>
+                    props.editMode ? <TextInput keyboardType={props.type == "email" ? "email-address" : props.type == "number" ? "number-pad" : props.type == "phone" ? "phone-pad" : "default"} style={[styles.inputContent, { width: width - 90 }]} onChangeText={props.onChangeText} defaultValue={props.defaultValue} value={props.value} /> : <Text style={styles.textContent}>{props.value ? props.value : '...'}</Text>
                 }
             </View>
         </View>

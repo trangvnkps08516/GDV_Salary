@@ -29,7 +29,6 @@ const Achieve = (props) => {
 
 
     const getData = async () => {
-       
         await getKPIByMonthAchieve().then((res) => {
             if (res.status == "success") {
                 setData(res.data);

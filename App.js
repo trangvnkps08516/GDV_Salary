@@ -4,13 +4,14 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AchieveScreen, AvgIncomeByMonthScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen } from './src/screens';
+import { AchieveScreen, AvgIncomeByMonthScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { useEffect } from 'react';
 import { getLoginInfo } from './src/utils/Logistics';
 import { _retrieveData } from './src/utils/Storage';
 import { useState } from 'react';
+import { User } from './src/models/Data';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +60,7 @@ const ProfileStack = () => {
   return (
     <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
+      <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
     </Stack.Navigator>
   )
 }
@@ -106,28 +107,20 @@ const AuthStack = () => {
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
+  const [userInfo,setUserInfo] = useState(User);
   useEffect(() => {
     const getData = async () => {
       await _retrieveData("userInfo").then((data) => {
-        if (data.accessToken != null) {
-          setIsLoggedIn(true)
-        } else {
-          setIsLoggedIn(false)
-        }
+        setUserInfo(data)
       })
     }
-    getData()
+    getData();
   })
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {
-          isLoggedIn == true ?
-            <Stack.Screen name="Home" component={BottomTab} />
-            :
             <Stack.Screen name="SignIn" component={AuthStack} />
-
-        }
+            <Stack.Screen name="Home" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );
