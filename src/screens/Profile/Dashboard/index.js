@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Image, View, Text, StatusBar } from 'react-native';
+import { SafeAreaView, Image, View, Text, StatusBar, Linking } from 'react-native';
 import { Button, Header, ProfileItem } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { fontScale } from '../../../utils/Fonts';
 import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { styles } from './styles'
+import { useNavigation } from '@react-navigation/core';
+
 
 const DashBoard = (props) => {
     const [loading, setLoading] = useState(false)
+    const navigation = useNavigation();
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
@@ -28,8 +32,8 @@ const DashBoard = (props) => {
                             <ProfileItem icon={images.workingShop} title={text.workingShop} size={25} value={"Công ty Dịch vụ Mobifone KV2"} />
                             <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
                             <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
-                            <ProfileItem icon={images.pdf} title={text.PDF} size={25} value={"https://smallpdf.com/vi/merge-pdf"} />
-                            <Button width={fontScale(150)} label={text.login} center style={styles.loginButton} onPress={() => signIn(userName, password)} />
+                            <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"https://smallpdf.com/vi/merge-pdf"} openLink={()=>Linking.openURL('https://smallpdf.com/vi/merge-pdf')}/>
+                            <Button width={fontScale(150)} label={text.login} center style={styles.loginButton} onPress={() => navigation.navigate("UpdateProfile")} />
 
                             {/* <ProfileItem icon={images.position} title={text.position} size={25} value={userInfo.position} />
                             <ProfileItem icon={images.phone} title={text.phoneNumber} size={25} value={userInfo.phoneNumber} /> */}
