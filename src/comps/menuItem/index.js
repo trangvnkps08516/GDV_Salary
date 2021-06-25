@@ -15,7 +15,7 @@ const MenuItem = (props) => {
                     }
                 </View>
             </TouchableOpacity>
-        </View>
+         </View>
     );
 }
 

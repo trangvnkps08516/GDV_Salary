@@ -48,9 +48,9 @@ export const images = {
     cancle:require('../../assets/cancle.png'),
     check:require('../../assets/check.png'),
     splashshape:require('../../assets/splashshape.png'),
-    logo:require('../../assets/logo.png')
-
-
+    logo:require('../../assets/logo.png'),
+    loginbg:require("../../assets/loginbg.png"),
+    mblogo:require("../../assets/mblogo.png"),
 }
 // profile: "Thông tin cá nhân",
 //   workingDay: "Ngày vào làm",

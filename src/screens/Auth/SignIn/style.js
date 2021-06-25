@@ -9,18 +9,19 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.primary
     },
     topShape: { flex: 7 },
-    authTitle:{marginLeft:fontScale(35)},
-    ipUsn:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
-    ipPwd:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
-    bottomShape: { flex: 2,width:width,bottom:-fontScale(27)},
+    authTitle: { marginLeft: fontScale(35) },
+    ipUsn: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },
+    ipPwd: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },
+    bottomShape: { flex: 2, width: width, bottom: -fontScale(30) },
     background: {
         width: width, height: height, bottom: 0, position: "absolute"
     },
-    mbfLogoContainer:{ flex: 1, top: -fontScale(30) },
-    logo:{ width: width * 2 / 3, alignSelf: "center" },
-    forgotText:{alignSelf:"flex-end",fontSize:fontScale(17),color:colors.white},
-    forgotTextContainer:{
-        justifyContent:"flex-end",marginHorizontal: fontScale(35),width:width/3,paddingVertical:fontScale(2)    },
+    mbfLogoContainer: { flex: 1, top: -fontScale(30) },
+    logo: { width: width * 2 / 3, alignSelf: "center" },
+    forgotText: { alignSelf: "flex-end", fontSize: fontScale(17), color: colors.white },
+    forgotTextContainer: {
+        justifyContent: "flex-end", marginHorizontal: fontScale(35), width: width / 3, paddingVertical: fontScale(2)
+    },
     trigleShape: { width: width + fontScale(20), left: -fontScale(10), top: height * 2 / 3 + fontScale(27) },
-    loginButton:{ marginTop: fontScale(50) }
+    loginButton: { marginTop: fontScale(50) }
 })

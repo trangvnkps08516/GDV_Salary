@@ -19,7 +19,9 @@
 
 # Notice: all of module must be install from `YARN` to unified in prj.
 
-# Home
+# Sigin: Đăng nhập
+# RecoveryPassword: Khôi phục mật khẩu
+# Home: Trang chủ
 #   Dashboard: Dashboard màn hình Home
 #   KPIByMonth: KPI tháng hiện tại
 #       Dashboard: Dashboard KPI tháng hiện tại

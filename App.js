@@ -7,6 +7,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AchieveScreen, AvgIncomeByMonthScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
+import { useEffect } from 'react';
+import { getLoginInfo } from './src/utils/Logistics';
+import { _retrieveData } from './src/utils/Storage';
+import { useState } from 'react';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +22,7 @@ const BottomTab = () => {
         inactiveTintColor: '#A2A1A1'
       }
     }
-    initialRouteName="Home"
+      initialRouteName="Home"
     >
       <Tab.Screen
         name="Profile"
@@ -53,9 +57,9 @@ const BottomTab = () => {
 
 const ProfileStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
-
+      <Stack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
     </Stack.Navigator>
   )
 }
@@ -79,9 +83,9 @@ const GDVStack = () => {
       <Stack.Screen name="AvgIncomeByMonth" component={AvgIncomeByMonthScreen} />
       {/* AvgIncomeByMonth */}
       <Stack.Screen name="SubscriberQuality" component={SubscriberQualityScreen} />
-        {/*  */}
+      {/*  */}
       <Stack.Screen name="Achieve" component={AchieveScreen} />
-      
+
       <Stack.Screen name="ExpectedSalary" component={ExpectedSalaryScreen} />
       {/* Home > Thông tin giao dịch */}
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
@@ -92,20 +96,38 @@ const GDVStack = () => {
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="Splash" component={SplashScreen} /> */}
+    <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Screen name="RecoveryPassword" component={RecoveryPasswordScreen} />
     </Stack.Navigator>
   )
 }
 
-
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState();
+  useEffect(() => {
+    const getData = async () => {
+      await _retrieveData("userInfo").then((data) => {
+        if (data.accessToken != null) {
+          setIsLoggedIn(true)
+        } else {
+          setIsLoggedIn(false)
+        }
+      })
+    }
+    getData()
+  })
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="SignIn" component={AuthStack} />
-        <Stack.Screen name="Home" component={BottomTab} />
+        {
+          isLoggedIn == true ?
+            <Stack.Screen name="Home" component={BottomTab} />
+            :
+            <Stack.Screen name="SignIn" component={AuthStack} />
+
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );

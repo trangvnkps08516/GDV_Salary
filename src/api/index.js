@@ -25,7 +25,7 @@ export const login = async (userName, password) => {
         if (res.status == 200) {
             if (Object.values(res.data).length > 0) {
                 data = {
-                    'data': res.data.data,
+                    'data': res.data,
                     'isLoading': false,
                     'status': 'success',
                     'length': Object.values(res.data).length,

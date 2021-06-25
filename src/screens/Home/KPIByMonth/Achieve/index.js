@@ -8,7 +8,9 @@ import { text } from '../../../../utils/Text';
 import moment from 'moment';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve } from '../../../../api';
-import { checkn } from '../../../../utils/Logistics';
+import { checkn, getLoginInfo } from '../../../../utils/Logistics';
+import { _retrieveData } from '../../../../utils/Storage';
+import { User } from '../../../../models/Data';
 
 const Achieve = (props) => {
     let test = require("../../../../assets/testicon.png")
@@ -23,11 +25,11 @@ const Achieve = (props) => {
     });
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
 
     const getData = async () => {
-
+       
         await getKPIByMonthAchieve().then((res) => {
             if (res.status == "success") {
                 setData(res.data);
@@ -42,6 +44,7 @@ const Achieve = (props) => {
 
     useEffect(() => {
         getData();
+
     }, [""]);
 
     return (
@@ -49,7 +52,7 @@ const Achieve = (props) => {
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiAchieved} />
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
-            <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
+            <Body style={styles.bodyScr} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
 
                 {
