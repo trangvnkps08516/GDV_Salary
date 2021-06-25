@@ -9,7 +9,7 @@ import SignIn from "./src/screens/Auth/SignIn/index";
 // import Dashboard from './src/screens/Home/SalaryByMonth/Dashboard';
 // import Dashboard from './src/screens/Home/AvgIncome/Dashboard';
 // import SubscriberQuality from './src/screens/Home/SubscriberQuality/index';
-import Dashboard from './src/screens/Profile/Dashboard';
+import Dashboard from './src/screens/Profile/UpdateProfile';
 
 export default function App() {
   return <Dashboard/>
