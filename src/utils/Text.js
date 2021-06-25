@@ -18,6 +18,7 @@ export const text = {
   repeatPassword: "Xác nhận mật khẩu",
   errorRepeatPassword: "Mật khẩu và xác nhận mật khẩu không giống nhau",
   logoutMessage:"Bạn có muốn đăng xuất?",
+  saveChange: "Lưu thay đổi",
 
   //Home
   kpiByMonth: "KPI tháng hiện tại",
