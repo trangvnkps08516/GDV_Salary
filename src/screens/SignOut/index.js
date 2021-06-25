@@ -4,8 +4,8 @@ import { signoutUser } from '../../api';
 import { fontScale } from '../../utils/Fonts';
 import { images } from '../../utils/Images';
 import { text } from '../../utils/Text';
-import { styles } from './styles';
 import { useNavigation } from '@react-navigation/core';
+import { styles } from './styles';
 
 const SignOut = (props) => {
     const navigation = useNavigation();
