@@ -3,8 +3,6 @@ import { StyleSheet, Image, View, Text, TextInput } from 'react-native';
 import { styles } from './styles';
 import { width } from '../../utils/Dimenssion';
 
-
-
 const ProfileItem = (props) => {
     return (
         <View style={[styles.container, props.extStyle]}>

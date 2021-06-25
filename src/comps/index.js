@@ -12,7 +12,6 @@ import MetricStatus from "./metricstatus";
 import TotalSalary from "./totalsalry";
 import ProfileItem from "./profileItem";
 
-
 export {
     Button,
     DatePicker,
@@ -26,5 +25,5 @@ export {
     Body,
     MetricStatus,
     TotalSalary,
-    ProfileItem,
+    ProfileItem
 }
