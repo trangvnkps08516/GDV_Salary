@@ -3,7 +3,6 @@ import { SafeAreaView, StatusBar, View, Text, Image, ActivityIndicator } from 'r
 import { _removeData, _retrieveData } from '../../../utils/Storage';
 import { useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
-import { styles } from './style';
 import { images } from '../../../utils/Images';
 
 const Splash = (props) => {
