@@ -35,7 +35,7 @@ const SubscriberQuality = (props) => {
                 setData(res.data)
             }
             if (res.status == "failed") {
-
+                
             }
         })
 

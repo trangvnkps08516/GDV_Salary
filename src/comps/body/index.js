@@ -16,7 +16,7 @@ const index = (props) => {
     })
     return (
         <View style={props.style}>
-            <Text style={styles.userInfo}>{user.userId.displayName} ({user.userId.gdvId.maGDV})</Text>
+            <Text style={styles.userInfo}>{user.userId.gdvId.fullName} ({user.userId.gdvId.maGDV})</Text>
             <View style={{ marginTop: fontScale(6.5), backgroundColor: "#fff", height: fontScale(50), borderTopLeftRadius: fontScale(50), borderTopRightRadius: fontScale(50) }}>
 
             </View>

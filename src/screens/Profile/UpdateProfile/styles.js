@@ -29,12 +29,12 @@ export const styles = StyleSheet.create({
     marginTop: height * 0.1379310344827586,
   },
   avatar: {
-    position: "absolute",
-    marginTop: (height * 0.1279310344827586) / 2 - 20,
+    
+    // marginTop: (height * 0.1279310344827586) / 2 - 20,
     width: height * 0.1279310344827586,
     height: height * 0.1279310344827586,
     borderRadius: height * 0.1279310344827586,
-    marginLeft: width - 0.1896551724137931 * height,
+    // marginLeft: width - 0.1896551724137931 * height,
   },
   avatarImg: {
     position: "absolute",

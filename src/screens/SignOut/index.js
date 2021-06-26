@@ -13,7 +13,8 @@ const SignOut = (props) => {
     const logoutUser = async() => {
         await signoutUser(navigation).then((data)=>{
             navigation.navigate('SignIn')
-        })
+        });
+        navigation.navigate('SignIn')
     }
     return (
         <ImageBackground style={styles.container} source={images.logoutbg}>

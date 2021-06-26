@@ -113,13 +113,31 @@ export const Transactioninfo = {
 
 // Profile | getProfile
 export const Profile = {
-    "fullName": "",
-    "empCode": "",
-    "avatar": "",
-    'beginDate': "",
-    "workPlace": "",
-    "tellerRating": "",
-    "storeRating": ""
+    "id": null,
+    "userName": "",
+    "password": "",
+    "displayName": "",
+    "status": "",
+    "userGroupId": {
+      "id": null,
+      "code": "",
+      "description": ""
+    },
+    "shopId": {
+      "id": null,
+      "shopCode": "",
+      "shopName": "",
+      "shopTypeId": null,
+      "parentShopId": null
+    },
+    "gdvId": {
+      "id": null,
+      "maGDV": "",
+      "fullName": ""
+    },
+    "isLDap": null,
+    "phoneNumber": null,
+    "avatar": ""
 }
 
 //Login | login
