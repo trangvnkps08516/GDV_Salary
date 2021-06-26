@@ -9,18 +9,21 @@ import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
 import { getKPIByMonthDashboard } from "../../../../api";
 import moment from "moment";
-import { KPIByMonthDashboard } from "../../../../models/Data";
+import { KPIByMonthDashboard, User } from "../../../../models/Data";
 import { useNavigation } from '@react-navigation/core';
+import { _retrieveData } from "../../../../utils/Storage";
 
 const DashBoard = (props) => {
   const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
   const [showDate, setShowDate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
+  const [user, setUser] = useState(User)
 
   const navigation = useNavigation()
 
   const getData = async () => {
+    await _retrieveData("userInfo").then((data) => setUser(data))
     await getKPIByMonthDashboard().then((res) => {
       if (res.status == "success") {
         setData(res.data);
@@ -40,8 +43,7 @@ const DashBoard = (props) => {
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.kpiByMonth} />
       <DateView dateLabel={data.dateRange} />
-      <Body
-        userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"}
+      <Body userInfo={user.userId.gdvId ? user.userId.gdvId.fullName+" ("+user.userId.gdvId ? user.userId.gdvId.maGDV : user.userId.id  +")" : user.userId.displayName+" ("+")"}
         style={{ marginTop: fontScale(27) }}
       />
       <View style={styles.body}>

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { SafeAreaView, View, StatusBar,ActivityIndicator } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View, StatusBar, ActivityIndicator, Text } from 'react-native';
 import { styles } from './style';
 import { MenuItem } from '../../../comps';
 import { Header } from '../../../comps';
@@ -11,16 +11,22 @@ import { fontScale } from '../../../utils/Fonts';
 import { colors } from '../../../utils/Colors';
 import { useNavigation } from '@react-navigation/core';
 import { getLoginInfo } from '../../../utils/Logistics';
+import { _retrieveData } from '../../../utils/Storage';
+import { User } from "../../../models";
 
 const Dashboard = (props) => {
   const navigation = useNavigation();
-  useEffect(()=>{
-    getLoginInfo().then((data)=>console.log(data))
-  },[])
+  const [user, setUser] = useState(User)
+  useEffect(() => {
+    const getData = async () => {
+      await _retrieveData("userInfo").then((data) => setUser(data))
+    }
+    getData();
+  }, [])
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
-      <Header showBack={false} profile avatar={images.avatar}/>
+      <Header showBack={false} profile avatar={images.avatar} fullName={user.userId.gdvId ? user.userId.gdvId.fullName : user.userId.displayName} empCode={user.userId.gdvId ? user.userId.gdvId.maGDV : user.userId.id} />
       <Body style={{ marginTop: fontScale(27) }} />
       <View style={styles.body}>
         <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />

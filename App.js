@@ -96,6 +96,7 @@ const AuthStack = () => {
     <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerShown: false }}>
       {/* <Stack.Screen name="Splash" component={SplashScreen} /> */}
       <Stack.Screen name="SignIn" component={SignInScreen} />
+      {/* RecoveryPassword */}
     </Stack.Navigator>
   )
 }

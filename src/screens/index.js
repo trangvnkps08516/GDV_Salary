@@ -19,7 +19,6 @@ import Profile from "./Profile/Dashboard"
 import UpdatePassword from "./Profile/UpdatePassword"
 import UpdateProfile from "./Profile/UpdateProfile"
 
-import RecoveryPassword from './Auth/RecoveryPassword';
 import SignIn from './Auth/SignIn';
 import SignOut from './SignOut'
 import Splash from './Auth/Splash/index';
@@ -41,7 +40,6 @@ export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}
 export const UpdateProfileScreen = () => {return <UpdateProfile />}
 
-export const RecoveryPasswordScreen = () => {return <RecoveryPassword />}
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}
 export const SplashScreen = ()=>{return <Splash/>}
