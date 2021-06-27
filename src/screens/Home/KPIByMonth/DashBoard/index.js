@@ -11,6 +11,7 @@ import { getKPIByMonthDashboard } from "../../../../api";
 import moment from "moment";
 import { KPIByMonthDashboard, User } from "../../../../models/Data";
 import { useNavigation } from '@react-navigation/core';
+import { thoundsandSep } from "../../../../utils/Logistics";
 import { _retrieveData } from "../../../../utils/Storage";
 
 const DashBoard = (props) => {
@@ -54,7 +55,7 @@ const DashBoard = (props) => {
                 style={{ marginTop: fontScale(30) }}
                 title={text.kpiAchieved}
                 icon={images.kpiByMonth}
-                value={data.achieveKPI}
+                value={thoundsandSep(data.achieveKPI)}
                 width={width - fontScale(60)}
                 onPress={() => navigation.navigate("Achieve")}
               />
@@ -62,7 +63,7 @@ const DashBoard = (props) => {
                 style={{ marginTop: fontScale(60) }}
                 title={text.provisionalSalary}
                 icon={images.salaryByMonth}
-                value={data.provSal}
+                value={thoundsandSep(data.provSal)}
                 width={width - fontScale(60)}
                 onPress={() => navigation.navigate("ExpectedSalary")}
               />

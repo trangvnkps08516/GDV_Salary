@@ -17,13 +17,14 @@ export const styles = StyleSheet.create({
     notification:{
         color:colors.white,
         fontSize:fontScale(15),
-        textAlign:"center"
+        textAlign:"center",
+        marginTop: -fontScale(5)
     },
     bodyScr:{
-        marginTop:fontScale(25)
+        marginTop:fontScale(14)
     },
-    sumKpiContainer:{ flexDirection: "row",justifyContent:"center" },
-    sumKpiTitle:{ color: colors.black,fontSize:fontScale(15),fontWeight:"bold" },
+    sumKpiContainer:{ flexDirection: "row",justifyContent:"center", marginTop: -fontScale(23) },
+    sumKpiTitle:{ color: colors.black,fontSize:fontScale(15),fontWeight:"bold"},
     sumKpi:{ color: colors.lightBlue,fontSize:fontScale(15),marginLeft:fontScale(2),fontWeight:"bold" },
     detailInfo:{paddingVertical:fontScale(20),marginHorizontal:fontScale(17),shadowColor: "#000",backgroundColor:colors.white,  marginTop:fontScale(15),borderRadius:fontScale(17),
         shadowOffset: {

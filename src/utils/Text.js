@@ -1,21 +1,24 @@
 // define all of text uses in prj here
 
 export const text = {
-
-
   dashboard: "Trang chủ",  
   saveChange: "Lưu thay đổi",
   //Login, Logout,...
   username: "Username",
   password: "Mật khẩu",
   login: "Đăng nhập",
+  phoneNumber:"Số điện thoại",
   changePassword: "Đổi mật khẩu",
   forgotPassword: "Quên mật khẩu",
+  recoveryPassword:"Khôi phục mật khẩu",
+  typeYourUsername:"Vui lòng nhập Username!",
+  typeYourPassword:"Vui lòng nhập mật khẩu!",
   oldPassword: "Mật khẩu cũ",
   newPassword: "Mật khẩu mới",
   repeatPassword: "Xác nhận mật khẩu",
   errorRepeatPassword: "Mật khẩu và xác nhận mật khẩu không giống nhau",
   logoutMessage:"Bạn có muốn đăng xuất?",
+  saveChange: "Lưu thay đổi",
 
   //Home
   kpiByMonth: "KPI tháng hiện tại",

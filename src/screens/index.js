@@ -2,11 +2,10 @@
 
 import React from 'react';
 
-// ./Home/KPIByMonth/TempSalary/Dashboard ./Home/AvgIncome/AvgIncomeByQuarter
 import Home from "./Home/Dashboard";
-import KPIByMonthDashboard from "./Home/KPIByMonth/Dashboard"
-import Achieve from "./Home/KPIByMonth/Achieve"
-import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary/index"
+import KPIByMonthDashboard from "./Home/KPIByMonth/Dashboard";
+import Achieve from "./Home/KPIByMonth/Achieve";
+import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary/index";
 import SalaryByMonthDashboard from "./Home/SalaryByMonth/Dashboard";
 import SalaryByMonthFixedwage from "./Home/SalaryByMonth/Fixedwage";
 import SalaryByMonthContract from "./Home/SalaryByMonth/Contract";
@@ -22,6 +21,7 @@ import UpdateProfile from "./Profile/UpdateProfile"
 import SignIn from './Auth/SignIn';
 import SignOut from './SignOut'
 import Splash from './Auth/Splash/index';
+
 
 export const HomeScreen = () => {return <Home />}
 export const KPIByMonthDashboardScreen = () => {return <KPIByMonthDashboard />}

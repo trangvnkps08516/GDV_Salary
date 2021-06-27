@@ -135,3 +135,4 @@ export const changeSecondDate = (date = '') => {
   export const getLoginInfo = async() => {
     await _retrieveData("userInfo").then((data)=>{return data})
   }
+

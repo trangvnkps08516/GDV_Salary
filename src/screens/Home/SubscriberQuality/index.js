@@ -9,6 +9,7 @@ import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getSubscriberQuality } from '../../../api';
+import { thoundsandSep } from '../../../utils/Logistics';
 
 
 const SubscriberQuality = (props) => {
@@ -34,7 +35,7 @@ const SubscriberQuality = (props) => {
                 setData(res.data)
             }
             if (res.status == "failed") {
-
+                
             }
         })
 
@@ -62,16 +63,16 @@ const SubscriberQuality = (props) => {
                 <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
 
                     <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
-                        <ListItem icon={images.debtPercent} title={text.debtPercent} price={data.debtPercent} />
+                        <ListItem icon={images.debtPercent} title={text.debtPercent} price={thoundsandSep(data.debtPercent)} />
                         <View style={styles.subDetail}>
-                            <ListItem icon={images.totalDebtNinety} title={text.totalDebtNinety} price={data.totalDebtNinety} />
-                            <ListItem icon={images.totalRevenue} title={text.totalRevenue} price={data.totalRevenue} />
+                            <ListItem icon={images.totalDebtNinety} title={text.totalDebtNinety} price={thoundsandSep(data.totalDebtNinety)} />
+                            <ListItem icon={images.totalRevenue} title={text.totalRevenue} price={thoundsandSep(data.totalRevenue)} />
                         </View>
-                        <ListItem icon={images.newSubPrePaid} title={text.newSubPrePaid} price={data.newSubPrePaid} />
+                        <ListItem icon={images.newSubPrePaid} title={text.newSubPrePaid} price={thoundsandSep(data.newSubPrePaid)} />
                         <View style={styles.subDetail}>
-                            <ListItem icon={images.revokeAmount} title={text.revokeAmount} price={data.revokeAmount} />
-                            <ListItem icon={images.preToPostPaid} title={text.preToPostPaid} price={data.preToPostPaid} />
-                            <ListItem icon={images.denyTwoC} title={text.denyTwoC} price={data.denyTwoC} />
+                            <ListItem icon={images.revokeAmount} title={text.revokeAmount} price={thoundsandSep(data.revokeAmount)} />
+                            <ListItem icon={images.preToPostPaid} title={text.preToPostPaid} price={thoundsandSep(data.preToPostPaid)} />
+                            <ListItem icon={images.denyTwoC} title={text.denyTwoC} price={thoundsandSep(data.denyTwoC)} />
                         </View>
                     </View>
                 </ScrollView>

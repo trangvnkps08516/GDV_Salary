@@ -7,6 +7,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AchieveScreen, AvgIncomeByMonthScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
+import { useEffect } from 'react';
+import { getLoginInfo } from './src/utils/Logistics';
+import { _retrieveData } from './src/utils/Storage';
+import { useState } from 'react';
+import { User } from './src/models/Data';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +23,7 @@ const BottomTab = () => {
         inactiveTintColor: '#A2A1A1'
       }
     }
-    initialRouteName="Home"
+      initialRouteName="Home"
     >
       <Tab.Screen
         name="Profile"
@@ -56,7 +61,6 @@ const ProfileStack = () => {
     <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
-
     </Stack.Navigator>
   )
 }
@@ -80,9 +84,9 @@ const GDVStack = () => {
       <Stack.Screen name="AvgIncomeByMonth" component={AvgIncomeByMonthScreen} />
       {/* AvgIncomeByMonth */}
       <Stack.Screen name="SubscriberQuality" component={SubscriberQualityScreen} />
-        {/*  */}
+      {/*  */}
       <Stack.Screen name="Achieve" component={AchieveScreen} />
-      
+
       <Stack.Screen name="ExpectedSalary" component={ExpectedSalaryScreen} />
       {/* Home > Thông tin giao dịch */}
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
@@ -93,21 +97,30 @@ const GDVStack = () => {
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="Splash" component={SplashScreen} /> */}
+    <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
       {/* RecoveryPassword */}
     </Stack.Navigator>
   )
 }
 
-
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [userInfo,setUserInfo] = useState(User);
+  useEffect(() => {
+    const getData = async () => {
+      await _retrieveData("userInfo").then((data) => {
+        setUserInfo(data)
+      })
+    }
+    getData();
+  })
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="SignIn" component={AuthStack} />
-        <Stack.Screen name="Home" component={BottomTab} />
+            <Stack.Screen name="SignIn" component={AuthStack} />
+            <Stack.Screen name="Home" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );

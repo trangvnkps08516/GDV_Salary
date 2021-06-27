@@ -4,19 +4,28 @@ import { _removeData, _retrieveData } from '../../../utils/Storage';
 import { useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
+import { styles } from './style';
+import { useState } from 'react';
 
 const Splash = (props) => {
     const navigation = useNavigation();
+    const [isLoggedIn, setIsLoggedIn] = useState();
+    const getData = async () => {
+        await _retrieveData("userInfo").then((data) => {
+            if (data.accessToken != null) {
+                setIsLoggedIn(true)
+                navigation.navigate('Home')
+            } else {
+                setIsLoggedIn(false);
+                navigation.navigate('SignIn')
 
-    const init = async () => {
-       setTimeout(() => {
-           navigation.navigate('SignIn')
-       }, 3000);
-
+            }
+        })
     }
 
+
     useEffect(() => {
-        init();
+        getData();
     })
     return (
         <SafeAreaView style={styles.container}>
