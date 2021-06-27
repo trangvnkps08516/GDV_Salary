@@ -1,9 +1,9 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, StatusBar, View, ActivityIndicator } from 'react-native';
-import { getAvgIncomeByMonth } from '../../../../api';
+import { getAvgIncomeByMonth, getProfile } from '../../../../api';
 import { Body, DatePicker, Header, ListItem } from '../../../../comps';
-import { M_AvgIncomeByMonth } from '../../../../models/Data';
+import { M_AvgIncomeByMonth, UserObj } from '../../../../models/Data';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
@@ -20,6 +20,7 @@ function AvgIncomeByMonth(props) {
     const [sMonth, setSMonth] = useState(route.params?.dateRange.endMonth || moment(new Date()).format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(M_AvgIncomeByMonth);
+    const [user, setUserData] = useState(UserObj)
 
     const getData = async (beginMonth, endMonth) => {
         setLoading(true)
@@ -33,13 +34,28 @@ function AvgIncomeByMonth(props) {
         })
     }
 
+    const _getProfile = async () => {
+
+        await getProfile().then((res) => {
+            if (res.status == "success") {
+                setLoading(false)
+                setUserData(res.data)
+            }
+            if (res.status == "failed") {
+                setLoading(false)
+            }
+        })
+    }
+
     useEffect(() => {
         getData(month, sMonth);
+        _getProfile()
+
     }, []);
 
     const onChangeMonth = async (month) => {
         if (month > sMonth == true) {
-            
+
         } else {
             setMonth(month)
             await getData(month, sMonth);
@@ -48,7 +64,7 @@ function AvgIncomeByMonth(props) {
 
     const onChangeSMonth = async (sMonth) => {
         if (month > sMonth == true) {
-            
+
         } else {
             await getData(month, sMonth);
         }
@@ -63,7 +79,8 @@ function AvgIncomeByMonth(props) {
             </View>
             <View style={styles.body}>
                 <Text style={styles.notification}>{data.notification}</Text>
-                <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
+                <Body style={styles.bodyScr}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+
             </View>
             <View style={{ backgroundColor: colors.white, flex: 1 }}>
                 {

@@ -12,15 +12,8 @@ const Splash = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState();
     const getData = async () => {
         await _retrieveData("userInfo").then((data) => {
-            if (data.accessToken != null) {
-                setIsLoggedIn(true)
-                navigation.navigate('Home')
-            } else {
-                setIsLoggedIn(false);
-                navigation.navigate('SignIn')
-
-            }
-        })
+            navigation.navigate('SignIn')                    
+        });
     }
 
 

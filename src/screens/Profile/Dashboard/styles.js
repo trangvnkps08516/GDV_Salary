@@ -3,10 +3,10 @@ import { colors } from "../../../utils/Colors";
 import { height, statusbarHeight, width } from "../../../utils/Dimenssion";
 import { fontScale } from "../../../utils/Fonts";
 
-export const styles = StyleSheet.create( {
-    container:{
-        backgroundColor:colors.white,
-        flex:1
+export const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.white,
+        flex: 1
     },
     headerShape: {
         width: width,
@@ -14,14 +14,14 @@ export const styles = StyleSheet.create( {
         marginTop: -statusbarHeight - 50,
         zIndex: -10,
         position: 'relative',
-        tintColor:colors.primary
+        tintColor: colors.primary
     },
     personInfo: {
         width: width / 2,
         position: 'absolute',
         marginTop: fontScale(112)
     },
-    avatar: { position: 'absolute', marginTop: fontScale(60), width: fontScale(110), height: fontScale(110), borderRadius: fontScale(110)/2, marginLeft: width - fontScale(154) },
+    avatar: { position: 'absolute', marginTop: fontScale(60), width: fontScale(110), height: fontScale(110), borderRadius: fontScale(110) / 2, marginLeft: width - fontScale(154) },
     avatarImg: { position: 'absolute', width: height * 0.1279310344827586, height: height * 0.1279310344827586, borderRadius: height * 0.1279310344827586, marginLeft: width - (0.1896551724137931 * height) },
     closeIcon: { marginLeft: '87%', marginTop: 5, marginBottom: -10 },
     changePasswordOption: { borderBottomWidth: 0.5, borderBottomColor: '#EFEFEF', marginTop: -20 },
@@ -54,6 +54,25 @@ export const styles = StyleSheet.create( {
         backgroundColor: colors.primary,
         position: 'absolute', width: width, height: height
     },
-    optionText: { color: colors.primary, fontSize: height * 0.019704433 }
+    optionText: { color: colors.primary, fontSize: height * 0.019704433 },
+    closeIcon: { resizeMode: "cover", width: fontScale(30), height: fontScale(30), alignSelf: "flex-end", margin: fontScale(10) },
+    optionDialogs: {
+        shadowColor: "#CCC",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.32,
+        shadowRadius: 16,
+        paddingBottom:fontScale(15),
+        elevation: 9, backgroundColor: "#fff", marginHorizontal: fontScale(10), borderRadius: fontScale(17), marginTop: height / 3
+    },
+    optionMenu:{
+        margin:fontScale(10),
+        borderBottomColor:"#eee",
+        paddingBottom:fontScale(10),
+        borderBottomWidth:1
+    },
+    menuTitle:{fontSize:fontScale(20),color:colors.primary,textAlign:"center"}
 }
 )

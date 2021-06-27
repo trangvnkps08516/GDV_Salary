@@ -5232,6 +5232,13 @@ react-native-simple-month-year-picker@^1.2.1:
   resolved "https://registry.yarnpkg.com/react-native-simple-month-year-picker/-/react-native-simple-month-year-picker-1.2.1.tgz#a219d13abab97f540c6b8e0de94fad800f4355b5"
   integrity sha512-nEdjhXByNIt85mw+Eu3Y/cUC+fD2duBqRG1W8BYjElDNfzpXbfr5x8UMdGd73/fLt0jsU0VmU4IbLR0Ms0AUYQ==
 
+react-native-toast-message@^1.4.9:
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-1.4.9.tgz#47f33ac312fe2aee5dbdd4ae14745fa0d354102e"
+  integrity sha512-QhHzzsiymKpHEWz2nUKQjQMRuGN+/a8cOwDXJcz3TQFY03p20f6sJW9JKw3KkMfvWiUhGbApCPpNU6tHaAZ32w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-web@~0.13.12:
   version "0.13.18"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.13.18.tgz#964f058a16521a3b9a31b091415edfef5b6ef305"

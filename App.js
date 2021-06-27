@@ -61,6 +61,7 @@ const ProfileStack = () => {
     <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+      <Stack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
     </Stack.Navigator>
   )
 }

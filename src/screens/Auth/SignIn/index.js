@@ -12,8 +12,8 @@ import { text } from '../../../utils/Text';
 import { images } from '../../../utils/Images';
 
 const SignIn = (props) => {
-    const [userName, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [userName, setUsername] = useState('admin')
+    const [password, setPassword] = useState('vms@kpi')
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -26,34 +26,23 @@ const SignIn = (props) => {
             setMessage("Vui lòng nhập mật khẩu!")
         } else {
             setMessage("")
-            await login(userName, password).then(async (data) => {
-                if (data.status == "success") {
+            await login(userName, password).then(async (res) => {
+                // let data = res.data;
+                if (res.status == "success") {
                     setLoading(false);
-                    await _storeData("userInfo", data.res)
-                    navigation.navigate('Home');
-                }
-                if (data.status == "failed") {
-                    setLoading(false)
-                    setMessage(data.message)
-                }
+                    await _retrieveData("userInfo");
+                    navigation.navigate("Home")
+                } else
+                    if (res.status == "failed") {
+                        setLoading(false)
+                        setMessage(res.message)
+                    }
             });
         }
     }
 
     useEffect(() => {
-        const backAction = () => {
-            BackHandler.exitApp();
-            return true;
-        };
 
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        return () => {
-            backHandler.remove();
-
-        }
 
     }, [navigation])
 

@@ -9,7 +9,8 @@ import { thoundsandSep } from '../../../../utils/Logistics';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import moment from 'moment';
-import { getTempSalary } from '../../../../api';
+import { getProfile, getTempSalary } from '../../../../api';
+import { UserObj } from '../../../../models/Data';
 
 
 const ExpectedSalary = (props) => {
@@ -26,6 +27,7 @@ const ExpectedSalary = (props) => {
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true)
+    const [user, setUserData] = useState(UserObj)
 
 
     const getData = async () => {
@@ -39,7 +41,17 @@ const ExpectedSalary = (props) => {
                 setLoading(false);
 
             }
-        })
+        });
+
+        await getProfile().then((res) => {
+            if (res.status == "success") {
+              setLoading(false)
+              setUserData(res.data)
+            }
+            if (res.status == "failed") {
+              setLoading(false)
+            }
+          })
 
     }
 
@@ -59,7 +71,8 @@ const ExpectedSalary = (props) => {
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.expectedSalary} />
             <DateView dateLabel={data.dateRange} />
-            <Body userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
+            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
@@ -69,7 +82,7 @@ const ExpectedSalary = (props) => {
                                 <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
                             </View>
                             <View>
-                                <MenuItem style={{ marginTop: 50 }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
+                                <MenuItem view style={{ marginTop: 50 }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
                             </View>
                             <View style={styles.detailInfo}>
                                 <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.contractSalary)} />

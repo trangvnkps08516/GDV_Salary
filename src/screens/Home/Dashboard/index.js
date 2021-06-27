@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { SafeAreaView, View, StatusBar,ActivityIndicator, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View, StatusBar, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import { MenuItem } from '../../../comps';
 import { Header } from '../../../comps';
@@ -12,29 +12,55 @@ import { colors } from '../../../utils/Colors';
 import { useNavigation } from '@react-navigation/core';
 import { getLoginInfo } from '../../../utils/Logistics';
 import { _retrieveData } from '../../../utils/Storage';
-import { User } from "../../../models";
+import { UserObj } from "../../../models";
+import { imgUrl } from '../../../api/untils';
+import { getProfile } from '../../../api';
 
 const Dashboard = (props) => {
   const navigation = useNavigation();
-  const [user, setUser] = useState(User)
+  const [user, setUserData] = useState(UserObj);
+  const [loading, setLoading] = useState(false)
+
+  const getData = async () => {
+    setLoading(true)
+    await getProfile().then((res) => {
+      if (res.status == "success") {
+        setLoading(false)
+        setUserData(res.data)
+      }
+      if (res.status == "failed") {
+        setLoading(false)
+      }
+    })
+
+  }
+
   useEffect(() => {
-    const getData = async () => {
-      await _retrieveData("userInfo").then((data) => setUser(data))
+    let isCancelled = false;
+    if (user != undefined) {
+      getData();
+    } else {
+
     }
-    getData();
-  }, [])
+    return () => {
+      isCancelled = true;
+    };
+  }, [""])
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
-      <Header showBack={false} profile avatar={images.avatar} fullName={user.userId.gdvId ? user.userId.gdvId.fullName : user.userId.displayName} empCode={user.userId.gdvId ? user.userId.gdvId.maGDV : user.userId.id} />
-      <Body style={{ marginTop: fontScale(27) }} />
+      {
+        <Header showBack={false} profile avatar={imgUrl + user.avatar} fullName={user.displayName} maGDV={user.gdvId.maGDV} />
+      }
+      <Body style={{ marginTop: fontScale(27) }} showInfo={false} />
       <View style={styles.body}>
-      <TouchableOpacity style={styles.menu}>
-        <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />
-        <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryByMonth} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthDashboard")} />
-        <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeDashboard")} />
-        <MenuItem style={{ marginTop: fontScale(60) }} title={text.subscriberQuality} icon={images.subscriberQuality} width={width - fontScale(60)} onPress={() => navigation.navigate("SubscriberQuality")} />
-        <MenuItem style={{ marginTop: fontScale(60) }} title={text.transactionInformation} icon={images.transactionInformation} width={width - fontScale(60)} onPress={() => navigation.navigate("TransactionInfo")} />
+        <TouchableOpacity style={styles.menu}>
+
+          <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryByMonth} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthDashboard")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeDashboard")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.subscriberQuality} icon={images.subscriberQuality} width={width - fontScale(60)} onPress={() => navigation.navigate("SubscriberQuality")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.transactionInformation} icon={images.transactionInformation} width={width - fontScale(60)} onPress={() => navigation.navigate("TransactionInfo")} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import { SafeAreaView, StatusBar, Text, View, Image, TouchableOpacity, BackHandler } from 'react-native';
+import { SafeAreaView, StatusBar, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Input, Button, AuthTitle, MenuItem } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
@@ -28,19 +28,7 @@ const RecoveryPassword = (props) => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.goBack();
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        return () => {
-            backHandler.remove();
-
-        }
+      
 
     }, [navigation])
     return (

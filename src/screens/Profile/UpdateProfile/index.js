@@ -8,6 +8,7 @@ import {
   StatusBar,
   Linking,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { getProfile, updateProfile } from "../../../api";
 import { Button, Header, ProfileItem } from "../../../comps";
@@ -21,6 +22,7 @@ import { useNavigation } from "@react-navigation/core";
 import { height, width } from "../../../utils/Dimenssion";
 import mime from "mime";
 import { imgUrl } from "../../../api/untils";
+import { _storeData } from "../../../utils/Storage";
 
 const UpdateProfile = (props) => {
   const navigation = useNavigation();
@@ -36,36 +38,28 @@ const UpdateProfile = (props) => {
         setUserData(res.data);
       }
       if (res.status == "failed") {
-        console.log(res.message);
       }
     });
   };
 
-  const _updateProfile = async () => {
-    if (formData != {}) {
-      formData.append("avatar", avatar);
-      formData.append("displayName", displayName);
-
-      await updateProfile(formData).then((res) => {
-        if (res.status == "success") {
-          navigation.navigate("Profile");
-        }else{
-          console.log(res.message)
-        }
-        navigation.navigate("Profile");
-      });
-    } else {
-      let fData = new FormData();
-      fData.append("avatar",{});
-
-      await updateProfile(fData,displayName).then((res) => {
-        if (res.status == "success") {
-          navigation.navigate("Profile");
-        }else{
-            console.log(res.message)
-        }
-      });
-    }
+  const _updateProfile = async (avatar, displayName) => {
+    formData.append('displayName', displayName);
+    await updateProfile(formData).then(async (data) => {
+      if (data.status == 200 || data.status == 202) {
+        await _storeData("userInfo");
+        Alert.alert(
+          "Thông báo",
+          "Cập nhật thông tin thành công",
+          [
+            { text: "OK", onPress: () => navigation.navigate('Profile') }
+          ],
+          { cancelable: false }
+        );
+        setLoading(false);
+      } else {
+        alert("Có lỗi phát sinh, vui lòng liên hệ phòng DVKT để được hỗ trợ.");
+      }
+    });
   };
 
   const pickImage = async () => {
@@ -137,7 +131,7 @@ const UpdateProfile = (props) => {
               editMode
               defaultValue={userData.displayName}
               icon={images.day}
-              title={text.workingDay}
+              title={text.staffName}
               size={25}
               onChangeText={(value) => setDisplayName(value)}
             />
@@ -148,7 +142,7 @@ const UpdateProfile = (props) => {
             <Button
               style={styles.button}
               label={text.saveChange}
-              onPress={() => _updateProfile()}
+              onPress={() => _updateProfile(avatar, displayName)}
             />
           </>
         )}

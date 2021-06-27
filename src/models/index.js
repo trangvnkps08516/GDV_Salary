@@ -2,8 +2,8 @@
 
 import {
     KPIByMonthDashboard, KPIByMonthAchieve, TempSalaryDashboard, DetailTempContract,
-    SalaryByMonth, ContractSalaryByMonth, AvgIncomeDashboard, AvgIncomeByMonth,
-    SubscriberQuality, TransactionInfo, Profile, User
+    SalaryByMonth, ContractSalaryByMonth, AvgIncomeDashboard, M_AvgIncomeByMonth,
+    M_SubscriberQuality, Transactioninfo, Profile, User,UserObj
 } from "./Data";
 
 export {
@@ -15,8 +15,9 @@ export {
     SalaryByMonth,
     ContractSalaryByMonth,
     AvgIncomeDashboard,
-    AvgIncomeByMonth,
-    SubscriberQuality,
-    TransactionInfo,
-    Profile
+    M_AvgIncomeByMonth,
+    M_SubscriberQuality,
+    Transactioninfo,
+    Profile,
+    UserObj
 }

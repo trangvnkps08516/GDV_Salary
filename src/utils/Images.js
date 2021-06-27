@@ -51,6 +51,8 @@ export const images = {
     logo:require('../../assets/logo.png'),
     loginbg:require("../../assets/loginbg.png"),
     mblogo:require("../../assets/mblogo.png"),
+    pencil:require("../../assets/pencil.png"),
+    close:require('../../assets/close.png')
 }
 // profile: "Thông tin cá nhân",
 //   workingDay: "Ngày vào làm",

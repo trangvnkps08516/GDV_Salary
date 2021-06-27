@@ -7,9 +7,9 @@ import { width } from "../../../../utils/Dimenssion";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { getKPIByMonthDashboard } from "../../../../api";
+import { getKPIByMonthDashboard, getProfile } from "../../../../api";
 import moment from "moment";
-import { KPIByMonthDashboard, User } from "../../../../models/Data";
+import { KPIByMonthDashboard, User, UserObj } from "../../../../models/Data";
 import { useNavigation } from '@react-navigation/core';
 import { thoundsandSep } from "../../../../utils/Logistics";
 import { _retrieveData } from "../../../../utils/Storage";
@@ -19,12 +19,11 @@ const DashBoard = (props) => {
   const [showDate, setShowDate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
-  const [user, setUser] = useState(User)
+  const [user, setUserData] = useState(UserObj)
 
   const navigation = useNavigation()
 
   const getData = async () => {
-    await _retrieveData("userInfo").then((data) => setUser(data))
     await getKPIByMonthDashboard().then((res) => {
       if (res.status == "success") {
         setData(res.data);
@@ -34,6 +33,16 @@ const DashBoard = (props) => {
         setLoading(false)
       }
     });
+
+    await getProfile().then((res) => {
+      if (res.status == "success") {
+        setLoading(false)
+        setUserData(res.data)
+      }
+      if (res.status == "failed") {
+        setLoading(false)
+      }
+    })
   };
 
   useEffect(() => {
@@ -44,7 +53,7 @@ const DashBoard = (props) => {
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.kpiByMonth} />
       <DateView dateLabel={data.dateRange} />
-      <Body userInfo={user.userId.gdvId ? user.userId.gdvId.fullName+" ("+user.userId.gdvId ? user.userId.gdvId.maGDV : user.userId.id  +")" : user.userId.displayName+" ("+")"}
+      <Body displayName={user.displayName} maGDV={user.gdvId.maGDV}
         style={{ marginTop: fontScale(27) }}
       />
       <View style={styles.body}>

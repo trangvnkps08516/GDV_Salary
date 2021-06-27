@@ -10,19 +10,18 @@ import { styles } from './styles';
 const SignOut = (props) => {
     const navigation = useNavigation();
 
-    const logoutUser = async() => {
-        await signoutUser(navigation).then((data)=>{
-            navigation.navigate('SignIn')
-        });
-        navigation.navigate('SignIn')
+    const logoutUser = async () => {
+        await signoutUser(navigation);
+        navigation.navigate('Home');
+        navigation.navigate('SignIn');
     }
     return (
         <ImageBackground style={styles.container} source={images.logoutbg}>
             <View style={styles.dialog}>
                 <Text style={styles.logoutMessage}>{text.logoutMessage}</Text>
-                <View style={{ marginTop:fontScale(20),flexDirection: "row", alignSelf: "center",justifyContent:"space-between" }}>
-                    <Button style={{marginRight:fontScale(30)}} text="Hủy" color="red" width={fontScale(100)} icon={images.cancle} />
-                    <Button style={{marginLeft:fontScale(30)}} text="Có" color="green" width={fontScale(100)} icon={images.check} onPress={()=>logoutUser()} />
+                <View style={{ marginTop: fontScale(20), flexDirection: "row", alignSelf: "center", justifyContent: "space-between" }}>
+                    <Button style={{ marginRight: fontScale(30) }} text="Hủy" color="red" width={fontScale(100)} icon={images.cancle} />
+                    <Button style={{ marginLeft: fontScale(30) }} text="Có" color="green" width={fontScale(100)} icon={images.check} onPress={() => logoutUser()} />
                 </View>
             </View>
         </ImageBackground>

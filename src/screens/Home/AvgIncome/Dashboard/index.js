@@ -23,8 +23,8 @@ import { text } from "../../../../utils/Text";
 import { styles } from "./style";
 import moment from "moment";
 import { useNavigation } from '@react-navigation/core';
-import { getAvgIncomeDashboard } from '../../../../api';
-import { AvgIncomeDashboard } from '../../../../models/Data';
+import { getAvgIncomeDashboard, getProfile } from '../../../../api';
+import { AvgIncomeDashboard, UserObj } from '../../../../models/Data';
 import { thoundsandSep } from '../../../../utils/Logistics';
 import { useRoute, useIsFocused } from "@react-navigation/native";
 
@@ -36,6 +36,7 @@ const Dashboard = (props) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(AvgIncomeDashboard);
   const isFocused = useIsFocused();
+  const [user, setUserData] = useState(UserObj)
 
   const getData = async (beginMonth, endMonth) => {
     setLoading(true)
@@ -48,9 +49,22 @@ const Dashboard = (props) => {
       }
     })
   }
-
+  const _getProfile=async()=>{
+    
+    await getProfile().then((res) => {
+      if (res.status == "success") {
+        setLoading(false)
+        setUserData(res.data)
+      }
+      if (res.status == "failed") {
+        setLoading(false)
+      }
+    })
+  }
   useEffect(() => {
     getData(month, sMonth);
+    _getProfile()
+
   }, [month]);
 
   const onChangeMonth = async (month) => {
@@ -74,16 +88,13 @@ const Dashboard = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
-      <Header title={text.averageIncome} />
+      <Header title={text.averageIncome}/>
       <View style={styles.dateContainer}>
         <DatePicker month={month} width={width / 2 - fontScale(40)} style={{ marginLeft: fontScale(30) }} onChangeDate={(date) => onChangeMonth(date)} />
         <DatePicker month={sMonth} width={width / 2 - fontScale(40)} style={{ marginLeft: fontScale(20) }} onChangeDate={(date) => onChangeSMonth(date)} />
       </View>
       <Text style={styles.text}>{data.notification}</Text>
-      <Body
-        userInfo={"Võ Ngọc Kim Trang ( GDV - 1.009 )"}
-        style={{ marginTop: fontScale(15) }}
-      />
+      <Body style={{ marginTop: fontScale(15) }}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
       <View style={styles.body}>
         {
           loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
