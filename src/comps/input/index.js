@@ -27,9 +27,9 @@ const Input = (props) => {
                                 <Image source={pass == false ? require("../../assets/eye.png") : require("../../assets/noneye.png")} resizeMode="contain" style={{width:fontScale(30),height:fontScale(25)}}/>
                             </TouchableOpacity>
                         </View> : phone ? <View>
-                            <TextInput onChangeText={props.onChangeText} keyboardType="phone-pad" placeholderTextColor={colors.white} style={{ paddingTop: fontScale(10), fontSize: 14, borderBottomColor: '#EAEEEE', borderBottomWidth: fontScale(1), width: props.width, color: colors.white }} />
+                            <TextInput onChangeText={props.onChangeText} keyboardType="phone-pad" placeholderTextColor={colors.white} style={{ height:fontScale(40),paddingTop: fontScale(10), fontSize: 14, borderBottomColor: '#EAEEEE', borderBottomWidth: fontScale(1), width: props.width, color: colors.white }} />
                         </View> : <View style={{ flexDirection: "row" }}>
-                            <TextInput onChangeText={props.onChangeText} placeholderTextColor={colors.white} style={{ paddingTop: fontScale(10), fontSize: 14, borderBottomColor: '#EAEEEE', borderBottomWidth: fontScale(1), width: props.width, color: colors.white }} />
+                            <TextInput onChangeText={props.onChangeText} placeholderTextColor={colors.white} style={{ height:fontScale(40),paddingTop: fontScale(10), fontSize: 14, borderBottomColor: '#EAEEEE', borderBottomWidth: fontScale(1), width: props.width, color: colors.white }} />
                         </View>
                     }
                 </View> : <></>

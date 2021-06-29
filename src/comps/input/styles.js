@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     container:{
         color: colors.white,
         paddingTop: fontScale(10), 
+        height:fontScale(40),
         borderBottomColor: '#EAEEEE', 
         borderBottomWidth: fontScale(1)
     }

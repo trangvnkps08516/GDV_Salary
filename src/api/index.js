@@ -38,7 +38,6 @@ export const login = async (userName, password) => {
     })
     .catch(async (error) => {
       if (error) {
-        checkErrorServer(error.response.status, navigation);
         data = {
           message: error.response.data.message,
           isLoading: false,
@@ -324,7 +323,6 @@ export const getContractSalaryByMonth = async (month) => {
     })
     .catch((error) => {
       if (error) {
-        checkErrorServer(error.response.status, navigation);
         data = {
           message: error,
           isLoading: false,

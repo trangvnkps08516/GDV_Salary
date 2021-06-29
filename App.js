@@ -101,7 +101,6 @@ const AuthStack = () => {
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
-      {/* RecoveryPassword */}
     </Stack.Navigator>
   )
 }
@@ -112,7 +111,7 @@ export default function App() {
   useEffect(() => {
     const getData = async () => {
       await _retrieveData("userInfo").then((data) => {
-        setUserInfo(data)
+        console.log(data)
       })
     }
     getData();
