@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, StatusBar, View, ActivityIndicator } from 'react-native';
+import { SafeAreaView, Text, StatusBar, View, ActivityIndicator, BackHandler } from 'react-native';
 import { getAvgIncomeByMonth, getProfile } from '../../../../api';
 import { Body, DatePicker, Header, ListItem } from '../../../../comps';
 import { M_AvgIncomeByMonth, UserObj } from '../../../../models/Data';
@@ -11,7 +11,7 @@ import { images } from '../../../../utils/Images';
 import { thoundsandSep } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Bình Quân Tháng và Tổng Thu Nhập
 function AvgIncomeByMonth(props) {
@@ -21,6 +21,7 @@ function AvgIncomeByMonth(props) {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(M_AvgIncomeByMonth);
     const [user, setUserData] = useState(UserObj)
+    const navigation = useNavigation();
 
     const getData = async (beginMonth, endMonth) => {
         setLoading(true)
@@ -48,9 +49,20 @@ function AvgIncomeByMonth(props) {
     }
 
     useEffect(() => {
-        getData(month, sMonth);
-        _getProfile()
+        const backAction = () => {
+            navigation.goBack();
+            return true;
+        };
 
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+        getData(month, sMonth);
+        _getProfile();
+        return () => {
+            backHandler.remove();
+        };
     }, []);
 
     const onChangeMonth = async (month) => {
@@ -79,7 +91,7 @@ function AvgIncomeByMonth(props) {
             </View>
             <View style={styles.body}>
                 <Text style={styles.notification}>{data.notification}</Text>
-                <Body style={styles.bodyScr}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+                <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             </View>
             <View style={{ backgroundColor: colors.white, flex: 1 }}>

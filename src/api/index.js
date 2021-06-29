@@ -2,6 +2,7 @@ import { GET, POST, PUT, PATCH, DELETE } from "./method";
 import { baseUrl } from "./untils";
 import axios from "axios";
 import { _removeData, _retrieveData, _storeData } from "../utils/Storage";
+import { Alert } from "react-native";
 
 // 1. Login Screen
 export const login = async (userName, password) => {
@@ -37,6 +38,7 @@ export const login = async (userName, password) => {
     })
     .catch(async (error) => {
       if (error) {
+        checkErrorServer(error.response.status, navigation);
         data = {
           message: error.response.data.message,
           isLoading: false,
@@ -322,6 +324,7 @@ export const getContractSalaryByMonth = async (month) => {
     })
     .catch((error) => {
       if (error) {
+        checkErrorServer(error.response.status, navigation);
         data = {
           message: error,
           isLoading: false,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, StatusBar, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, StatusBar, TouchableOpacity, BackHandler } from 'react-native';
 import { styles } from './style';
 import { MenuItem } from '../../../comps';
 import { Header } from '../../../comps';
@@ -10,7 +10,6 @@ import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 import { colors } from '../../../utils/Colors';
 import { useNavigation } from '@react-navigation/core';
-import { getLoginInfo } from '../../../utils/Logistics';
 import { _retrieveData } from '../../../utils/Storage';
 import { UserObj } from "../../../models";
 import { imgUrl } from '../../../api/untils';
@@ -36,14 +35,19 @@ const Dashboard = (props) => {
   }
 
   useEffect(() => {
-    let isCancelled = false;
-    if (user != undefined) {
-      getData();
-    } else {
+    const backAction = () => {
+      BackHandler.exitApp();
+      return true;
+    };
 
-    }
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+    getData();
+
     return () => {
-      isCancelled = true;
+      backHandler.remove();
     };
   }, [""])
   return (
@@ -58,7 +62,8 @@ const Dashboard = (props) => {
 
           <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />
           <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryByMonth} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthDashboard")} />
-          <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeDashboard")} />
+          {/* change from AvgIncomeDashboard to AvgIncomeByMonth (discard AvgIncomeDashboard)*/}
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeByMonth")} />
           <MenuItem style={{ marginTop: fontScale(60) }} title={text.subscriberQuality} icon={images.subscriberQuality} width={width - fontScale(60)} onPress={() => navigation.navigate("SubscriberQuality")} />
           <MenuItem style={{ marginTop: fontScale(60) }} title={text.transactionInformation} icon={images.transactionInformation} width={width - fontScale(60)} onPress={() => navigation.navigate("TransactionInfo")} />
         </TouchableOpacity>

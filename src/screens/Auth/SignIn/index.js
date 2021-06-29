@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar, Text, View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { Input, Button, AuthTitle, MenuItem } from '../../../comps';
+import { SafeAreaView, StatusBar, Text, View, Image, ActivityIndicator, BackHandler } from 'react-native';
+import { Input, Button, AuthTitle } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
@@ -26,7 +26,7 @@ const SignIn = (props) => {
             setMessage("Vui lòng nhập mật khẩu!")
         } else {
             setMessage("")
-            await login(userName, password).then(async (res) => {
+            await login(userName, password, navigation).then(async (res) => {
                 // let data = res.data;
                 if (res.status == "success") {
                     setLoading(false);
@@ -42,7 +42,19 @@ const SignIn = (props) => {
     }
 
     useEffect(() => {
+        const backAction = () => {
+            BackHandler.exitApp();
+            return true;
+        };
 
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => {
+            backHandler.remove();
+        };
 
     }, [navigation])
 

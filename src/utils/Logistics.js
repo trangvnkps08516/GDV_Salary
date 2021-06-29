@@ -137,12 +137,13 @@ export const getLoginInfo = async () => {
   await _retrieveData("userInfo").then((data) => { return data })
 }
 
-export const ToastNotif = (title, content, type, autohide) => {
+export const ToastNotif = (title, content, type, autohide, onhide) => {
   Toast.show({
-      text1:title,
-      text2:content,
-      type: type,
-      visibilityTime: 2000,
-      autoHide: autohide
+    text1: title,
+    text2: content,
+    type: type,
+    visibilityTime: 2000,
+    autoHide: autohide,
+    onHide: onhide
   })
 }

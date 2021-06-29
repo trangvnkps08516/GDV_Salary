@@ -58,14 +58,14 @@ export const SalaryByMonth = {
 // Home > Lương Theo Tháng > Lương Khoán | getContractSalaryByMonth
 export const ContractSalaryByMonth = {
   "status": "",
-  "contractSalary": 0,
-  "prePaid": 0,
-  "postPaid": 0,
-  "vas": 0,
-  "postage": 0,
-  "terminalDevice": 0,
-  "otherService": 0,
-  "arrears": 0
+  "contractSalary": "",
+  "prePaid": "",
+  "postPaid": "",
+  "vas": "",
+  "postage": "",
+  "terminalDevice": "",
+  "otherService": "",
+  "arrears": ""
 }
 
 // Home > Bình Quân Thu Nhập | getAvgIncomeDashboard

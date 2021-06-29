@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, StatusBar, ActivityIndicator } from "react-native";
+import { SafeAreaView, View, StatusBar, ActivityIndicator, BackHandler } from "react-native";
 import { Body, DateView, Header, MenuItem } from "../../../../comps";
 import { styles } from "../../../../comps/body/style";
 import { colors } from "../../../../utils/Colors";
@@ -21,7 +21,7 @@ const DashBoard = (props) => {
   const [data, setData] = useState(KPIByMonthDashboard);
   const [user, setUserData] = useState(UserObj)
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const getData = async () => {
     await getKPIByMonthDashboard().then((res) => {
@@ -46,7 +46,20 @@ const DashBoard = (props) => {
   };
 
   useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
     getData();
+
+    return () => {
+      backHandler.remove();
+    };
   }, [""]);
   return (
     <SafeAreaView style={styles.container}>
@@ -58,7 +71,7 @@ const DashBoard = (props) => {
       />
       <View style={styles.body}>
         {
-          loading == true ? <ActivityIndicator size="small" color={colors.primary}/> :
+          loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
             <>
               <MenuItem
                 style={{ marginTop: fontScale(30) }}

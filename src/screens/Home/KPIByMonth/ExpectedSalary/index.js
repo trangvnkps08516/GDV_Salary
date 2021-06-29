@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, ActivityIndicator } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, BackHandler } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -11,7 +11,7 @@ import { fontScale } from '../../../../utils/Fonts';
 import moment from 'moment';
 import { getProfile, getTempSalary } from '../../../../api';
 import { UserObj } from '../../../../models/Data';
-
+import { useNavigation } from '@react-navigation/core';
 
 const ExpectedSalary = (props) => {
     const [data, setData] = useState({
@@ -28,7 +28,7 @@ const ExpectedSalary = (props) => {
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true)
     const [user, setUserData] = useState(UserObj)
-
+    const navigation = useNavigation();
 
     const getData = async () => {
         await getTempSalary().then((res) => {
@@ -56,8 +56,19 @@ const ExpectedSalary = (props) => {
     }
 
     useEffect(() => {
+        const backAction = () => {
+            navigation.goBack();
+            return true;
+        };
 
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
         getData()
+        return () => {
+            backHandler.remove();
+        };
 
     }, [""]);
 

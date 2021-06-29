@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
-import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../comps';
+import { SafeAreaView, View, StatusBar, ActivityIndicator, ScrollView, BackHandler } from 'react-native';
+import { DateView, Header, Body, ListItem } from '../../../comps';
 import { styles } from './styles';
 import { width } from '../../../utils/Dimenssion';
-import moment from 'moment';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
@@ -11,12 +10,13 @@ import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
 import { thoundsandSep } from '../../../utils/Logistics';
 import { M_SubscriberQuality, UserObj } from '../../../models/Data';
-
+import { useNavigation } from '@react-navigation/core';
 
 const SubscriberQuality = (props) => {
     const [data, setData] = useState(M_SubscriberQuality);
     const [loading, setLoading] = useState(true)
     const [user, setUserData] = useState(UserObj)
+    const navigation = useNavigation();
 
     const getData = async () => {
         setLoading(true)
@@ -45,9 +45,22 @@ const SubscriberQuality = (props) => {
     }
 
     useEffect(() => {
-        getData();
-        _getProfile()
 
+        const backAction = () => {
+            navigation.goBack();
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+        getData();
+        _getProfile();
+
+        return () => {
+            backHandler.remove();
+        };
     }, [""]);
 
     return (
@@ -62,7 +75,7 @@ const SubscriberQuality = (props) => {
                     <DateView dateLabel={'Tháng ' + data.endMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
                 </View>
             </View>
-            <Body style={styles.bodyScr}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {

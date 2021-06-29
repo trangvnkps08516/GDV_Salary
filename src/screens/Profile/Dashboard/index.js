@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Image, View, Text, StatusBar, Linking, ActivityIndicator,TouchableOpacity, Modal } from 'react-native';
+import { SafeAreaView, Image, View, Text, StatusBar, Linking, ActivityIndicator, TouchableOpacity, Modal, BackHandler } from 'react-native';
 import { Button, Header, ProfileItem } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { fontScale } from '../../../utils/Fonts';
@@ -18,7 +18,7 @@ const DashBoard = (props) => {
     const [loading, setLoading] = useState(false)
     const navigation = useNavigation();
     const [userData, setUserData] = useState(Profile);
-    const [showModal,setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const isFocused = useIsFocused();
     const getData = async () => {
         setLoading(true)
@@ -34,9 +34,22 @@ const DashBoard = (props) => {
     }
 
     useEffect(() => {
-        if (1 != 2) {
-            getData()
-        }
+        const backAction = () => {
+            navigation.navigate("Home")
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        getData();
+        return () => {
+
+            backHandler.remove();
+        };
+
     }, [isFocused]);
 
 
@@ -51,7 +64,7 @@ const DashBoard = (props) => {
                 <Image style={styles.avatar} source={{ uri: imgUrl + userData.avatar }} />
             </View>
 
-            <View style={{marginTop:fontScale(50)}}>
+            <View style={{ marginTop: fontScale(50) }}>
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                         <>
@@ -63,7 +76,7 @@ const DashBoard = (props) => {
                         </>
                 }
             </View>
-            <TouchableOpacity onPress={() =>setShowModal(true)} style={{ backgroundColor: colors.primary, width: fontScale(50), height: fontScale(50), padding: fontScale(13), position: "absolute", bottom: fontScale(22),right:fontScale(22), borderRadius: fontScale(25) }}>
+            <TouchableOpacity onPress={() => setShowModal(true)} style={{ backgroundColor: colors.primary, width: fontScale(50), height: fontScale(50), padding: fontScale(13), position: "absolute", bottom: fontScale(22), right: fontScale(22), borderRadius: fontScale(25) }}>
                 <Image source={images.pencil} />
             </TouchableOpacity>
             <Modal
@@ -74,14 +87,14 @@ const DashBoard = (props) => {
                     setShowModal(!showModal)
                 }}>
                 <View style={styles.optionDialogs}>
-                    <TouchableOpacity onPress={()=>setShowModal(!showModal)}>
-                        <Image source={images.close} style={styles.closeIcon}/>
+                    <TouchableOpacity onPress={() => setShowModal(!showModal)}>
+                        <Image source={images.close} style={styles.closeIcon} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.optionMenu} onPress={()=>[setShowModal(!showModal),navigation.navigate("UpdatePassword")]}>
+                    <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdatePassword")]}>
                         <Text style={styles.menuTitle}>Đổi mật khẩu</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.optionMenu} onPress={()=>[setShowModal(!showModal),navigation.navigate("UpdateProfile")]}>
+                    <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdateProfile")]}>
                         <Text style={styles.menuTitle}>Chỉnh sửa thông tin cá nhân</Text>
                     </TouchableOpacity>
                 </View>

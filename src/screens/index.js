@@ -3,25 +3,24 @@
 import React from 'react';
 
 import Home from "./Home/Dashboard";
-import KPIByMonthDashboard from "./Home/KPIByMonth/Dashboard";
+import KPIByMonthDashboard from "./Home/KPIByMonth/DashBoard";
 import Achieve from "./Home/KPIByMonth/Achieve";
-import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary/index";
+import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary";
 import SalaryByMonthDashboard from "./Home/SalaryByMonth/Dashboard";
 import SalaryByMonthFixedwage from "./Home/SalaryByMonth/Fixedwage";
 import SalaryByMonthContract from "./Home/SalaryByMonth/Contract";
 import SalaryByMonthArrears from "./Home/SalaryByMonth/Arrears";
-import AvgIncomeDashboard from "./Home/AvgIncome/Dashboard"
+import AvgIncomeDashboard from "./Home/AvgIncome/Dashboard";
 import AvgIncomeByMonth from "./Home/AvgIncome/AvgIncomeByMonth";
 import TransactionInfo from "./Home/TransactionInfo";
-import SubscriberQuality from "./Home/SubscriberQuality"
-import Profile from "./Profile/Dashboard"
-import UpdatePassword from "./Profile/UpdatePassword"
-import UpdateProfile from "./Profile/UpdateProfile"
+import SubscriberQuality from "./Home/SubscriberQuality";
+import Profile from "./Profile/Dashboard";
+import UpdatePassword from "./Profile/UpdatePassword";
+import UpdateProfile from "./Profile/UpdateProfile";
 
-import SignIn from './Auth/SignIn';
-import SignOut from './SignOut'
-import Splash from './Auth/Splash/index';
-
+import SignIn from "./Auth/SignIn";
+import SignOut from "./SignOut";
+import Splash from "./Auth/Splash";
 
 export const HomeScreen = () => {return <Home />}
 export const KPIByMonthDashboardScreen = () => {return <KPIByMonthDashboard />}

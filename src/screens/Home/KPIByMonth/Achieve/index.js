@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView, BackHandler } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { images } from '../../../../utils/Images';
 import { text } from '../../../../utils/Text';
+import { useNavigation } from '@react-navigation/core';
 import moment from 'moment';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve, getProfile } from '../../../../api';
@@ -27,7 +28,7 @@ const Achieve = (props) => {
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true);
     const [user, setUserData] = useState(UserObj)
-
+    const navigation = useNavigation();
 
     const getData = async () => {
         await getKPIByMonthAchieve().then((res) => {
@@ -42,18 +43,32 @@ const Achieve = (props) => {
 
         await getProfile().then((res) => {
             if (res.status == "success") {
-              setLoading(false)
-              setUserData(res.data)
+                setLoading(false)
+                setUserData(res.data)
             }
             if (res.status == "failed") {
-              setLoading(false)
+                setLoading(false)
             }
-          })
+        })
 
     }
 
     useEffect(() => {
+        const backAction = () => {
+            navigation.goBack();
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
         getData();
+        
+        return () => {
+            backHandler.remove();
+        };
+
     }, [""]);
 
     return (
@@ -61,7 +76,7 @@ const Achieve = (props) => {
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiAchieved} />
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
-            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
 
                 {
