@@ -12,8 +12,8 @@ import { text } from '../../../utils/Text';
 import { images } from '../../../utils/Images';
 
 const SignIn = (props) => {
-    const [userName, setUsername] = useState('admin')
-    const [password, setPassword] = useState('vms@kpi')
+    const [userName, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
