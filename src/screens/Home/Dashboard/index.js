@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, StatusBar, TouchableOpacity, BackHandler } from 'react-native';
-import { styles } from './style';
 import { MenuItem } from '../../../comps';
 import { Header } from '../../../comps';
 import { Body } from '../../../comps';
@@ -14,6 +13,7 @@ import { _retrieveData } from '../../../utils/Storage';
 import { UserObj } from "../../../models";
 import { imgUrl } from '../../../api/untils';
 import { getProfile } from '../../../api';
+import { styles } from './style';
 
 const Dashboard = (props) => {
   const navigation = useNavigation();
