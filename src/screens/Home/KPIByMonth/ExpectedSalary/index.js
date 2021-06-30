@@ -12,10 +12,12 @@ import moment from 'moment';
 import { getProfile, getTempSalary } from '../../../../api';
 import { UserObj } from '../../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
+import { value } from '../../../../utils/Values';
 
 const ExpectedSalary = (props) => {
     const [data, setData] = useState({
         contractSalary: 1000000,
+        kpis: "",
         prePaid: 100000,
         postPaid: 100000,
         vas: 100000,
@@ -92,6 +94,8 @@ const ExpectedSalary = (props) => {
                                 <Text style={styles.sumKpiTitle}>{text.expectedSalary}: </Text>
                                 <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
                             </View>
+
+                            
                             <View>
                                 <MenuItem view style={{ marginTop: 50 }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
                             </View>

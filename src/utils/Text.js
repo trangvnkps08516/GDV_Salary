@@ -67,21 +67,23 @@ export const text = {
 
   // Tổng lương dự kiến
   expectedSalary:"Tổng lương dự kiến",
+  kpiS:"KPIs",
+
 
   // Bình quân thu nhập
-  averageMonthlySalary: "Bình quân lương các tháng",
+  averageMonthlySalary: "BQ lương các tháng",
   averageSalaryInTheFirstQuarter: "Bình quân lương quý 1",
-  fixedAverageSalary: "Bình quân lương cố định",
+  fixedAverageSalary: "BQ lương cố định",
   totalAverageSalary: "Tổng lương cố định",
-  upAverageSalary: "Bình quân lương khoán",
+  upAverageSalary: "BQ lương khoán",
   totalupAverageSalary: "Tổng lương khoán",
 
-  averageIncentiveSpending: "Bình quân chi khuyến khích",
+  averageIncentiveSpending: "BQ chi khuyến khích",
   totalIncentiveSpending:"Tổng chi khuyến khích",
-  averageOtherCosts: "Bình quân chi khác", 
+  averageOtherCosts: "BQ chi khác", 
   totalOtherCosts: "Tổng chi khác", 
-  averageMonth:"Bình quân tháng" ,
-  averageAndAmount:"Bình quân tháng & Tổng thu nhập",
+  averageMonth:"BQ tháng" ,
+  averageAndAmount:"Bình quân thu nhập",
   upSalaryProduct:"Lương khoán sp",
   totalIncome:"Tổng thu nhập",
 
@@ -92,16 +94,16 @@ export const text = {
   totalRevenue: "Tổng doanh thu",
   newSubPrePaid: "Tổng TBTS PTM",
   revokeAmount: "TBTS cắt hủy",
-  preToPostPaid: "TBTS chuyển sang TBTT",
-  denyTwoC: "TBTS đang bị chặn 2c",
+  preToPostPaid: "Fone -> card",
+  denyTwoC: "TBTS chặn 2c",
 
 
 
 //  Thông tin giao dịch
   transactionsInfo:"Thông tin giao dịch",
   customersCount:"Lượt khách hàng",
-  transAmount:"Số lượng TBTS chuyển sang TBTT",
-  trans2CAmount:"Số lượng TBTS đang bị chặn 2c",
+  transAmount:"Giao dịch Fone -> card",
+  trans2CAmount:"Giao dịch chặn 2c TBTS",
 
   // Profile
   profile: "Thông tin cá nhân",

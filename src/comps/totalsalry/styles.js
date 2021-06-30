@@ -18,13 +18,13 @@ export const styles = StyleSheet.create({
   total: {
     color: "#2E2E31",
     fontWeight: 'bold',
-    fontSize:fontScale(15)
+    fontSize:fontScale(19)
 
   },
   salary: {
     color: "#00BECC",
     fontWeight: 'bold',
-    fontSize:fontScale(15)
+    fontSize:fontScale(19)
   },
   
 });

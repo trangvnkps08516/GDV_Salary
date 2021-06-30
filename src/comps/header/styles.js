@@ -20,10 +20,10 @@ export const styles = StyleSheet.create({
     },
     title:{
         textAlign:"center",
-        fontSize:fontScale(17),
+        fontSize:fontScale(19),
         fontWeight:"bold",
         marginLeft:-fontScale(50),
-        color:colors.white,
+        color:"#F1E90F",
         width:width-fontScale(100),
         height:fontScale(50),
         paddingVertical:fontScale(13),

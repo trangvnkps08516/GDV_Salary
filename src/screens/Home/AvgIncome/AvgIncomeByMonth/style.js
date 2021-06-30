@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
         marginTop:fontScale(14)
     },
     sumKpiContainer:{ flexDirection: "row",justifyContent:"center", marginTop: -fontScale(23) },
-    sumKpiTitle:{ color: colors.black,fontSize:fontScale(15),fontWeight:"bold"},
-    sumKpi:{ color: colors.lightBlue,fontSize:fontScale(15),marginLeft:fontScale(2),fontWeight:"bold" },
+    sumKpiTitle:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold"},
+    sumKpi:{ color: colors.lightBlue,fontSize:fontScale(18),marginLeft:fontScale(2),fontWeight:"bold" },
     detailInfo:{paddingVertical:fontScale(20),marginHorizontal:fontScale(17),shadowColor: "#000",backgroundColor:colors.white,  marginTop:fontScale(15),borderRadius:fontScale(17),
         shadowOffset: {
             width: 0,
