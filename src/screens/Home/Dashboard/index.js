@@ -20,18 +20,17 @@ const Dashboard = (props) => {
   const [user, setUserData] = useState(UserObj);
   const [loading, setLoading] = useState(false)
 
-  const getData = async () => {
-    setLoading(true)
+  const _getProfile = async () => {
+
     await getProfile().then((res) => {
       if (res.status == "success") {
         setLoading(false)
-        setUserData(res.data) 
+        setUserData(res.data)
       }
       if (res.status == "failed") {
         setLoading(false)
       }
     })
-
   }
 
   useEffect(() => {
@@ -44,13 +43,19 @@ const Dashboard = (props) => {
       "hardwareBackPress",
       backAction
     );
-    getData();
-  }, [""])
+
+    _getProfile();
+    return () => {
+      backHandler.remove();
+    };
+
+  }, []);
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       {
-        <Header showBack={false} profile avatar={user.avatar!=null ? {uri: imgUrl + user.avatar} : images.avatar} fullName={user.displayName} maGDV={user.gdvId.maGDV} />
+        <Header showBack={false} profile avatar={user.avatar != null ? { uri: imgUrl + user.avatar } : images.avatar} fullName={user.displayName} maGDV={user.gdvId.maGDV} />
       }
       <Body style={{ marginTop: fontScale(27) }} showInfo={false} />
       <View style={styles.body}>
