@@ -107,30 +107,15 @@ const AuthStack = () => {
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
-  const [userInfo,setUserInfo] = useState(User);
-  const [gdvPermission,setGdvPermission] = useState(false);
-  useEffect(() => {
-    const getData = async () => {
-      await _retrieveData("userInfo").then((data) => {
-        // Nếu là giao dịch viên
-        if(data.userId.gdvId){
-          setGdvPermission(true)
-        }else{
-          setGdvPermission(false)
-        }
-      })
-    }
-    getData();
-  });
+  const [userInfo, setUserInfo] = useState(User);
+  const [gdvPermission, setGdvPermission] = useState(false);
+
   StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="SignIn" component={AuthStack} />
-            {
-              gdvPermission ? <Stack.Screen name="Home" component={BottomTab} /> :null
-            }
-            
+        <Stack.Screen name="Home" component={BottomTab} />
+        <Stack.Screen name="SignIn" component={AuthStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, StatusBar, View, ActivityIndicator, BackHandler } from 'react-native';
+import { SafeAreaView, Text, StatusBar, View, ActivityIndicator, BackHandler, ScrollView } from 'react-native';
 import { getAvgIncomeByMonth, getProfile } from '../../../../api';
 import { Body, DatePicker, Header, ListItem } from '../../../../comps';
 import { M_AvgIncomeByMonth, UserObj } from '../../../../models/Data';
@@ -94,34 +94,36 @@ function AvgIncomeByMonth(props) {
                 <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             </View>
-            <View style={{ backgroundColor: colors.white, flex: 1 }}>
-                {
-                    loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
-                        <View>
-                            <View style={styles.sumKpiContainer}>
-                                <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
-                                <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
-                            </View>
-                            <View style={styles.detailInfo}>
-                                <ListItem icon={images.salaryByMonth} title={text.fixedAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
-                                <ListItem icon={images.upSalary} title={text.upAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
-                                <ListItem icon={images.incentive} title={text.averageIncentiveSpending} price={thoundsandSep(data.avgContractSalary)} />
-                                <ListItem icon={images.otheroutcome} title={text.averageOtherCosts} price={thoundsandSep(data.avgOtherExpen)} />
-                            </View>
+            <ScrollView style={{backgroundColor:colors.white}} showsVerticalScrollIndicator={false}>
+                <View style={{ backgroundColor: colors.white,paddingVertical:30, flex: 1 }}>
+                    {
+                        loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
+                            <View>
+                                <View style={styles.sumKpiContainer}>
+                                    <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
+                                    <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
+                                </View>
+                                <View style={styles.detailInfo}>
+                                    <ListItem icon={images.salaryByMonth} title={text.fixedAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
+                                    <ListItem icon={images.upSalary} title={text.upAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
+                                    <ListItem icon={images.incentive} title={text.averageIncentiveSpending} price={thoundsandSep(data.avgContractSalary)} />
+                                    <ListItem icon={images.otheroutcome} title={text.averageOtherCosts} price={thoundsandSep(data.avgOtherExpen)} />
+                                </View>
 
-                            <View style={[styles.sumKpiContainer, { marginTop: fontScale(30) }]}>
-                                <Text style={styles.sumKpiTitle}>{text.totalIncome}: </Text>
-                                <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
+                                <View style={[styles.sumKpiContainer, { marginTop: fontScale(30) }]}>
+                                    <Text style={styles.sumKpiTitle}>{text.totalIncome}: </Text>
+                                    <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
+                                </View>
+                                <View style={styles.detailInfo}>
+                                    <ListItem icon={images.salaryByMonth} title={text.totalAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
+                                    <ListItem icon={images.upSalary} title={text.totalupAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
+                                    <ListItem icon={images.incentive} title={text.totalIncentiveSpending} price={thoundsandSep(data.avgContractSalary)} />
+                                    <ListItem icon={images.otheroutcome} title={text.totalOtherCosts} price={thoundsandSep(data.avgOtherExpen)} />
+                                </View>
                             </View>
-                            <View style={styles.detailInfo}>
-                                <ListItem icon={images.salaryByMonth} title={text.totalAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
-                                <ListItem icon={images.upSalary} title={text.totalupAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
-                                <ListItem icon={images.incentive} title={text.totalIncentiveSpending} price={thoundsandSep(data.avgContractSalary)} />
-                                <ListItem icon={images.otheroutcome} title={text.totalOtherCosts} price={thoundsandSep(data.avgOtherExpen)} />
-                            </View>
-                        </View>
-                }
-            </View>
+                    }
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }

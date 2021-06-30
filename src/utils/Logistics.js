@@ -4,28 +4,37 @@ import moment from "moment";
 import { _retrieveData } from "./Storage";
 import Toast from "react-native-toast-message";
 
-export const thoundsandSep = (x = '') => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+export const thoundsandSep = (x) => {
+  if (x != null || x!= undefined) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  } else {
+    return ""
+  }
 }
 
 export const checkn = (str = '') => {
-  let element;
-  let index = 0;
-  let strFrs = '';
-  let strSnd = '';
-  for (let i = 0; i < str.length; i++) {
-    element = str[i];
-    if (element == 'n') {
-      index = i;
+  if (str == null || str== undefined) {
+    return ""
+  } else {
+    let element;
+    let index = 0;
+    let strFrs = '';
+    let strSnd = '';
+    for (let i = 0; i < str.length; i++) {
+      element = str[i];
+      if (element == 'n') {
+        index = i;
+      }
     }
-  }
 
-  if (typeof (index) !== undefined) {
-    strFrs = str.substr(0, index - 1);
-    strSnd = str.substr(index + 1, str.length);
-  }
+    if (typeof (index) != undefined) {
+      strFrs = str.substr(0, index - 1);
+      strSnd = str.substr(index + 1, str.length);
+    }
 
-  return strFrs + '\n' + strSnd;
+
+    return strFrs + '\n' + strSnd;
+  }
 }
 
 export const changeDate = (date = '') => {

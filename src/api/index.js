@@ -52,6 +52,8 @@ export const login = async (userName, password) => {
 
 // 2. Profile Screen
 export const getProfile = async () => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
   let data = {
     message: "",
     status: "",
@@ -65,7 +67,7 @@ export const getProfile = async () => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "1",
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -97,6 +99,8 @@ export const getProfile = async () => {
 
 // 3. Home > KPI Tháng hiện tại
 export const getKPIByMonthDashboard = async () => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
   let data = {
     message: "",
     status: "",
@@ -110,7 +114,7 @@ export const getKPIByMonthDashboard = async () => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -142,6 +146,9 @@ export const getKPIByMonthDashboard = async () => {
 
 // 4. Home > KPI Tháng hiện tại > KPI Đạt Được
 export const getKPIByMonthAchieve = async () => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -155,7 +162,7 @@ export const getKPIByMonthAchieve = async () => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -187,6 +194,9 @@ export const getKPIByMonthAchieve = async () => {
 
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
 export const getTempSalary = async () => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -200,7 +210,7 @@ export const getTempSalary = async () => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -247,6 +257,9 @@ export const getDetailTempContract = () => {
 
 // 7. Home > Lương Theo Tháng
 export const getSalaryByMonth = async (month) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -261,7 +274,7 @@ export const getSalaryByMonth = async (month) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -294,7 +307,9 @@ export const getSalaryByMonth = async (month) => {
 
 // 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm
 export const getContractSalaryByMonth = async (month) => {
-  console.log(month)
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -308,7 +323,7 @@ export const getContractSalaryByMonth = async (month) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "15b26a4f-ffab-4d3c-b9a0-00b128c9909b",
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -340,6 +355,9 @@ export const getContractSalaryByMonth = async (month) => {
 
 // 9. Home > Bình Quân Thu Nhập
 export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -354,7 +372,7 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -386,6 +404,9 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
 
 // 10. Home > Bình Quân Thu Nhập > Bình Quân Tháng & Tổng Thu Nhập
 export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -399,7 +420,7 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -431,6 +452,9 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
 
 // 11. Home > Chất Lượng Thuê Bao
 export const getSubscriberQuality = async () => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -444,7 +468,7 @@ export const getSubscriberQuality = async () => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -475,6 +499,9 @@ export const getSubscriberQuality = async () => {
 };
 // 12. Home > Thông tin giao dịch
 export const getTransactionInfo = async (month) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -488,7 +515,7 @@ export const getTransactionInfo = async (month) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   })
     .then((res) => {
@@ -520,6 +547,9 @@ export const getTransactionInfo = async (month) => {
 
 // 13. Profile > UpdateProfile
 export const updateProfile = async (formData) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+
   let data = {
     message: "",
     status: "",
@@ -532,7 +562,7 @@ export const updateProfile = async (formData) => {
     `${baseUrl}user/updateProfile`, formData,
     {
       headers: {
-        'Authorization': `1`,
+        'Authorization': `${token}`,
         'content-type': "multipart/form-data"
       }
     }
@@ -548,6 +578,8 @@ export const updateProfile = async (formData) => {
 
 // 14. UpdatePassword
 export const updatePassword = async (oldPassword, newPassword) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
   let data = {
     message: "",
     status: "",
@@ -561,7 +593,7 @@ export const updatePassword = async (oldPassword, newPassword) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: `${token}`,
     },
   }).then(async (res) => {
     if (res.status == 200) {
@@ -616,7 +648,7 @@ export const signoutUser = async (navigation) => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: 1,
+          Authorization: `${token}`,
         },
       })
         .then(async (res) => {

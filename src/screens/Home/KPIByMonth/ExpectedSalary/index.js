@@ -83,7 +83,7 @@ const ExpectedSalary = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.expectedSalary} />
-            <DateView dateLabel={data.dateRange} />
+            { loading == true ? null : <DateView dateLabel={data.dateRange} /> }
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
 
             <View style={{ flex: 1, backgroundColor: colors.white }}>

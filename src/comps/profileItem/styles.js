@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         marginLeft: fontScale(5),
         fontWeight: 'bold',
         color: '#1C5858',
-        fontSize: fontScale(17)
+        fontSize: fontScale(17),
+        marginRight:fontScale(10)
     },
     title: {
         color: "#9FAEAE",

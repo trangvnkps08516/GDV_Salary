@@ -15,7 +15,7 @@ const Header = (props) => {
         <View style={styles.container}>
             {
                 props.profile ? <View style={{ flexDirection: "row" }}>
-                    <Image source={{uri: props.avatar}} style={{ width: 50, height: 50, borderRadius: 25, marginLeft: fontScale(10) }} />
+                    <Image source={props.avatar} style={{ width: 50, height: 50, borderRadius: 25, marginLeft: fontScale(10) }} />
                     <View>
                         <Text style={styles.uInfo}>{props.fullName}</Text>
                         <Text style={styles.uStaff}>({props.maGDV})</Text>

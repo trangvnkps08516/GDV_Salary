@@ -50,7 +50,7 @@ const Dashboard = (props) => {
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       {
-        <Header showBack={false} profile avatar={imgUrl + user.avatar} fullName={user.displayName} maGDV={user.gdvId.maGDV} />
+        <Header showBack={false} profile avatar={user.avatar!=null ? {uri: imgUrl + user.avatar} : images.avatar} fullName={user.displayName} maGDV={user.gdvId.maGDV} />
       }
       <Body style={{ marginTop: fontScale(27) }} showInfo={false} />
       <View style={styles.body}>

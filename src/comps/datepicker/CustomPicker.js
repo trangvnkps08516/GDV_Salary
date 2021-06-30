@@ -68,7 +68,7 @@ const MonthYearPicker = (props) => {
                                 props.onChangeDate(item.name + '/' + year);
                                 props.close()
                             }}
-                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? color.primary : 'white' }]}>
+                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? colors.primary : 'white' }]}>
                             <Text style={{ color: item.key == month.key ? 'white' : 'black' }}>{item.name}</Text>
                         </TouchableOpacity>
                     )}

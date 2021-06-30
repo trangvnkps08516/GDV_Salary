@@ -36,7 +36,7 @@ export const images = {
     preToPostPaid: require('../../assets/ic_preToPostPaid.png'),
     denyTwoC: require('../../assets/ic_denyTwoC.png'),
     profileHeader: require('../../assets/profileheader.png'),
-    avatar: require('../../assets/trang.jpg'),
+    avatar: require('../../assets/avatar.jpg'),
     day: require('../../assets/ic_day.png'),
     workingShop: require('../../assets/ic_workingShop.png'),
     traderRating: require('../../assets/ic_traderRating.png'),

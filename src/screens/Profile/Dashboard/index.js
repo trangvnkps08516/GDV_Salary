@@ -61,21 +61,17 @@ const DashBoard = (props) => {
             <View style={styles.personInfo}>
                 <Text style={styles.staffCode}>{userData.displayName}</Text>
                 <Text style={styles.staffName}>({userData.gdvId.maGDV})</Text>
-                <Image style={styles.avatar} source={{ uri: imgUrl + userData.avatar }} />
+                <Image style={styles.avatar} source={userData.avatar == null ? images.avatar :{ uri: imgUrl + userData.avatar }} />
             </View>
-
             <View style={{ marginTop: fontScale(50) }}>
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                         <>
-                            <ProfileItem icon={images.day} title={text.workingDay} size={25} value={"05/01/2021"} />
-                            <ProfileItem icon={images.workingShop} title={text.workingShop} size={25} value={userData.shopId.shopName} />
-                            <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
-                            <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
+                            <ProfileItem icon={images.day} title={text.workingDay} size={25} value={"..."} />
+                            <ProfileItem icon={images.workingShop} title={text.workingShop} size={25} value={userData.shopId==null ? "" : userData.shopId.shopName} />
+                            <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"..."} />
+                            <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"..."} />
                             <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf"} openLink={()=>Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')}/>
-                            <Button width={fontScale(150)} label={text.login} center style={styles.loginButton} onPress={() => navigation.navigate("UpdateProfile")} />
-
-                            
                         </>
                 }
             </View>
