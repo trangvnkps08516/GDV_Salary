@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     width: width - fontScale(30),
     marginHorizontal: fontScale(15),
-    // height: fontScale(200),
     borderRadius: fontScale(15),
     paddingTop: -fontScale(9),
     shadowColor: "#000",

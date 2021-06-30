@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar, Text, View, Image, TouchableOpacity, ActivityIndicator, BackHandler } from 'react-native';
-import { Input, Button, AuthTitle, MenuItem } from '../../../comps';
+import { SafeAreaView, StatusBar, Text, View, Image, ActivityIndicator, BackHandler } from 'react-native';
+import { Input, Button, AuthTitle } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
@@ -20,23 +20,23 @@ const SignIn = (props) => {
     const navigation = useNavigation();
 
     const signIn = async (userName = "", password = "") => {
-       
         if (userName.length == 0) {
-            setMessage(text.typeYourUsername)
+            setMessage("Vui lòng nhập Username!")
         } else if (password.length == 0) {
-            setMessage(text.typeYourPassword)
+            setMessage("Vui lòng nhập mật khẩu!")
         } else {
-            setLoading(true)
-            await login(userName, password).then(async (data) => {
-                if (data.status == "success") {
-                    setLoading(false)
-                    await _storeData("userInfo", data.data);
-                    navigation.navigate('Home');
-                }
-                if (data.status == "failed") {
-                    setLoading(false)
-                    setMessage(data.message)
-                }
+            setMessage("")
+            await login(userName, password, navigation).then(async (res) => {
+                // let data = res.data;
+                if (res.status == "success") {
+                    setLoading(false);
+                    await _retrieveData("userInfo");
+                    navigation.navigate("Home")
+                } else
+                    if (res.status == "failed") {
+                        setLoading(false)
+                        setMessage(res.message)
+                    }
             });
         }
     }
@@ -51,10 +51,10 @@ const SignIn = (props) => {
             "hardwareBackPress",
             backAction
         );
+
         return () => {
             backHandler.remove();
-
-        }
+        };
 
     }, [navigation])
 
@@ -73,14 +73,10 @@ const SignIn = (props) => {
                     onChangeText={(value) => [setUsername(value), setMessage('')]} />
                 <Input underline pwd title={text.password} width={width - fontScale(70)} style={styles.ipPwd}
                     onChangeText={(value) => [setPassword(value), setMessage('')]} />
-                <View style={{ alignSelf: "flex-end", top: fontScale(20) }}>
-                    <TouchableOpacity style={styles.forgotTextContainer} onPress={() => [navigation.navigate("RecoveryPassword"), setMessage('')]}>
-                        <Text style={styles.forgotText}>{text.forgotPassword}</Text>
-                    </TouchableOpacity>
-                </View>
-                <Button width={fontScale(150)} label={text.login} center style={styles.loginButton} onPress={() => signIn(userName, password)} />
+                <Button width={fontScale(150)} label={"Đăng nhập"} center style={styles.loginButton} onPress={() => signIn(userName, password)} />
                 <Text style={{ color: colors.white, textAlign: "center", marginTop: fontScale(15) }}>{message}</Text>
-                {loading == true ? <ActivityIndicator size="small" color={colors.white} /> : null}
+                {loading == true ?
+                    <ActivityIndicator size="small" color={colors.white} /> : null}
             </View>
         </SafeAreaView>
     );

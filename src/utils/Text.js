@@ -110,6 +110,9 @@ export const text = {
   traderRating: "Xếp hạng giao dịch viên",
   storeRating: "Xếp loại cửa hàng",
   PDF: "PDF",
-  profile: " Thông tin cá nhân"  
+  profile: " Thông tin cá nhân"  ,
+
+  // Update Profile
+  staffName:"Tên nhân viên" 
 
 };

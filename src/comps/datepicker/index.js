@@ -38,7 +38,6 @@ const YearMonthPicker = (props) => {
                 onChangeMonth={(month) => { }}
                 onChangeText={(date) => { }}
                 onChangeDate={(date) => { setMonth(date); props.onChangeDate(date.substring(6, date.length)) }}
-                // onChangeDate={(date) => { console.log(date) }}
             />
         </View>
     );

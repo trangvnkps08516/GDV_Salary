@@ -61,6 +61,7 @@ const ProfileStack = () => {
     <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+      <Stack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
     </Stack.Navigator>
   )
 }
@@ -100,7 +101,7 @@ const AuthStack = () => {
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
-      <Stack.Screen name="RecoveryPassword" component={RecoveryPasswordScreen} />
+      {/* RecoveryPassword */}
     </Stack.Navigator>
   )
 }

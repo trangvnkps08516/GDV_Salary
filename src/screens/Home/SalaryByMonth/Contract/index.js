@@ -1,9 +1,9 @@
 import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StatusBar, View, Text, ActivityIndicator } from 'react-native';
-import { getContractSalaryByMonth } from '../../../../api';
+import { getContractSalaryByMonth, getProfile } from '../../../../api';
 import { Body, DatePicker, DateView, Header, ListItem, MetricStatus } from '../../../../comps';
-import { ContractSalaryByMonth } from '../../../../models/Data';
+import { ContractSalaryByMonth, UserObj } from '../../../../models/Data';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
@@ -11,11 +11,14 @@ import { images } from '../../../../utils/Images';
 import { thoundsandSep } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './styles';
+import { useRoute } from "@react-navigation/core";
 
 const Contract = (props) => {
-    const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
+    const route = useRoute();
+    const [month, setMonth] = useState(route.params?.month || moment(new Date()).format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(ContractSalaryByMonth);
+    const [user, setUserData] = useState(UserObj)
 
     const getData = async (month) => {
         setLoading(true)
@@ -31,9 +34,22 @@ const Contract = (props) => {
         })
 
     }
-
+    const _getProfile=async()=>{
+    
+        await getProfile().then((res) => {
+          if (res.status == "success") {
+            setLoading(false)
+            setUserData(res.data)
+          }
+          if (res.status == "failed") {
+            setLoading(false)
+          }
+        })
+      }
+    
     useEffect(() => {
-        getData(month)
+        getData(month);
+        _getProfile()
     }, [""]);
 
     const _onChangeMonth = async (value) => {
@@ -46,7 +62,8 @@ const Contract = (props) => {
             <Header title={text.upSalary} />
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
             <MetricStatus status={data.status} style={{ alignSelf: "center", marginTop: fontScale(20) }} />
-            <Body userInfo={"Võ N Kim Trang ( GDV - 1.009 )"} style={styles.bodyScr} />
+            <Body style={{ marginTop: fontScale(15) }}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
                     loading == true ? <ActivityIndicator color={colors.primary} size="small"/> :

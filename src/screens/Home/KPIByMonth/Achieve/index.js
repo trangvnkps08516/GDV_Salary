@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView, BackHandler } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { images } from '../../../../utils/Images';
 import { text } from '../../../../utils/Text';
+import { useNavigation } from '@react-navigation/core';
 import moment from 'moment';
 import { fontScale } from '../../../../utils/Fonts';
-import { getKPIByMonthAchieve } from '../../../../api';
-import { checkn, getLoginInfo } from '../../../../utils/Logistics';
+import { getKPIByMonthAchieve, getProfile } from '../../../../api';
+import { checkn, getLoginInfo, thoundsandSep } from '../../../../utils/Logistics';
 import { _retrieveData } from '../../../../utils/Storage';
-import { User } from '../../../../models/Data';
+import { User, UserObj } from '../../../../models/Data';
 
 const Achieve = (props) => {
     let test = require("../../../../assets/testicon.png")
@@ -26,7 +27,8 @@ const Achieve = (props) => {
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    const [user, setUserData] = useState(UserObj)
+    const navigation = useNavigation();
 
     const getData = async () => {
         await getKPIByMonthAchieve().then((res) => {
@@ -39,10 +41,33 @@ const Achieve = (props) => {
             }
         })
 
+        await getProfile().then((res) => {
+            if (res.status == "success") {
+                setLoading(false)
+                setUserData(res.data)
+            }
+            if (res.status == "failed") {
+                setLoading(false)
+            }
+        })
+
     }
 
     useEffect(() => {
+        const backAction = () => {
+            navigation.goBack();
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
         getData();
+        
+        return () => {
+            backHandler.remove();
+        };
 
     }, [""]);
 
@@ -51,7 +76,7 @@ const Achieve = (props) => {
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiAchieved} />
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
-            <Body style={styles.bodyScr} />
+            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
 
                 {
@@ -67,7 +92,7 @@ const Achieve = (props) => {
                                     <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={checkn(data.postPaid)} />
                                     <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
                                     <ListItem icon={images.important} title={text.kpiImportant} price={checkn(data.importantKpi)} />
-                                    <ListItem icon={images.retailsales} title={text.retailSales} price={data.retailSales} />
+                                    <ListItem icon={images.retailsales} title={text.retailSales} price={thoundsandSep(data.retailSales)} />
                                 </View>
                                 <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
                                     <ListItem icon={images.percent} title={text.subRatio} justTitle />

@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         color:colors.white,
         fontSize:fontScale(15),
         textAlign:"center",
-        marginTop: -fontScale(5)
+        marginTop: fontScale(5)
     },
     bodyScr:{
         marginTop:fontScale(14)

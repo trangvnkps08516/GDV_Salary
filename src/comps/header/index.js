@@ -5,26 +5,20 @@ import { useNavigation } from '@react-navigation/core';
 import { fontScale } from '../../utils/Fonts';
 import { User } from '../../models/Data';
 import { _retrieveData } from '../../utils/Storage';
+import { imgUrl } from '../../api/untils';
 
 const Header = (props) => {
-    const { title ,avatar} = props;
+    const { title, avatar, fullName, empCode } = props;
     const navigation = useNavigation();
-    const [user, setUser] = useState(User)
-    useEffect(() => {
-        const getData=async()=>{
-            await _retrieveData("userInfo").then((data) => { setUser(data) })
-        }
-        getData();
-    })
 
     return (
         <View style={styles.container}>
             {
-                props.profile ? <View style={{flexDirection:"row"}}>
-                    <Image source={avatar} style={{width:50,height:50,borderRadius:25,marginLeft:fontScale(10)}}/>
+                props.profile ? <View style={{ flexDirection: "row" }}>
+                    <Image source={{uri: props.avatar}} style={{ width: 50, height: 50, borderRadius: 25, marginLeft: fontScale(10) }} />
                     <View>
-                        <Text style={styles.uInfo}>{user.userId.gdvId.fullName}</Text>
-                        <Text style={styles.uStaff}>({user.userId.gdvId.maGDV})</Text>
+                        <Text style={styles.uInfo}>{props.fullName}</Text>
+                        <Text style={styles.uStaff}>({props.maGDV})</Text>
                     </View>
                 </View> :
                     <View style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>

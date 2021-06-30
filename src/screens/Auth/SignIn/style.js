@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../utils/Colors";
-import { height, width } from "../../../utils/Dimenssion";
+import { height, statusbarHeight, width } from "../../../utils/Dimenssion";
 import { fontScale } from "../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -9,10 +9,10 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.primary
     },
     topShape: { flex: 7 },
-    authTitle: { marginLeft: fontScale(35) },
-    ipUsn: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },
-    ipPwd: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },
-    bottomShape: { flex: 2, width: width, bottom: -fontScale(30) },
+    authTitle:{marginLeft:fontScale(35)},
+    ipUsn:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
+    ipPwd:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
+    bottomShape: { flex: 2,width:width,bottom:-statusbarHeight},
     background: {
         width: width, height: height, bottom: 0, position: "absolute"
     },

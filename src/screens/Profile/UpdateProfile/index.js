@@ -6,8 +6,9 @@ import {
   View,
   Text,
   StatusBar,
-  Linking,
   TouchableOpacity,
+  Alert,
+  BackHandler,
 } from "react-native";
 import { getProfile, updateProfile } from "../../../api";
 import { Button, Header, ProfileItem } from "../../../comps";
@@ -21,6 +22,8 @@ import { useNavigation } from "@react-navigation/core";
 import { height, width } from "../../../utils/Dimenssion";
 import mime from "mime";
 import { imgUrl } from "../../../api/untils";
+import { _storeData } from "../../../utils/Storage";
+import { useIsFocused } from "@react-navigation/native";
 
 const UpdateProfile = (props) => {
   const navigation = useNavigation();
@@ -29,6 +32,7 @@ const UpdateProfile = (props) => {
   const [displayName, setDisplayName] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [formData, setFormData] = useState(new FormData());
+  const isFocused = useIsFocused();
 
   const getData = async () => {
     await getProfile().then((res) => {
@@ -36,36 +40,28 @@ const UpdateProfile = (props) => {
         setUserData(res.data);
       }
       if (res.status == "failed") {
-        console.log(res.message);
       }
     });
   };
 
-  const _updateProfile = async () => {
-    if (formData != {}) {
-      formData.append("avatar", avatar);
-      formData.append("displayName", displayName);
+  const _updateProfile = async (avatar, displayName) => {
+    formData.append('displayName', displayName);
+    await updateProfile(formData).then(async (data) => {
+      if (data.status == 200 || data.status == 202) {
+        await _storeData("userInfo");
+        Alert.alert(
+          "Thông báo",
+          "Cập nhật thông tin thành công",
+          [
+            { text: "OK", onPress: () => navigation.navigate('Profile') }
+          ],
+          { cancelable: false }
+        );
+        setLoading(false);
+      } else {
 
-      await updateProfile(formData).then((res) => {
-        if (res.status == "success") {
-          navigation.navigate("Profile");
-        }else{
-          console.log(res.message)
-        }
-        navigation.navigate("Profile");
-      });
-    } else {
-      let fData = new FormData();
-      fData.append("avatar",{});
-
-      await updateProfile(fData,displayName).then((res) => {
-        if (res.status == "success") {
-          navigation.navigate("Profile");
-        }else{
-            console.log(res.message)
-        }
-      });
-    }
+      }
+    });
   };
 
   const pickImage = async () => {
@@ -94,8 +90,23 @@ const UpdateProfile = (props) => {
   };
 
   useEffect(() => {
+    let isCancelled = false;
+
+    const backAction = () => {
+      navigation.navigate("Profile")
+      return true;
+    };
     getData();
-  }, [""]);
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => {
+      backHandler.remove();
+      isCancelled = true;
+  };
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -107,8 +118,8 @@ const UpdateProfile = (props) => {
         style={styles.headerShape}
       />
       <View style={styles.personInfo}>
-        <Text style={styles.staffCode}>{userData.displayName}</Text>
-        <Text style={styles.staffName}>{"(GDV - 1.009)"}</Text>
+        <Text style={styles.staffName}>{userData.displayName}</Text>
+        <Text style={styles.staffCode}>{userData.gdvId.maGDV}</Text>
         <TouchableOpacity
           style={{
             position: "absolute",
@@ -136,19 +147,15 @@ const UpdateProfile = (props) => {
             <ProfileItem
               editMode
               defaultValue={userData.displayName}
-              icon={images.day}
-              title={text.workingDay}
+              icon={images.user}
+              title={text.staffName}
               size={25}
               onChangeText={(value) => setDisplayName(value)}
             />
-            {/* <ProfileItem editMode icon={images.workingShop} title={text.workingShop} size={25} value={"Công ty Dịch vụ Mobifone KV2"} />
-                                <ProfileItem editMode icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
-                                <ProfileItem editMode icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
-                                <ProfileItem editMode icon={images.pdf} title={text.PDF} size={25} value={"https://smallpdf.com/vi/merge-pdf"} linking openLink={()=>Linking.openURL('https://smallpdf.com/vi/merge-pdf')} /> */}
-            <Button
+           <Button
               style={styles.button}
               label={text.saveChange}
-              onPress={() => _updateProfile()}
+              onPress={() => _updateProfile(avatar, displayName)}
             />
           </>
         )}

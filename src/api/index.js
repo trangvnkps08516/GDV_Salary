@@ -1,7 +1,8 @@
 import { GET, POST, PUT, PATCH, DELETE } from "./method";
 import { baseUrl } from "./untils";
 import axios from "axios";
-import { _removeData, _retrieveData } from "../utils/Storage";
+import { _removeData, _retrieveData, _storeData } from "../utils/Storage";
+import { Alert } from "react-native";
 
 // 1. Login Screen
 export const login = async (userName, password) => {
@@ -21,7 +22,7 @@ export const login = async (userName, password) => {
       Authorization: "token",
     },
   })
-    .then((res) => {
+    .then(async (res) => {
       if (res.status == 200) {
         if (Object.values(res.data).length > 0) {
           data = {
@@ -31,11 +32,13 @@ export const login = async (userName, password) => {
             length: Object.values(res.data).length,
             error: null,
           };
+          await _storeData("userInfo", res.data);
         }
       }
     })
     .catch(async (error) => {
       if (error) {
+        checkErrorServer(error.response.status, navigation);
         data = {
           message: error.response.data.message,
           isLoading: false,
@@ -81,7 +84,6 @@ export const getProfile = async () => {
     })
     .catch(async (error) => {
       if (error) {
-        //   console.log(error)
         data = {
           message: error,
           isLoading: false,
@@ -322,6 +324,7 @@ export const getContractSalaryByMonth = async (month) => {
     })
     .catch((error) => {
       if (error) {
+        checkErrorServer(error.response.status, navigation);
         data = {
           message: error,
           isLoading: false,
@@ -436,7 +439,7 @@ export const getSubscriberQuality = async () => {
   };
   await axios({
     method: "GET",
-    url: "http://hochiminh.mobifone.vn/luongGDV/api/dashBoard/getSubscriberQuality",
+    url: `${baseUrl}dashBoard/getSubscriberQuality`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -523,86 +526,70 @@ export const updateProfile = async (formData) => {
     loading: null,
     error: {},
   };
-  // {
-  //   method: POST,
-  //   url: `http://hochiminh.mobifone.vn/luongGDV/api/login?password=${password}&userName=${userName}`,
-  //   headers: {
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json",
-  //     Authorization: "token",
-  //   },
-  // }
+
+  await axios.post(
+    `${baseUrl}user/updateProfile`, formData,
+    {
+      headers: {
+        'Authorization': `1`,
+        'content-type': "multipart/form-data"
+      }
+    }
+  ).then((res) => {
+    if (res.status == 202 || res.status == 200) {
+      data = res;
+    }
+  }).catch((error) => {
+  });
+
+  return data;
+};
+
+// 14. UpdatePassword
+export const updatePassword = async (oldPassword, newPassword) => {
+  let data = {
+    message: "",
+    status: "",
+    res: null,
+    loading: null,
+    error: {},
+  };
   await axios({
-    method: POST,
-    url: `${baseUrl}/api/user/updateUserInfo`,
-    data: formData,
+    method: "PUT",
+    url: `http://hochiminh.mobifone.vn/luongGDV/api/user/update-password?newPassword=${newPassword}&oldPassword=${oldPassword}`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1
+      Authorization: 1,
     },
+  }).then(async (res) => {
+    if (res.status == 200) {
+
+      data = {
+        data: res.data,
+        isLoading: false,
+        status: "success",
+        length: Object.values(res.data).length,
+        error: null,
+      };
+    }
   })
-    .then((res) => {
-      if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
-          data = {
-            data: res.data,
-            isLoading: false,
-            status: "success",
-            length: Object.values(res.data).length,
-            error: null,
-          };
-        }
-      }
-    })
-    .catch((error) => {
+    .catch(async (error) => {
       if (error) {
         data = {
-          message: error,
+          message: error.response.data.message,
           isLoading: false,
           status: "failed",
           length: 0,
-          error: error,
+          error: error.response.data,
         };
       }
     });
-  // .post(`${baseUrl}/api/user/updateUserInfo`, formData, {
-  //   headers: {
-  //     Authorization: 1,
-  //     "content-type": "multipart/form-data",
-  //   },
-  // })
 
   return data;
 };
 
-// 14. RecoverPassword
-export const recoveryPassword = (userName, phoneNumber) => {
-  const data = {
-    message: "",
-    status: "",
-    res: null,
-    loading: null,
-    error: {},
-  };
-
-  return data;
-};
-
-// 15. UpdatePassword
-export const updatePassword = (oldPassword, newPassword, phoneNumber) => {
-  const data = {
-    message: "",
-    status: "",
-    res: null,
-    loading: null,
-    error: {},
-  };
-
-  return data;
-};
-
-// 15. UpdatePassword
+// 15. Sign Out
 export const signoutUser = async (navigation) => {
   let data = {
     message: "",
@@ -622,7 +609,6 @@ export const signoutUser = async (navigation) => {
         error: {},
       };
       let token = stoData.accesstoken;
-      console.log(token);
       await axios({
         method: "GET",
         url: "http://hochiminh.mobifone.vn/luongGDV/api/logout",
@@ -634,7 +620,7 @@ export const signoutUser = async (navigation) => {
       })
         .then(async (res) => {
           if (res.status == 200) {
-            console.log(res);
+
             if (Object.values(res.data).length > 0) {
               data = {
                 data: res.data.data,
@@ -643,11 +629,12 @@ export const signoutUser = async (navigation) => {
                 length: Object.values(res.data).length,
                 error: null,
               };
-              await _removeData(userInfo);
+              await _storeData("userInfo", null);
             }
           }
         })
         .catch(async (error) => {
+          await _storeData("userInfo", null);
           if (error) {
             data = {
               message: error.response.data.message,
@@ -659,7 +646,6 @@ export const signoutUser = async (navigation) => {
           }
         });
     } else {
-      navigation.navigate("SignIn");
     }
   });
 
