@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: fontScale(15),
     paddingTop: -fontScale(9),
+    minHeight: 30,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -40,7 +41,7 @@ export const styles = StyleSheet.create({
   value: {
     textAlign: "right",
     right: fontScale(30),
-    fontSize: fontScale(15),
+    fontSize: fontScale(18),
     fontWeight: "bold",
     color: "#00BECC",
     top: -fontScale(12),

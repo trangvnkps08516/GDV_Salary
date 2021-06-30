@@ -6,5 +6,5 @@ export const value = {
   otherExpenses: "300,000",
   metricStatus: "Đã chốt",
   salary: "9,000,000",
-  kpiAchieved: "100%"
+  kpiAchieved: "98%"
 };

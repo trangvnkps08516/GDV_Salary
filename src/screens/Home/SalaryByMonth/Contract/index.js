@@ -59,7 +59,7 @@ const Contract = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
-            <Header title={text.upSalary} />
+            <Header title={text.salaryByMonth} />
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
             <MetricStatus status={data.status} style={{ alignSelf: "center", marginTop: fontScale(20) }} />
             <Body style={{ marginTop: fontScale(15) }}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
@@ -71,6 +71,11 @@ const Contract = (props) => {
                             <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.upSalary}: </Text>
                                 <Text style={styles.sumKpi}>{thoundsandSep(data.contractSalary)}</Text>
+                            </View>
+
+                            <View style={styles.kpisContainer}>
+                                <Text style={styles.kpisTitle}>{text.kpiS}: </Text>
+                                <Text style={styles.kpisKpi}>{data.kpis}</Text>
                             </View>
                             <View style={styles.detailInfo}>
                                 <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />

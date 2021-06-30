@@ -306,7 +306,7 @@ export const getContractSalaryByMonth = async (month) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: "15b26a4f-ffab-4d3c-b9a0-00b128c9909b",
     },
   })
     .then((res) => {

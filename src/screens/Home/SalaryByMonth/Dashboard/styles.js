@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
         backgroundColor:colors.white
     },
     datePicker:{
-        alignSelf:"center"
+        alignSelf:"center",
+        marginTop: -15
     }
 })
