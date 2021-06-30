@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         shadowRadius: 3.84,    
         elevation: 5
     },
-    dateView:{marginTop:fontScale(15)},
+    dateView:{marginTop:-fontScale(5)},
     monthPicker:{
         
     },

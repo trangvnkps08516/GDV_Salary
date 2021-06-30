@@ -56,11 +56,10 @@ const DashBoard = (props) => {
                             <ProfileItem icon={images.workingShop} title={text.workingShop} size={25} value={userData.shopId.shopName} />
                             <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
                             <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"9/10"} />
-                            <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"https://smallpdf.com/vi/merge-pdf"} openLink={()=>Linking.openURL('https://smallpdf.com/vi/merge-pdf')}/>
+                            <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf"} openLink={()=>Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')}/>
                             <Button width={fontScale(150)} label={text.login} center style={styles.loginButton} onPress={() => navigation.navigate("UpdateProfile")} />
 
-                            {/* <ProfileItem icon={images.position} title={text.position} size={25} value={userInfo.position} />
-                            <ProfileItem icon={images.phone} title={text.phoneNumber} size={25} value={userInfo.phoneNumber} /> */}
+                            
                         </>
                 }
             </View>
