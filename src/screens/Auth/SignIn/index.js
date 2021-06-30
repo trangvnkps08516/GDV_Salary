@@ -30,8 +30,10 @@ const SignIn = (props) => {
                 // let data = res.data;
                 if (res.status == "success") {
                     setLoading(false);
-                    await _retrieveData("userInfo");
-                    navigation.navigate("Home")
+                    await _retrieveData("userInfo").then(()=>{
+                        navigation.navigate("Home")
+                    });
+                    
                 } else
                     if (res.status == "failed") {
                         setLoading(false)

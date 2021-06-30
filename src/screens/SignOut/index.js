@@ -17,7 +17,6 @@ const SignOut = (props) => {
 
     const logoutUser = async () => {
         await signoutUser(navigation);
-        navigation.navigate('Home');
         navigation.navigate('SignIn');
     }
     useEffect(() => {
