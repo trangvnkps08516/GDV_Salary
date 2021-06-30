@@ -58,6 +58,7 @@ export const SalaryByMonth = {
 // Home > Lương Theo Tháng > Lương Khoán | getContractSalaryByMonth
 export const ContractSalaryByMonth = {
   "status": "",
+  "kpis":"",
   "contractSalary": "",
   "prePaid": "",
   "postPaid": "",

@@ -25,7 +25,7 @@ const Dashboard = (props) => {
     await getProfile().then((res) => {
       if (res.status == "success") {
         setLoading(false)
-        setUserData(res.data)
+        setUserData(res.data) 
       }
       if (res.status == "failed") {
         setLoading(false)
@@ -45,10 +45,6 @@ const Dashboard = (props) => {
       backAction
     );
     getData();
-
-    return () => {
-      backHandler.remove();
-    };
   }, [""])
   return (
     <SafeAreaView style={styles.container}>

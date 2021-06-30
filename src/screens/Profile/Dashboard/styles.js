@@ -64,14 +64,19 @@ export const styles = StyleSheet.create({
         },
         shadowOpacity: 0.32,
         shadowRadius: 16,
-        paddingBottom:fontScale(15),
-        elevation: 9, backgroundColor: "#fff", marginHorizontal: fontScale(10), borderRadius: fontScale(17), marginTop: height / 3
+        elevation: 9, 
+        backgroundColor: "#fff", 
+        marginHorizontal: fontScale(10), 
+        borderRadius: fontScale(17), 
+        marginTop: height / 2.5,
+        height:120
     },
     optionMenu:{
         margin:fontScale(10),
-        borderBottomColor:"#eee",
+        borderBottomColor:"#f7f7f7",
         paddingBottom:fontScale(10),
-        borderBottomWidth:1
+        borderBottomWidth:1,
+        top:-40
     },
     menuTitle:{fontSize:fontScale(20),color:colors.primary,textAlign:"center"}
 }

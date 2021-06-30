@@ -50,8 +50,8 @@ const UpdateProfile = (props) => {
       if (data.status == 200 || data.status == 202) {
         await _storeData("userInfo");
         Alert.alert(
-          "Thông báo",
-          "Cập nhật thông tin thành công",
+          text.notif,
+          text.updateInfoSuccess,
           [
             { text: "OK", onPress: () => navigation.navigate('Profile') }
           ],
@@ -111,7 +111,7 @@ const UpdateProfile = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
-      <Header title={text.profile} />
+      <Header title={text.updateProfile} />
       <Image
         source={images.profileHeader}
         resizeMode="cover"
@@ -147,7 +147,7 @@ const UpdateProfile = (props) => {
             <ProfileItem
               editMode
               defaultValue={userData.displayName}
-              icon={images.user}
+              icon={images.man}
               title={text.staffName}
               size={25}
               onChangeText={(value) => setDisplayName(value)}

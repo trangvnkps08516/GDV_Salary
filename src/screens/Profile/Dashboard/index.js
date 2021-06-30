@@ -11,7 +11,7 @@ import { Profile } from '../../../models/Data';
 import { getProfile } from '../../../api';
 import { baseUrl, imgUrl } from '../../../api/untils';
 import { useIsFocused } from "@react-navigation/native";
-import { height } from '../../../utils/Dimenssion';
+import { height, width } from '../../../utils/Dimenssion';
 import { _storeData } from '../../../utils/Storage';
 
 const DashBoard = (props) => {
@@ -55,7 +55,7 @@ const DashBoard = (props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar translucent backgroundColor={colors.primary} />
+            <StatusBar backgroundColor={colors.primary} />
             <Header title={text.profile} />
             <Image source={images.profileHeader} resizeMode="cover" style={styles.headerShape} />
             <View style={styles.personInfo}>
@@ -83,20 +83,20 @@ const DashBoard = (props) => {
                 animationType={'fade'}
                 visible={showModal}
                 transparent={true}
-                onRequestClose={() => {
-                    setShowModal(!showModal)
-                }}>
+                onRequestClose={() => setShowModal(!showModal)}>
+                <View style={{flex:1,backgroundColor:colors.primary}}>
                 <View style={styles.optionDialogs}>
                     <TouchableOpacity onPress={() => setShowModal(!showModal)}>
                         <Image source={images.close} style={styles.closeIcon} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdatePassword")]}>
-                        <Text style={styles.menuTitle}>Đổi mật khẩu</Text>
+                        <Text style={styles.menuTitle}>{text.changePassword}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdateProfile")]}>
                         <Text style={styles.menuTitle}>Chỉnh sửa thông tin cá nhân</Text>
                     </TouchableOpacity>
+                </View>
                 </View>
             </Modal>
         </SafeAreaView>

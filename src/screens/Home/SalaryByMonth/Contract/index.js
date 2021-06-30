@@ -23,12 +23,13 @@ const Contract = (props) => {
     const getData = async (month) => {
         setLoading(true)
         await getContractSalaryByMonth(month).then((res) => {
+            console.log(res.data)
             if (res.status == "success") {
-                setLoading(false)
+                setLoading(false);
                 setData(res.data);
             }
             if (res.status == "failed") {
-                setLoading(false)
+                setLoading(false);
 
             }
         })
@@ -71,6 +72,10 @@ const Contract = (props) => {
                             <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.upSalary}: </Text>
                                 <Text style={styles.sumKpi}>{thoundsandSep(data.contractSalary)}</Text>
+                            </View>
+                            <View style={styles.sumKpiContainer}>
+                                <Text style={styles.sumKpiTitle}>KPIs: </Text>
+                                <Text style={styles.sumKpi}>{thoundsandSep(data.kpis)}</Text>
                             </View>
                             <View style={styles.detailInfo}>
                                 <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />

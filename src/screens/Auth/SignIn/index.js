@@ -21,9 +21,9 @@ const SignIn = (props) => {
 
     const signIn = async (userName = "", password = "") => {
         if (userName.length == 0) {
-            setMessage("Vui lòng nhập Username!")
+            setMessage(text.typeUsername)
         } else if (password.length == 0) {
-            setMessage("Vui lòng nhập mật khẩu!")
+            setMessage(text.typePassword)
         } else {
             setMessage("")
             await login(userName, password, navigation).then(async (res) => {

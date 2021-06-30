@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -108,19 +108,29 @@ const AuthStack = () => {
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [userInfo,setUserInfo] = useState(User);
+  const [gdvPermission,setGdvPermission] = useState(false);
   useEffect(() => {
     const getData = async () => {
       await _retrieveData("userInfo").then((data) => {
-        console.log(data)
+        // Nếu là giao dịch viên
+        if(data.userId.gdvId){
+          setGdvPermission(true)
+        }else{
+          setGdvPermission(false)
+        }
       })
     }
     getData();
-  })
+  });
+  StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="SignIn" component={AuthStack} />
-            <Stack.Screen name="Home" component={BottomTab} />
+            {
+              gdvPermission ? <Stack.Screen name="Home" component={BottomTab} /> :null
+            }
+            
       </Stack.Navigator>
     </NavigationContainer>
   );

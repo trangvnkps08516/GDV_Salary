@@ -15,7 +15,7 @@ export const login = async (userName, password) => {
   };
   await axios({
     method: POST,
-    url: `http://hochiminh.mobifone.vn/luongGDV/api/login?password=${password}&userName=${userName}`,
+    url: `${baseUrl}login?password=${password}&userName=${userName}`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export const getProfile = async () => {
   };
   await axios({
     method: "GET",
-    url: "http://hochiminh.mobifone.vn/luongGDV/api/user/getProfile",
+    url:  `${baseUrl}user/getProfile`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -106,7 +106,7 @@ export const getKPIByMonthDashboard = async () => {
   };
   await axios({
     method: "GET",
-    url: "http://hochiminh.mobifone.vn/luongGDV/api/dashBoard/getKPIByMonthDashboard",
+    url:  `${baseUrl}dashBoard/getKPIByMonthDashboard`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -151,7 +151,7 @@ export const getKPIByMonthAchieve = async () => {
   };
   await axios({
     method: "GET",
-    url: "http://hochiminh.mobifone.vn/luongGDV/api/actionItemKpi/getKPIByMonthAchieve",
+    url:  `${baseUrl}actionItemKpi/getKPIByMonthAchieve`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -196,7 +196,7 @@ export const getTempSalary = async () => {
   };
   await axios({
     method: "GET",
-    url: "http://hochiminh.mobifone.vn/luongGDV/api/actionItemKpi/getTempSalary",
+    url: `${baseUrl}actionItemKpi/getTempSalary`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -239,6 +239,8 @@ export const getDetailTempContract = () => {
     loading: null,
     error: {},
   };
+
+
 
   return data;
 };
@@ -292,6 +294,7 @@ export const getSalaryByMonth = async (month) => {
 
 // 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm
 export const getContractSalaryByMonth = async (month) => {
+  console.log(month)
   let data = {
     message: "",
     status: "",
@@ -305,7 +308,7 @@ export const getContractSalaryByMonth = async (month) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: 1,
+      Authorization: '1e501804-6c2a-4849-878c-d0990da73c1c',
     },
   })
     .then((res) => {
@@ -481,7 +484,7 @@ export const getTransactionInfo = async (month) => {
   };
   await axios({
     method: "GET",
-    url: `http://hochiminh.mobifone.vn/luongGDV/api/dashBoard/getTransactionInfo?month=01/${month}`,
+    url: `${baseUrl}dashBoard/getTransactionInfo?month=01/${month}`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -554,7 +557,7 @@ export const updatePassword = async (oldPassword, newPassword) => {
   };
   await axios({
     method: "PUT",
-    url: `http://hochiminh.mobifone.vn/luongGDV/api/user/update-password?newPassword=${newPassword}&oldPassword=${oldPassword}`,
+    url: `${baseUrl}user/update-password?newPassword=${newPassword}&oldPassword=${oldPassword}`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -609,7 +612,7 @@ export const signoutUser = async (navigation) => {
       let token = stoData.accesstoken;
       await axios({
         method: "GET",
-        url: "http://hochiminh.mobifone.vn/luongGDV/api/logout",
+        url: `${baseUrl}logout`,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
