@@ -116,7 +116,7 @@ function AvgIncomeByMonth(props) {
                                     <Text style={[styles.sumKpiTitle]}>{text.totalIncome}: </Text>
                                     <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
                                 </View>
-                                <View style={[styles.detailInfo, { marginTop: 15}]}>
+                                <View style={[styles.detailInfo, { marginTop: fontScale(15)}]}>
                                     <ListItem icon={images.salaryByMonth} title={text.totalAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
                                     <ListItem icon={images.upSalary} title={text.totalupAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
                                     <ListItem icon={images.incentive} title={text.totalIncentiveSpending} price={thoundsandSep(data.avgContractSalary)} />
