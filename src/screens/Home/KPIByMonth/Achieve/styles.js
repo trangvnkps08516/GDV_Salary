@@ -5,7 +5,7 @@ import { fontScale } from "../../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
     container:{ flex: 1,backgroundColor:colors.primary },
-    sumKpiContainer:{ flexDirection: "row",justifyContent:"center", marginBottom: fontScale(10) },
+    sumKpiContainer:{ flexDirection: "row",justifyContent:"center", marginTop: -fontScale(20) },
     bodyScr:{ marginTop: fontScale(27) },
     sumKpiTitle:{ color: colors.black,fontSize:fontScale(19),fontWeight:"bold" },
     sumKpi:{ color: colors.lightBlue,fontSize:fontScale(19),marginLeft:fontScale(2),fontWeight:"bold" },
