@@ -92,17 +92,19 @@ function AvgIncomeByMonth(props) {
             <View style={styles.body}>
                 <Text style={styles.notification}>{data.notification}</Text>
                 <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
+</View>
 
-            </View>
+<View style={[styles.sumKpiContainer, { marginTop: -fontScale(25)}]}>
+                                    <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
+                                    <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
+                                </View>
             <ScrollView style={{backgroundColor:colors.white}} showsVerticalScrollIndicator={false}>
+            
                 <View style={{ backgroundColor: colors.white,paddingVertical:30, flex: 1 }}>
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                             <View>
-                                <View style={styles.sumKpiContainer}>
-                                    <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
-                                    <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
-                                </View>
+                                
                                 <View style={styles.detailInfo}>
                                     <ListItem icon={images.salaryByMonth} title={text.fixedAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
                                     <ListItem icon={images.upSalary} title={text.upAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
@@ -110,11 +112,11 @@ function AvgIncomeByMonth(props) {
                                     <ListItem icon={images.otheroutcome} title={text.averageOtherCosts} price={thoundsandSep(data.avgOtherExpen)} />
                                 </View>
 
-                                <View style={[styles.sumKpiContainer, { marginTop: fontScale(30) }]}>
-                                    <Text style={styles.sumKpiTitle}>{text.totalIncome}: </Text>
+                                <View style={[styles.sumKpiContainer, { marginTop: fontScale(20)}]}>
+                                    <Text style={[styles.sumKpiTitle]}>{text.totalIncome}: </Text>
                                     <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
                                 </View>
-                                <View style={styles.detailInfo}>
+                                <View style={[styles.detailInfo, { marginTop: fontScale(15)}]}>
                                     <ListItem icon={images.salaryByMonth} title={text.totalAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
                                     <ListItem icon={images.upSalary} title={text.totalupAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
                                     <ListItem icon={images.incentive} title={text.totalIncentiveSpending} price={thoundsandSep(data.avgContractSalary)} />

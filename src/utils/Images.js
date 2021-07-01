@@ -9,7 +9,7 @@ export const images = {
     terminaldevice: require("../assets/device.png"),
     phone: require("../assets/terminal.png"),
     percent: require("../assets/percent.png"),
-    vas: require("../assets/vas.png"),
+    vas: require("../../assets/ic_vashoa.png"),
     dropdown: require("../assets/dropdown.png"),
     customer: require("../assets/cus.png"),
     trans: require("../assets/trans.png"),
