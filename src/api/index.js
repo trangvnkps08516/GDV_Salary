@@ -51,9 +51,15 @@ export const login = async (userName, password) => {
 };
 
 // 2. Profile Screen
-export const getProfile = async () => {
+export const getProfile = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data)=>{
+    if(data!=null){
+      token = data.accessToken
+    }else{
+      navigation.navigate("SignIn")
+    }
+  });
   let data = {
     message: "",
     status: "",
@@ -98,9 +104,15 @@ export const getProfile = async () => {
 };
 
 // 3. Home > KPI Tháng hiện tại
-export const getKPIByMonthDashboard = async () => {
+export const getKPIByMonthDashboard = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data)=>{
+    if(data!=null){
+      token = data.accessToken
+    }else{
+      navigation.navigate("SignIn")
+    }
+  });
   let data = {
     message: "",
     status: "",
@@ -145,9 +157,15 @@ export const getKPIByMonthDashboard = async () => {
 };
 
 // 4. Home > KPI Tháng hiện tại > KPI Đạt Được
-export const getKPIByMonthAchieve = async () => {
+export const getKPIByMonthAchieve = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data)=>{
+    if(data!=null){
+      token = data.accessToken
+    }else{
+      navigation.navigate("SignIn")
+    }
+  });
 
   let data = {
     message: "",
@@ -193,10 +211,15 @@ export const getKPIByMonthAchieve = async () => {
 };
 
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
-export const getTempSalary = async () => {
+export const getTempSalary = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
-
+  await _retrieveData("userInfo").then((data)=>{
+    if(data!=null){
+      token = data.accessToken
+    }else{
+      navigation.navigate("SignIn")
+    }
+  });
   let data = {
     message: "",
     status: "",
@@ -240,23 +263,8 @@ export const getTempSalary = async () => {
   return data;
 };
 
-// 6. Home > KPI Tháng hiện tại > Lương tạm tính
-export const getDetailTempContract = () => {
-  const data = {
-    message: "",
-    status: "",
-    res: null,
-    loading: null,
-    error: {},
-  };
-
-
-
-  return data;
-};
-
 // 7. Home > Lương Theo Tháng
-export const getSalaryByMonth = async (month) => {
+export const getSalaryByMonth = async (month,navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
 

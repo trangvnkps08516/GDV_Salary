@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Modal, TouchableOpacity, TouchableHighlight, Dimensions } from 'react-native';
+import { colors } from '../src/utils/Colors';
 
 const MonthYearPicker = (props) => {
     const month_data = props.month_data;
@@ -52,7 +53,7 @@ const MonthYearPicker = (props) => {
                                 props.close()
 
                             }}
-                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? "blue" : 'white' }]}>
+                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? colors.primary : 'white' }]}>
                             <Text style={{ color: item.key == month.key ? 'white' : 'black' }}>{item.name}</Text>
                         </TouchableOpacity>
                     )}

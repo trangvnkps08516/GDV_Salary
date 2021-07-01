@@ -33,7 +33,7 @@ const ExpectedSalary = (props) => {
     const navigation = useNavigation();
 
     const getData = async () => {
-        await getTempSalary().then((res) => {
+        await getTempSalary(navigation).then((res) => {
             if (res.status == "success") {
                 setData(res.data)
                 setLoading(false);
@@ -45,7 +45,7 @@ const ExpectedSalary = (props) => {
             }
         });
 
-        await getProfile().then((res) => {
+        await getProfile(navigation).then((res) => {
             if (res.status == "success") {
               setLoading(false)
               setUserData(res.data)

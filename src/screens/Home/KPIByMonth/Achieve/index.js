@@ -31,7 +31,7 @@ const Achieve = (props) => {
     const navigation = useNavigation();
 
     const getData = async () => {
-        await getKPIByMonthAchieve().then((res) => {
+        await getKPIByMonthAchieve(navigation).then((res) => {
             if (res.status == "success") {
                 setData(res.data);
                 setLoading(false);
@@ -41,7 +41,7 @@ const Achieve = (props) => {
             }
         })
 
-        await getProfile().then((res) => {
+        await getProfile(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)
                 setUserData(res.data)

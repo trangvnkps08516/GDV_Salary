@@ -12,7 +12,7 @@ const Splash = (props) => {
     const getData = async () => {
         await _retrieveData("userInfo").then((data) => {
             setTimeout(() => {
-                navigation.navigate('SignIn')
+                navigation.navigate('SignIn');
             }, 3000);                    
         });
     }

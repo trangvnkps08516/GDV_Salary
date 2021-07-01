@@ -24,7 +24,7 @@ const DashBoard = (props) => {
   const navigation = useNavigation();
 
   const getData = async () => {
-    await getKPIByMonthDashboard().then((res) => {
+    await getKPIByMonthDashboard(navigation).then((res) => {
       if (res.status == "success") {
         setData(res.data);
         setLoading(false)
@@ -34,7 +34,7 @@ const DashBoard = (props) => {
       }
     });
 
-    await getProfile().then((res) => {
+    await getProfile(navigation).then((res) => {
       if (res.status == "success") {
         setLoading(false)
         setUserData(res.data)

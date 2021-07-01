@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     shape:{
         resizeMode:"contain",
         alignSelf:"center",
-        width:width*3/4
+        width:width*3/5
     },
     appName:{
         color:colors.white,

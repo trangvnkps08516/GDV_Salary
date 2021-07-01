@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StatusBar, View, Text, ActivityIndicator } from 'react-native';
 import { getContractSalaryByMonth, getProfile } from '../../../../api';
-import { Body, DatePicker, DateView, Header, ListItem, MetricStatus } from '../../../../comps';
+import { Body, DatePicker, Header, ListItem, MetricStatus } from '../../../../comps';
 import { ContractSalaryByMonth, UserObj } from '../../../../models/Data';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
@@ -12,18 +12,20 @@ import { thoundsandSep } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './styles';
 import { useRoute } from "@react-navigation/core";
+import { useNavigation } from '@react-navigation/native';
 
 const Contract = (props) => {
     const route = useRoute();
     const [month, setMonth] = useState(route.params?.month || moment(new Date()).format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(ContractSalaryByMonth);
-    const [user, setUserData] = useState(UserObj)
+    const [user, setUserData] = useState(UserObj);
+    const navigation = useNavigation();
+
 
     const getData = async (month) => {
         setLoading(true)
         await getContractSalaryByMonth(month).then((res) => {
-            console.log(res.data)
             if (res.status == "success") {
                 setLoading(false);
                 setData(res.data);
@@ -35,19 +37,19 @@ const Contract = (props) => {
         })
 
     }
-    const _getProfile=async()=>{
-    
-        await getProfile().then((res) => {
-          if (res.status == "success") {
-            setLoading(false)
-            setUserData(res.data)
-          }
-          if (res.status == "failed") {
-            setLoading(false)
-          }
+    const _getProfile = async () => {
+
+        await getProfile(navigation).then((res) => {
+            if (res.status == "success") {
+                setLoading(false)
+                setUserData(res.data)
+            }
+            if (res.status == "failed") {
+                setLoading(false)
+            }
         })
-      }
-    
+    }
+
     useEffect(() => {
         getData(month);
         _getProfile()
@@ -63,11 +65,11 @@ const Contract = (props) => {
             <Header title={text.salaryByMonth} />
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
             <MetricStatus status={data.status} style={{ alignSelf: "center", marginTop: fontScale(20) }} />
-            <Body style={{ marginTop: fontScale(15) }}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+            <Body style={{ marginTop: fontScale(15) }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
-                    loading == true ? <ActivityIndicator color={colors.primary} size="small"/> :
+                    loading == true ? <ActivityIndicator color={colors.primary} size="small" /> :
                         <View>
                             <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.upSalary}: </Text>

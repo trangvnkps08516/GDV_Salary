@@ -35,7 +35,7 @@ const UpdateProfile = (props) => {
   const isFocused = useIsFocused();
 
   const getData = async () => {
-    await getProfile().then((res) => {
+    await getProfile(navigation).then((res) => {
       if (res.status == "success") {
         setUserData(res.data);
       }
@@ -139,7 +139,6 @@ const UpdateProfile = (props) => {
         </TouchableOpacity>
       </View>
       <View>
-        {/* <ScreenTitle title={text.personInfo} style={{ marginTop: 15, marginBottom: 21 }} /> */}
         {loading == true ? (
           <ActivityIndicator size="small" color={color.primary} />
         ) : (

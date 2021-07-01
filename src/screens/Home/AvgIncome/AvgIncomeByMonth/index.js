@@ -37,7 +37,7 @@ function AvgIncomeByMonth(props) {
 
     const _getProfile = async () => {
 
-        await getProfile().then((res) => {
+        await getProfile(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)
                 setUserData(res.data)

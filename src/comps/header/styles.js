@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
         marginLeft:-fontScale(50),
         color:"#F1E90F",
         width:width-fontScale(100),
-        height:fontScale(50),
         paddingVertical:fontScale(13),
        
     },

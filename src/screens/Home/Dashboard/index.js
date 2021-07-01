@@ -22,7 +22,7 @@ const Dashboard = (props) => {
 
   const getData = async () => {
     setLoading(true)
-    await getProfile().then((res) => {
+    await getProfile(navigation).then((res) => {
       if (res.status == "success") {
         setLoading(false)
         setUserData(res.data) 

@@ -38,7 +38,7 @@ const Dashboard = (props) => {
 
   const _getProfile = async () => {
 
-    await getProfile().then((res) => {
+    await getProfile(navigation).then((res) => {
       if (res.status == "success") {
         setLoading(false)
         setUserData(res.data)
@@ -81,8 +81,6 @@ const Dashboard = (props) => {
             <View style={{ flex: 1, height: height / 2 }}>
             <TotalSalary style={{ alignSelf: 'center', marginTop: -fontScale(15), zIndex: 50 }} title={text.total} value={value.salary} />
               <ScrollView showsVerticalScrollIndicator={false}>
-
-                
                 <MenuItem style={{ marginTop: fontScale(25) }} title={text.fixedSalary} icon={images.salaryByMonth} value={thoundsandSep(data.contractSalary)} width={width - fontScale(60)} onPress={() => { }} />
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.upSalary} icon={images.upSalary} value={thoundsandSep(value.upSalary)} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthContract", { "month": month })} />
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.incentiveCost} icon={images.incentiveCost} value={thoundsandSep(value.incentiveCost)} width={width - fontScale(60)} onPress={() => { }} />

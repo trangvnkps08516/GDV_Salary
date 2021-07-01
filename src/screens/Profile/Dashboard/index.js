@@ -22,7 +22,7 @@ const DashBoard = (props) => {
     const isFocused = useIsFocused();
     const getData = async () => {
         setLoading(true)
-        await getProfile().then((res) => {
+        await getProfile(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)
                 setUserData(res.data)
@@ -70,7 +70,7 @@ const DashBoard = (props) => {
                             <ProfileItem icon={images.day} title={text.workingDay} size={25} value={"..."} />
                             <ProfileItem icon={images.workingShop} title={text.workingShop} size={25} value={userData.shopId==null ? "" : userData.shopId.shopName} />
                             <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"..."} />
-                            <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"..."} />
+                            <ProfileItem icon={images.traderRating} title={text.storeRating} size={25} value={"..."} />
                             <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf"} openLink={()=>Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')}/>
                         </>
                 }
@@ -93,7 +93,7 @@ const DashBoard = (props) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdateProfile")]}>
-                        <Text style={styles.menuTitle}>Chỉnh sửa thông tin cá nhân</Text>
+                        <Text style={styles.menuTitle}>{text.updateProfile}</Text>
                     </TouchableOpacity>
                 </View>
                 </View>
@@ -103,9 +103,3 @@ const DashBoard = (props) => {
 }
 
 export default DashBoard;
-
-// profile: "Thông tin cá nhân",
-//   workingDay: "Ngày vào làm",
-//   workingShop: "Cửa hàng làm việc",
-//   traderRating: "Xếp hạng giao dịch viên",
-//   storeRating: "Xếp loại cửa hàng",
