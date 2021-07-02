@@ -13,6 +13,8 @@ import { text } from '../../../../utils/Text';
 import { styles } from './styles';
 import { useRoute } from "@react-navigation/core";
 import { useNavigation } from '@react-navigation/native';
+import { _storeData } from '../../../../utils/Storage';
+import { contractMonth } from '../../../../utils/Variable';
 
 const Contract = (props) => {
     const route = useRoute();
@@ -41,18 +43,18 @@ const Contract = (props) => {
 
         await getProfile(navigation).then((res) => {
             if (res.status == "success") {
-                setLoading(false)
-                setUserData(res.data)
+                setLoading(false);
+                setUserData(res.data);
             }
             if (res.status == "failed") {
-                setLoading(false)
+                setLoading(false);
             }
         })
     }
 
     useEffect(() => {
         getData(month);
-        _getProfile()
+        _getProfile();
     }, [""]);
 
     const _onChangeMonth = async (value) => {
@@ -62,7 +64,7 @@ const Contract = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
-            <Header title={text.salaryByMonth} />
+            <Header title={text.salaryByMonth} onPushParams={()=>{contractMonth=month}} />
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
             <MetricStatus status={data.status} style={{ alignSelf: "center", marginTop: fontScale(20) }} />
             <Body style={{ marginTop: fontScale(15) }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />

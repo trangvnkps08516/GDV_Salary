@@ -267,7 +267,6 @@ export const getTempSalary = async (navigation) => {
 export const getSalaryByMonth = async (month,navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
-
   let data = {
     message: "",
     status: "",

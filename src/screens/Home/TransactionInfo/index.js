@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const TransactionInfo = (props) => {
-    const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
+    const [month, setMonth] = useState(moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
     const [data, setData] = useState(Transactioninfo);
     const [loading, setLoading] = useState(false);
     const [user, setUserData] = useState(UserObj)
@@ -38,7 +38,6 @@ const TransactionInfo = (props) => {
 
             }
         })
-
     }
 
     const _getProfile = async () => {
