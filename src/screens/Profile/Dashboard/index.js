@@ -71,7 +71,7 @@ const DashBoard = (props) => {
                             <ProfileItem icon={images.workingShop} title={text.workingShop} size={25} value={userData.shopId==null ? "" : userData.shopId.shopName} />
                             <ProfileItem icon={images.traderRating} title={text.traderRating} size={25} value={"..."} />
                             <ProfileItem icon={images.traderRating} title={text.storeRating} size={25} value={"..."} />
-                            <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf"} openLink={()=>Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')}/>
+                            <ProfileItem linking icon={images.pdf} title={text.PDF} size={25} value={"..."} openLink={()=>Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')}/>
                         </>
                 }
             </View>
