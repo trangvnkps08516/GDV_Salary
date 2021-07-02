@@ -181,6 +181,11 @@ export const User = {
 export const UserObj = {
   "avatar": "",
   "displayName": "",
+  "userGroupId":{
+    "id":"",
+    "code":"",
+    "description":""
+  },
   "gdvId": {
     "fullName": "",
     "id": "",
