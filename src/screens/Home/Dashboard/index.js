@@ -14,6 +14,7 @@ import { UserObj } from "../../../models";
 import { imgUrl } from '../../../api/untils';
 import { getProfile } from '../../../api';
 import { styles } from './style';
+import { months } from 'moment';
 
 const Dashboard = (props) => {
   const navigation = useNavigation();
