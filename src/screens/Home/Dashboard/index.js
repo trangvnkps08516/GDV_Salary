@@ -17,6 +17,7 @@ import { styles } from './style';
 
 const Dashboard = (props) => {
   const navigation = useNavigation();
+
   const [user, setUserData] = useState(UserObj);
   const [loading, setLoading] = useState(false)
 

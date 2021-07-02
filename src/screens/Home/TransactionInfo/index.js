@@ -38,7 +38,6 @@ const TransactionInfo = (props) => {
 
             }
         })
-
     }
 
     const _getProfile = async () => {
