@@ -74,7 +74,7 @@ const Achieve = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
-            <Header title={text.kpiAchieved} />
+            <Header title={text.kpiByMonth} />
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
             
@@ -89,8 +89,8 @@ const Achieve = (props) => {
                             </View>
                             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                                 <View style={styles.detailInfo}>
-                                    <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={checkn(data.prePaid)} />
-                                    <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={checkn(data.postPaid)} />
+                                    <ListItem icon={images.sim} title={text.kpiPrepaidSubscribers} price={checkn(data.prePaid)} />
+                                    <ListItem icon={images.sim} title={text.kpiPostpaidSubscribers} price={checkn(data.postPaid)} />
                                     <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
                                     <ListItem icon={images.important} title={text.kpiImportant} price={checkn(data.importantKpi)} />
                                     <ListItem icon={images.retailsales} title={text.retailSales} price={thoundsandSep(data.retailSales)} />
@@ -98,8 +98,8 @@ const Achieve = (props) => {
                                 <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
                                     <ListItem icon={images.percent} title={text.subRatio} justTitle />
                                     <View style={styles.subDetail}>
-                                        <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={data.ratePrePaid} />
-                                        <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={data.ratePostPaid} />
+                                        <ListItem icon={images.sim} title={text.prepaidSubscribers} price={data.ratePrePaid} />
+                                        <ListItem icon={images.sim} title={text.postpaidSubscribers} price={data.ratePostPaid} />
                                     </View>
                                 </View>
                             </ScrollView>

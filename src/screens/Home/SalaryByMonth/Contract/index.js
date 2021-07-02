@@ -83,7 +83,7 @@ const Contract = (props) => {
                             <View style={styles.detailInfo}>
                                 <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />
                                 <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={thoundsandSep(data.postPaid)} />
-                                <ListItem icon={images.vas} title={text.kpiVas} price={thoundsandSep(data.vas)} />
+                                <ListItem icon={images.vas} title={text.vasFee} price={thoundsandSep(data.vas)} />
                                 <ListItem icon={images.sim5g} title={text.ordersServiceFee} price={thoundsandSep(data.postage)} />
                                 <ListItem icon={images.phone} title={text.terminalServiceFee} price={thoundsandSep(data.terminalDevice)} />
                                 <ListItem icon={images.headphone} title={text.orderFee} price={thoundsandSep(data.otherService)} />

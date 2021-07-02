@@ -40,6 +40,8 @@ export const text = {
   kpiImportant:"KPI Kế hoạch trọng tâm",
   retailSales:"Doanh thu bán lẻ",
   subRatio:"Tỉ lệ đăng ký gói",
+  prepaidSubscribers: "TBTT",
+  postpaidSubscribers: "TBTS thoại gói >= 99k",
 
 
   // Lương tạm tính, Lương khoán, Lương theo tháng
