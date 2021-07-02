@@ -106,10 +106,9 @@ const AuthStack = () => {
 }
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
-  const [userInfo, setUserInfo] = useState(User);
-  const [gdvPermission, setGdvPermission] = useState(false);
-
+  useEffect(()=>{
+    // _retrieveData("userInfo").then((item)=>alert(JSON.stringify(item.userId.userGroupId.code)))
+  })
   StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationContainer>

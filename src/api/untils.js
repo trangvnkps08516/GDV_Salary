@@ -10,7 +10,7 @@ export const getToken = async (navigation) => {
         if (data == null) {
             navigation.navigate('SignIn')
         } else {
-            return data.accessToken
+            return data.accessToken;
         }
     });
 }
