@@ -36,6 +36,7 @@ const YearMonthPicker = (props) => {
                 month_data={month_arr}
                 defaultMonth={month_arr}
                 close={() => setShowDate(false)}
+                selectedMonth={month || props.defaultMonth}
                 onChangeYear={(year) => { }}
                 onChangeMonth={(month) => { }}
                 onChangeText={(date) => { }}
