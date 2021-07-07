@@ -40,7 +40,7 @@ const Dashboard = (props) => {
 
   const getData = async (beginMonth, endMonth) => {
     setLoading(true)
-    await getAvgIncomeDashboard(beginMonth, endMonth).then((data) => {
+    await getAvgIncomeDashboard(beginMonth, endMonth, navigation).then((data) => {
       if (data.status == "success") {
         setData(data.data)
         setLoading(false)
@@ -49,8 +49,8 @@ const Dashboard = (props) => {
       }
     })
   }
-  const _getProfile=async()=>{
-    
+  const _getProfile = async () => {
+
     await getProfile(navigation).then((res) => {
       if (res.status == "success") {
         setLoading(false)
@@ -88,13 +88,13 @@ const Dashboard = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
-      <Header title={text.averageIncome}/>
+      <Header title={text.averageIncome} />
       <View style={styles.dateContainer}>
         <DatePicker month={month} width={width / 2 - fontScale(40)} style={{ marginLeft: fontScale(30) }} onChangeDate={(date) => onChangeMonth(date)} />
         <DatePicker month={sMonth} width={width / 2 - fontScale(40)} style={{ marginLeft: fontScale(20) }} onChangeDate={(date) => onChangeSMonth(date)} />
       </View>
       <Text style={styles.text}>{data.notification}</Text>
-      <Body style={{ marginTop: fontScale(15) }}  displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+      <Body style={{ marginTop: fontScale(15) }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
       <View style={styles.body}>
         {
           loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :

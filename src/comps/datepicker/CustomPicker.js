@@ -1,28 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Modal, TouchableOpacity, TouchableHighlight, Dimensions } from 'react-native';
-import { color } from '../../themes/Colors';
 import { colors } from '../../utils/Colors';
-import { height } from '../../utils/Dimessions';
+import { height } from '../../utils/Dimenssion';
 
-const MonthYearPicker = (props) => {
-    const month_data = [
-        { key: 1, name: 'Tháng 01' },
-        { key: 2, name: 'Tháng 02' },
-        { key: 3, name: 'Tháng 03' },
-        { key: 4, name: 'Tháng 04' },
-        { key: 5, name: 'Tháng 05' },
-        { key: 6, name: 'Tháng 06' },
-        { key: 7, name: 'Tháng 07' },
-        { key: 8, name: 'Tháng 08' },
-        { key: 9, name: 'Tháng 09' },
-        { key: 10, name: 'Tháng 10' },
-        { key: 11, name: 'Tháng 11' },
-        { key: 12, name: 'Tháng 12' },
-    ]
+const CustomPicker = (props) => {
+    const month_data = props.month_data
 
     const { width, height } = Dimensions.get('window')
 
-    const [month, setMonth] = useState(month_data[new Date().getMonth()])
+    const [month, setMonth] = useState(month_data[props.defaultMonth])
     const [year, setYear] = useState(new Date().getFullYear())
 
     useEffect(() => {
@@ -68,8 +54,8 @@ const MonthYearPicker = (props) => {
                                 props.onChangeDate(item.name + '/' + year);
                                 props.close()
                             }}
-                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? colors.primary : 'white' }]}>
-                            <Text style={{ color: item.key == month.key ? 'white' : 'black' }}>{item.name}</Text>
+                            style={[styles.month, { width: (width / 3), backgroundColor: item.key == month_data[0] ? colors.primary : 'white' }]}>
+                            <Text style={{ color: item.key == month_data[0] ? 'white' : 'black' }}>{item.name}</Text>
                         </TouchableOpacity>
                     )}
                 </View>
@@ -103,4 +89,4 @@ const styles = {
     },
 }
 
-export default MonthYearPicker
+export default CustomPicker

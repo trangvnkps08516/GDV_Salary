@@ -5,7 +5,7 @@ import { styles } from './styles';
 const DateView=(props)=> {
     return (
         <View style={[styles.container,props.style,{width: props.width}]}>
-            <Text style={styles.dateLabel}>Tháng {props.dateLabel}</Text>
+            <Text style={styles.dateLabel}>{props.dateLabel}</Text>
         </View>
     );
 }

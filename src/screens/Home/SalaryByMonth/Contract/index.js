@@ -29,6 +29,7 @@ const Contract = (props) => {
         setLoading(true)
         await getContractSalaryByMonth(month).then((res) => {
             if (res.status == "success") {
+                console.log(res.data)
                 setLoading(false);
                 setData(res.data);
             }

@@ -6,6 +6,8 @@ import { fontScale } from '../../utils/Fonts';
 import { User } from '../../models/Data';
 import { _retrieveData } from '../../utils/Storage';
 import { imgUrl } from '../../api/untils';
+import { colors } from '../../utils/Colors';
+import { images } from '../../utils/Images';
 
 const Header = (props) => {
     const { title, avatar, fullName, empCode } = props;
@@ -14,17 +16,25 @@ const Header = (props) => {
     return (
         <View style={styles.container}>
             {
-                props.profile ? <View style={{ flexDirection: "row" }}>
-                    <Image source={props.avatar} style={{ width: 50, height: 50, borderRadius: 25, marginLeft: fontScale(10) }} />
-                    <View>
-                        <Text style={styles.uInfo}>{props.fullName}</Text>
-                        <Text style={styles.uStaff}>({props.maGDV})</Text>
+                props.profile
+                    ?
+                    <View style={{ flexDirection: "row" }}>
+                        <Image source={props.avatar} style={styles.avatar} />
+                        <View>
+                            <Text style={styles.uInfo}>{props.fullName}</Text>
+                            <Text style={styles.uStaff}>({props.maGDV})</Text>
+                        </View>
                     </View>
-                </View> :
-                    <View style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-                        {props.showBack == false ? <View style={styles.backIcon} /> : <TouchableOpacity style={styles.backIcon} onPress={() => [navigation.goBack(),props.onPushParams]}>
-                            <Image source={require("../../assets/backicon.png")} />
-                        </TouchableOpacity>
+                    :
+                    <View style={styles.headNotProfile}>
+                        {
+                            props.showBack == false
+                                ?
+                                <View style={styles.backIcon} />
+                                :
+                                <TouchableOpacity style={styles.backIcon} onPress={() => [navigation.goBack(), props.onPushParams]}>
+                                    <Image source={images.back} style={styles.backIconImg} />
+                                </TouchableOpacity>
                         }
                         <Text style={styles.title}>{title}</Text>
                     </View>

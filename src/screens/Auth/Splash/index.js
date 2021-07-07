@@ -8,12 +8,18 @@ import { styles } from './style';
 
 const Splash = (props) => {
     const navigation = useNavigation();
-    
+
     const getData = async () => {
         await _retrieveData("userInfo").then((data) => {
-            setTimeout(() => {
-                navigation.navigate('SignIn');
-            }, 3000);                    
+            if (data != null) {
+                setTimeout(() => {
+                    navigation.navigate('GDVHome');                    
+                }, 3000);
+            } else {
+                setTimeout(() => {
+                    navigation.navigate('SignIn');                    
+                }, 3000);
+            }
         });
     }
 

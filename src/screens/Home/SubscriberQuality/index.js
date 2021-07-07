@@ -20,7 +20,7 @@ const SubscriberQuality = (props) => {
 
     const getData = async () => {
         setLoading(true)
-        await getSubscriberQuality().then((res) => {
+        await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)
                 setData(res.data)

@@ -28,7 +28,7 @@ const TransactionInfo = (props) => {
 
     const getData = async (month) => {
         setLoading(true)
-        await getTransactionInfo(month).then((res) => {
+        await getTransactionInfo(month,navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)
                 setData(res.data)
@@ -83,7 +83,7 @@ const TransactionInfo = (props) => {
                     loading == false ?
                         <View style={styles.detailInfo}>
                             <ListItem icon={images.customer} title={text.customersCount} price={thoundsandSep(data.customerAmount)} />
-                            <ListItem icon={images.trans} title={text.transactions} price={thoundsandSep(data.dealingsCount)} />
+                            <ListItem icon={images.transactionInformation} title={text.transactions} price={thoundsandSep(data.dealingsCount)} />
                             <ListItem icon={images.sim} title={text.transAmount} price={thoundsandSep(data.preToPostPaid)} />
                             <ListItem icon={images.nonesim} title={text.trans2CAmount} price={thoundsandSep(data.denyTwoC)} />
 
