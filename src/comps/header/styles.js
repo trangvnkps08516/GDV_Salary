@@ -41,5 +41,8 @@ export const styles = StyleSheet.create({
         color:'#AFBFC1',
         fontWeight:"bold",
         marginTop:fontScale(2)
-    }
+    },
+    backIconImg:{width:fontScale(30),height:fontScale(25),tintColor:colors.white},
+    avatar:{ width: fontScale(50), height: fontScale(50), borderRadius: fontScale(25), marginLeft: fontScale(10) },
+    headNotProfile:{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }
 })

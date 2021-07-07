@@ -53,11 +53,9 @@ export const login = async (userName, password) => {
 // 2. Profile Screen
 export const getProfile = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{
-    if(data!=null){
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
       token = data.accessToken
-    }else{
-      navigation.navigate("SignIn")
     }
   });
   let data = {
@@ -69,7 +67,7 @@ export const getProfile = async (navigation) => {
   };
   await axios({
     method: "GET",
-    url:  `${baseUrl}user/getProfile`,
+    url: `${baseUrl}user/getProfile`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -106,10 +104,10 @@ export const getProfile = async (navigation) => {
 // 3. Home > KPI Tháng hiện tại
 export const getKPIByMonthDashboard = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{
-    if(data!=null){
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
       token = data.accessToken
-    }else{
+    } else {
       navigation.navigate("SignIn")
     }
   });
@@ -122,7 +120,7 @@ export const getKPIByMonthDashboard = async (navigation) => {
   };
   await axios({
     method: "GET",
-    url:  `${baseUrl}dashBoard/getKPIByMonthDashboard`,
+    url: `${baseUrl}dashBoard/getKPIByMonthDashboard`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -131,6 +129,7 @@ export const getKPIByMonthDashboard = async (navigation) => {
   })
     .then((res) => {
       if (res.status == 200) {
+
         if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
@@ -159,10 +158,10 @@ export const getKPIByMonthDashboard = async (navigation) => {
 // 4. Home > KPI Tháng hiện tại > KPI Đạt Được
 export const getKPIByMonthAchieve = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{
-    if(data!=null){
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
       token = data.accessToken
-    }else{
+    } else {
       navigation.navigate("SignIn")
     }
   });
@@ -176,7 +175,7 @@ export const getKPIByMonthAchieve = async (navigation) => {
   };
   await axios({
     method: "GET",
-    url:  `${baseUrl}actionItemKpi/getKPIByMonthAchieve`,
+    url: `${baseUrl}actionItemKpi/getKPIByMonthAchieve`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -213,10 +212,10 @@ export const getKPIByMonthAchieve = async (navigation) => {
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
 export const getTempSalary = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{
-    if(data!=null){
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
       token = data.accessToken
-    }else{
+    } else {
       navigation.navigate("SignIn")
     }
   });
@@ -264,9 +263,9 @@ export const getTempSalary = async (navigation) => {
 };
 
 // 7. Home > Lương Theo Tháng
-export const getSalaryByMonth = async (month,navigation) => {
+export const getSalaryByMonth = async (month, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
   let data = {
     message: "",
     status: "",
@@ -315,7 +314,7 @@ export const getSalaryByMonth = async (month,navigation) => {
 // 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm
 export const getContractSalaryByMonth = async (month) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -361,9 +360,9 @@ export const getContractSalaryByMonth = async (month) => {
 };
 
 // 9. Home > Bình Quân Thu Nhập
-export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
+export const getAvgIncomeDashboard = async (beginMonth, endMonth, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -384,7 +383,9 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -410,10 +411,10 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
 };
 
 // 10. Home > Bình Quân Thu Nhập > Bình Quân Tháng & Tổng Thu Nhập
-export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
+export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
-
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
+  console.log(token)
   let data = {
     message: "",
     status: "",
@@ -432,7 +433,11 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+          console.log('lỗi V_ERROR')
+        } else if (Object.values(res.data).length > 0) {
+          console.log(res.data)
           data = {
             data: res.data.data,
             isLoading: false,
@@ -458,9 +463,9 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
 };
 
 // 11. Home > Chất Lượng Thuê Bao
-export const getSubscriberQuality = async () => {
+export const getSubscriberQuality = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -480,7 +485,10 @@ export const getSubscriberQuality = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+          console.log('lỗi V_ERROR')
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -505,9 +513,9 @@ export const getSubscriberQuality = async () => {
   return data;
 };
 // 12. Home > Thông tin giao dịch
-export const getTransactionInfo = async (month) => {
+export const getTransactionInfo = async (month, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -527,7 +535,9 @@ export const getTransactionInfo = async (month) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -555,7 +565,7 @@ export const getTransactionInfo = async (month) => {
 // 13. Profile > UpdateProfile
 export const updateProfile = async (formData) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -586,7 +596,7 @@ export const updateProfile = async (formData) => {
 // 14. UpdatePassword
 export const updatePassword = async (oldPassword, newPassword) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
   let data = {
     message: "",
     status: "",
@@ -638,57 +648,46 @@ export const signoutUser = async (navigation) => {
     loading: null,
     error: {},
   };
-
-  await _retrieveData("userInfo").then(async (stoData) => {
-    if (stoData != undefined) {
-      let data = {
-        message: "",
-        status: "",
-        res: null,
-        loading: null,
-        error: {},
-      };
-      let token = stoData.accesstoken;
-      await axios({
-        method: "GET",
-        url: `${baseUrl}logout`,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-      })
-        .then(async (res) => {
-          if (res.status == 200) {
-
-            if (Object.values(res.data).length > 0) {
-              data = {
-                data: res.data.data,
-                isLoading: false,
-                status: "success",
-                length: Object.values(res.data).length,
-                error: null,
-              };
-              await _storeData("userInfo", null);
-            }
-          }
-        })
-        .catch(async (error) => {
-          await _storeData("userInfo", null);
-          if (error) {
-            data = {
-              message: error.response.data.message,
-              isLoading: false,
-              status: "failed",
-              length: 0,
-              error: error.response.data,
-            };
-          }
-        });
+  let token = "";
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
     } else {
+      navigation.navigate("SignIn")
     }
   });
 
+  await axios({
+    method: "DELETE",
+    url: `${baseUrl}logout`,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+  })
+    .then(async (res) => {
+      if (res.status == 200) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else {
+          await _removeData("userInfo").then((data) => {
+            if (data == undefined) {
+              navigation.navigate("SignIn")
+            }
+          });
+        }
+      } else {
+
+      }
+    })
+    .catch(async (error) => {
+      await _removeData("userInfo").then((data) => {
+        if (data == null) {
+          navigation.navigate("SignIn")
+        }
+      });
+    });
   return data;
 };
 

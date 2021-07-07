@@ -28,18 +28,17 @@ const SignIn = (props) => {
             setMessage("")
             setLoading(true);
             await login(userName, password, navigation).then(async (res) => {
-                // let data = res.data;
                 if (res.status == "success") {
                     setLoading(false);
-                    await _retrieveData("userInfo").then((item)=>{
-                        if(item.userId.userGroupId.code=="MBF_GDV"){
-                            navigation.navigate("Home")
-                        }else{
+                    await _retrieveData("userInfo").then((item) => {
+                        if (item.userId.userGroupId.code == "MBF_GDV") {
+                           
+                            navigation.navigate("GDVHome")
+                        } else {
                             setMessage("Bạn không có quyền sử dụng app!")
                         }
-                        
                     });
-                    
+
                 } else
                     if (res.status == "failed") {
                         setLoading(false)

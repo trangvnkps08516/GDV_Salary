@@ -106,15 +106,12 @@ const AuthStack = () => {
 }
 
 export default function App() {
-  useEffect(()=>{
-    // _retrieveData("userInfo").then((item)=>alert(JSON.stringify(item.userId.userGroupId.code)))
-  })
   StatusBar.setBarStyle('light-content', true);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={BottomTab} />
-        <Stack.Screen name="SignIn" component={AuthStack} />
+      <Stack.Screen name="Splash" component={AuthStack} />
+        <Stack.Screen name="GDVHome" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );

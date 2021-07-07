@@ -20,7 +20,7 @@ const SubscriberQuality = (props) => {
 
     const getData = async () => {
         setLoading(true)
-        await getSubscriberQuality().then((res) => {
+        await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)
                 setData(res.data)
@@ -69,10 +69,10 @@ const SubscriberQuality = (props) => {
             <Header title={text.subscriberQuality} />
             <View style={{ flexDirection: "row" }}>
                 <View style={{ flex: 1, marginLeft: -width / 6 }}>
-                    <DateView dateLabel={'Tháng ' + data.beginMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
+                    <DateView dateLabel={data.beginMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
                 </View>
                 <View style={{ flex: 1, marginLeft: -width / 4 }}>
-                    <DateView dateLabel={'Tháng ' + data.endMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
+                    <DateView dateLabel={data.endMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
                 </View>
             </View>
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />

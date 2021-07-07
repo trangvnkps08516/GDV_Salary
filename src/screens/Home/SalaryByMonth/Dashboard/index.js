@@ -31,7 +31,7 @@ const Dashboard = (props) => {
 
   const getData = async (month) => {
     setLoading(true);
-    setMonth(month)
+    setMonth(month);
     await getSalaryByMonth(month).then((res) => {
       if (res.status == "success") {
         setData(res.data)

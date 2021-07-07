@@ -93,7 +93,7 @@ export const M_AvgIncomeByMonth = {
 
 // Home > Chất Lượng Thuê Bao | getSubscriberQuality
 export const M_SubscriberQuality = {
-  "beginMonth": "",
+  "beginMonth": null,
   "endMonth": "",
   "debtPercent": "",
   "totalDebtNinety": "",
