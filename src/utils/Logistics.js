@@ -151,7 +151,7 @@ export const ToastNotif = (title, content, type, autohide, onhide) => {
     text1: title,
     text2: content,
     type: type,
-    visibilityTime: 2000,
+    visibilityTime: 3000,
     autoHide: autohide,
     onHide: onhide
   })

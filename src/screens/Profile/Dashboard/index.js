@@ -13,6 +13,8 @@ import { baseUrl, imgUrl } from '../../../api/untils';
 import { useIsFocused } from "@react-navigation/native";
 import { height, width } from '../../../utils/Dimenssion';
 import { _storeData } from '../../../utils/Storage';
+import { ToastNotif } from '../../../utils/Logistics';
+import Toast from 'react-native-toast-message';
 
 const DashBoard = (props) => {
     const [loading, setLoading] = useState(false)
@@ -27,8 +29,12 @@ const DashBoard = (props) => {
                 setLoading(false)
                 setUserData(res.data)
             }
+            if(res.status=="v_error"){
+                ToastNotif('Cảnh báo', res.message, 'error', true);
+            }
             if (res.status == "failed") {
                 setLoading(false)
+                ToastNotif('Cảnh báo', res.message, 'error', true);
             }
         })
     }
@@ -57,6 +63,7 @@ const DashBoard = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
             <Header title={text.profile} />
+            <Toast ref={(ref) => Toast.setRef(ref)} />
             <Image source={images.profileHeader} resizeMode="cover" style={styles.headerShape} />
             <View style={styles.personInfo}>
                 <Text style={styles.staffCode}>{userData.displayName}</Text>

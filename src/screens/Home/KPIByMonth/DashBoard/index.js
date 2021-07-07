@@ -11,8 +11,9 @@ import { getKPIByMonthDashboard, getProfile } from "../../../../api";
 import moment from "moment";
 import { KPIByMonthDashboard, User, UserObj } from "../../../../models/Data";
 import { useNavigation } from '@react-navigation/core';
-import { thoundsandSep } from "../../../../utils/Logistics";
+import { thoundsandSep, ToastNotif } from "../../../../utils/Logistics";
 import { _retrieveData } from "../../../../utils/Storage";
+import Toast from 'react-native-toast-message';
 
 const DashBoard = (props) => {
   const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
@@ -29,8 +30,17 @@ const DashBoard = (props) => {
         setData(res.data);
         setLoading(false)
       }
+
       if (res.status == "failed") {
+        ToastNotif('Cảnh báo', res.message, 'error', true);
         setLoading(false)
+      }
+
+      if (res.status == "v_error") {
+        ToastNotif('Cảnh báo', res.message, 'error', true);
+        setTimeout(() => {
+          navigation.navigate('Home')
+        }, 1000);
       }
     });
 
@@ -65,6 +75,7 @@ const DashBoard = (props) => {
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.kpiByMonth} />
+      <Toast ref={(ref) => Toast.setRef(ref)} />
       <DateView dateLabel={data.dateRange} />
       <Body displayName={user.displayName} maGDV={user.gdvId.maGDV}
         style={{ marginTop: fontScale(27) }}
