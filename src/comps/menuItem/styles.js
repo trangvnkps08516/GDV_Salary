@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     fontSize: fontScale(19),
     marginLeft: fontScale(15),
     fontWeight: "bold",
-    paddingTop: fontScale(25),
+    paddingTop: fontScale(26),
     lineHeight: fontScale(23)
   },
   value: {
