@@ -16,5 +16,9 @@ export const styles = StyleSheet.create({
     body:{
         backgroundColor:colors.white,
         flex:1
-    }
+    },
+    sumKpiContainer:{ flexDirection: "row",justifyContent:"center" },
+    sumKpiTitle:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(16) },
+    sumKpiMonth:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(16) },
+    sumKpi:{ color: colors.lightBlue,fontSize:fontScale(21),textAlign: "center",fontWeight:"bold", marginTop: fontScale(9) },
 })

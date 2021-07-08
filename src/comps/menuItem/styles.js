@@ -31,11 +31,12 @@ export const styles = StyleSheet.create({
     height: fontScale(50),
   },
   title: {
-    height: fontScale(60),
+    minHeight: fontScale(54),
     fontSize: fontScale(19),
     marginLeft: fontScale(15),
     fontWeight: "bold",
-    textAlignVertical: "center",
+    paddingTop: fontScale(25),
+    lineHeight: fontScale(23)
   },
   value: {
     textAlign: "right",
@@ -44,5 +45,6 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#00BECC",
     top: -fontScale(12),
+    
   },
 });

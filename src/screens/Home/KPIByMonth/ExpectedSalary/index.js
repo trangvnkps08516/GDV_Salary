@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, BackHandler } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, BackHandler, ScrollView } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -91,13 +91,14 @@ const ExpectedSalary = (props) => {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                         <>
                             <View style={styles.sumKpiContainer}>
-                                <Text style={styles.sumKpiTitle}>{text.expectedSalary}: </Text>
-                                <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
+                                <Text style={styles.sumKpiTitle}>{text.expectedSalary} </Text>
+                                <Text style={styles.sumKpiMonth}>{month}</Text>
+                                
                             </View>
-
+                            <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
                             
                             <View>
-                                <MenuItem view style={{ marginTop: 50 }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
+                                <MenuItem view style={{ marginTop: fontScale(35) }} titleStyle={{  paddingTop: fontScale(27)  }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
                             </View>
                             <View style={styles.detailInfo}>
                                 <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.contractSalary)} />

@@ -68,7 +68,8 @@ export const text = {
   otherExpenses: "Chi khác",
 
   // Tổng lương dự kiến
-  expectedSalary:"Tổng lương dự kiến",
+  expectedSalaryMenu:"Thu nhập dự kiến từ tập TB \n     trong tháng",
+  expectedSalary:"Thu nhập dự kiến từ tập TB trong tháng",
   kpiS:"KPIs",
 
 
