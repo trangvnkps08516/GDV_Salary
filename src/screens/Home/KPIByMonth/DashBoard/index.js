@@ -110,7 +110,7 @@ const DashBoard = (props) => {
             <MenuItem
               style={{ marginTop: fontScale(60) }}
               // title={text.expectedSalaryMenu + "("+month+")" } 
-              title={text.expectedSalaryMenu +   month } 
+              title={text.expectedSalaryMenu} 
               icon={images.salaryByMonth}
               value={thoundsandSep(data.provSal)}
               width={width - fontScale(60)}

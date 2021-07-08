@@ -92,7 +92,8 @@ const ExpectedSalary = (props) => {
                         <>
                             <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.expectedSalary} </Text>
-                                <Text style={styles.sumKpiMonth}>{month}</Text>
+                                {/* <Text style={styles.sumKpiMonth}>{month}</Text> */}
+                                <Text style={styles.sumKpiMonth}></Text>
                                 
                             </View>
                             <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
