@@ -108,7 +108,7 @@ function AvgIncomeByMonth(props) {
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                             <View>
-                                <View style={[styles.sumKpiContainer, { marginTop: -fontScale(25) }]}>
+                                <View style={[styles.sumKpiContainer, { marginTop: -fontScale(35) }]}>
                                     <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
                                     <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
                                 </View>

@@ -89,7 +89,7 @@ const Dashboard = (props) => {
       <View style={styles.body}>
         {
           loading == true ? <ActivityIndicator color={colors.primary} size="small" /> :
-            <View style={{ flex: 1, height: height / 2 }}>
+            <View>
             <TotalSalary style={{ alignSelf: 'center', marginTop: -fontScale(15), zIndex: 50 }} title={text.total} value={thoundsandSep(data.monthlySalary)} />
               <ScrollView showsVerticalScrollIndicator={false}>
                 <MenuItem style={{ marginTop: fontScale(25) }} title={text.fixedSalary} icon={images.salaryByMonth} value={thoundsandSep(data.permanentSalary)} width={width - fontScale(60)} onPress={() => { }} />
