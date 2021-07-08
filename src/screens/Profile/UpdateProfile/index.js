@@ -33,6 +33,7 @@ const UpdateProfile = (props) => {
   const [displayName, setDisplayName] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [formData, setFormData] = useState(new FormData());
+  const [pickAvatar,setPickAvatar] = useState(false);
   const isFocused = useIsFocused();
 
   const getData = async () => {
@@ -73,7 +74,7 @@ const UpdateProfile = (props) => {
     });
     if (!result.cancelled) {
       setAvatar(result.uri);
-
+      setPickAvatar(true);
       let localUri = "file:///" + result.uri.split("file:/").join("");
       let filename = localUri.split("/").pop();
 

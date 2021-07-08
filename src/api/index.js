@@ -76,16 +76,18 @@ export const getProfile = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
+
         if (res.data.V_ERROR) {
           data = {
-            message: "Máy chủ đang bảo trì",
+            message: "Chức năng này đang được bảo trì",
             data: null,
             isLoading: false,
             status: "v_error",
             length: 0,
             error: null
           }
-        } else if (Object.values(res.data).length > 0) {
+        }
+        else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data,
             isLoading: false,

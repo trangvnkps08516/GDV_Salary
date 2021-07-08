@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Image, View, Text, StatusBar, Linking, ActivityIndicator, TouchableOpacity, Modal, BackHandler } from 'react-native';
+import { SafeAreaView, Image, View, Text, StatusBar, Linking, ActivityIndicator, TouchableOpacity, Modal, BackHandler, Alert } from 'react-native';
 import { Button, Header, ProfileItem } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { fontScale } from '../../../utils/Fonts';
@@ -29,8 +29,10 @@ const DashBoard = (props) => {
                 setLoading(false)
                 setUserData(res.data)
             }
-            if(res.status=="v_error"){
-                ToastNotif('Cảnh báo', res.message, 'error', true);
+            if (res.status == "v_error") {
+                setTimeout(() => {
+                    navigation.navigate('Home')
+                }, 2000);
             }
             if (res.status == "failed") {
                 setLoading(false)
