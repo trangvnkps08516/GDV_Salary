@@ -37,7 +37,15 @@ const Achieve = (props) => {
                 setLoading(false);
             }
             if (res.status == "failed") {
+                ToastNotif('Cảnh báo', res.message, 'error', true);
                 setLoading(false)
+            }
+
+            if (res.status == "v_error") {
+                ToastNotif('Cảnh báo', res.message, 'error', true);
+                setTimeout(() => {
+                    navigation.navigate('Home')
+                }, 1000);
             }
         })
 
@@ -64,7 +72,7 @@ const Achieve = (props) => {
             backAction
         );
         getData();
-        
+
         return () => {
             backHandler.remove();
         };
@@ -77,13 +85,13 @@ const Achieve = (props) => {
             <Header title={text.kpiByMonth} />
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-            
+
             <View style={{ flex: 1, backgroundColor: colors.white }}>
 
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                         <>
-                        <View style={styles.sumKpiContainer}>
+                            <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
                                 <Text style={styles.sumKpi}>{data.sumKpi} %</Text>
                             </View>

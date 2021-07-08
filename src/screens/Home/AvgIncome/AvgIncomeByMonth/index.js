@@ -8,7 +8,7 @@ import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
-import { thoundsandSep } from '../../../../utils/Logistics';
+import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -25,11 +25,16 @@ function AvgIncomeByMonth(props) {
 
     const getData = async (beginMonth, endMonth) => {
         setLoading(true)
-        await getAvgIncomeByMonth(beginMonth, endMonth,navigation).then((data) => {
-            if (data.status == "success") {
-                setData(data.data)
+        await getAvgIncomeByMonth(beginMonth, endMonth, navigation).then((res) => {
+            if (res.status == "success") {
+                setData(res.data)
                 setLoading(false)
-            } else if (data.status == "failed") {
+            }
+            if (res.status == "failed") {
+                ToastNotif('Cảnh báo', res.message, 'error', true);
+                setLoading(false)
+            }
+            if (res.status == "failed") {
                 setLoading(false);
             }
         })
@@ -96,18 +101,18 @@ function AvgIncomeByMonth(props) {
                 <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
             </View>
 
-            <View style={[styles.sumKpiContainer, { marginTop: -fontScale(25) }]}>
-                <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
-                <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
-            </View>
+
             <ScrollView style={{ backgroundColor: colors.white }} showsVerticalScrollIndicator={false}>
 
                 <View style={{ backgroundColor: colors.white, paddingVertical: fontScale(30), flex: 1 }}>
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                             <View>
-
-                                <View style={styles.detailInfo}>
+                                <View style={[styles.sumKpiContainer, { marginTop: -fontScale(25) }]}>
+                                    <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
+                                    <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
+                                </View>
+                                <View style={[styles.detailInfo, { marginTop: fontScale(15) }]}>
                                     <ListItem icon={images.salaryByMonth} title={text.fixedAverageSalary} price={thoundsandSep(data.avgPermanentSalary)} />
                                     <ListItem icon={images.upSalary} title={text.upAverageSalary} price={thoundsandSep(data.avgContractSalary)} />
                                     <ListItem icon={images.incentive} title={text.averageIncentiveSpending} price={thoundsandSep(data.avgExpenIncentive)} />

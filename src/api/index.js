@@ -51,7 +51,7 @@ export const login = async (userName, password) => {
 };
 
 // 2. Profile Screen
-export const getProfile = async (navigation) => {
+export const getProfile = async () => {
   let token = "";
   await _retrieveData("userInfo").then((data) => {
     if (data != null) {
@@ -76,7 +76,18 @@ export const getProfile = async (navigation) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        }
+        else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data,
             isLoading: false,
@@ -129,14 +140,22 @@ export const getKPIByMonthDashboard = async (navigation) => {
   })
     .then((res) => {
       if (res.status == 200) {
-
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
-            error: null,
+            length: Object.values(res.data.data).length,
+            error: null
           };
         }
       }
@@ -152,6 +171,7 @@ export const getKPIByMonthDashboard = async (navigation) => {
         };
       }
     });
+
   return data;
 };
 
@@ -184,12 +204,21 @@ export const getKPIByMonthAchieve = async (navigation) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -237,12 +266,14 @@ export const getTempSalary = async (navigation) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -285,12 +316,22 @@ export const getSalaryByMonth = async (month, navigation) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+          navigation.navigate('Home');
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -312,7 +353,7 @@ export const getSalaryByMonth = async (month, navigation) => {
 };
 
 // 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm
-export const getContractSalaryByMonth = async (month) => {
+export const getContractSalaryByMonth = async (month, navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
@@ -334,12 +375,14 @@ export const getContractSalaryByMonth = async (month) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -414,7 +457,6 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth, navigation) =>
 export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => { token = data.accessToken });
-  console.log(token)
   let data = {
     message: "",
     status: "",
@@ -437,7 +479,6 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
           navigation.navigate('Home');
           console.log('lỗi V_ERROR')
         } else if (Object.values(res.data).length > 0) {
-          console.log(res.data)
           data = {
             data: res.data.data,
             isLoading: false,
@@ -614,7 +655,6 @@ export const updatePassword = async (oldPassword, newPassword) => {
     },
   }).then(async (res) => {
     if (res.status == 200) {
-
       data = {
         data: res.data,
         isLoading: false,
