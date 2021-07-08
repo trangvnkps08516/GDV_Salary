@@ -28,7 +28,7 @@ const DashBoard = (props) => {
     await getKPIByMonthDashboard(navigation).then((res) => {
       if (res.status == "success") {
         setData(res.data);
-        setLoading(false)
+        setLoading(false);
       }
 
       if (res.status == "failed") {

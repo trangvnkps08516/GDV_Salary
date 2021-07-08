@@ -9,7 +9,7 @@ const MenuItem = (props) => {
             {
                 view ? <View style={styles.container} onPress={onPress}>
                     <View style={styles.bg}>
-                        <Text style={styles.title}>{title}</Text>
+                        <Text style={[styles.title,props.titleStyle]}>{title}</Text>
                         <Image source={icon} style={styles.icon} />
                         {
                             value ? <Text style={styles.value}>{value}</Text> : null
@@ -18,7 +18,7 @@ const MenuItem = (props) => {
                 </View> :
                     <TouchableOpacity style={styles.container} onPress={onPress}>
                         <View style={styles.bg}>
-                            <Text style={styles.title}>{title}</Text>
+                            <Text style={[styles.title,{textAlignVertical:"center"}]}>{title}</Text>
                             <Image source={icon} style={styles.icon} />
                             {
                                 value ? <Text style={styles.value}>{value}</Text> : null

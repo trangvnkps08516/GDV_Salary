@@ -14,7 +14,6 @@ import { styles } from './styles';
 import { useRoute } from "@react-navigation/core";
 import { useNavigation } from '@react-navigation/native';
 import { _storeData } from '../../../../utils/Storage';
-import { contractMonth } from '../../../../utils/Variable';
 
 const Contract = (props) => {
     const route = useRoute();
@@ -29,7 +28,6 @@ const Contract = (props) => {
         setLoading(true)
         await getContractSalaryByMonth(month,navigation).then((res) => {
             if (res.status == "success") {
-                console.log(res.data)
                 setLoading(false);
                 setData(res.data);
             }

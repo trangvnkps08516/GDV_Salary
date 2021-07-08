@@ -32,13 +32,16 @@ const Dashboard = (props) => {
   const getData = async (month) => {
     setLoading(true);
     setMonth(month);
-    await getSalaryByMonth(month).then((res) => {
+    await getSalaryByMonth(month,navigation).then((res) => {
       if (res.status == "success") {
-        setData(res.data)
-        setLoading(false)
+        setData(res.data);
+        setLoading(false);
+      }
+      if(res.status=="v_error"){
+
       }
       if (res.status == "failed") {
-        setLoading(false)
+        setLoading(false);
       }
     })
   }
@@ -73,7 +76,6 @@ const Dashboard = (props) => {
 
     return () => {
       backHandler.remove();
-      console.log(contractMonth)
     };
   }, [])
 
