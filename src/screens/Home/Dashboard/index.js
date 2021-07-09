@@ -65,12 +65,12 @@ const Dashboard = (props) => {
       <View style={styles.body}>
         <TouchableOpacity style={styles.menu}>
 
-          <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />
-          <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryByMonth} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthDashboard")} />
+          <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpiByMonth} titleMenuStyle={{paddingTop: fontScale(17)}} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthKPIByMonthDashboard")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryByMonth} titleMenuStyle={{paddingTop: fontScale(17)}} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthDashboard")} />
           {/* change from AvgIncomeDashboard to AvgIncomeByMonth (discard AvgIncomeDashboard)*/}
-          <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeByMonth")} />
-          <MenuItem style={{ marginTop: fontScale(60) }} title={text.subscriberQuality} icon={images.subscriberQuality} width={width - fontScale(60)} onPress={() => navigation.navigate("SubscriberQuality")} />
-          <MenuItem style={{ marginTop: fontScale(60) }} title={text.transactionInformation} icon={images.transactionInformation} width={width - fontScale(60)} onPress={() => navigation.navigate("TransactionInfo")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.averageIncome} titleMenuStyle={{paddingTop: fontScale(17)}} icon={images.avgIcome} width={width - fontScale(60)} onPress={() => navigation.navigate("AvgIncomeByMonth")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.subscriberQuality} titleMenuStyle={{paddingTop: fontScale(17)}} icon={images.subscriberQuality} width={width - fontScale(60)} onPress={() => navigation.navigate("SubscriberQuality")} />
+          <MenuItem style={{ marginTop: fontScale(60) }} title={text.transactionInformation} titleMenuStyle={{paddingTop: fontScale(17)}} icon={images.transactionInformation} width={width - fontScale(60)} onPress={() => navigation.navigate("TransactionInfo")} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
