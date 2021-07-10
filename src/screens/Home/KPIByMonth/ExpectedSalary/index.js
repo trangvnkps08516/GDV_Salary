@@ -90,17 +90,15 @@ const ExpectedSalary = (props) => {
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            <View style={{flex:1}}>
+                            <View style={{ flex: 1 }}>
                                 <View style={styles.sumKpiContainer}>
                                     <Text style={styles.sumKpiTitle}>{text.expectedSalary}: </Text>
                                     <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
                                 </View>
-
-
                                 <View>
                                     <MenuItem view style={{ marginTop: fontScale(50) }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
                                 </View>
-                                <View style={styles.detailInfo}>
+                                <View style={[styles.detailInfo, { paddingBottom: 10 }]}>
                                     <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.contractSalary)} />
                                     <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />
                                     <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={thoundsandSep(data.postPaid)} />

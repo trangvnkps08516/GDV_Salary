@@ -100,10 +100,7 @@ function AvgIncomeByMonth(props) {
                 <Text style={styles.notification}>{data.notification}</Text>
                 <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
             </View>
-
-
             <ScrollView style={{ backgroundColor: colors.white }} showsVerticalScrollIndicator={false}>
-
                 <View style={{ backgroundColor: colors.white, paddingVertical: fontScale(30), flex: 1 }}>
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :

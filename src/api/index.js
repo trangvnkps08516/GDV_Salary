@@ -89,6 +89,7 @@ export const getProfile = async () => {
         }
         else if (Object.values(res.data).length > 0) {
           data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data,
             isLoading: false,
             status: "success",
