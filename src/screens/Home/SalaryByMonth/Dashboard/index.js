@@ -13,7 +13,7 @@ import { styles } from "./styles";
 import { useNavigation } from '@react-navigation/core';
 import { getProfile, getSalaryByMonth } from '../../../../api';
 import { SalaryByMonth, UserObj } from '../../../../models/Data';
-import { thoundsandSep } from '../../../../utils/Logistics';
+import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { useRoute } from '@react-navigation/native';
 import { useIsFocused } from "@react-navigation/native";
 import { useCallback } from 'react';
@@ -38,7 +38,7 @@ const Dashboard = (props) => {
         setLoading(false);
       }
       if(res.status=="v_error"){
-
+        ToastNotif('Cảnh báo', res.message, 'error', true);
       }
       if (res.status == "failed") {
         setLoading(false);

@@ -2,7 +2,6 @@ import { GET, POST, PUT, PATCH, DELETE } from "./method";
 import { baseUrl } from "./untils";
 import axios from "axios";
 import { _removeData, _retrieveData, _storeData } from "../utils/Storage";
-import { Alert } from "react-native";
 
 // 1. Login Screen
 export const login = async (userName, password) => {
@@ -477,8 +476,14 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
     .then((res) => {
       if (res.status == 200) {
         if (res.data.V_ERROR) {
-          navigation.navigate('Home');
-          console.log('lỗi V_ERROR')
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
         } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
