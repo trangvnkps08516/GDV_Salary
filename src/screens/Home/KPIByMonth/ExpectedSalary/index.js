@@ -89,8 +89,9 @@ const ExpectedSalary = (props) => {
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
-                        <ScrollView showsVerticalScrollIndicator={false}>
-                            <View style={{ flex: 1 }}>
+                        <View style={{backgroundColor:colors.white,flex:1}}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={{paddingBottom: 10 }}>
+                            <View style={{ flex: 1,marginBottom:fontScale(10) }}>
                                 <View style={styles.sumKpiContainer}>
                                     <Text style={styles.sumKpiTitle}>{text.expectedSalary}: </Text>
                                     <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
@@ -98,7 +99,7 @@ const ExpectedSalary = (props) => {
                                 <View>
                                     <MenuItem view style={{ marginTop: fontScale(50) }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
                                 </View>
-                                <View style={[styles.detailInfo, { paddingBottom: 10 }]}>
+                                <View style={[styles.detailInfo]}>
                                     <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.contractSalary)} />
                                     <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />
                                     <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={thoundsandSep(data.postPaid)} />
@@ -108,6 +109,7 @@ const ExpectedSalary = (props) => {
                                 </View>
                             </View>
                         </ScrollView>
+                        </View>
                 }
             </View>
         </SafeAreaView>
