@@ -26,13 +26,14 @@
 #   KPIByMonth: KPI tháng hiện tại
 #       Dashboard: Dashboard KPI tháng hiện tại
 #       Achieve: KPI đạt được
-#       ExpectedSalary: Tổng lương dự kiến
+#       ExpectedSalary: Thu nhập dự kiến từ tập thuê bao trong tháng
 #   SalaryByMonth: Lương theo tháng
 #       Dashboard: Dashboard lương theo tháng
 #       Fixedwage: Lương cố định
 #       Contract: Lương khoán SP    
 #       EncourageSalary: Chi phí khuyến khích
 #       Arrears: Chế tài
+#       Others: Chi khác
 #   AvgIncome: Bình quân thu nhập
 #       Dashboard: Dashboard bình quân thu nhập
 #       AvgIncomeByMonth: Bình quân tháng & Tổng thu nhập

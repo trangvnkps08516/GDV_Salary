@@ -23,10 +23,10 @@ export const styles = StyleSheet.create({
     bodyScr:{
         marginTop:fontScale(14)
     },
-    sumKpiContainer:{ flexDirection: "row",justifyContent:"center", marginTop: -fontScale(23) },
+    sumKpiContainer:{ flexDirection: "row",justifyContent:"center" },
     sumKpiTitle:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold"},
     sumKpi:{ color: colors.lightBlue,fontSize:fontScale(18),marginLeft:fontScale(2),fontWeight:"bold" },
-    detailInfo:{paddingVertical:fontScale(20),marginHorizontal:fontScale(17),shadowColor: "#000",backgroundColor:colors.white,  marginTop:fontScale(15),borderRadius:fontScale(17),
+    detailInfo:{paddingVertical:fontScale(10),marginHorizontal:fontScale(17),shadowColor: "#000",backgroundColor:colors.white,  marginTop:-fontScale(15),borderRadius:fontScale(17),
         shadowOffset: {
             width: 0,
             height: 2,

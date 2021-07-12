@@ -6,17 +6,19 @@ export const styles = StyleSheet.create({
     container:{ flex: 1,backgroundColor:colors.primary },
     bodyScr:{ marginTop: fontScale(27) },
     sumKpiContainer:{ flexDirection: "row",justifyContent:"center" },
-    sumKpiTitle:{ color: colors.black,fontSize:fontScale(20),fontWeight:"bold" },
-    sumKpi:{ color: colors.lightBlue,fontSize:fontScale(20),marginLeft:fontScale(2),fontWeight:"bold" },
-    kpisContainer: { flexDirection: "row",justifyContent:"center", marginTop: 10 },
-    kpisTitle:{ color: colors.black,fontSize:fontScale(20),fontWeight:"bold" },
-    kpisKpi:{ color: colors.lightBlue,fontSize:fontScale(20),marginLeft:fontScale(2),fontWeight:"bold" },
+    sumKpiTitle:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(0) },
+    sumKpiMonth:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(0) },
+    sumKpi:{ color: colors.lightBlue,fontSize:fontScale(21),textAlign: "center",fontWeight:"bold", marginTop: fontScale(9) },
+   
     detailInfo:{
-        paddingVertical:fontScale(17),
+        // minHeight: 50,
+        marginBottom:fontScale(50),
+        paddingVertical:fontScale(7),
         marginHorizontal:fontScale(17),
         shadowColor: "#000",
+        
         backgroundColor:colors.white,  
-        marginTop:fontScale(40),
+        marginTop:fontScale(20),
         borderRadius:fontScale(17),
         shadowOffset: {
             width: 0,

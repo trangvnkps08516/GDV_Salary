@@ -9,10 +9,10 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.primary
     },
     topShape: { flex: 7 },
-    authTitle:{marginLeft:fontScale(35)},
-    ipUsn:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
-    ipPwd:{ marginHorizontal: fontScale(35),marginTop:fontScale(40) },
-    bottomShape: { flex: 2,width:width,bottom:-statusbarHeight},
+    authTitle: { marginLeft: fontScale(35) },
+    ipUsn: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },
+    ipPwd: { marginHorizontal: fontScale(35), marginTop: fontScale(40) },
+    bottomShape: { flex: 2, width: width, bottom: -statusbarHeight },
     background: {
         width: width, height: height, bottom: 0, position: "absolute"
     },

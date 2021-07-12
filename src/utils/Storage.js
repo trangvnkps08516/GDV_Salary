@@ -23,6 +23,8 @@ export const _retrieveData = async (key) => {
 export const _removeData = async (key) => {
   try {
     var value = await AsyncStorage.removeItem(key);
-    return value
+    if(value==null){
+      return value
+    }
   } catch (error) { }
 };

@@ -11,6 +11,9 @@ import Body from "./body"
 import MetricStatus from "./metricstatus";
 import TotalSalary from "./totalsalry";
 import ProfileItem from "./profileItem";
+import Search from "./search";
+import TableHeader from "./tableheader";
+import FlatlistItem from "./flatlistItem";
 
 export {
     Button,
@@ -25,5 +28,8 @@ export {
     Body,
     MetricStatus,
     TotalSalary,
-    ProfileItem
+    ProfileItem,
+    Search,
+    TableHeader,
+    FlatlistItem
 }

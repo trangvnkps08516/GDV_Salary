@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   headerShape: {
     width: width,
-    height: height * 0.3386699507389163,
+    height: fontScale(290),
     marginTop: -statusbarHeight - 50,
     zIndex: -10,
     position: "relative",
@@ -26,36 +26,34 @@ export const styles = StyleSheet.create({
   personInfo: {
     width: width / 2,
     position: "absolute",
-    marginTop: height * 0.1379310344827586,
+    marginTop: fontScale(125),
   },
   avatar: {
-    
-    // marginTop: (height * 0.1279310344827586) / 2 - 20,
-    width: height * 0.1279310344827586,
-    height: height * 0.1279310344827586,
-    borderRadius: height * 0.1279310344827586,
-    // marginLeft: width - 0.1896551724137931 * height,
+    width: fontScale(110),
+    height: fontScale(110),
+    borderRadius: fontScale(104)
   },
   avatarImg: {
     position: "absolute",
-    width: height * 0.1279310344827586,
-    height: height * 0.1279310344827586,
-    borderRadius: height * 0.1279310344827586,
-    marginLeft: width - 0.1896551724137931 * height,
+    marginTop: fontScale(60), 
+    width: fontScale(110), 
+    height: fontScale(110), 
+    borderRadius: fontScale(110) / 2, 
+    marginLeft: width - fontScale(154)
   },
-  closeIcon: { marginLeft: "87%", marginTop: 5, marginBottom: -10 },
+  closeIcon: { marginLeft: "87%", marginTop: fontScale(5), marginBottom: -fontScale(10) },
   changePasswordOption: {
     borderBottomWidth: 0.5,
     borderBottomColor: "#EFEFEF",
-    marginTop: -20,
+    marginTop: -fontScale(20),
   },
   optionContainer: {
     position: "absolute",
-    width: width - 100,
+    width: width - fontScale(100),
     backgroundColor: colors.white,
     marginTop: height / 3,
-    marginHorizontal: 50,
-    borderRadius: 20,
+    marginHorizontal: fontScale(50),
+    borderRadius: fontScale(20),
     borderColor: "#F5F5F5",
     shadowColor: "#CCC",
     shadowOffset: {
@@ -67,22 +65,22 @@ export const styles = StyleSheet.create({
     elevation: 9,
   },
   staffCode: {
-    fontSize: height * 0.0233990147783251,
+    fontSize: fontScale(19),
     width: width / 2,
     textAlign: "center",
     color: "#D0D6D6",
   },
   staffName: {
-    fontSize: height * 0.0221674876847291,
+    fontSize: fontScale(20),
     color: colors.white,
     width: width / 2,
     textAlign: "center",
   },
-  closeButton: { marginLeft: "87%", marginTop: 5, marginBottom: -10 },
+  closeButton: { marginLeft: "87%", marginTop: fontScale(5), marginBottom: -fontScale(10) },
   option: {
     borderBottomWidth: 0.5,
     borderBottomColor: "#EFEFEF",
-    marginTop: -20,
+    marginTop: -fontScale(20),
   },
   optionWrapper: {
     backgroundColor: colors.primary,
@@ -90,5 +88,14 @@ export const styles = StyleSheet.create({
     width: width,
     height: height,
   },
-  optionText: { color: colors.primary, fontSize: height * 0.019704433 },
+  optionText: { color: colors.primary, fontSize: fontScale(16) },
+  avatarContainer:{
+    position: "absolute",
+    backgroundColor: "#333",
+    marginTop: fontScale(34),
+    width: fontScale(110),
+    height: fontScale(110),
+    borderRadius: fontScale(104),
+    marginLeft: width - fontScale(154),
+  }
 });

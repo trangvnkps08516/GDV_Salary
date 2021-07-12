@@ -2,7 +2,6 @@ import { GET, POST, PUT, PATCH, DELETE } from "./method";
 import { baseUrl } from "./untils";
 import axios from "axios";
 import { _removeData, _retrieveData, _storeData } from "../utils/Storage";
-import { Alert } from "react-native";
 
 // 1. Login Screen
 export const login = async (userName, password) => {
@@ -53,7 +52,11 @@ export const login = async (userName, password) => {
 // 2. Profile Screen
 export const getProfile = async () => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    }
+  });
   let data = {
     message: "",
     status: "",
@@ -63,7 +66,7 @@ export const getProfile = async () => {
   };
   await axios({
     method: "GET",
-    url:  `${baseUrl}user/getProfile`,
+    url: `${baseUrl}user/getProfile`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -72,8 +75,20 @@ export const getProfile = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+
+        if (res.data.V_ERROR) {
           data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        }
+        else if (Object.values(res.data).length > 0) {
+          data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data,
             isLoading: false,
             status: "success",
@@ -98,9 +113,15 @@ export const getProfile = async () => {
 };
 
 // 3. Home > KPI Tháng hiện tại
-export const getKPIByMonthDashboard = async () => {
+export const getKPIByMonthDashboard = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    } else {
+      navigation.navigate("SignIn")
+    }
+  });
   let data = {
     message: "",
     status: "",
@@ -110,7 +131,7 @@ export const getKPIByMonthDashboard = async () => {
   };
   await axios({
     method: "GET",
-    url:  `${baseUrl}dashBoard/getKPIByMonthDashboard`,
+    url: `${baseUrl}dashBoard/getKPIByMonthDashboard`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -119,13 +140,23 @@ export const getKPIByMonthDashboard = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
           data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
+          data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
-            error: null,
+            length: Object.values(res.data.data).length,
+            error: null
           };
         }
       }
@@ -141,13 +172,20 @@ export const getKPIByMonthDashboard = async () => {
         };
       }
     });
+
   return data;
 };
 
 // 4. Home > KPI Tháng hiện tại > KPI Đạt Được
-export const getKPIByMonthAchieve = async () => {
+export const getKPIByMonthAchieve = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    } else {
+      navigation.navigate("SignIn")
+    }
+  });
 
   let data = {
     message: "",
@@ -158,7 +196,7 @@ export const getKPIByMonthAchieve = async () => {
   };
   await axios({
     method: "GET",
-    url:  `${baseUrl}actionItemKpi/getKPIByMonthAchieve`,
+    url: `${baseUrl}actionItemKpi/getKPIByMonthAchieve`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -167,12 +205,22 @@ export const getKPIByMonthAchieve = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
           data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
+          data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -193,10 +241,15 @@ export const getKPIByMonthAchieve = async () => {
 };
 
 // 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
-export const getTempSalary = async () => {
+export const getTempSalary = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
-
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    } else {
+      navigation.navigate("SignIn")
+    }
+  });
   let data = {
     message: "",
     status: "",
@@ -215,12 +268,22 @@ export const getTempSalary = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
           data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
+          data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -240,26 +303,68 @@ export const getTempSalary = async () => {
   return data;
 };
 
-// 6. Home > KPI Tháng hiện tại > Lương tạm tính
-export const getDetailTempContract = () => {
-  const data = {
+
+
+// Home > Danh sách thuê bao
+export const getSubscriberList = async (navigation) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    } else {
+      navigation.navigate("SignIn")
+    }
+  });
+  let data = {
     message: "",
     status: "",
     res: null,
     loading: null,
     error: {},
   };
-
-
-
+  await axios({
+    method: "GET",
+    url: `${baseUrl}actionItemKpi/getSubscriberList`,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+  })
+    .then((res) => {
+      if (res.status == 200) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else if (Object.values(res.data.data).length > 0) {
+          data = {
+            message: "Lấy dữ liệu thành công",
+            data: res.data,
+            isLoading: false,
+            status: "success",
+            length: Object.values(res.data.data).length,
+            error: null,
+          };
+        }
+      }
+    })
+    .catch(async (error) => {
+      if (error) {
+        data = {
+          message: error.response.data.message,
+          isLoading: false,
+          status: "failed",
+          length: 0,
+          error: error.response.data,
+        };
+      }
+    });
   return data;
 };
 
 // 7. Home > Lương Theo Tháng
 export const getSalaryByMonth = async (month) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
-
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
   let data = {
     message: "",
     status: "",
@@ -279,12 +384,21 @@ export const getSalaryByMonth = async (month) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -306,9 +420,9 @@ export const getSalaryByMonth = async (month) => {
 };
 
 // 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm
-export const getContractSalaryByMonth = async (month) => {
+export const getContractSalaryByMonth = async (month, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -317,6 +431,7 @@ export const getContractSalaryByMonth = async (month) => {
     loading: null,
     error: {},
   };
+
   await axios({
     method: "GET",
     url: `${baseUrl}actionItemKpi/getContractSalaryByMonth?month=01/${month}`,
@@ -328,12 +443,21 @@ export const getContractSalaryByMonth = async (month) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
             status: "success",
-            length: Object.values(res.data).length,
+            length: Object.values(res.data.data).length,
             error: null,
           };
         }
@@ -354,9 +478,9 @@ export const getContractSalaryByMonth = async (month) => {
 };
 
 // 9. Home > Bình Quân Thu Nhập
-export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
+export const getAvgIncomeDashboard = async (beginMonth, endMonth, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -377,7 +501,16 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -403,10 +536,9 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth) => {
 };
 
 // 10. Home > Bình Quân Thu Nhập > Bình Quân Tháng & Tổng Thu Nhập
-export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
+export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
-
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
   let data = {
     message: "",
     status: "",
@@ -425,7 +557,16 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -447,13 +588,14 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth) => {
         };
       }
     });
+
   return data;
 };
 
 // 11. Home > Chất Lượng Thuê Bao
-export const getSubscriberQuality = async () => {
+export const getSubscriberQuality = async (navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -473,7 +615,16 @@ export const getSubscriberQuality = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -495,12 +646,13 @@ export const getSubscriberQuality = async () => {
         };
       }
     });
+
   return data;
 };
 // 12. Home > Thông tin giao dịch
-export const getTransactionInfo = async (month) => {
+export const getTransactionInfo = async (month, navigation) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -520,7 +672,16 @@ export const getTransactionInfo = async (month) => {
   })
     .then((res) => {
       if (res.status == 200) {
-        if (Object.values(res.data).length > 0) {
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
             isLoading: false,
@@ -542,13 +703,14 @@ export const getTransactionInfo = async (month) => {
         };
       }
     });
+
   return data;
 };
 
 // 13. Profile > UpdateProfile
 export const updateProfile = async (formData) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
 
   let data = {
     message: "",
@@ -571,6 +733,15 @@ export const updateProfile = async (formData) => {
       data = res;
     }
   }).catch((error) => {
+    if (error) {
+      data = {
+        message: error.response.data.message,
+        isLoading: false,
+        status: "failed",
+        length: 0,
+        error: error.response.data,
+      };
+    }
   });
 
   return data;
@@ -579,7 +750,7 @@ export const updateProfile = async (formData) => {
 // 14. UpdatePassword
 export const updatePassword = async (oldPassword, newPassword) => {
   let token = "";
-  await _retrieveData("userInfo").then((data)=>{token = data.accessToken});
+  await _retrieveData("userInfo").then((data) => { token = data.accessToken });
   let data = {
     message: "",
     status: "",
@@ -597,7 +768,6 @@ export const updatePassword = async (oldPassword, newPassword) => {
     },
   }).then(async (res) => {
     if (res.status == 200) {
-
       data = {
         data: res.data,
         isLoading: false,
@@ -631,57 +801,46 @@ export const signoutUser = async (navigation) => {
     loading: null,
     error: {},
   };
-
-  await _retrieveData("userInfo").then(async (stoData) => {
-    if (stoData != undefined) {
-      let data = {
-        message: "",
-        status: "",
-        res: null,
-        loading: null,
-        error: {},
-      };
-      let token = stoData.accesstoken;
-      await axios({
-        method: "GET",
-        url: `${baseUrl}logout`,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-      })
-        .then(async (res) => {
-          if (res.status == 200) {
-
-            if (Object.values(res.data).length > 0) {
-              data = {
-                data: res.data.data,
-                isLoading: false,
-                status: "success",
-                length: Object.values(res.data).length,
-                error: null,
-              };
-              await _storeData("userInfo", null);
-            }
-          }
-        })
-        .catch(async (error) => {
-          await _storeData("userInfo", null);
-          if (error) {
-            data = {
-              message: error.response.data.message,
-              isLoading: false,
-              status: "failed",
-              length: 0,
-              error: error.response.data,
-            };
-          }
-        });
+  let token = "";
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
     } else {
+      navigation.navigate("SignIn")
     }
   });
 
+  await axios({
+    method: "DELETE",
+    url: `${baseUrl}logout`,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+  })
+    .then(async (res) => {
+      if (res.status == 200) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else {
+          await _removeData("userInfo").then((data) => {
+            if (data == undefined) {
+              navigation.navigate("SignIn")
+            }
+          });
+        }
+      } else {
+
+      }
+    })
+    .catch(async (error) => {
+      await _removeData("userInfo").then((data) => {
+        if (data == null) {
+          navigation.navigate("SignIn")
+        }
+      });
+    });
   return data;
 };
 

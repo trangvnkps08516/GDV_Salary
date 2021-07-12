@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         flexDirection:"row",
         paddingVertical:fontScale(5),
         marginTop:statusbarHeight,
-        marginBottom: 10
+        marginBottom: fontScale(10)
     },
     uInfoContainer:{
         marginLeft:fontScale(10)
@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
         marginLeft:-fontScale(50),
         color:"#F1E90F",
         width:width-fontScale(100),
-        height:fontScale(50),
         paddingVertical:fontScale(13),
        
     },
@@ -42,5 +41,8 @@ export const styles = StyleSheet.create({
         color:'#AFBFC1',
         fontWeight:"bold",
         marginTop:fontScale(2)
-    }
+    },
+    backIconImg:{width:fontScale(30),height:fontScale(25),tintColor:colors.white},
+    avatar:{ width: fontScale(50), height: fontScale(50), borderRadius: fontScale(25), marginLeft: fontScale(10) },
+    headNotProfile:{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "center" }
 })
