@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Home from "./Home/Dashboard";
+import Home from "./Home/DashBoard";
 import KPIByMonthDashboard from "./Home/KPIByMonth/DashBoard";
 import Achieve from "./Home/KPIByMonth/Achieve";
 import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary";
