@@ -16,7 +16,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // Bình Quân Tháng và Tổng Thu Nhập
 function AvgIncomeByMonth(props) {
     const route = useRoute()
-    const [beginMonth, setMonth] = useState(moment(new Date()).subtract(3, 'months').format("MM/YYYY"));
+    const [beginMonth, setMonth] = useState('01'+'/'+moment(new Date()).format("YYYY"));
     const [sMonth, setSMonth] = useState(moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(M_AvgIncomeByMonth);
