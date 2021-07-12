@@ -26,6 +26,8 @@ export const text = {
   averageIncome: "Bình quân thu nhập",
   subscriberQuality: "Chất lượng thuê bao",
   transactionInformation: "Thông tin giao dịch",
+  subscriberList: "Danh sách thuê bao",
+
 
   //KPI theo tháng
   kpiAchieved: "KPI đạt được", 
@@ -45,6 +47,7 @@ export const text = {
 
 
   // Lương tạm tính, Lương khoán, Lương theo tháng
+  numberStatus: "Trạng thái số liệu:",
   fixedSalary: "Lương cố định",
   upSalary: "Lương khoán sp",
   total: "Tổng lương: ",
@@ -107,6 +110,16 @@ export const text = {
   customersCount:"Lượt khách hàng",
   transAmount:"Giao dịch Fone -> card",
   trans2CAmount:"Giao dịch chặn 2c TBTS",
+
+
+  // Danh sách thuê bao
+  subscriberDevelopment: "TB phát triển từ",
+  date: "Ngày PT",
+  numberSub: "Số TB",
+  statusPaid: "TT/TS",
+  type: "Loại TB",
+  pckSub: "Gói",
+  searchSub: "Nhập số thuê bao",
 
   // Profile
   profile: "Thông tin cá nhân",

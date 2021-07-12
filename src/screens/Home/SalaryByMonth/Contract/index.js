@@ -65,7 +65,7 @@ const Contract = (props) => {
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.salaryByMonth} onPushParams={()=>{contractMonth=month}} />
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
-            <MetricStatus status={data.status} style={{ alignSelf: "center", marginTop: fontScale(20) }} />
+            <MetricStatus title={text.numberStatus} status={data.status} style={{ alignSelf: "center", marginTop: fontScale(20) }} />
             <Body style={{ marginTop: fontScale(15) }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             <View style={{ flex: 1, backgroundColor: colors.white }}>

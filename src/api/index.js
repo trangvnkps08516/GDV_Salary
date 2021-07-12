@@ -293,6 +293,63 @@ export const getTempSalary = async (navigation) => {
   return data;
 };
 
+
+
+// Home > Danh sách thuê bao
+export const getSubscriberList = async (navigation) => {
+  let token = "";
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    } else {
+      navigation.navigate("SignIn")
+    }
+  });
+  let data = {
+    message: "",
+    status: "",
+    res: null,
+    loading: null,
+    error: {},
+  };
+  await axios({
+    method: "GET",
+    url: `${baseUrl}actionItemKpi/getSubscriberList`,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+  })
+    .then((res) => {
+      if (res.status == 200) {
+        if (res.data.V_ERROR) {
+          navigation.navigate('Home');
+        } else if (Object.values(res.data.data).length > 0) {
+          data = {
+            data: res.data,
+            isLoading: false,
+            status: "success",
+            length: Object.values(res.data.data).length,
+            error: null,
+          };
+        }
+      }
+    })
+    .catch(async (error) => {
+      if (error) {
+        data = {
+          message: error.response.data.message,
+          isLoading: false,
+          status: "failed",
+          length: 0,
+          error: error.response.data,
+        };
+      }
+    });
+  return data;
+};
+
 // 7. Home > Lương Theo Tháng
 export const getSalaryByMonth = async (month, navigation) => {
   let token = "";

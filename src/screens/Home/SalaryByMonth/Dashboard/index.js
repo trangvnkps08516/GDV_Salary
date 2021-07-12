@@ -84,7 +84,7 @@ const Dashboard = (props) => {
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.salaryByMonth} />
       <DatePicker style={styles.datePicker} width={width - fontScale(164)} month={month} defaultMonth={month} onChangeDate={(date) => getData(date)} />
-      <MetricStatus status={data.status} style={{ alignSelf: 'center', marginTop: fontScale(13) }} />
+      <MetricStatus title={text.numberStatus} status={data.status} style={{ alignSelf: 'center', marginTop: fontScale(13) }} />
       <Body style={{ marginTop: fontScale(10), zIndex: -10 }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
       <View style={styles.body}>
         {

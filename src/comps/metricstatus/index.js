@@ -8,7 +8,7 @@ import { styles } from './styles'
 function MetricStatus(props) {
     return (
         <View style={[{ flexDirection: 'row' }, props.style]}>
-            <Text style={styles.statusData}>Trạng thái số liệu: </Text>
+            <Text style={styles.statusData}>{props.title} </Text>
             <Text style={{ color: "#FEF500", fontSize: fontScale(15) }}>{props.status}</Text>
         </View>
     );

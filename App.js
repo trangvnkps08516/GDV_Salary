@@ -4,7 +4,7 @@ import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AchieveScreen, AvgIncomeByMonthScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen } from './src/screens';
+import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { useEffect } from 'react';
@@ -12,6 +12,7 @@ import { getLoginInfo } from './src/utils/Logistics';
 import { _retrieveData } from './src/utils/Storage';
 import { useState } from 'react';
 import { User } from './src/models/Data';
+import Splash from './src/screens/Auth/Splash';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -89,6 +90,7 @@ const GDVStack = () => {
       <Stack.Screen name="Achieve" component={AchieveScreen} />
 
       <Stack.Screen name="ExpectedSalary" component={ExpectedSalaryScreen} />
+      <Stack.Screen name="SubscriberList" component={SubscriberListScreen} />
       {/* Home > Thông tin giao dịch */}
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
 
@@ -99,7 +101,7 @@ const GDVStack = () => {
 const AuthStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
     </Stack.Navigator>
   )

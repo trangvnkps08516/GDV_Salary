@@ -98,7 +98,7 @@ const DashBoard = (props) => {
 
            
             <MenuItem
-           titleMenuStyle={{paddingTop: fontScale(17)}}
+           
               style={{ marginTop: fontScale(30) }}
               title={text.kpiAchieved}
            
@@ -115,6 +115,17 @@ const DashBoard = (props) => {
               value={thoundsandSep(data.provSal)}
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("ExpectedSalary")}
+            />
+
+<MenuItem
+           titleMenuStyle={{paddingTop: fontScale(17)}}
+              style={{ marginTop: fontScale(60) }}
+              title={text.subscriberList}
+           
+              icon={images.simlist}
+             
+              width={width - fontScale(60)}
+              onPress={() => navigation.navigate("SubscriberList")}
             />
            
           </>
