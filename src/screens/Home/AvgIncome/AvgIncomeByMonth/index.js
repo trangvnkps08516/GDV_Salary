@@ -12,6 +12,7 @@ import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 // Bình Quân Tháng và Tổng Thu Nhập
 function AvgIncomeByMonth(props) {
@@ -34,8 +35,15 @@ function AvgIncomeByMonth(props) {
                 ToastNotif('Cảnh báo', res.message, 'error', true);
                 setLoading(false)
             }
-            if (res.status == "failed") {
-                setLoading(false);
+            if (res.status == "v_error") {
+                Toast.show({
+                    text1: "Cảnh báo",
+                    text2: res.message,
+                    type: "error",
+                    visibilityTime: 100,
+                    autoHide: true,
+                    onHide: ()=>navigation.navigate("Home")
+                  })
             }
         })
     }
@@ -129,6 +137,7 @@ function AvgIncomeByMonth(props) {
                     }
                 </View>
             </ScrollView>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }

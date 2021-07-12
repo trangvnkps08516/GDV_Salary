@@ -9,12 +9,12 @@ import { useNavigation } from '@react-navigation/core';
 import moment from 'moment';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve, getProfile } from '../../../../api';
-import { checkn, getLoginInfo, thoundsandSep } from '../../../../utils/Logistics';
+import { checkn, getLoginInfo, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { _retrieveData } from '../../../../utils/Storage';
 import { User, UserObj } from '../../../../models/Data';
+import Toast from 'react-native-toast-message';
 
 const Achieve = (props) => {
-    let test = require("../../../../assets/testicon.png")
     const [data, setData] = useState({
         dateRange: "",
         sumKpi: "",
@@ -24,8 +24,6 @@ const Achieve = (props) => {
         importantKpi: "",
         retailSales: ""
     });
-    const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
-    const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true);
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
@@ -42,10 +40,14 @@ const Achieve = (props) => {
             }
 
             if (res.status == "v_error") {
-                ToastNotif('Cảnh báo', res.message, 'error', true);
-                setTimeout(() => {
-                    navigation.navigate('Home')
-                }, 1000);
+                Toast.show({
+                    text1: "Cảnh báo",
+                    text2: res.message,
+                    type: "error",
+                    visibilityTime: 100,
+                    autoHide: true,
+                    onHide: ()=>navigation.navigate("Home")
+                  })
             }
         })
 
@@ -83,6 +85,7 @@ const Achieve = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiByMonth} />
+            
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
@@ -90,12 +93,11 @@ const Achieve = (props) => {
 
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
-                        <>
+                        <ScrollView showsVerticalScrollIndicator={false}>
                             <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
                                 <Text style={styles.sumKpi}>{data.sumKpi}</Text>
                             </View>
-                            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                                 <View style={styles.detailInfo}>
                                     <ListItem icon={images.sim} title={text.kpiPrepaidSubscribers} price={checkn(data.prePaid)} />
                                     <ListItem icon={images.sim} title={text.kpiPostpaidSubscribers} price={checkn(data.postPaid)} />
@@ -110,11 +112,10 @@ const Achieve = (props) => {
                                         <ListItem icon={images.sim} title={text.postpaidSubscribers} price={data.ratePostPaid} />
                                     </View>
                                 </View>
-                            </ScrollView>
-                        </>
+                        </ScrollView>
                 }
             </View>
-
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }

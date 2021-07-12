@@ -7,12 +7,11 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
   },
-
   bg: {
     backgroundColor: colors.white,
     borderRadius: fontScale(15),
     paddingTop: -fontScale(9),
-    minHeight: 30,
+    minHeight: fontScale(30),
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

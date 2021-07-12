@@ -24,7 +24,7 @@ import { ActivityIndicator } from "react-native";
 const SubscriberList = (props) => {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
-  const [message, setMessage] = useState([]);
+  const [message, setMessage] = useState("");
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUserData] = useState(UserObj);
@@ -36,7 +36,6 @@ const SubscriberList = (props) => {
     await getSubscriberList(navigation).then((res) => {
       if (res.status == "success") {
         setLoading(false);
-
         if (res.data.length == 0 || res.data.data.length == 0) {
           setMessage("Không tìm thấy số thuê bao!");
         } else {
@@ -67,11 +66,6 @@ const SubscriberList = (props) => {
   };
 
   const filterData = (text = "") => {
-    console.log(text.length);
-    // if (text.length > 0) {
-    // if (searchData.length == 0) {
-    //   setMessage("Không có dữ liệu");
-    // } else {
     const newData = searchData.filter((item) => {
       const itemData = `${item.numberSub.toString()}`;
       return itemData.indexOf(text.toString()) > -1;
@@ -113,12 +107,6 @@ const SubscriberList = (props) => {
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.subscriberList} />
-      {/* khi nào có data thật thì mở lại */}
-      {/* { <MetricStatus
-        style={styles.status}
-        title={text.subscriberDevelopment}
-        status={data.notification}
-      /> } */}
       <MetricStatus
         style={styles.status}
         title={text.subscriberDevelopment}
@@ -130,7 +118,7 @@ const SubscriberList = (props) => {
         rightIcon={images.searchlist}
         onChangeText={(value) => filterData(value)}
         placeholder={text.searchSub}
-        keyboardType="number-Pad"
+        keyboardType="number-pad"
       />
       <Body
         showInfo={false}
@@ -145,22 +133,28 @@ const SubscriberList = (props) => {
           <TableHeader style={{ flex: 0.9 }} title={text.pckSub} />
         </View>
         {loading == true ? (
-          <ActivityIndicator size="small" color={colors.primary} />
+          <ActivityIndicator size="small" color={colors.primary} style={{ marginTop: fontScale(10) }} />
         ) : null}
 
-        <Text
-          style={{
-            color: colors.primary,
-            textAlign: "center",
-            marginTop: fontScale(5),
-          }}
-        >
-          {message}
-        </Text>
+        {
+          message ? <Text
+            style={{
+              color: colors.primary,
+              textAlign: "center",
+              marginTop: fontScale(15),
+              fontSize: fontScale(15)
+            }}
+          >
+            {message}
+          </Text> : null
+        }
 
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={searchData} // data thật => chấm data 1 lần nữa để vào cái array bên trong
           // data={tempData} //data ảo
+          style={{marginTop:fontScale(10)}}
+          keyExtractor={(item, index) => index.toString()}
           key={({ item }) => item.numberSub.toString()}
           renderItem={({ item, index }) => (
             <FlatlistItem item={item} index={index} />

@@ -151,6 +151,7 @@ export const getKPIByMonthDashboard = async (navigation) => {
           }
         } else if (Object.values(res.data.data).length > 0) {
           data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data.data,
             isLoading: false,
             status: "success",
@@ -215,6 +216,7 @@ export const getKPIByMonthAchieve = async (navigation) => {
           }
         } else if (Object.values(res.data.data).length > 0) {
           data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data.data,
             isLoading: false,
             status: "success",
@@ -267,9 +269,17 @@ export const getTempSalary = async (navigation) => {
     .then((res) => {
       if (res.status == 200) {
         if (res.data.V_ERROR) {
-          navigation.navigate('Home');
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
         } else if (Object.values(res.data.data).length > 0) {
           data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data.data,
             isLoading: false,
             status: "success",
@@ -327,6 +337,7 @@ export const getSubscriberList = async (navigation) => {
           navigation.navigate('Home');
         } else if (Object.values(res.data.data).length > 0) {
           data = {
+            message: "Lấy dữ liệu thành công",
             data: res.data,
             isLoading: false,
             status: "success",
@@ -351,7 +362,7 @@ export const getSubscriberList = async (navigation) => {
 };
 
 // 7. Home > Lương Theo Tháng
-export const getSalaryByMonth = async (month, navigation) => {
+export const getSalaryByMonth = async (month) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => { token = data.accessToken });
   let data = {
@@ -382,7 +393,6 @@ export const getSalaryByMonth = async (month, navigation) => {
             length: 0,
             error: null
           }
-          navigation.navigate('Home');
         } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
@@ -421,6 +431,7 @@ export const getContractSalaryByMonth = async (month, navigation) => {
     loading: null,
     error: {},
   };
+
   await axios({
     method: "GET",
     url: `${baseUrl}actionItemKpi/getContractSalaryByMonth?month=01/${month}`,
@@ -433,7 +444,14 @@ export const getContractSalaryByMonth = async (month, navigation) => {
     .then((res) => {
       if (res.status == 200) {
         if (res.data.V_ERROR) {
-          navigation.navigate('Home');
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
         } else if (Object.values(res.data.data).length > 0) {
           data = {
             data: res.data.data,
@@ -484,7 +502,14 @@ export const getAvgIncomeDashboard = async (beginMonth, endMonth, navigation) =>
     .then((res) => {
       if (res.status == 200) {
         if (res.data.V_ERROR) {
-          navigation.navigate('Home');
+          data = {
+            message: "Máy chủ đang bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
         } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
@@ -563,6 +588,7 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
         };
       }
     });
+
   return data;
 };
 
@@ -590,8 +616,14 @@ export const getSubscriberQuality = async (navigation) => {
     .then((res) => {
       if (res.status == 200) {
         if (res.data.V_ERROR) {
-          navigation.navigate('Home');
-          console.log('lỗi V_ERROR')
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
         } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
@@ -614,6 +646,7 @@ export const getSubscriberQuality = async (navigation) => {
         };
       }
     });
+
   return data;
 };
 // 12. Home > Thông tin giao dịch
@@ -640,7 +673,14 @@ export const getTransactionInfo = async (month, navigation) => {
     .then((res) => {
       if (res.status == 200) {
         if (res.data.V_ERROR) {
-          navigation.navigate('Home');
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
         } else if (Object.values(res.data).length > 0) {
           data = {
             data: res.data.data,
@@ -663,6 +703,7 @@ export const getTransactionInfo = async (month, navigation) => {
         };
       }
     });
+
   return data;
 };
 
@@ -692,6 +733,15 @@ export const updateProfile = async (formData) => {
       data = res;
     }
   }).catch((error) => {
+    if (error) {
+      data = {
+        message: error.response.data.message,
+        isLoading: false,
+        status: "failed",
+        length: 0,
+        error: error.response.data,
+      };
+    }
   });
 
   return data;
