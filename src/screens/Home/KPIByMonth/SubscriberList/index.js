@@ -13,8 +13,6 @@ import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { value } from "../../../../utils/Values";
-import { subscriberList } from "../../../../sampledata";
 import { getProfile, getSubscriberList } from "../../../../api";
 import { UserObj } from "../../../../models/Data";
 import { useNavigation } from "@react-navigation/native";

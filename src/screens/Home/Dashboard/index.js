@@ -23,7 +23,6 @@ const Dashboard = (props) => {
   const [loading, setLoading] = useState(false)
 
   const _getProfile = async () => {
-
     await getProfile().then((res) => {
       if (res.status == "success") {
         setLoading(false)
@@ -49,7 +48,7 @@ const Dashboard = (props) => {
       backAction
     );
     if(navigation.isFocused){
-      getData();
+      _getProfile();
     }else{
 
     }
