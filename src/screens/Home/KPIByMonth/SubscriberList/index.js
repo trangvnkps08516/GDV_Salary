@@ -130,6 +130,7 @@ const SubscriberList = (props) => {
         rightIcon={images.searchlist}
         onChangeText={(value) => filterData(value)}
         placeholder={text.searchSub}
+        keyboardType="number-Pad"
       />
       <Body
         showInfo={false}

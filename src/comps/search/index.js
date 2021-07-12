@@ -9,7 +9,7 @@ function Search (props) {
                                 <TouchableOpacity onPress={() => navigation.goBack()}>
                                     <Image  resizeMode="contain" source={props.leftIcon} style={styles.leftIco} />
                                 </TouchableOpacity>
-                                <TextInput placeholder={props.placeholder} style={styles.homeSearch} onChangeText={props.onChangeText}  placeholderTextColor={colors.grey} />
+                                <TextInput keyboardType={props.keyboardType} placeholder={props.placeholder} style={styles.homeSearch} onChangeText={props.onChangeText}  placeholderTextColor={colors.grey} />
                                 <Image  resizeMode="contain"  source={props.rightIcon} style={styles.rightIco} />
                             </View>
     );

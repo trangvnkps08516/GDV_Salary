@@ -6,11 +6,12 @@ export const styles = StyleSheet.create({
     container:{ flex: 1,backgroundColor:colors.primary },
     bodyScr:{ marginTop: fontScale(27) },
     sumKpiContainer:{ flexDirection: "row",justifyContent:"center" },
-    sumKpiTitle:{ color: colors.black,fontSize:fontScale(16),fontWeight:"bold", marginTop: fontScale(10) },
-    sumKpiMonth:{ color: colors.black,fontSize:fontScale(16),fontWeight:"bold", marginTop: -fontScale(16) },
+    sumKpiTitle:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(16) },
+    sumKpiMonth:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(16) },
     sumKpi:{ color: colors.lightBlue,fontSize:fontScale(21),textAlign: "center",fontWeight:"bold", marginTop: fontScale(9) },
    
     detailInfo:{
+        // minHeight: 50,
         paddingVertical:fontScale(7),
         marginHorizontal:fontScale(17),
         shadowColor: "#000",
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
             height: 2,
         },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowRadius: 3.84,    
         elevation: 5
     }
 })
