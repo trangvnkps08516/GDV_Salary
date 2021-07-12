@@ -11,7 +11,6 @@ import SalaryByMonthDashboard from "./Home/SalaryByMonth/Dashboard";
 import SalaryByMonthFixedwage from "./Home/SalaryByMonth/Fixedwage";
 import SalaryByMonthContract from "./Home/SalaryByMonth/Contract";
 import SalaryByMonthArrears from "./Home/SalaryByMonth/Arrears";
-import AvgIncomeDashboard from "./Home/AvgIncome/Dashboard";
 import AvgIncomeByMonth from "./Home/AvgIncome/AvgIncomeByMonth";
 import TransactionInfo from "./Home/TransactionInfo";
 import SubscriberQuality from "./Home/SubscriberQuality";
@@ -32,7 +31,6 @@ export const SalaryByMonthDashboardScreen = () => {return <SalaryByMonthDashboar
 export const SalaryByMonthFixedwageScreen = () => {return <SalaryByMonthFixedwage />}
 export const SalaryByMonthContractScreen = () => {return <SalaryByMonthContract />}
 export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />}
-export const AvgIncomeDashboardScreen = () => {return <AvgIncomeDashboard />}
 export const AvgIncomeByMonthScreen = () => {return <AvgIncomeByMonth />}
 export const TransactionInfoScreen = () => {return <TransactionInfo />}
 // TransactionInfo

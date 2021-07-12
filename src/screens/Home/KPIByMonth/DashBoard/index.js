@@ -94,14 +94,11 @@ const DashBoard = (props) => {
           <ActivityIndicator size="small" color={colors.primary} />
         ) : (
           <>
-           
-
-           
             <MenuItem
            
               style={{ marginTop: fontScale(30) }}
               title={text.kpiAchieved}
-           
+
               icon={images.kpiByMonth}
               value={thoundsandSep(data.achieveKPI)}
               width={width - fontScale(60)}
@@ -110,7 +107,7 @@ const DashBoard = (props) => {
             <MenuItem
               style={{ marginTop: fontScale(60) }}
               // title={text.expectedSalaryMenu + "("+month+")" } 
-              title={text.expectedSalaryMenu} 
+              title={text.expectedSalaryMenu}
               icon={images.salaryByMonth}
               value={thoundsandSep(data.provSal)}
               width={width - fontScale(60)}

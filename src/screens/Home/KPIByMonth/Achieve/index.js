@@ -93,14 +93,14 @@ const Achieve = (props) => {
                         <>
                             <View style={styles.sumKpiContainer}>
                                 <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
-                                <Text style={styles.sumKpi}>{data.sumKpi} %</Text>
+                                <Text style={styles.sumKpi}>{data.sumKpi}</Text>
                             </View>
                             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                                 <View style={styles.detailInfo}>
                                     <ListItem icon={images.sim} title={text.kpiPrepaidSubscribers} price={checkn(data.prePaid)} />
                                     <ListItem icon={images.sim} title={text.kpiPostpaidSubscribers} price={checkn(data.postPaid)} />
                                     <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
-                                    <ListItem icon={images.important} title={text.kpiImportant} price={checkn(data.importantKpi)} />
+                                    <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi+'\n(Theo kế hoạch MNP)'} />
                                     <ListItem icon={images.retailsales} title={text.retailSales} price={thoundsandSep(data.retailSales)} />
                                 </View>
                                 <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>

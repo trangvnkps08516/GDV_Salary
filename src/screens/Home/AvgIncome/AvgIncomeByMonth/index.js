@@ -16,7 +16,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // Bình Quân Tháng và Tổng Thu Nhập
 function AvgIncomeByMonth(props) {
     const route = useRoute()
-    const [beginMonth, setMonth] = useState(moment(new Date()).subtract(6, 'months').format("MM/YYYY"));
+    const [beginMonth, setMonth] = useState('01'+'/'+moment(new Date()).format("YYYY"));
     const [sMonth, setSMonth] = useState(moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(M_AvgIncomeByMonth);
@@ -100,15 +100,12 @@ function AvgIncomeByMonth(props) {
                 <Text style={styles.notification}>{data.notification}</Text>
                 <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
             </View>
-
-
             <ScrollView style={{ backgroundColor: colors.white }} showsVerticalScrollIndicator={false}>
-
                 <View style={{ backgroundColor: colors.white, paddingVertical: fontScale(30), flex: 1 }}>
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                             <View>
-                                <View style={[styles.sumKpiContainer, { marginTop: -fontScale(25) }]}>
+                                <View style={[styles.sumKpiContainer, { marginTop: -fontScale(35) }]}>
                                     <Text style={styles.sumKpiTitle}>{text.averageMonth}: </Text>
                                     <Text style={styles.sumKpi}>{thoundsandSep(data.avgByMonth)}</Text>
                                 </View>

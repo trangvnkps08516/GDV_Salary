@@ -29,7 +29,6 @@ const TransactionInfo = (props) => {
     const getData = async (month) => {
         setLoading(true)
         await getTransactionInfo(month,navigation).then((res) => {
-            console.log(res)
             if (res.status == "success") {
                 setLoading(false)
                 setData(res.data)

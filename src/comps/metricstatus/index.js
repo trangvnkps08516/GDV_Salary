@@ -1,9 +1,7 @@
 import React from 'react';
-import { SafeAreaView, View, StatusBar, Text } from 'react-native';
-import { colors } from '../../utils/Colors';
+import {View, Text } from 'react-native';
 import { fontScale } from '../../utils/Fonts';
 import { styles } from './styles'
-
 
 function MetricStatus(props) {
     return (

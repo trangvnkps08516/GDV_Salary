@@ -3,7 +3,6 @@ import { Text, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { images } from '../../utils/Images';
 import { colors } from '../../utils/Colors';
 import { fontScale } from '../../utils/Fonts';
-import MonthYearPicker from 'react-native-simple-month-year-picker';
 import CustomPicker from './CustomPicker';
 
 const YearMonthPicker = (props) => {

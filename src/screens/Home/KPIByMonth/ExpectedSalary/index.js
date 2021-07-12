@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, BackHandler, ScrollView } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView, BackHandler } from 'react-native';
 import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -47,13 +47,13 @@ const ExpectedSalary = (props) => {
 
         await getProfile(navigation).then((res) => {
             if (res.status == "success") {
-              setLoading(false)
-              setUserData(res.data)
+                setLoading(false)
+                setUserData(res.data)
             }
             if (res.status == "failed") {
-              setLoading(false)
+                setLoading(false)
             }
-          })
+        })
 
     }
 
@@ -83,33 +83,33 @@ const ExpectedSalary = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiByMonth} />
-            { loading == true ? null : <DateView dateLabel={data.dateRange} /> }
-            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV}/>
+            {loading == true ? null : <DateView dateLabel={data.dateRange} />}
+            <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
-                        <>
-                            <View style={styles.sumKpiContainer}>
-                                <Text style={styles.sumKpiTitle}>{text.expectedSalary} </Text>
-                                {/* <Text style={styles.sumKpiMonth}>{month}</Text> */}
-                                <Text style={styles.sumKpiMonth}></Text>
-                                
+                        <View style={{backgroundColor:colors.white,flex:1}}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={{paddingBottom: 10 }}>
+                            <View style={{ flex: 1,marginBottom:fontScale(10) }}>
+                                <View style={styles.sumKpiContainer}>
+                                    <Text style={styles.sumKpiTitle}>{text.expectedSalary}: </Text>
+                                    <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
+                                </View>
+                                <View>
+                                    <MenuItem view style={{ marginTop: fontScale(50) }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
+                                </View>
+                                <View style={[styles.detailInfo]}>
+                                    <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.contractSalary)} />
+                                    <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />
+                                    <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={thoundsandSep(data.postPaid)} />
+                                    <ListItem icon={images.vas} title={text.vasFee} price={thoundsandSep(data.vas)} />
+                                    <ListItem icon={images.sim5g} title={text.ordersServiceFee} price={thoundsandSep(data.otherService)} />
+                                    <ListItem icon={images.phone} title={text.terminalServiceFee} price={thoundsandSep(data.terminalDevice)} />
+                                </View>
                             </View>
-                            <Text style={styles.sumKpi}>{thoundsandSep(data.expectedSalary)}</Text>
-                            
-                            <View>
-                                <MenuItem view style={{ marginTop: fontScale(35) }} titleStyle={{  paddingTop: fontScale(27)  }} title={text.fixedSalary} icon={images.salaryByMonth} width={width - fontScale(40)} value={thoundsandSep(data.permanentSalary)} />
-                            </View>
-                            <View style={styles.detailInfo}>
-                                <ListItem main icon={images.sim} title={text.upSalaryProduct} price={thoundsandSep(data.contractSalary)} />
-                                <ListItem icon={images.sim} title={text.prepaidSubscriptionFee} price={thoundsandSep(data.prePaid)} />
-                                <ListItem icon={images.sim} title={text.postpaidSSubscriptionFee} price={thoundsandSep(data.postPaid)} />
-                                <ListItem icon={images.vas} title={text.vasFee} price={thoundsandSep(data.vas)} />
-                                <ListItem icon={images.sim5g} title={text.ordersServiceFee} price={thoundsandSep(data.otherService)} />
-                                <ListItem icon={images.phone} title={text.terminalServiceFee} price={thoundsandSep(data.terminalDevice)} />
-                            </View>
-                        </>
+                        </ScrollView>
+                        </View>
                 }
             </View>
         </SafeAreaView>
