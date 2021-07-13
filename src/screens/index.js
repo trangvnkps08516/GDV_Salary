@@ -33,7 +33,6 @@ export const SalaryByMonthContractScreen = () => {return <SalaryByMonthContract 
 export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />}
 export const AvgIncomeByMonthScreen = () => {return <AvgIncomeByMonth />}
 export const TransactionInfoScreen = () => {return <TransactionInfo />}
-// TransactionInfo
 export const SubscriberQualityScreen = () => {return <SubscriberQuality />}
 export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}

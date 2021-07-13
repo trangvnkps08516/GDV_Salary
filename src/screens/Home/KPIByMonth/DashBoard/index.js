@@ -64,7 +64,7 @@ const DashBoard = (props) => {
 
   useEffect(() => {
     const backAction = () => {
-      navigation.goBack();
+      navigation.navigate("Home");
       return true;
     };
 
@@ -75,7 +75,7 @@ const DashBoard = (props) => {
     getData();
 
     return () => {
-      backHandler.remove();
+      
     };
   }, [""]);
   return (
@@ -95,7 +95,7 @@ const DashBoard = (props) => {
         ) : (
           <>
             <MenuItem
-           
+
               style={{ marginTop: fontScale(30) }}
               title={text.kpiAchieved}
 
@@ -106,25 +106,21 @@ const DashBoard = (props) => {
             />
             <MenuItem
               style={{ marginTop: fontScale(60) }}
-              // title={text.expectedSalaryMenu + "("+month+")" } 
               title={text.expectedSalaryMenu}
               icon={images.salaryByMonth}
               value={thoundsandSep(data.provSal)}
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("ExpectedSalary")}
             />
-
-<MenuItem
-           titleMenuStyle={{paddingTop: fontScale(17)}}
+            <MenuItem
+              titleMenuStyle={{ paddingTop: fontScale(17) }}
               style={{ marginTop: fontScale(60) }}
               title={text.subscriberList}
-           
               icon={images.simlist}
-             
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("SubscriberList")}
             />
-           
+
           </>
         )}
       </View>

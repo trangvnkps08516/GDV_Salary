@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../../utils/Colors";
+import { width } from "../../../../utils/Dimenssion";
 import { fontScale } from "../../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -19,5 +20,6 @@ export const styles = StyleSheet.create({
 
     search:{
         marginTop: fontScale(20)
-    }
+    },
+    dateCol:{ textAlign: "center",fontSize: fontScale(14) }
 })

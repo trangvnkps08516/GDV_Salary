@@ -14,6 +14,7 @@ import ProfileItem from "./profileItem";
 import Search from "./search";
 import TableHeader from "./tableheader";
 import FlatlistItem from "./flatlistItem";
+import GeneralListItem from "./generallistitem";
 
 export {
     Button,
@@ -31,5 +32,6 @@ export {
     ProfileItem,
     Search,
     TableHeader,
-    FlatlistItem
+    FlatlistItem,
+    GeneralListItem
 }

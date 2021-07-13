@@ -3,6 +3,7 @@ import { SafeAreaView, StatusBar, Text, FlatList, View } from "react-native";
 import {
   Body,
   FlatlistItem,
+  GeneralListItem,
   Header,
   MetricStatus,
   Search,
@@ -20,6 +21,8 @@ import { UserObj } from "../../../../models/Data";
 import { useNavigation } from "@react-navigation/native";
 import { BackHandler } from "react-native";
 import { ActivityIndicator } from "react-native";
+// import GeneralListItem from "../../../../comps";
+import { width } from "../../../../utils/Dimenssion";
 
 const SubscriberList = (props) => {
   const [data, setData] = useState([]);
@@ -42,7 +45,7 @@ const SubscriberList = (props) => {
           if (res.data.data.length > 0) {
             //if cho cái array data nhỏ bên trong
             setNotification(res.data.notification);
-            setData(res.data.data); // res.data này nó bao gồm notification và 1 array data nhỏ bên trong
+            setData(res.data.data);
             setSearchData(res.data.data);
           } else {
             setMessage("Không có dữ liệu!");
@@ -89,7 +92,7 @@ const SubscriberList = (props) => {
 
   useEffect(() => {
     const backAction = () => {
-      navigation.goBack();
+      navigation.navigate("KPIByMonthKPIByMonthDashboard");
       return true;
     };
 
@@ -149,15 +152,40 @@ const SubscriberList = (props) => {
           </Text> : null
         }
 
-        <FlatList
+        {/* <FlatList
           showsVerticalScrollIndicator={false}
-          data={searchData} // data thật => chấm data 1 lần nữa để vào cái array bên trong
+          data={searchData} // data thật => dùng searchData, phục vụ cho việc tìm kiếm số thuê bao
           // data={tempData} //data ảo
-          style={{marginTop:fontScale(10)}}
+          style={{ marginTop: fontScale(10) }}
           keyExtractor={(item, index) => index.toString()}
           key={({ item }) => item.numberSub.toString()}
           renderItem={({ item, index }) => (
             <FlatlistItem item={item} index={index} />
+          )}
+        /> */}
+
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={searchData} // data thật => dùng searchData, phục vụ cho việc tìm kiếm số thuê bao
+          // data={tempData} //data ảo
+          style={{ marginTop: fontScale(10) }}
+          keyExtractor={(item, index) => index.toString()}
+          key={({ item }) => item.numberSub.toString()}
+          renderItem={({ item, index }) => (
+            <GeneralListItem
+              item={item}
+              index={index}
+              fields={[item.date, item.numberSub, item.statusPaid, item.type, item.pckSub]}
+              style={[
+                [styles.dateCol, { width: width * 1.7 / 10 }],
+                [styles.dateCol, { width: width * 2.5 / 10 }],
+                [styles.dateCol, { width: width * 1.7 / 10 }],
+                [styles.dateCol, { width: width * 2.9 / 10 }],
+                [styles.dateCol, { width: width * 1 / 10 }],
+              ]}
+              lastIcon={item.pckSub == 1 ? images.check : images.cancle}
+              lastIconViewStyle={{ alignItems: "center", justifyContent: "flex-end" }}
+              lastIconStyle={{ flex: 0.5, width: fontScale(15), height: fontScale(19) }} />
           )}
         />
       </View>

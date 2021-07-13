@@ -9,7 +9,7 @@ import { styles } from './styles';
 import { useEffect } from 'react';
 import { _removeData, _retrieveData } from '../../utils/Storage';
 
-const SignOut = (props) => {
+const SignOut = () => {
     const navigation = useNavigation();
 
     const logoutUser = async () => {
@@ -23,12 +23,10 @@ const SignOut = (props) => {
             navigation.navigate('Home');
             return true;
         };
-
         const backHandler = BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
         );
-
         return () => {
             backHandler.remove();
         };

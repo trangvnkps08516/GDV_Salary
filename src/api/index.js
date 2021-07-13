@@ -75,7 +75,6 @@ export const getProfile = async () => {
   })
     .then((res) => {
       if (res.status == 200) {
-
         if (res.data.V_ERROR) {
           data = {
             message: "Chức năng này đang được bảo trì",
