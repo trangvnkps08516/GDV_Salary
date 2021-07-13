@@ -2,13 +2,10 @@ import React from 'react';
 import { Image, View, Text } from 'react-native';
 import { colors } from '../../utils/Colors';
 
-function GeneralListItem(props) {
+const GeneralListItem = (props) => {
   return (
     <View
-      style={{
-        backgroundColor: props.index % 2 ? colors.lightGrey : colors.white,
-        paddingVertical: 8
-      }}    >
+      style={{ backgroundColor: props.index % 2 ? colors.lightGrey : colors.white, paddingVertical: 8 }}    >
       <View style={{ flexDirection: "row" }}>
         {
           props.fields.map((item, index) => {

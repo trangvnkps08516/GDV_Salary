@@ -166,8 +166,7 @@ const SubscriberList = (props) => {
 
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={searchData} // data thật => dùng searchData, phục vụ cho việc tìm kiếm số thuê bao
-          // data={tempData} //data ảo
+          data={searchData}
           style={{ marginTop: fontScale(10) }}
           keyExtractor={(item, index) => index.toString()}
           key={({ item }) => item.numberSub.toString()}
@@ -184,7 +183,7 @@ const SubscriberList = (props) => {
                 [styles.dateCol, { width: width * 1 / 10 }],
               ]}
               lastIcon={item.pckSub == 1 ? images.check : images.cancle}
-              lastIconViewStyle={{ alignItems: "center", justifyContent: "flex-end" }}
+              lastIconViewStyle={{ alignItems: "center", flex: 0.5 }}
               lastIconStyle={{ flex: 0.5, width: fontScale(15), height: fontScale(19) }} />
           )}
         />
