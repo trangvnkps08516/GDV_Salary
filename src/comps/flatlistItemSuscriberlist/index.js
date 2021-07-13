@@ -15,11 +15,11 @@ function FlatlistItem(props) {
     >
       <View style={{ flexDirection: "row" }}>
       
-        <Text style={{ width:width*1.7/10, textAlign:"center", fontSize: fontScale(14)}}>{props.item.date}</Text>
-      <Text style={{ width:width*2.5/10, textAlign:"center",textAlignVertical: "center", fontSize: fontScale(14)  }} >{props.item.numberSub}</Text>
-      <Text style={{ width:width*1.8/10, textAlign:"center",textAlignVertical: "center", fontSize: fontScale(14)  }} >{props.item.statusPaid}</Text>
+        <Text style={{ width:width*2/10, textAlign:"center", fontSize: fontScale(14)}}>{props.item.date}</Text>
+      <Text style={{ width:width*2.6/10, textAlign:"center",textAlignVertical: "center", fontSize: fontScale(14)  }} >{props.item.numberSub}</Text>
+      <Text style={{ width:width*1.7/10, textAlign:"center",textAlignVertical: "center", fontSize: fontScale(14)  }} >{props.item.statusPaid}</Text>
       <Text style={{ width:width*2.5/10, textAlign:"center",textAlignVertical: "center", fontSize: fontScale(14)  }} >{props.item.type}</Text>
-      <View style={{ width:width*1/10,  justifyContent: "center", alignItems: "center", fontSize: fontScale(14)}}>
+      <View style={{ width:width*1.1/10,  justifyContent: "center", alignItems: "center", fontSize: fontScale(14)}}>
      <Image resizeMode="contain" style={{ flex: 0.5, alignSelf:"center", width:fontScale(15),height:fontScale(19) }} source={props.item.pckSub == 1 ? images.check : images.cancle} />
       </View> 
        

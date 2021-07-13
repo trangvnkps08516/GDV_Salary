@@ -20,6 +20,7 @@ import { UserObj } from "../../../../models/Data";
 import { useNavigation } from "@react-navigation/native";
 import { BackHandler } from "react-native";
 import { ActivityIndicator } from "react-native";
+import { width } from "../../../../utils/Dimenssion";
 
 const SubscriberList = (props) => {
   const [data, setData] = useState([]);
@@ -138,11 +139,11 @@ const SubscriberList = (props) => {
       />
       <View style={{ flex: 1, backgroundColor: colors.white }}>
         <View style={{ flexDirection: "row" }}>
-          <TableHeader style={{ flex: 1.8 }} title={text.date} />
-          <TableHeader style={{ flex: 1.5 }} title={text.numberSub} />
-          <TableHeader style={{ flex: 1.7 }} title={text.statusPaid} />
-          <TableHeader style={{ flex: 1.7 }} title={text.type} />
-          <TableHeader style={{ flex: 0.9 }} title={text.pckSub} />
+          <TableHeader style={{ width:width*2/10 }} title={text.date} />
+          <TableHeader style={{  width:width*1.5/10 }} title={text.numberSub} />
+          <TableHeader style={{ width:width*1.7/10 }} title={text.statusPaid} />
+          <TableHeader style={{ width:width*1.5/10 }} title={text.type} />
+          <TableHeader style={{ width:width*0.8/10 }} title={text.pckSub} />
         </View>
         {loading == true ? (
           <ActivityIndicator size="small" color={colors.primary} />
@@ -159,7 +160,7 @@ const SubscriberList = (props) => {
         </Text>
 
         <FlatList
-          data={searchData} // data thật => chấm data 1 lần nữa để vào cái array bên trong
+          data={searchData} 
           // data={tempData} //data ảo
           key={({ item }) => item.numberSub.toString()}
           renderItem={({ item, index }) => (

@@ -13,7 +13,7 @@ import TotalSalary from "./totalsalry";
 import ProfileItem from "./profileItem";
 import Search from "./search";
 import TableHeader from "./tableheader";
-import FlatlistItem from "./flatlistItem";
+import FlatlistItem from "./flatlistItemSuscriberlist";
 
 export {
     Button,
