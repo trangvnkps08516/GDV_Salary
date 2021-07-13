@@ -14,14 +14,11 @@ import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { value } from "../../../../utils/Values";
-import { subscriberList } from "../../../../sampledata";
 import { getProfile, getSubscriberList } from "../../../../api";
 import { UserObj } from "../../../../models/Data";
 import { useNavigation } from "@react-navigation/native";
 import { BackHandler } from "react-native";
 import { ActivityIndicator } from "react-native";
-// import GeneralListItem from "../../../../comps";
 import { width } from "../../../../utils/Dimenssion";
 
 const SubscriberList = (props) => {
@@ -141,15 +138,7 @@ const SubscriberList = (props) => {
 
         {
           message ? <Text
-            style={{
-              color: colors.primary,
-              textAlign: "center",
-              marginTop: fontScale(15),
-              fontSize: fontScale(15)
-            }}
-          >
-            {message}
-          </Text> : null
+            style={styles.message}>{message}</Text> : null
         }
 
         {/* <FlatList
@@ -180,7 +169,7 @@ const SubscriberList = (props) => {
                 [styles.dateCol, { width: width * 2.5 / 10 }],
                 [styles.dateCol, { width: width * 1.7 / 10 }],
                 [styles.dateCol, { width: width * 2.9 / 10 }],
-                [styles.dateCol, { width: width * 1 / 10 }],
+                [styles.dateCol, { width: width * 1 / 10 }]
               ]}
               lastIcon={item.pckSub == 1 ? images.check : images.cancle}
               lastIconViewStyle={{ alignItems: "center", flex: 0.5 }}

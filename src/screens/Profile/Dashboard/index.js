@@ -54,7 +54,6 @@ const DashBoard = (props) => {
 
         getData();
         return () => {
-
             backHandler.remove();
         };
 
@@ -103,7 +102,6 @@ const DashBoard = (props) => {
                             <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdatePassword")]}>
                                 <Text style={styles.menuTitle}>{text.changePassword}</Text>
                             </TouchableOpacity>
-
                             <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdateProfile")]}>
                                 <Text style={styles.menuTitle}>{text.updateProfile}</Text>
                             </TouchableOpacity>

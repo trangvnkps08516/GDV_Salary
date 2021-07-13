@@ -23,8 +23,6 @@ import { _retrieveData } from "../../../../utils/Storage";
 import Toast from "react-native-toast-message";
 
 const DashBoard = (props) => {
-  const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
-  const [showDate, setShowDate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
   const [user, setUserData] = useState(UserObj);
@@ -95,10 +93,8 @@ const DashBoard = (props) => {
         ) : (
           <>
             <MenuItem
-
               style={{ marginTop: fontScale(30) }}
               title={text.kpiAchieved}
-
               icon={images.kpiByMonth}
               value={thoundsandSep(data.achieveKPI)}
               width={width - fontScale(60)}

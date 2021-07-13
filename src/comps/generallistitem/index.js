@@ -10,8 +10,8 @@ const GeneralListItem = (props) => {
         {
           props.fields.map((item, index) => {
             return props.lastIcon && index == props.fields.length - 1
-              ? <View style={props.lastIconViewStyle}><Image resizeMode="contain" style={props.lastIconStyle} source={props.lastIcon} /></View>
-              : <Text style={props.style[index]}>{item}</Text>
+              ? <View style={props.lastIconViewStyle} key={index} ><Image resizeMode="contain" style={props.lastIconStyle} source={props.lastIcon} /></View>
+              : <Text style={props.style[index]} key={index}>{item}</Text>
           })
         }
       </View>

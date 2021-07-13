@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Modal, TouchableOpacity, TouchableHighlight, Dimensions } from 'react-native';
 import { colors } from '../../utils/Colors';
 import { height } from '../../utils/Dimenssion';
@@ -20,10 +20,9 @@ const MonthYearPicker = (props) => {
         { key: 12, name: 'Tháng 12' },
     ]
 
-    const { width, height } = Dimensions.get('window')
-
-    const [month, setMonth] = useState(props.selectedMonth || month_data[new Date().getMonth()])
-    const [year, setYear] = useState(new Date().getFullYear())
+    const { width } = Dimensions.get('window');
+    const [month, setMonth] = useState(props.selectedMonth || month_data[new Date().getMonth()]);
+    const [year, setYear] = useState(new Date().getFullYear());
 
     return (
         <Modal
@@ -31,8 +30,7 @@ const MonthYearPicker = (props) => {
             transparent={true}
             visible={props.isShow}
             onRequestClose={props.close}
-            style={props.style}
-        >
+            style={props.style}>
             <TouchableHighlight style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }} onPress={props.close}>
                 <View />
             </TouchableHighlight>
