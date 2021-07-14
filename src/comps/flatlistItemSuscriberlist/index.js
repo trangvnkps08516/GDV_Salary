@@ -1,18 +1,17 @@
 import React from 'react';
-import { Image,View,Text } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import { colors } from '../../utils/Colors';
 import { width } from '../../utils/Dimenssion';
 import { fontScale } from '../../utils/Fonts';
 import { images } from '../../utils/Images';
 
 function FlatlistItem(props) {
-    return (
-        <View
+  return (
+    <View
       style={{
         backgroundColor: props.index % 2 ? colors.lightGrey : colors.white,
-        paddingVertical:8
-      }}
-    >
+        paddingVertical: 8
+      }}    >
       <View style={{ flexDirection: "row" }}>
       
         <Text style={{ width:width*2/10, textAlign:"center", fontSize: fontScale(14)}}>{props.item.date}</Text>
@@ -25,7 +24,7 @@ function FlatlistItem(props) {
        
       </View>
     </View>
-    );
+  );
 }
 
 export default FlatlistItem;

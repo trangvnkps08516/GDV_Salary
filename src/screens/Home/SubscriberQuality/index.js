@@ -8,9 +8,10 @@ import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
-import { thoundsandSep } from '../../../utils/Logistics';
+import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
 import { M_SubscriberQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
+import Toast from 'react-native-toast-message';
 
 const SubscriberQuality = (props) => {
     const [data, setData] = useState(M_SubscriberQuality);
@@ -22,14 +23,24 @@ const SubscriberQuality = (props) => {
         setLoading(true)
         await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
-                setLoading(false)
-                setData(res.data)
+                setData(res.data);
+                setLoading(false);
             }
             if (res.status == "failed") {
+                ToastNotif('Cảnh báo', res.message, 'error', true);
                 setLoading(false)
             }
+            if (res.status == "v_error") {
+                Toast.show({
+                    text1: "Cảnh báo",
+                    text2: res.message,
+                    type: "error",
+                    visibilityTime: 100,
+                    autoHide: true,
+                    onHide: () => navigation.navigate("Home")
+                })
+            }
         })
-
     }
 
     const _getProfile = async () => {
@@ -45,12 +56,10 @@ const SubscriberQuality = (props) => {
     }
 
     useEffect(() => {
-
         const backAction = () => {
             navigation.goBack();
             return true;
         };
-
         const backHandler = BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
@@ -101,6 +110,7 @@ const SubscriberQuality = (props) => {
                 }
 
             </View>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }

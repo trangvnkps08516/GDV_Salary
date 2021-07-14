@@ -10,15 +10,15 @@ export const styles = StyleSheet.create({
         // flex: 1
     },
     icon: {
-        width: height * 0.0184729064039409,
-        height: height * 0.0184729064039409,
+        width: fontScale(15),
+        height: fontScale(15),
         marginTop: 0
     },
     title: {
         color: '#20B8B8',
         fontSize: fontScale(14),
         fontWeight: 'bold',
-        marginLeft: height * 0.0049261083743842,
-        marginHorizontal: height * 0.0061576354679803
+        marginLeft:fontScale(4),
+        marginHorizontal: fontScale(5)
     }
 });

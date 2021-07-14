@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Modal, TouchableOpacity, TouchableHighlight, Dimensions } from 'react-native';
 import { colors } from '../../utils/Colors';
 import { height } from '../../utils/Dimenssion';
+import { fontScale } from '../../utils/Fonts';
 
 const MonthYearPicker = (props) => {
     const month_data = [
@@ -19,15 +20,9 @@ const MonthYearPicker = (props) => {
         { key: 12, name: 'Tháng 12' },
     ]
 
-    const { width, height } = Dimensions.get('window')
-
-    const [month, setMonth] = useState(props.selectedMonth || month_data[new Date().getMonth()])
-    const [year, setYear] = useState(new Date().getFullYear())
-
-    useEffect(() => {
-        // props.onChangeYear(year)
-        // props.onChangeMonth(month_data[new Date().getMonth()])
-    })
+    const { width } = Dimensions.get('window');
+    const [month, setMonth] = useState(props.selectedMonth || month_data[new Date().getMonth()]);
+    const [year, setYear] = useState(new Date().getFullYear());
 
     return (
         <Modal
@@ -35,8 +30,7 @@ const MonthYearPicker = (props) => {
             transparent={true}
             visible={props.isShow}
             onRequestClose={props.close}
-            style={props.style}
-        >
+            style={props.style}>
             <TouchableHighlight style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }} onPress={props.close}>
                 <View />
             </TouchableHighlight>
@@ -46,14 +40,14 @@ const MonthYearPicker = (props) => {
                         setYear(year - 1)
                         props.onChangeYear(year - 1)
                     }}>
-                        <Text>Năm trước</Text>
+                        <Text style={{fontSize:fontScale(14)}}>Năm trước</Text>
                     </TouchableOpacity>
                     <Text style={styles.yearLabel}>{year}</Text>
                     <TouchableOpacity onPress={() => {
                         setYear(year + 1)
                         props.onChangeYear(year + 1)
                     }}>
-                        <Text>Năm sau</Text>
+                        <Text style={{fontSize:fontScale(14)}}>Năm sau</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.monthContainer}>
@@ -68,9 +62,10 @@ const MonthYearPicker = (props) => {
                                 props.close()
                             }}
                             style={[styles.month, { width: (width / 3), backgroundColor: item.key == month.key ? colors.primary : 'white' }]}>
-                            <Text style={{ color: item.key == month.key ? 'white' : 'black' }}>{item.name}</Text>
+                            <Text style={{ fontSize: fontScale(15),color: item.key == month.key ? 'white' : 'black' }}>{item.name}</Text>
                         </TouchableOpacity>
                     )}
+                   
                 </View>
             </View>
         </Modal>
@@ -79,7 +74,7 @@ const MonthYearPicker = (props) => {
 
 const styles = {
     yearContainer: {
-        padding: 10,
+        padding: fontScale(10),
         borderBottomWidth: 1,
         borderBottomColor: 'black',
         flexDirection: 'row',
@@ -98,7 +93,7 @@ const styles = {
     },
 
     yearLabel: {
-        fontWeight: 'bold', fontSize: 22,color:colors.primary
+        fontWeight: 'bold', fontSize: fontScale(22),color:colors.primary
     },
 }
 

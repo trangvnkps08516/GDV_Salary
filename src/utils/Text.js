@@ -3,6 +3,7 @@
 export const text = {
   dashboard: "Trang chủ",  
   saveChange: "Lưu thay đổi",
+  appName:"Giao dịch viên",
   //Login, Logout,...
   username: "Username",
   password: "Mật khẩu",

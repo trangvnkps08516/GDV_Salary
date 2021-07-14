@@ -1,11 +1,11 @@
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors } from "../../../utils/Colors";
 import { height, statusbarHeight, width } from "../../../utils/Dimenssion";
 import { fontScale } from "../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.primary,
         flex: 1
     },
     headerShape: {

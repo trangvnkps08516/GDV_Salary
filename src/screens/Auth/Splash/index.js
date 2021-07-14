@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
+import { height } from '../../../utils/Dimenssion';
+import { text } from '../../../utils/Text';
 
 const Splash = (props) => {
     const navigation = useNavigation();
@@ -29,12 +31,14 @@ const Splash = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
-            <View>
-                <Image source={images.logo} style={styles.logo} />
+            <Image source={images.logo} style={styles.logo} />
+            <View style={{ flex: 4, justifyContent: "center" }}>
                 <Image source={images.splashshape} style={styles.shape} />
-                <Text style={styles.appName}>Giao dịch viên</Text>
             </View>
-            <ActivityIndicator size="small" color={colors.white} style={styles.loadingIcon} />
+            <View style={{ flex: 2 }}>
+                <Text style={styles.appName}>{text.appName}</Text>
+                <ActivityIndicator size="small" color={colors.white} style={styles.loadingIcon} />
+            </View>
         </SafeAreaView>
     );
 }

@@ -23,8 +23,6 @@ import { _retrieveData } from "../../../../utils/Storage";
 import Toast from "react-native-toast-message";
 
 const DashBoard = (props) => {
-  const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
-  const [showDate, setShowDate] = useState(false);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
   const [user, setUserData] = useState(UserObj);
@@ -64,7 +62,7 @@ const DashBoard = (props) => {
 
   useEffect(() => {
     const backAction = () => {
-      navigation.goBack();
+      navigation.navigate("Home");
       return true;
     };
 
@@ -75,7 +73,7 @@ const DashBoard = (props) => {
     getData();
 
     return () => {
-      backHandler.remove();
+      
     };
   }, [""]);
   return (
@@ -95,10 +93,8 @@ const DashBoard = (props) => {
         ) : (
           <>
             <MenuItem
-           
               style={{ marginTop: fontScale(30) }}
               title={text.kpiAchieved}
-
               icon={images.kpiByMonth}
               value={thoundsandSep(data.achieveKPI)}
               width={width - fontScale(60)}
@@ -106,25 +102,21 @@ const DashBoard = (props) => {
             />
             <MenuItem
               style={{ marginTop: fontScale(60) }}
-              // title={text.expectedSalaryMenu + "("+month+")" } 
               title={text.expectedSalaryMenu}
               icon={images.salaryByMonth}
               value={thoundsandSep(data.provSal)}
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("ExpectedSalary")}
             />
-
-<MenuItem
-           titleMenuStyle={{paddingTop: fontScale(17)}}
+            <MenuItem
+              titleMenuStyle={{ paddingTop: fontScale(17) }}
               style={{ marginTop: fontScale(60) }}
               title={text.subscriberList}
-           
               icon={images.simlist}
-             
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("SubscriberList")}
             />
-           
+
           </>
         )}
       </View>

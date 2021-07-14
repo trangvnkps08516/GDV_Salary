@@ -6,7 +6,6 @@ import { width } from '../../utils/Dimenssion';
 const ProfileItem = (props) => {
     return (
         <View style={[styles.container, props.extStyle]}>
-            {/* <CircleImage image={props.icon} size={32} style={styles.icon}/> */}
             <Image source={props.icon} style={styles.icon} resizeMode="cover" />
             <View style={styles.textContent}>
                 <Text style={styles.title}>{props.title}</Text>

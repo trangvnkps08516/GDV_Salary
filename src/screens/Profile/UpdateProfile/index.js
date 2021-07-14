@@ -12,14 +12,13 @@ import {
 } from "react-native";
 import { getProfile, updateProfile } from "../../../api";
 import { Button, Header, ProfileItem } from "../../../comps";
-import { Profile, UserObj } from "../../../models/Data";
+import { UserObj } from "../../../models/Data";
 import { colors } from "../../../utils/Colors";
 import { images } from "../../../utils/Images";
 import { text } from "../../../utils/Text";
 import { styles } from "./styles";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/core";
-import { height, width } from "../../../utils/Dimenssion";
 import mime from "mime";
 import { imgUrl } from "../../../api/untils";
 import { _storeData } from "../../../utils/Storage";

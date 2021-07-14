@@ -12,6 +12,7 @@ import { thoundsandSep } from '../../../utils/Logistics';
 import { text } from '../../../utils/Text';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 
 const TransactionInfo = (props) => {
@@ -28,14 +29,24 @@ const TransactionInfo = (props) => {
 
     const getData = async (month) => {
         setLoading(true)
-        await getTransactionInfo(month,navigation).then((res) => {
+        await getTransactionInfo(month, navigation).then((res) => {
             if (res.status == "success") {
-                setLoading(false)
-                setData(res.data)
+                setData(res.data);
+                setLoading(false);
             }
             if (res.status == "failed") {
-                setLoading(false)
-
+                ToastNotif('Cảnh báo', res.message, 'error', true);
+                setLoading(false);
+            }
+            if (res.status == "v_error") {
+                Toast.show({
+                    text1: "Cảnh báo",
+                    text2: res.message,
+                    type: "error",
+                    visibilityTime: 100,
+                    autoHide: true,
+                    onHide: () => navigation.navigate("Home")
+                })
             }
         })
     }
@@ -70,14 +81,13 @@ const TransactionInfo = (props) => {
         };
 
     }, [""]);
-    
+
     return (
         <SafeAreaView style={{ backgroundColor: colors.primary, flex: 1 }}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.transactionsInfo} />
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _setMonth(date)} />
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-
             <View style={styles.body}>
                 {
                     loading == false ?
@@ -86,11 +96,11 @@ const TransactionInfo = (props) => {
                             <ListItem icon={images.transactionInformation} title={text.transactions} price={thoundsandSep(data.dealingsCount)} />
                             <ListItem icon={images.sim} title={text.transAmount} price={thoundsandSep(data.preToPostPaid)} />
                             <ListItem icon={images.nonesim} title={text.trans2CAmount} price={thoundsandSep(data.denyTwoC)} />
-
                         </View> :
                         <ActivityIndicator size="small" color={colors.primary} />
                 }
             </View>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }

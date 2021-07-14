@@ -9,15 +9,14 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.white,
   },
-  container: {
-    backgroundColor: colors.primary,
-  },
+  container: { flexDirection: 'row' },
   body: {
     backgroundColor: colors.white,
   },
-  statusData: {
+  statusTitle: {
     color: "#FCFCFC",
-    fontSize:fontScale(15)
+    fontSize: fontScale(15)
   },
-  
+  statusData: { color: "#FEF500", fontSize: fontScale(15) }
+
 });

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         flexDirection:"row",
         paddingVertical:fontScale(5),
         marginTop:statusbarHeight,
-        marginBottom: 10
+        marginBottom: fontScale(10)
     },
     uInfoContainer:{
         marginLeft:fontScale(10)

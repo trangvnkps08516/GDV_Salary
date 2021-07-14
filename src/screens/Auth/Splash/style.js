@@ -8,23 +8,23 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.primary
     },
-    logo:{
-        marginTop:height/15,
-        resizeMode:"contain",
-        alignSelf:"center",
-        width:width*2/3
+    logo: {
+        marginTop: height / 15,
+        resizeMode: "contain",
+        alignSelf: "center",
+        width: width * 2 / 3
     },
-    shape:{
-        resizeMode:"contain",
-        alignSelf:"center",
-        width:width*3/5
+    shape: {
+        resizeMode: "contain",
+        alignSelf: "center",
+        width: width * 3 / 5
     },
-    appName:{
-        color:colors.white,
-        fontSize:fontScale(20),
-        textAlign:"center"
+    appName: {
+        color: colors.white,
+        fontSize: fontScale(20),
+        textAlign: "center"
     },
-    loadingIcon:{
-        marginTop:fontScale(10)
+    loadingIcon: {
+        marginTop: fontScale(15)
     }
 })

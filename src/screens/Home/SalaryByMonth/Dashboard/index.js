@@ -19,6 +19,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { useCallback } from 'react';
 import { _retrieveData } from '../../../../utils/Storage';
 import { contractMonth } from '../../../../utils/Variable';
+import Toast from 'react-native-toast-message';
 
 const Dashboard = (props) => {
   const route = useRoute();
@@ -32,13 +33,20 @@ const Dashboard = (props) => {
   const getData = async (month) => {
     setLoading(true);
     setMonth(month);
-    await getSalaryByMonth(month,navigation).then((res) => {
+    await getSalaryByMonth(month).then((res) => {
       if (res.status == "success") {
         setData(res.data);
         setLoading(false);
       }
-      if(res.status=="v_error"){
-        ToastNotif('Cảnh báo', res.message, 'error', true);
+      if (res.status == "v_error") {
+        Toast.show({
+          text1: "Cảnh báo",
+          text2: res.message,
+          type: "error",
+          visibilityTime: 100,
+          autoHide: true,
+          onHide: () => navigation.navigate("Home")
+        })
       }
       if (res.status == "failed") {
         setLoading(false);
@@ -71,7 +79,7 @@ const Dashboard = (props) => {
     if (isFocused) {
       getData(month);
       _getProfile();
-      
+
     }
 
     return () => {
@@ -90,18 +98,19 @@ const Dashboard = (props) => {
         {
           loading == true ? <ActivityIndicator color={colors.primary} size="small" /> :
             <View>
-            <TotalSalary style={{ alignSelf: 'center', marginTop: -fontScale(15), zIndex: 50 }} title={text.total} value={thoundsandSep(data.monthlySalary)} />
+              <TotalSalary style={{ alignSelf: 'center', marginTop: -fontScale(15), zIndex: 50 }} title={text.total} value={thoundsandSep(data.monthlySalary)} />
               <ScrollView showsVerticalScrollIndicator={false}>
                 <MenuItem style={{ marginTop: fontScale(25) }} title={text.fixedSalary} icon={images.salaryByMonth} value={thoundsandSep(data.permanentSalary)} width={width - fontScale(60)} onPress={() => { }} />
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.upSalary} icon={images.upSalary} value={thoundsandSep(data.contractSalary)} width={width - fontScale(60)} onPress={() => navigation.navigate("SalaryByMonthContract", { "month": month })} />
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.incentiveCost} icon={images.incentiveCost} value={thoundsandSep(data.incentiveCost)} width={width - fontScale(60)} onPress={() => { }} />
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.punishment} icon={images.punishment} value={thoundsandSep(data.sanctionCost)} width={width - fontScale(60)} onPress={() => { }} />
-                <MenuItem style={{ marginTop: fontScale(39), marginBottom: fontScale(20) }}  title={text.otherExpenses} icon={images.otherExpenses} value={thoundsandSep(data.others)} width={width - fontScale(60)} onPress={() => { }} />
+                <MenuItem style={{ marginTop: fontScale(39), marginBottom: fontScale(20) }} title={text.otherExpenses} icon={images.otherExpenses} value={thoundsandSep(data.others)} width={width - fontScale(60)} onPress={() => { }} />
 
               </ScrollView>
             </View>
         }
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </SafeAreaView>
   );
 }

@@ -5,12 +5,10 @@ import { useNavigation } from '@react-navigation/core';
 import { fontScale } from '../../utils/Fonts';
 import { User } from '../../models/Data';
 import { _retrieveData } from '../../utils/Storage';
-import { imgUrl } from '../../api/untils';
-import { colors } from '../../utils/Colors';
 import { images } from '../../utils/Images';
 
 const Header = (props) => {
-    const { title, avatar, fullName, empCode } = props;
+    const { title} = props;
     const navigation = useNavigation();
 
     return (
