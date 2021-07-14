@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+// User's screen path
 import Home from "./Home/DashBoard";
 import KPIByMonthDashboard from "./Home/KPIByMonth/DashBoard";
 import Achieve from "./Home/KPIByMonth/Achieve";
@@ -18,10 +19,12 @@ import Profile from "./Profile/Dashboard";
 import UpdatePassword from "./Profile/UpdatePassword";
 import UpdateProfile from "./Profile/UpdateProfile";
 
+// Auth screen's path
 import SignIn from "./Auth/SignIn";
 import SignOut from "./SignOut";
 import Splash from "./Auth/Splash";
 
+// User's screen
 export const HomeScreen = () => {return <Home />}
 export const KPIByMonthDashboardScreen = () => {return <KPIByMonthDashboard />}
 export const AchieveScreen = () => {return <Achieve />}
@@ -38,6 +41,10 @@ export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}
 export const UpdateProfileScreen = () => {return <UpdateProfile />}
 
+// Admin's screen
+
+
+// Auth's screen
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}
 export const SplashScreen = ()=>{return <Splash/>}
