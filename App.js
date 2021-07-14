@@ -4,12 +4,10 @@ import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, AvgIncomeDashboardScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen } from './src/screens';
+import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, RecoveryPasswordScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
-import { useState } from 'react';
-import { User } from './src/models/Data';
 import Splash from './src/screens/Auth/Splash';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,27 +66,16 @@ const ProfileStack = () => {
 const GDVStack = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
-      {/* Home */}
       <Stack.Screen name="Home" component={HomeScreen} />
-      {/* Home > KPI Tháng hiện tại */}
       <Stack.Screen name="KPIByMonthKPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
-      {/* Home > KPI Tháng Hiện Tại > KPI Đạt Được */}
-      <Stack.Screen name="Achieve" component={AchieveScreen} /> 
-      {/* Home > Lương theo tháng */}
+      <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
-      {/* Home > Lương Theo Tháng > Lương cố định */}
       <Stack.Screen name="SalaryByMonthFixedwage" component={SalaryByMonthFixedwageScreen} />
-      {/* Home > Lương Theo Tháng > Lương khoán sản phẩm */}
       <Stack.Screen name="SalaryByMonthContract" component={SalaryByMonthContractScreen} />
-      {/* Home > Bình Quân Tháng & Tổng Thu Nhập*/}
       <Stack.Screen name="AvgIncomeByMonth" component={AvgIncomeByMonthScreen} />
-      {/* Home > Chất Lượng Thuê Bao */}
       <Stack.Screen name="SubscriberQuality" component={SubscriberQualityScreen} />
-      
-      {/* Home KPI Tháng Hiện Tại > Thu nhập dự kiến từ tập thuê bao trong tháng */}
       <Stack.Screen name="ExpectedSalary" component={ExpectedSalaryScreen} />
       <Stack.Screen name="SubscriberList" component={SubscriberListScreen} />
-      {/* Home > Thông tin giao dịch */}
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
 
     </Stack.Navigator>
@@ -109,7 +96,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={AuthStack} />
+        <Stack.Screen name="Splash" component={AuthStack} />
         <Stack.Screen name="GDVHome" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>

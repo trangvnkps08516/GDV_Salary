@@ -31,8 +31,8 @@ const TransactionInfo = (props) => {
         setLoading(true)
         await getTransactionInfo(month, navigation).then((res) => {
             if (res.status == "success") {
-                setLoading(false)
-                setData(res.data)
+                setData(res.data);
+                setLoading(false);
             }
             if (res.status == "failed") {
                 ToastNotif('Cảnh báo', res.message, 'error', true);

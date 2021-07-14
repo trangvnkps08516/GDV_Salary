@@ -134,7 +134,16 @@ export const Profile = {
   "gdvId": {
     "id": null,
     "maGDV": "",
-    "fullName": ""
+    "fullName": "",
+    "fromDate": null,
+    "ngayVaoVms": "",
+    "nvCode": "",
+    "ngaySinh": "",
+    "phong": "",
+    "boPhan": "",
+    "chucVu": "",
+    "maDoiTac": "",
+    "tenDoiTac": ""
   },
   "isLDap": null,
   "phoneNumber": null,

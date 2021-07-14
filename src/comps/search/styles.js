@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
         fontSize: fontScale(14)
     },
     rightIco: {
-
         right: -fontScale(80),
         position: 'absolute',
         width: fontScale(25),

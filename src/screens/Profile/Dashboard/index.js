@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Image, View, Text, StatusBar, Linking, ActivityIndicator, TouchableOpacity, Modal, BackHandler, Alert, ScrollView } from 'react-native';
-import { Button, Header, ProfileItem } from '../../../comps';
+import { Header, ProfileItem } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { fontScale } from '../../../utils/Fonts';
 import { images } from '../../../utils/Images';
@@ -9,9 +9,8 @@ import { styles } from './styles'
 import { useNavigation } from '@react-navigation/core';
 import { Profile } from '../../../models/Data';
 import { getProfile } from '../../../api';
-import { baseUrl, imgUrl } from '../../../api/untils';
+import { imgUrl } from '../../../api/untils';
 import { useIsFocused } from "@react-navigation/native";
-import { height, statusbarHeight, width } from '../../../utils/Dimenssion';
 import { _storeData } from '../../../utils/Storage';
 import { ToastNotif } from '../../../utils/Logistics';
 import Toast from 'react-native-toast-message';
@@ -54,7 +53,6 @@ const DashBoard = (props) => {
 
         getData();
         return () => {
-
             backHandler.remove();
         };
 
@@ -77,12 +75,11 @@ const DashBoard = (props) => {
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                             <View>
-                                <ProfileItem icon={images.day} title={text.workingDay} size={fontScale(25)} value={"..."} />
-                                <ProfileItem icon={images.workingShop} title={text.workingShop} size={fontScale(25)} value={userData.shopId == null ? "" : userData.shopId.shopName} />
+                                <ProfileItem icon={images.day} title={text.workingDay} size={fontScale(25)} value={userData.gdvId ? userData.gdvId.fromDate : "..."} />
+                                <ProfileItem icon={images.workingShop} title={text.workingShop} size={fontScale(25)} value={userData.shopId ? userData.shopId.shopName : "..."} />
                                 <ProfileItem icon={images.traderRating} title={text.traderRating} size={fontScale(25)} value={"..."} />
                                 <ProfileItem icon={images.traderRating} title={text.storeRating} size={fontScale(25)} value={"..."} />
                                 <ProfileItem linking icon={images.pdf} title={text.PDF} size={fontScale(25)} value={"..."} openLink={() => Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')} />
-
                             </View>
                     }
                 </View>
@@ -103,7 +100,6 @@ const DashBoard = (props) => {
                             <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdatePassword")]}>
                                 <Text style={styles.menuTitle}>{text.changePassword}</Text>
                             </TouchableOpacity>
-
                             <TouchableOpacity style={styles.optionMenu} onPress={() => [setShowModal(!showModal), navigation.navigate("UpdateProfile")]}>
                                 <Text style={styles.menuTitle}>{text.updateProfile}</Text>
                             </TouchableOpacity>

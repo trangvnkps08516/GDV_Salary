@@ -10,7 +10,7 @@ const index = (props) => {
     return (
         <View style={props.style}>
             {
-                props.showInfo == false ? null : <Text style={styles.userInfo}>{props.displayName} ({props.maGDV})</Text>
+                props.showInfo == false ? null : <Text style={styles.userInfo}>{props.displayName + '(' + props.maGDV + ')'}</Text>
             }
             <View style={{ marginTop: fontScale(6.5), backgroundColor: "#fff", height: fontScale(50), borderTopLeftRadius: fontScale(50), borderTopRightRadius: fontScale(50) }}>
 

@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView, BackHandler } from 'react-native';
-import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
+import { DateView, Header, Body, ListItem } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { images } from '../../../../utils/Images';
 import { text } from '../../../../utils/Text';
 import { useNavigation } from '@react-navigation/core';
-import moment from 'moment';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve, getProfile } from '../../../../api';
-import { checkn, getLoginInfo, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
+import { checkn, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { _retrieveData } from '../../../../utils/Storage';
-import { User, UserObj } from '../../../../models/Data';
+import { KPIByMonthAchieve, UserObj } from '../../../../models/Data';
 import Toast from 'react-native-toast-message';
 
 const Achieve = (props) => {
-    const [data, setData] = useState({
-        dateRange: "",
-        sumKpi: "",
-        prePaid: "",
-        postPaid: "",
-        vas: "",
-        importantKpi: "",
-        retailSales: ""
-    });
+    const [data, setData] = useState(KPIByMonthAchieve);
     const [loading, setLoading] = useState(true);
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
@@ -46,8 +37,8 @@ const Achieve = (props) => {
                     type: "error",
                     visibilityTime: 100,
                     autoHide: true,
-                    onHide: ()=>navigation.navigate("Home")
-                  })
+                    onHide: () => navigation.navigate("Home")
+                })
             }
         })
 
@@ -85,12 +76,9 @@ const Achieve = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
             <Header title={text.kpiByMonth} />
-            
             <DateView dateLabel={data.dateRange} style={styles.dateView} />
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-
             <View style={{ flex: 1, backgroundColor: colors.white }}>
-
                 {
                     loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
                         <ScrollView showsVerticalScrollIndicator={false}>
@@ -98,20 +86,20 @@ const Achieve = (props) => {
                                 <Text style={styles.sumKpiTitle}>{text.totalKpi}: </Text>
                                 <Text style={styles.sumKpi}>{data.sumKpi}</Text>
                             </View>
-                                <View style={styles.detailInfo}>
-                                    <ListItem icon={images.sim} title={text.kpiPrepaidSubscribers} price={checkn(data.prePaid)} />
-                                    <ListItem icon={images.sim} title={text.kpiPostpaidSubscribers} price={checkn(data.postPaid)} />
-                                    <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
-                                    <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi+'\n(Theo kế hoạch MNP)'} />
-                                    <ListItem icon={images.retailsales} title={text.retailSales} price={thoundsandSep(data.retailSales)} />
+                            <View style={styles.detailInfo}>
+                                <ListItem icon={images.sim} title={text.kpiPrepaidSubscribers} price={checkn(data.prePaid)} />
+                                <ListItem icon={images.sim} title={text.kpiPostpaidSubscribers} price={checkn(data.postPaid)} />
+                                <ListItem icon={images.vas} title={text.kpiVas} price={data.vas} />
+                                <ListItem icon={images.important} title={text.kpiImportant} price={data.importantKpi + '\n(Theo kế hoạch MNP)'} />
+                                <ListItem icon={images.retailsales} title={text.retailSales} price={thoundsandSep(data.retailSales)} />
+                            </View>
+                            <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
+                                <ListItem icon={images.percent} title={text.subRatio} justTitle />
+                                <View style={styles.subDetail}>
+                                    <ListItem icon={images.sim} title={text.prepaidSubscribers} price={data.ratePrePaid} />
+                                    <ListItem icon={images.sim} title={text.postpaidSubscribers} price={data.ratePostPaid} />
                                 </View>
-                                <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
-                                    <ListItem icon={images.percent} title={text.subRatio} justTitle />
-                                    <View style={styles.subDetail}>
-                                        <ListItem icon={images.sim} title={text.prepaidSubscribers} price={data.ratePrePaid} />
-                                        <ListItem icon={images.sim} title={text.postpaidSubscribers} price={data.ratePostPaid} />
-                                    </View>
-                                </View>
+                            </View>
                         </ScrollView>
                 }
             </View>

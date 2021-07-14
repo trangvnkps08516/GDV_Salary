@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors } from "../../../utils/Colors";
 import { height, statusbarHeight, width } from "../../../utils/Dimenssion";
 import { fontScale } from "../../../utils/Fonts";
