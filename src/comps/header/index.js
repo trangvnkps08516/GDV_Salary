@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/core';
-import { fontScale } from '../../utils/Fonts';
-import { User } from '../../models/Data';
 import { _retrieveData } from '../../utils/Storage';
 import { images } from '../../utils/Images';
 
@@ -18,7 +16,7 @@ const Header = (props) => {
                     ?
                     <View style={{ flexDirection: "row" }}>
                         <Image source={props.avatar} style={styles.avatar} />
-                        <View>
+                        <View style={styles.uInfoContent}>
                             <Text style={styles.uInfo}>{props.fullName}</Text>
                             <Text style={styles.uStaff}>({props.maGDV})</Text>
                         </View>

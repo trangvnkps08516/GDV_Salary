@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, BackHandler, ScrollView } from 'react-native';
-import { DateView, Header, Body, MenuItem, ListItem, DatePicker } from '../../../../comps';
+import { DateView, Header, Body, MenuItem, ListItem } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { text } from '../../../../utils/Text';
@@ -12,7 +12,6 @@ import moment from 'moment';
 import { getProfile, getTempSalary } from '../../../../api';
 import { UserObj } from '../../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
-import { value } from '../../../../utils/Values';
 import Toast from 'react-native-toast-message';
 
 const ExpectedSalary = (props) => {

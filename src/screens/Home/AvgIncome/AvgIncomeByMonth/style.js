@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
     },
     dateContainer:{
         flexDirection:"row",
-        position:"absolute",top:fontScale(110)
+        position:"absolute",
+        top:fontScale(110)
     },
     body:{
         marginTop:fontScale(60)

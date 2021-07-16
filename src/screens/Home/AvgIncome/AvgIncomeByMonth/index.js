@@ -16,8 +16,7 @@ import Toast from 'react-native-toast-message';
 
 // Bình Quân Tháng và Tổng Thu Nhập
 function AvgIncomeByMonth(props) {
-    const route = useRoute()
-    const [beginMonth, setMonth] = useState('01'+'/'+moment(new Date()).format("YYYY"));
+    const [beginMonth, setMonth] = useState('01' + '/' + moment(new Date()).format("YYYY"));
     const [sMonth, setSMonth] = useState(moment(new Date()).subtract(1, 'months').format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(M_AvgIncomeByMonth);
@@ -28,12 +27,12 @@ function AvgIncomeByMonth(props) {
         setLoading(true)
         await getAvgIncomeByMonth(beginMonth, endMonth, navigation).then((res) => {
             if (res.status == "success") {
-                setData(res.data)
-                setLoading(false)
+                setData(res.data);
+                setLoading(false);
             }
             if (res.status == "failed") {
                 ToastNotif('Cảnh báo', res.message, 'error', true);
-                setLoading(false)
+                setLoading(false);
             }
             if (res.status == "v_error") {
                 Toast.show({
@@ -42,14 +41,13 @@ function AvgIncomeByMonth(props) {
                     type: "error",
                     visibilityTime: 100,
                     autoHide: true,
-                    onHide: ()=>navigation.navigate("Home")
-                  })
+                    onHide: () => navigation.navigate("Home")
+                });
             }
         })
     }
 
     const _getProfile = async () => {
-
         await getProfile(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false)

@@ -5,26 +5,21 @@ export const styles = StyleSheet.create({
 
     leftIco: {
         width: fontScale(38),
-        marginLeft: fontScale(10),
-        height: fontScale(38)
+        left:fontScale(10),
+        height: fontScale(38),
     },
     homeSearch: {
-        width: fontScale(230),
-        backgroundColor: '#FFFFFF',
         height: fontScale(40),
-        marginRight: fontScale(10),
-        borderRadius: 12,
-        marginLeft: fontScale(53),
-        paddingLeft: -fontScale(20),
+        borderRadius: fontScale(12),
         flexDirection: 'row',
         alignItems: "center",
         color: "#B7B7B7",
-        fontSize: fontScale(14)
+        fontSize: fontScale(14),
+        textAlign:"center"
     },
     rightIco: {
-        right: -fontScale(80),
-        position: 'absolute',
         width: fontScale(25),
-        height: fontScale(25)
+        height: fontScale(25),
+        right:fontScale(-5)
     }
 })
