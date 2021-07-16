@@ -16,7 +16,7 @@ import Toast from 'react-native-toast-message';
 const Achieve = (props) => {
     const [data, setData] = useState(KPIByMonthAchieve);
     const [loading, setLoading] = useState(true);
-    const [user, setUserData] = useState(UserObj)
+    const [user, setUserData] = useState(UserObj);
     const navigation = useNavigation();
 
     const getData = async () => {
@@ -35,7 +35,7 @@ const Achieve = (props) => {
                     text1: "Cảnh báo",
                     text2: res.message,
                     type: "error",
-                    visibilityTime: 100,
+                    visibilityTime: 1000,
                     autoHide: true,
                     onHide: () => navigation.navigate("Home")
                 })

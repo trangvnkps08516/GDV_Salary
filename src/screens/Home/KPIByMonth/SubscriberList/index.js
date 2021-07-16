@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, Text, FlatList, View } from "react-native";
 import {
   Body,
+  DataPicker,
   FlatlistItem,
   GeneralListItem,
   Header,
@@ -40,13 +41,14 @@ const SubscriberList = (props) => {
           setMessage("Không tìm thấy số thuê bao!");
         } else {
           if (res.data.data.length > 0) {
-            //if cho cái array data nhỏ bên trong
+            //if cho cái array data nhỏ bên trong 
             setNotification(res.data.notification);
             setData(res.data.data);
             setSearchData(res.data.data);
           } else {
             setMessage("Không có dữ liệu!");
           }
+
         }
       }
       if (res.status == "failed") {
@@ -83,31 +85,20 @@ const SubscriberList = (props) => {
     } else {
       setLoading(false);
       setSearchData(data);
+      filterDataSub()
       setMessage("");
     }
   };
 
-  const filterDataTT = (text = "") => {
-    const newData = searchData.filter((item) => {
-      const itemData = `${item.statusPaid.toString().toUpperCase()}`;
-      return itemData.indexOf(text.toString().toUpperCase()) > -1;
+  const filterDataType = (text = "") => {
+    const newData = data.filter((item) => {
+      const itemData = `${item.statusPaid}`;
+      return itemData.indexOf(text) > -1;
     });
-    if (text.length > 0) {
-      setLoading(true);
-      setSearchData(newData);
-      if (newData.length == 0) {
-        setLoading(false);
-        setMessage("Không tìm thấy TT/TS");
-      } else {
-        setLoading(false);
-        setMessage("");
-      }
-    } else {
-      setLoading(false);
-      setSearchData(data);
-      setMessage("");
-    }
-  };
+    setSearchData(newData);
+  }
+
+
 
   useEffect(() => {
     const backAction = () => {
@@ -141,19 +132,16 @@ const SubscriberList = (props) => {
         onChangeText={(value) => filterDataSub(value)}
         placeholder={text.searchSub}
         keyboardType="number-pad"
-        width={width-fontScale(65)}
-      />
+        width={width - fontScale(65)} />
 
-      <Search
-        style={styles.search}
-        leftIcon={images.sim}
-        rightIcon={images.searchlist}
-        onChangeText={(value) => filterDataTT(value)}
-        placeholder={text.searchStatusPaid}
-        // keyboardType="number-pad"
-        uppercase={true}
-        width={width-fontScale(65)}
-      />
+      <DataPicker
+        dialogTitle="Chọn dữ liệu"
+        icon = {images.sim}
+        data={[{ "id": 0, "value": "TT" }, { "id": 1, "value": "TS" }]}
+        width={width - fontScale(65)}
+        onPress={(value) => filterDataType(value.value)}
+        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }} />
+
       <Body
         showInfo={false}
         style={{ marginTop: fontScale(15), zIndex: -10 }}
@@ -175,18 +163,6 @@ const SubscriberList = (props) => {
         ) : null}
 
         {message ? <Text style={styles.message}>{message}</Text> : null}
-
-        {/* <FlatList
-          showsVerticalScrollIndicator={false}
-          data={searchData} // data thật => dùng searchData, phục vụ cho việc tìm kiếm số thuê bao
-          // data={tempData} //data ảo
-          style={{ marginTop: fontScale(10) }}
-          keyExtractor={(item, index) => index.toString()}
-          key={({ item }) => item.numberSub.toString()}
-          renderItem={({ item, index }) => (
-            <FlatlistItem item={item} index={index} />
-          )}
-        /> */}
 
         <FlatList
           showsVerticalScrollIndicator={false}

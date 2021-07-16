@@ -139,5 +139,9 @@ export const text = {
   typeUsername: "Vui lòng nhập Username!",
   typePassword:"Vui lòng nhập mật khẩu!",
   notif:"Thông báo",
-  updateInfoSuccess:"Cập nhật thông tin thành công"
+  updateInfoSuccess:"Cập nhật thông tin thành công",
+
+  // SignOut
+  yes:"Có",
+  cancle:"Hủy"
 };

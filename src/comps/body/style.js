@@ -5,7 +5,7 @@ import { fontScale } from "../../utils/Fonts";
 export const styles = StyleSheet.create({
     userInfo: {
         textAlign: "center",
-        fontSize: fontScale(16),
+        fontSize: fontScale(15),
         fontWeight: "bold",
         color: colors.white
     },

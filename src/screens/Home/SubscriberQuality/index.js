@@ -78,10 +78,10 @@ const SubscriberQuality = (props) => {
             <Header title={text.subscriberQuality} />
             <View style={{ flexDirection: "row" }}>
                 <View style={{ flex: 1, marginLeft: -width / 6 }}>
-                    <DateView dateLabel={data.beginMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
+                    <DateView dateLabel={data.beginMonth} width={width / 2 - fontScale(50)} />
                 </View>
                 <View style={{ flex: 1, marginLeft: -width / 4 }}>
-                    <DateView dateLabel={data.endMonth} style={styles.dateView} width={width / 2 - fontScale(50)} />
+                    <DateView dateLabel={data.endMonth} width={width / 2 - fontScale(50)} />
                 </View>
             </View>
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />

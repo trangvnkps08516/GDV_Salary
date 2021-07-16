@@ -1,28 +1,24 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, SafeAreaView, View, StatusBar, ScrollView, BackHandler } from 'react-native';
+import { ActivityIndicator, SafeAreaView, View, StatusBar, ScrollView, BackHandler } from 'react-native';
 import { Body, Header, MenuItem, MetricStatus, TotalSalary } from '../../../../comps';
 import { DatePicker } from '../../../../comps';
 import { colors } from '../../../../utils/Colors';
-import { height, width } from '../../../../utils/Dimenssion';
+import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
 import { text } from '../../../../utils/Text';
-import { value } from '../../../../utils/Values';
 import { styles } from "./styles";
 import { useNavigation } from '@react-navigation/core';
 import { getProfile, getSalaryByMonth } from '../../../../api';
 import { SalaryByMonth, UserObj } from '../../../../models/Data';
-import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
+import { thoundsandSep } from '../../../../utils/Logistics';
 import { useRoute } from '@react-navigation/native';
 import { useIsFocused } from "@react-navigation/native";
-import { useCallback } from 'react';
 import { _retrieveData } from '../../../../utils/Storage';
-import { contractMonth } from '../../../../utils/Variable';
 import Toast from 'react-native-toast-message';
 
 const Dashboard = (props) => {
-  const route = useRoute();
   const isFocused = useIsFocused();
   const [month, setMonth] = useState(moment(new Date()).subtract(1, "months").format("MM/YYYY"));
   const navigation = useNavigation();
@@ -46,24 +42,24 @@ const Dashboard = (props) => {
           visibilityTime: 100,
           autoHide: true,
           onHide: () => navigation.navigate("Home")
-        })
+        });
       }
       if (res.status == "failed") {
         setLoading(false);
       }
-    })
+    });
   }
 
   const _getProfile = async () => {
     await getProfile(navigation).then((res) => {
       if (res.status == "success") {
-        setLoading(false)
-        setUserData(res.data)
+        setLoading(false);
+        setUserData(res.data);
       }
       if (res.status == "failed") {
-        setLoading(false)
+        setLoading(false);
       }
-    })
+    });
   }
 
   useEffect(() => {

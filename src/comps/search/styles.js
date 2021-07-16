@@ -4,23 +4,23 @@ import { fontScale } from "../../utils/Fonts";
 export const styles = StyleSheet.create({
 
     leftIco: {
-        width: fontScale(35),
+        width: fontScale(38),
         left:fontScale(10),
-        height: fontScale(30),
+        height: fontScale(38),
     },
     homeSearch: {
-        // backgroundColor: '#FFFFFF',
-        height: fontScale(39),
-        borderRadius: 12,
-        flexDirection: 'row',
+        // height: fontScale(40),
+        borderRadius: fontScale(12),
+        // flexDirection: 'row',
         alignItems: "center",
         color: "#B7B7B7",
-        fontSize: fontScale(14),
-        textAlign:"center"
+        // fontSize: fontScale(14),
+        textAlign:"center",
+       
     },
     rightIco: {
-        width: fontScale(20),
-        height: fontScale(20),
+        width: fontScale(25),
+        height: fontScale(25),
         right:fontScale(-5)
     }
 })
