@@ -14,6 +14,7 @@ import SalaryByMonthArrears from "./Home/SalaryByMonth/Arrears";
 import AvgIncomeByMonth from "./Home/AvgIncome/AvgIncomeByMonth";
 import TransactionInfo from "./Home/TransactionInfo";
 import SubscriberQuality from "./Home/SubscriberQuality";
+import Test from "./Home/Test";
 import Profile from "./Profile/Dashboard";
 import UpdatePassword from "./Profile/UpdatePassword";
 import UpdateProfile from "./Profile/UpdateProfile";
@@ -34,6 +35,7 @@ export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />
 export const AvgIncomeByMonthScreen = () => {return <AvgIncomeByMonth />}
 export const TransactionInfoScreen = () => {return <TransactionInfo />}
 export const SubscriberQualityScreen = () => {return <SubscriberQuality />}
+export const TestScreen = () => {return <Test />}
 export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}
 export const UpdateProfileScreen = () => {return <UpdateProfile />}

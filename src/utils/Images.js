@@ -55,5 +55,6 @@ export const images = {
     pencil:require("../../assets/pencil.png"),
     close:require('../../assets/close.png'),
     man:require('../../assets/man.png'),
-    back:require("../../assets/backicon.png")
+    back:require("../../assets/backicon.png"),
+    
 }

@@ -65,7 +65,7 @@ const SubscriberList = (props) => {
     });
   };
 
-  const filterData = (text = "") => {
+  const filterDataSub = (text = "") => {
     const newData = searchData.filter((item) => {
       const itemData = `${item.numberSub.toString()}`;
       return itemData.indexOf(text.toString()) > -1;
@@ -76,6 +76,28 @@ const SubscriberList = (props) => {
       if (newData.length == 0) {
         setLoading(false);
         setMessage("Không tìm thấy số thuê bao");
+      } else {
+        setLoading(false);
+        setMessage("");
+      }
+    } else {
+      setLoading(false);
+      setSearchData(data);
+      setMessage("");
+    }
+  };
+
+  const filterDataTT = (text = "") => {
+    const newData = searchData.filter((item) => {
+      const itemData = `${item.statusPaid.toString().toUpperCase()}`;
+      return itemData.indexOf(text.toString().toUpperCase()) > -1;
+    });
+    if (text.length > 0) {
+      setLoading(true);
+      setSearchData(newData);
+      if (newData.length == 0) {
+        setLoading(false);
+        setMessage("Không tìm thấy TT/TS");
       } else {
         setLoading(false);
         setMessage("");
@@ -116,9 +138,21 @@ const SubscriberList = (props) => {
         style={styles.search}
         leftIcon={images.simlist}
         rightIcon={images.searchlist}
-        onChangeText={(value) => filterData(value)}
+        onChangeText={(value) => filterDataSub(value)}
         placeholder={text.searchSub}
         keyboardType="number-pad"
+        width={width-fontScale(65)}
+      />
+
+      <Search
+        style={styles.search}
+        leftIcon={images.sim}
+        rightIcon={images.searchlist}
+        onChangeText={(value) => filterDataTT(value)}
+        placeholder={text.searchStatusPaid}
+        // keyboardType="number-pad"
+        uppercase={true}
+        width={width-fontScale(65)}
       />
       <Body
         showInfo={false}
@@ -130,16 +164,17 @@ const SubscriberList = (props) => {
           <TableHeader style={{ flex: 1.5 }} title={text.numberSub} />
           <TableHeader style={{ flex: 1.7 }} title={text.statusPaid} />
           <TableHeader style={{ flex: 1.7 }} title={text.type} />
-          <TableHeader style={{ flex: 0.9 }} title={text.pckSub} />
+          <TableHeader style={{ flex: 1 }} title={text.pckSub} />
         </View>
         {loading == true ? (
-          <ActivityIndicator size="small" color={colors.primary} style={{ marginTop: fontScale(10) }} />
+          <ActivityIndicator
+            size="small"
+            color={colors.primary}
+            style={{ marginTop: fontScale(10) }}
+          />
         ) : null}
 
-        {
-          message ? <Text
-            style={styles.message}>{message}</Text> : null
-        }
+        {message ? <Text style={styles.message}>{message}</Text> : null}
 
         {/* <FlatList
           showsVerticalScrollIndicator={false}
@@ -156,24 +191,35 @@ const SubscriberList = (props) => {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={searchData}
-          style={{ marginTop: fontScale(10) }}
+          style={{ marginTop: fontScale(3) }}
           keyExtractor={(item, index) => index.toString()}
           key={({ item }) => item.numberSub.toString()}
           renderItem={({ item, index }) => (
             <GeneralListItem
               item={item}
               index={index}
-              fields={[item.date, item.numberSub, item.statusPaid, item.type, item.pckSub]}
+              fields={[
+                item.date,
+                item.numberSub,
+                item.statusPaid,
+                item.type,
+                item.pckSub,
+              ]}
               style={[
-                [styles.dateCol, { width: width * 1.7 / 10 }],
-                [styles.dateCol, { width: width * 2.5 / 10 }],
-                [styles.dateCol, { width: width * 1.7 / 10 }],
-                [styles.dateCol, { width: width * 2.9 / 10 }],
-                [styles.dateCol, { width: width * 1 / 10 }]
+                [styles.dateCol, { width: (width * 1.7) / 10 }],
+                [styles.dateCol, { width: (width * 2.5) / 10 }],
+                [styles.dateCol, { width: (width * 1.7) / 10 }],
+                [styles.dateCol, { width: (width * 2.7) / 10 }],
+                [styles.dateCol, { width: (width * 1.2) / 10 }],
               ]}
               lastIcon={item.pckSub == 1 ? images.check : images.cancle}
               lastIconViewStyle={{ alignItems: "center", flex: 0.5 }}
-              lastIconStyle={{ flex: 0.5, width: fontScale(15), height: fontScale(19) }} />
+              lastIconStyle={{
+                flex: 0.5,
+                width: fontScale(15),
+                height: fontScale(19),
+              }}
+            />
           )}
         />
       </View>

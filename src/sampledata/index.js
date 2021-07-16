@@ -24,3 +24,48 @@ export const subscriberList = {
         }
     ]
 }
+
+
+export const listMenu = [
+        {
+        titleMain:"title1",
+        list:[
+             {
+            title:"SLNV...",
+            content:"17/20"
+             },
+             {
+            title:"SLNV...",
+            content:"17/20"
+             }
+        ]
+        },
+
+        {
+            titleMain:"title1",
+            list:[
+                 {
+                title:"SLNV...",
+                content:"17/20"
+                 },
+                 {
+                title:"SLNV...",
+                content:"17/20"
+                 }
+            ]
+            },
+
+            {
+                titleMain:"title1",
+                list:[
+                     {
+                    title:"SLNV...",
+                    content:"17/20"
+                     },
+                     {
+                    title:"SLNV...",
+                    content:"17/20"
+                     }
+                ]
+                },
+    ]
