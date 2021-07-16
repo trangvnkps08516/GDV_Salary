@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, StatusBar, TouchableOpacity, BackHandler, Text } from 'react-native';
-import { MenuItem } from '../../../comps';
-import { Header } from '../../../comps';
-import { Body } from '../../../comps';
+import { SafeAreaView, View, StatusBar, TouchableOpacity, BackHandler } from 'react-native';
+import { MenuItem,Header,Body } from '../../../comps';
 import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 import { colors } from '../../../utils/Colors';
-import { useNavigation,useRoute  } from '@react-navigation/core';
+import { useNavigation  } from '@react-navigation/core';
 import { _retrieveData } from '../../../utils/Storage';
 import { UserObj } from "../../../models";
 import { imgUrl } from '../../../api/untils';
@@ -29,7 +27,7 @@ const Dashboard = (props) => {
         setUserData(res.data) 
       }
       if(res.status=="v_error"){
-        
+          
       }
       if (res.status == "failed") {
         setLoading(false)
@@ -54,7 +52,9 @@ const Dashboard = (props) => {
 
     }
 
-    backHandler;
+    return () => {
+      backHandler
+    };
   }, [""])
   return (
     <SafeAreaView style={styles.container}>

@@ -3,7 +3,8 @@ import { Image } from 'react-native';
 import { View, TouchableOpacity, TextInput } from 'react-native';
 import { colors } from '../../utils/Colors';
 import { styles } from './styles';
-function Search(props) {
+
+const Search = (props) => {
     return (
         <View style={[{ flexDirection: 'row' }, props.style, styles.homeSearch]}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
