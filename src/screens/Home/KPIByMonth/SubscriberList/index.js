@@ -29,9 +29,13 @@ const SubscriberList = (props) => {
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUserData] = useState(UserObj);
+  const [filterCondition, setFilterCondition] = useState('TT')
+  const [TBTT, setTBTT] = useState([]);
+  const [TBTS, setTBTS] = useState([]);
+  const [keyType, setKeyType] = useState('')
   const navigation = useNavigation();
 
-  const getData = async () => {
+  const getData = async (status) => {
     setMessage("");
     setLoading(true);
     await getSubscriberList(navigation).then((res) => {
@@ -41,10 +45,14 @@ const SubscriberList = (props) => {
           setMessage("Không tìm thấy số thuê bao!");
         } else {
           if (res.data.data.length > 0) {
-            //if cho cái array data nhỏ bên trong 
             setNotification(res.data.notification);
             setData(res.data.data);
             setSearchData(res.data.data);
+            if (status == "TT") {
+              filterDataType(res.data.data, status)
+            } else {
+              filterDataType(res.data.data, "TS")
+            }
           } else {
             setMessage("Không có dữ liệu!");
           }
@@ -68,34 +76,54 @@ const SubscriberList = (props) => {
   };
 
   const filterData = (text = "") => {
-    const newData = searchData.filter((item) => {
-      const itemData = `${item.numberSub.toString()}`;
-      return itemData.indexOf(text.toString()) > -1;
-    });
+    var newData = [];
+    if (filterCondition == "TT") {
+      newData = TBTT.filter((item) => {
+        const itemData = `${item.numberSub.toString()}`;
+        return itemData.indexOf(text.toString()) > -1;
+      });
+
+    } else {
+      newData = TBTS.filter((item) => {
+        const itemData = `${item.numberSub.toString()}`;
+        return itemData.indexOf(text.toString()) > -1;
+      });
+    }
+
     if (text.length > 0) {
       setLoading(true);
-      setSearchData(newData);
       if (newData.length == 0) {
         setLoading(false);
         setMessage("Không tìm thấy số thuê bao");
+        setSearchData([])
       } else {
         setLoading(false);
         setMessage("");
+        setSearchData(newData);
+
       }
     } else {
+      setData([])
       setLoading(false);
-      setSearchData(data);
-      filterData()
+      getData(filterCondition)
       setMessage("");
     }
   };
 
-  const filterDataType = (text = "") => {
+  const filterDataType = (data, text = "") => {
+    setMessage("");
     const newData = data.filter((item) => {
       const itemData = `${item.statusPaid}`;
       return itemData.indexOf(text) > -1;
     });
     setSearchData(newData);
+    setFilterCondition(text)
+    setLoading(false);
+    if (text == 'TT') {
+      setTBTT(newData)
+    } else {
+      setTBTS(newData)
+    }
   }
 
 
@@ -110,7 +138,7 @@ const SubscriberList = (props) => {
       "hardwareBackPress",
       backAction
     );
-    getData(); // gọi data thật
+    getData(filterCondition); // gọi data thật
     return () => {
       backHandler.remove();
     };
@@ -137,7 +165,7 @@ const SubscriberList = (props) => {
         dialogTitle="Chọn dữ liệu"
         data={[{ "id": 0, "value": "TT" }, { "id": 1, "value": "TS" }]}
         width={width - fontScale(65)}
-        onPress={(value) => filterDataType(value.value)}
+        onPress={(value) => filterDataType(data, value.value)}
         style={{ marginTop: fontScale(20), marginRight: fontScale(5) }} />
       <Body
         showInfo={false}
