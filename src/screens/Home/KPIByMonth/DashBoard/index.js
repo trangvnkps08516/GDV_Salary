@@ -73,7 +73,7 @@ const DashBoard = (props) => {
     getData();
 
     return () => {
-      
+      backHandler
     };
   }, [""]);
   return (

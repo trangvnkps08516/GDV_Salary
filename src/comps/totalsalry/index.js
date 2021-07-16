@@ -1,12 +1,10 @@
 import React from 'react';
-import { SafeAreaView , View, StatusBar, Text} from 'react-native';
-import { colors } from '../../utils/Colors';
+import { View, Text } from 'react-native';
 import { styles } from './styles'
 
-
-function TotalSalary (props) {
+const TotalSalary = (props) => {
     return (
-        <View style={[{flexDirection: 'row'}, props.style]}>
+        <View style={[{ flexDirection: 'row' }, props.style]}>
             <Text style={styles.total}>{props.title} </Text>
             <Text style={styles.salary}>{props.value}</Text>
         </View>

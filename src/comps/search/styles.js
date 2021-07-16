@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     },
     homeSearch: {
         // backgroundColor: '#FFFFFF',
-        height: fontScale(40),
+        height: fontScale(39),
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: "center",

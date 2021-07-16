@@ -4,7 +4,6 @@ import Input from "./input";
 import Header from "./header";
 import ListItem from "./listItem";
 import MenuItem from "./menuItem";
-import Triangle from "./triangle";
 import AuthTitle from "./authtitle";
 import DateView from "./dateview";
 import Body from "./body"
@@ -24,7 +23,6 @@ export {
     Header,
     ListItem,
     MenuItem,
-    Triangle,
     AuthTitle,
     DateView,
     Body,
