@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StatusBar,
-  ActivityIndicator,
-  BackHandler,
-} from "react-native";
+import { SafeAreaView, View, StatusBar, ActivityIndicator, BackHandler, } from "react-native";
 import { Body, DateView, Header, MenuItem } from "../../../../comps";
 import { styles } from "../../../../comps/body/style";
 import { colors } from "../../../../utils/Colors";
@@ -15,8 +8,7 @@ import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
 import { getKPIByMonthDashboard, getProfile } from "../../../../api";
-import moment from "moment";
-import { KPIByMonthDashboard, User, UserObj } from "../../../../models/Data";
+import { KPIByMonthDashboard, UserObj } from "../../../../models/Data";
 import { useNavigation } from "@react-navigation/core";
 import { thoundsandSep, ToastNotif } from "../../../../utils/Logistics";
 import { _retrieveData } from "../../../../utils/Storage";

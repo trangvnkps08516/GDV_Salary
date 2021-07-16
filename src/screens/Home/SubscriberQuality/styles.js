@@ -34,14 +34,6 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  dateView: {
-    // marginTop: fontScale(15),
-    // width: width/2 - 100,
-
-  },
- 
-  
-  monthPicker: {},
   subDetail: {
     marginLeft: fontScale(40),
   },

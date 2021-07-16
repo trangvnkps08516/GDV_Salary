@@ -1,6 +1,5 @@
 import { useIsFocused, useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StatusBar, View, Image, Text, ActivityIndicator, BackHandler } from 'react-native';
 import { updatePassword } from '../../../api';
 import { Input, Button, AuthTitle } from '../../../comps';
@@ -10,7 +9,6 @@ import { fontScale } from '../../../utils/Fonts';
 import { ToastNotif } from '../../../utils/Logistics';
 import { styles } from './styles';
 import Toast from 'react-native-toast-message';
-import { useEffect } from 'react';
 
 const UpdatePassword = () => {
     const [oldPassword, setOldPassword] = useState('');

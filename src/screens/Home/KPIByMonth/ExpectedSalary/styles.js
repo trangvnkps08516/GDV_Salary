@@ -9,14 +9,11 @@ export const styles = StyleSheet.create({
     sumKpiTitle:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(0) },
     sumKpiMonth:{ color: colors.black,fontSize:fontScale(18),fontWeight:"bold", marginTop: -fontScale(0) },
     sumKpi:{ color: colors.lightBlue,fontSize:fontScale(21),textAlign: "center",fontWeight:"bold", marginTop: fontScale(9) },
-   
     detailInfo:{
-        // minHeight: 50,
         marginBottom:fontScale(50),
         paddingVertical:fontScale(7),
         marginHorizontal:fontScale(17),
         shadowColor: "#000",
-        
         backgroundColor:colors.white,  
         marginTop:fontScale(20),
         borderRadius:fontScale(17),

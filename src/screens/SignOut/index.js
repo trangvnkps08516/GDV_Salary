@@ -38,8 +38,8 @@ const SignOut = () => {
             <View style={styles.dialog}>
                 <Text style={styles.logoutMessage}>{text.logoutMessage}</Text>
                 <View style={styles.buttonContainer}>
-                    <Button style={{ marginRight: fontScale(30) }} text="Hủy" color="red" width={fontScale(100)} icon={images.cancle} onPress={() => navigation.navigate("Home")} />
-                    <Button style={{ marginLeft: fontScale(30) }} text="Có" color="green" width={fontScale(100)} icon={images.check} onPress={() => logoutUser()} />
+                    <Button style={{ marginRight: fontScale(30) }} text={text.cancle} color="red" width={fontScale(100)} icon={images.cancle} onPress={() => navigation.navigate("Home")} />
+                    <Button style={{ marginLeft: fontScale(30) }} text={text.yes} color="green" width={fontScale(100)} icon={images.check} onPress={() => logoutUser()} />
                 </View>
             </View>
         </ImageBackground>
