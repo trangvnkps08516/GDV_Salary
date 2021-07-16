@@ -9,13 +9,14 @@ export const styles = StyleSheet.create({
         height: fontScale(38),
     },
     homeSearch: {
-        height: fontScale(40),
+        // height: fontScale(40),
         borderRadius: fontScale(12),
-        flexDirection: 'row',
+        // flexDirection: 'row',
         alignItems: "center",
         color: "#B7B7B7",
-        fontSize: fontScale(14),
-        textAlign:"center"
+        // fontSize: fontScale(14),
+        textAlign:"center",
+       
     },
     rightIco: {
         width: fontScale(25),
