@@ -61,20 +61,20 @@ function AvgIncomeByMonth(props) {
 
     useEffect(() => {
         const backAction = () => {
-            navigation.goBack();
+            navigation.navigate("Home");
             return true;
         };
 
-        const backHandler = BackHandler.addEventListener(
+        BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
         );
         getData(beginMonth, sMonth);
         _getProfile();
         return () => {
-            backHandler.remove();
+           
         };
-    }, []);
+    }, [""]);
 
     const onChangeMonth = async (value) => {
         if (value > sMonth == true) {

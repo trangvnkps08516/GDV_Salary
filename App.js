@@ -77,8 +77,6 @@ const GDVStack = () => {
       <Stack.Screen name="ExpectedSalary" component={ExpectedSalaryScreen} />
       <Stack.Screen name="SubscriberList" component={SubscriberListScreen} />
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
-      <Stack.Screen name="Test" component={TestScreen} />
-
     </Stack.Navigator>
   )
 }

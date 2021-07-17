@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StatusBar, Text, FlatList, View } from "react-native";
+import { SafeAreaView, StatusBar, Text, FlatList, View,ActivityIndicator,BackHandler } from "react-native";
 import {
   Body,
   DataPicker,
-  FlatlistItem,
   GeneralListItem,
   Header,
   MetricStatus,
@@ -17,22 +16,17 @@ import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
 import { getSubscriberList } from "../../../../api";
 import { useNavigation } from "@react-navigation/native";
-import { BackHandler } from "react-native";
-import { ActivityIndicator } from "react-native";
 import { width } from "../../../../utils/Dimenssion";
 
-const SubscriberList = (props) => {
+const SubscriberList = () => {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [message, setMessage] = useState("");
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(false);
-  const [user, setUserData] = useState(UserObj);
   const [filterCondition, setFilterCondition] = useState("");
   const [TBTT, setTBTT] = useState([]);
   const [TBTS, setTBTS] = useState([]);
-  const [All, setAll] = useState([]);
-  const [keyType, setKeyType] = useState("");
   const navigation = useNavigation();
 
   const getData = async (status) => {
