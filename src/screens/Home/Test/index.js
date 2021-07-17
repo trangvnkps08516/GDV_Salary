@@ -68,14 +68,24 @@ const Test = (props) => {
       <Body showInfo={false} style={{ marginTop: fontScale(15) }} />
       <View style={{ backgroundColor: colors.white, flex: 1 }}>
         <FlatList
-          data={[{ list: [
-              {title:["Ngày PT", "Loại TB", "Gói"]},
-              {content:["02/07", "TT", "VAT"]}
-          ] }]}
+          data={data}
           // data={listMenu}
           keyExtractor={(key, item) => key.toString()}
           renderItem={({ item }) => (
-            <ListMenu data={item} icon={images.arrears} width={width - 30} />
+            <ListMenu
+              data={item}
+              labelData={["","Ngày PT:","TT/TS:","Loại TB:","Gói:"]}
+              fieldData={[
+                item.numberSub,
+                item.date,
+                item.statusPaid,
+                item.type,
+                item.pckSub,
+              ]}
+              lastIcon={item.pckSub==0 ? images.check : images.cancle}
+              icon={images.sim}
+              width={width - 30}
+            />
             // <Text>{JSON.stringify(item)}</Text>
           )}
         />

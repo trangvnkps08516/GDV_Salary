@@ -6,7 +6,17 @@ import { styles } from "./styles";
 const ListMenu = (props) => {
   const { title, icon, onPress, style, width, value, view, data } = props;
   return (
-    <View style={[style, { width: width,marginBottom:10,justifyContent:"center",alignItems:"center" }]}>
+    <View
+      style={[
+        style,
+        {
+          width: width,
+          marginBottom: 10,
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      ]}
+    >
       {/* view ? <View style={styles.container} onPress={onPress}>
                     <View style={styles.bg}>
                     <Text style={[styles.title,props.titleStyle]}>{title}</Text>
@@ -20,14 +30,27 @@ const ListMenu = (props) => {
 
       <TouchableOpacity style={styles.container}>
         <View style={styles.bg}>
-        {/* <Text>{props.data.titleMain}</Text>         */}
-          <FlatList 
-              data={props.data.list}
-              renderItem={({item}) => <View style={{flexDirection:"row"}}>
-                <Text>{item.title}{item.content}</Text>
-                {/* <Text>{item.content}</Text> */}
-            </View>}
-          />
+          <Text>{props.fieldData[0]}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flex: 1 }}>
+              {props.labelData.map((item) => (
+                <Text>{item}</Text>
+              ))}
+            </View>
+            <View style={{ flex: 3 }}>
+              {props.fieldData.map((item, index) =>
+                props.lastIcon && index == props.fieldData.length - 1 ? (
+                  <Image
+                    source={props.lastIcon}
+                    resizeMode="contain"
+                    style={{ width: 10, height: 10 }}
+                  />
+                ) : (
+                  <Text>{index == 0 ? "" : item}</Text>
+                )
+              )}
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
       <Image source={props.icon} style={styles.icon}></Image>
