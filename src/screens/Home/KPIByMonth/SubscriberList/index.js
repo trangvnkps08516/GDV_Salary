@@ -161,12 +161,15 @@ const SubscriberList = (props) => {
         placeholder={text.searchSub}
         keyboardType="number-pad"
         width={width - fontScale(65)} />
+
       <DataPicker
         dialogTitle="Chọn dữ liệu"
+        icon = {images.sim}
         data={[{ "id": 0, "value": "TT" }, { "id": 1, "value": "TS" }]}
         width={width - fontScale(65)}
         onPress={(value) => filterDataType(data, value.value)}
         style={{ marginTop: fontScale(20), marginRight: fontScale(5) }} />
+
       <Body
         showInfo={false}
         style={{ marginTop: fontScale(15), zIndex: -10 }}
