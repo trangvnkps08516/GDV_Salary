@@ -6,8 +6,8 @@ export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginRight: fontScale(20),
-        flex: 1
+        marginRight: height * 0.0246305418719212,
+        // flex: 1
     },
     icon: {
         width: fontScale(15),
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         color: '#20B8B8',
-        fontSize: fontScale(16),
+        fontSize: fontScale(14),
         fontWeight: 'bold',
         marginLeft:fontScale(4),
         marginHorizontal: fontScale(5)

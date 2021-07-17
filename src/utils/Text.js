@@ -123,6 +123,9 @@ export const text = {
   type: "Loại TB",
   pckSub: "Gói",
   searchSub: "Nhập số thuê bao",
+  searchStatusPaid: "Nhập TT/TS",
+  TBTT: "TBTT",
+  TBTS: "TBTS",
 
   // Profile
   profile: "Thông tin cá nhân",

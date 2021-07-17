@@ -4,7 +4,7 @@ import { Image } from "react-native";
 import { View } from "react-native";
 import { styles } from "./styles";
 
-function HeaderIcon(props) {
+function TableHeader(props) {
   return (
     <View style={[styles.container, props.style]} key={props.key}>
       {/* <Image source={props.headerIcon} style={[styles.icon, props.styleIcon]} resizeMode="cover" /> */}
@@ -13,4 +13,4 @@ function HeaderIcon(props) {
   );
 }
 
-export default HeaderIcon;
+export default TableHeader;
