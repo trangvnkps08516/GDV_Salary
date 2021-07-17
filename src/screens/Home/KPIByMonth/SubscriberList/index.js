@@ -282,3 +282,26 @@ export default SubscriberList;
 //   }
 // };
 
+
+// search basic
+// const filterDataTT = (text = "") => {
+//   const newData = searchData.filter((item) => {
+//     const itemData = `${item.statusPaid.toString().toUpperCase()}`;
+//     return itemData.indexOf(text.toString().toUpperCase()) > -1;
+//   });
+//   if (text.length > 0) {
+//     setLoading(true);
+//     setSearchData(newData);
+//     if (newData.length == 0) {
+//       setLoading(false);
+//       setMessage("Không tìm thấy TT/TS");
+//     } else {
+//       setLoading(false);
+//       setMessage("");
+//     }
+//   } else {
+//     setLoading(false);
+//     setSearchData(data);
+//     setMessage("");
+//   }
+// };
