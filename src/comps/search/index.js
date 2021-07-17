@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { View, TouchableOpacity, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { colors } from '../../utils/Colors';
 import { width } from '../../utils/Dimenssion';
 import { fontScale } from '../../utils/Fonts';

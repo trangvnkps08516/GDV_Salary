@@ -24,5 +24,6 @@ export const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: fontScale(15),
         fontSize: fontScale(15)
-    }
+    },
+    dataPicker:{ marginTop: fontScale(20), marginRight: fontScale(5) }
 })

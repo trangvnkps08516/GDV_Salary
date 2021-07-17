@@ -16,8 +16,8 @@ const SignOut = () => {
         await signoutUser(navigation).then(async () => {
             await _removeData("userInfo");
         });
-
     }
+    
     useEffect(() => {
         const backAction = () => {
             navigation.navigate('Home');

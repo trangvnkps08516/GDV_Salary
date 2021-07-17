@@ -10,22 +10,12 @@ import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import moment from 'moment';
 import { getProfile, getTempSalary } from '../../../../api';
-import { UserObj } from '../../../../models/Data';
+import { DetailTempContract, UserObj } from '../../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
 
 const ExpectedSalary = (props) => {
-    const [data, setData] = useState({
-        contractSalary: 1000000,
-        kpis: "",
-        prePaid: 100000,
-        postPaid: 100000,
-        vas: 100000,
-        otherService: 600000,
-        terminalDevice: 100000,
-        permanentSalary: 8000000
-    });
-
+    const [data, setData] = useState(DetailTempContract);
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true)

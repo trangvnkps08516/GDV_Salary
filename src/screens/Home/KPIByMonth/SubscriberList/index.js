@@ -15,8 +15,7 @@ import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { getProfile, getSubscriberList } from "../../../../api";
-import { UserObj } from "../../../../models/Data";
+import { getSubscriberList } from "../../../../api";
 import { useNavigation } from "@react-navigation/native";
 import { BackHandler } from "react-native";
 import { ActivityIndicator } from "react-native";
@@ -28,11 +27,9 @@ const SubscriberList = (props) => {
   const [message, setMessage] = useState("");
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(false);
-  const [user, setUserData] = useState(UserObj);
   const [filterCondition, setFilterCondition] = useState('TT')
   const [TBTT, setTBTT] = useState([]);
   const [TBTS, setTBTS] = useState([]);
-  const [keyType, setKeyType] = useState('')
   const navigation = useNavigation();
 
   const getData = async (status) => {
@@ -42,7 +39,7 @@ const SubscriberList = (props) => {
       if (res.status == "success") {
         setLoading(false);
         if (res.data.length == 0 || res.data.data.length == 0) {
-          setMessage("Không tìm thấy số thuê bao!");
+          setMessage(text.subscriberNotFound);
         } else {
           if (res.data.data.length > 0) {
             setNotification(res.data.notification);
@@ -54,20 +51,10 @@ const SubscriberList = (props) => {
               filterDataType(res.data.data, "TS")
             }
           } else {
-            setMessage("Không có dữ liệu!");
+            setMessage(text.dataIsNull);
           }
 
         }
-      }
-      if (res.status == "failed") {
-        setLoading(false);
-      }
-    });
-
-    await getProfile(navigation).then((res) => {
-      if (res.status == "success") {
-        setLoading(false);
-        setUserData(res.data);
       }
       if (res.status == "failed") {
         setLoading(false);
@@ -100,12 +87,11 @@ const SubscriberList = (props) => {
         setLoading(false);
         setMessage("");
         setSearchData(newData);
-
       }
     } else {
-      setData([])
+      setData([]);
       setLoading(false);
-      getData(filterCondition)
+      getData(filterCondition);
       setMessage("");
     }
   };
@@ -117,20 +103,18 @@ const SubscriberList = (props) => {
       return itemData.indexOf(text) > -1;
     });
     setSearchData(newData);
-    setFilterCondition(text)
+    setFilterCondition(text);
     setLoading(false);
     if (text == 'TT') {
-      setTBTT(newData)
+      setTBTT(newData);
     } else {
-      setTBTS(newData)
+      setTBTS(newData);
     }
   }
 
-
-
   useEffect(() => {
     const backAction = () => {
-      navigation.navigate("KPIByMonthKPIByMonthDashboard");
+      navigation.navigate("KPIByMonthDashboard");
       return true;
     };
 
@@ -166,7 +150,7 @@ const SubscriberList = (props) => {
         data={[{ "id": 0, "value": "TT" }, { "id": 1, "value": "TS" }]}
         width={width - fontScale(65)}
         onPress={(value) => filterDataType(data, value.value)}
-        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }} />
+        style={styles.dataPicker} />
       <Body
         showInfo={false}
         style={{ marginTop: fontScale(15), zIndex: -10 }}

@@ -229,7 +229,7 @@ export const getKPIByMonthAchieve = async (navigation) => {
   return data;
 };
 
-// 5. Home > KPI Tháng hiện tại > Tổng lương dự kiến
+// 5. Home > KPI Tháng hiện tại >  Thu nhập dự kiến từ tập TB tháng n
 export const getTempSalary = async (navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => {

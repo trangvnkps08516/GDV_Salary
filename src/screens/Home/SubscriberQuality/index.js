@@ -9,12 +9,12 @@ import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
 import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
-import { M_SubscriberQuality, UserObj } from '../../../models/Data';
+import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
 
-const SubscriberQuality = (props) => {
-    const [data, setData] = useState(M_SubscriberQuality);
+const SubscriberQuality = () => {
+    const [data, setData] = useState(SubsQuality);
     const [loading, setLoading] = useState(true)
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();

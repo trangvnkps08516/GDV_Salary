@@ -11,8 +11,8 @@ import { styles } from './styles';
 const index = (props) => {
     const [selectedItem, setSelectedItem] = useState(props.data[0]);
     const [showDialog, setShowDialog] = useState(false);
-    
-    const _onPress=(value)=>{
+
+    const _onPress = (value) => {
         setSelectedItem(value);
         setShowDialog(!showDialog);
         props.onPress(value)
@@ -21,7 +21,7 @@ const index = (props) => {
         <View style={[styles.container, { width: props.width }, props.style]}>
             <TouchableOpacity style={[styles.picker, { width: props.width }]} onPress={() => setShowDialog(!showDialog)}>
                 <Text style={styles.dateLabel}>{selectedItem.value}</Text>
-                <Image source={images.arrowdown} resizeMode="contain" style={styles.arrDown}/>
+                <Image source={images.arrowdown} resizeMode="contain" style={styles.arrDown} />
             </TouchableOpacity>
 
             <Modal
@@ -47,10 +47,10 @@ const index = (props) => {
                         elevation: 5, borderTopLeftRadius: fontScale(30), borderTopRightRadius: fontScale(30), paddingTop: fontScale(15), paddingBottom: fontScale(30)
                     }}>
                         <Text style={styles.dialogTitle}>{props.dialogTitle}</Text>
-                        <View style={{backgroundColor:'#8a8a8a',opacity:0.5,height:0.7}}/>
+                        <View style={{ backgroundColor: '#8a8a8a', opacity: 0.5, height: 0.7 }} />
                         {
                             props.data.map((item) => {
-                                return <TouchableOpacity onPress={()=>_onPress(item)} style={[styles.selectContent,{backgroundColor:selectedItem.id==item.id?"#f1f1f1":"#fff"}]}><Text key={item.id} style={styles.selectItem} >{item.value}</Text></TouchableOpacity>
+                                return <TouchableOpacity key={item.id} onPress={() => _onPress(item)} style={[styles.selectContent, { backgroundColor: selectedItem.id == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{item.value}</Text></TouchableOpacity>
                             })
                         }
                     </View>

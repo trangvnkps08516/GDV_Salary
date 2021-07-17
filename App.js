@@ -65,9 +65,9 @@ const ProfileStack = () => {
 
 const GDVStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="KPIByMonthKPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
+      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="KPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
       <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
       <Stack.Screen name="SalaryByMonthFixedwage" component={SalaryByMonthFixedwageScreen} />
