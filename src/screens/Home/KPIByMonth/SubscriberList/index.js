@@ -29,10 +29,11 @@ const SubscriberList = (props) => {
   const [notification, setNotification] = useState("");
   const [loading, setLoading] = useState(false);
   const [user, setUserData] = useState(UserObj);
-  const [filterCondition, setFilterCondition] = useState('TT')
+  const [filterCondition, setFilterCondition] = useState("");
   const [TBTT, setTBTT] = useState([]);
   const [TBTS, setTBTS] = useState([]);
-  const [keyType, setKeyType] = useState('')
+  const [All, setAll] = useState([]);
+  const [keyType, setKeyType] = useState("");
   const navigation = useNavigation();
 
   const getData = async (status) => {
@@ -49,14 +50,15 @@ const SubscriberList = (props) => {
             setData(res.data.data);
             setSearchData(res.data.data);
             if (status == "TT") {
-              filterDataType(res.data.data, status)
-            } else {
-              filterDataType(res.data.data, "TS")
+              filterDataType(res.data.data, status);
+            }
+            if (status == "TS") {
+              filterDataType(res.data.data, "TS");
             }
           } else {
-            setMessage("Không có dữ liệu!");
+            filterDataType(res.data.data, "Tất cả");
+            // setMessage("Không có dữ liệu!");
           }
-
         }
       }
       if (res.status == "failed") {
@@ -75,16 +77,20 @@ const SubscriberList = (props) => {
     });
   };
 
-  const filterData = (text = "") => {
+  const searchSub = (text = "") => {
     var newData = [];
     if (filterCondition == "TT") {
       newData = TBTT.filter((item) => {
         const itemData = `${item.numberSub.toString()}`;
         return itemData.indexOf(text.toString()) > -1;
       });
-
-    } else {
+    } else if (filterCondition == "TS") {
       newData = TBTS.filter((item) => {
+        const itemData = `${item.numberSub.toString()}`;
+        return itemData.indexOf(text.toString()) > -1;
+      });
+    } else {
+      newData = data.filter((item) => {
         const itemData = `${item.numberSub.toString()}`;
         return itemData.indexOf(text.toString()) > -1;
       });
@@ -95,17 +101,16 @@ const SubscriberList = (props) => {
       if (newData.length == 0) {
         setLoading(false);
         setMessage("Không tìm thấy số thuê bao");
-        setSearchData([])
+        setSearchData([]);
       } else {
         setLoading(false);
         setMessage("");
         setSearchData(newData);
-
       }
     } else {
-      setData([])
+      setData([]);
       setLoading(false);
-      getData(filterCondition)
+      getData(filterCondition);
       setMessage("");
     }
   };
@@ -117,16 +122,16 @@ const SubscriberList = (props) => {
       return itemData.indexOf(text) > -1;
     });
     setSearchData(newData);
-    setFilterCondition(text)
+    setFilterCondition(text);
     setLoading(false);
-    if (text == 'TT') {
-      setTBTT(newData)
+    if (text == "TT") {
+      setTBTT(newData);
+    } else if (text == "TS") {
+      setTBTS(newData);
     } else {
-      setTBTS(newData)
+      setSearchData(data);
     }
-  }
-
-
+  };
 
   useEffect(() => {
     const backAction = () => {
@@ -157,25 +162,45 @@ const SubscriberList = (props) => {
         style={styles.search}
         leftIcon={images.simlist}
         rightIcon={images.searchlist}
-        onChangeText={(value) => filterData(value)}
+        onChangeText={(value) => searchSub(value)}
         placeholder={text.searchSub}
         keyboardType="number-pad"
-        width={width - fontScale(65)} />
+        width={width - fontScale(65)}
+      />
 
       <DataPicker
         dialogTitle="Chọn dữ liệu"
-        icon = {images.sim}
-        data={[{ "id": 0, "value": "TT" }, { "id": 1, "value": "TS" }]}
+        icon={images.sim}
+        data={[
+          { id: 0, value: "Tất cả" },
+          { id: 1, value: "TT" },
+          { id: 2, value: "TS" },
+        ]}
         width={width - fontScale(65)}
         onPress={(value) => filterDataType(data, value.value)}
-        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }} />
+        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
+      />
 
       <Body
         showInfo={false}
         style={{ marginTop: fontScale(15), zIndex: -10 }}
       />
+
       <View style={{ flex: 1, backgroundColor: colors.white }}>
-        <View style={{ flexDirection: "row" }}>
+        <View style={styles.sumKpiContainer}>
+          <Text style={styles.sumKpiTitle}>{text.TBTT}: </Text>
+          <Text style={styles.sumKpi}>90(50 có gói)</Text>
+
+        <View style={styles.sumKpiContainerSecond}>
+          <Text style={styles.sumKpiTitle}>{text.TBTS}: </Text>
+          <Text style={styles.sumKpi}>90(50 có gói)</Text>
+        </View>
+        </View>
+
+       
+        
+
+        <View style={{ flexDirection: "row", marginTop: 9 }}>
           <TableHeader style={{ flex: 1.8 }} title={text.date} />
           <TableHeader style={{ flex: 1.5 }} title={text.numberSub} />
           <TableHeader style={{ flex: 1.7 }} title={text.statusPaid} />
@@ -183,13 +208,14 @@ const SubscriberList = (props) => {
           <TableHeader style={{ flex: 0.9 }} title={text.pckSub} />
         </View>
         {loading == true ? (
-          <ActivityIndicator size="small" color={colors.primary} style={{ marginTop: fontScale(10) }} />
+          <ActivityIndicator
+            size="small"
+            color={colors.primary}
+            style={{ marginTop: fontScale(10) }}
+          />
         ) : null}
 
-        {
-          message ? <Text
-            style={styles.message}>{message}</Text> : null
-        }
+        {message ? <Text style={styles.message}>{message}</Text> : null}
 
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -201,17 +227,28 @@ const SubscriberList = (props) => {
             <GeneralListItem
               item={item}
               index={index}
-              fields={[item.date, item.numberSub, item.statusPaid, item.type, item.pckSub]}
+              fields={[
+                item.date,
+                item.numberSub,
+                item.statusPaid,
+                item.type,
+                item.pckSub,
+              ]}
               style={[
-                [styles.dateCol, { width: width * 1.7 / 10 }],
-                [styles.dateCol, { width: width * 2.5 / 10 }],
-                [styles.dateCol, { width: width * 1.7 / 10 }],
-                [styles.dateCol, { width: width * 2.9 / 10 }],
-                [styles.dateCol, { width: width * 1 / 10 }]
+                [styles.dateCol, { width: (width * 1.7) / 10 }],
+                [styles.dateCol, { width: (width * 2.5) / 10 }],
+                [styles.dateCol, { width: (width * 1.7) / 10 }],
+                [styles.dateCol, { width: (width * 2.9) / 10 }],
+                [styles.dateCol, { width: (width * 1) / 10 }],
               ]}
               lastIcon={item.pckSub == 1 ? images.check : images.cancle}
               lastIconViewStyle={{ alignItems: "center", flex: 0.5 }}
-              lastIconStyle={{ flex: 0.5, width: fontScale(15), height: fontScale(19) }} />
+              lastIconStyle={{
+                flex: 0.5,
+                width: fontScale(15),
+                height: fontScale(19),
+              }}
+            />
           )}
         />
       </View>
@@ -220,3 +257,28 @@ const SubscriberList = (props) => {
 };
 
 export default SubscriberList;
+
+
+// search basic
+// const filterDataSub = (text = "") => {
+//   const newData = searchData.filter((item) => {
+//     const itemData = `${item.numberSub.toString()}`;
+//     return itemData.indexOf(text.toString()) > -1;
+//   });
+//   if (text.length > 0) {
+//     setLoading(true);
+//     setSearchData(newData);
+//     if (newData.length == 0) {
+//       setLoading(false);
+//       setMessage("Không tìm thấy số thuê bao");
+//     } else {
+//       setLoading(false);
+//       setMessage("");
+//     }
+//   } else {
+//     setLoading(false);
+//     setSearchData(data);
+//     setMessage("");
+//   }
+// };
+

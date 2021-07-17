@@ -19,6 +19,8 @@ export const styles = StyleSheet.create({
         marginTop: fontScale(20)
     },
     dateCol: { textAlign: "center", fontSize: fontScale(14) },
+    sumKpiContainer: {flexDirection: "row", alignSelf: "center", marginTop: -fontScale(25)},
+    sumKpiContainerSecond: {flexDirection: "row", alignSelf: "center", marginLeft: 20},
     message: {
         color: colors.primary,
         textAlign: "center",
