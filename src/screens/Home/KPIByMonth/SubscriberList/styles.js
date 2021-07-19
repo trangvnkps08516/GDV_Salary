@@ -19,8 +19,9 @@ export const styles = StyleSheet.create({
         marginTop: fontScale(20)
     },
     dateCol: { textAlign: "center", fontSize: fontScale(14) },
-    sumKpiContainer: {flexDirection: "row", alignSelf: "center", marginTop: -fontScale(25)},
+    sumKpiContainer: {flexDirection: "row", alignSelf: "center", marginTop: -fontScale(35)},
     sumKpiContainerSecond: {flexDirection: "row", alignSelf: "center", marginLeft: 20},
+    preSub: {fontWeight: "bold", color: "#A89D02"},
     message: {
         color: colors.primary,
         textAlign: "center",

@@ -23,6 +23,8 @@ const SubscriberList = () => {
   const [searchData, setSearchData] = useState([]);
   const [message, setMessage] = useState("");
   const [notification, setNotification] = useState("");
+  const [preSub, setPreSub] = useState("");
+  const [postSub, setPostSub] = useState("");
   const [loading, setLoading] = useState(false);
   const [filterCondition, setFilterCondition] = useState("");
   const [TBTT, setTBTT] = useState([]);
@@ -40,6 +42,8 @@ const SubscriberList = () => {
         } else {
           if (res.data.data.length > 0) {
             setNotification(res.data.notification);
+            setPreSub(res.data.preSub);
+            setPostSub(res.data.postSub);
             setData(res.data.data);
             setSearchData(res.data.data);
             if (status == "TT") {
@@ -171,18 +175,18 @@ const SubscriberList = () => {
       <View style={{ flex: 1, backgroundColor: colors.white }}>
         <View style={styles.sumKpiContainer}>
           <Text style={styles.sumKpiTitle}>{text.TBTT}: </Text>
-          <Text style={styles.sumKpi}>90(50 có gói)</Text>
+          <Text style={styles.preSub}>{postSub}      ;</Text>
 
         <View style={styles.sumKpiContainerSecond}>
           <Text style={styles.sumKpiTitle}>{text.TBTS}: </Text>
-          <Text style={styles.sumKpi}>90(50 có gói)</Text>
+          <Text style={styles.preSub}>{preSub}</Text>
         </View>
         </View>
 
        
         
 
-        <View style={{ flexDirection: "row", marginTop: 9 }}>
+        <View style={{ flexDirection: "row", marginTop: fontScale(12) }}>
           <TableHeader style={{ flex: 1.8 }} title={text.date} />
           <TableHeader style={{ flex: 1.5 }} title={text.numberSub} />
           <TableHeader style={{ flex: 1.7 }} title={text.statusPaid} />
