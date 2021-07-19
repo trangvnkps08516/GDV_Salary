@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StatusBar, Text, FlatList, View,ActivityIndicator,BackHandler } from "react-native";
+import { SafeAreaView, StatusBar, Text, FlatList, View, ActivityIndicator, BackHandler } from "react-native";
 import {
   Body,
   DataPicker,
@@ -17,6 +17,7 @@ import { text } from "../../../../utils/Text";
 import { getSubscriberList } from "../../../../api";
 import { useNavigation } from "@react-navigation/native";
 import { width } from "../../../../utils/Dimenssion";
+import { backHandler } from "../../../../utils/Logistics";
 
 const SubscriberList = () => {
   const [data, setData] = useState([]);
@@ -120,19 +121,21 @@ const SubscriberList = () => {
   };
 
   useEffect(() => {
-    const backAction = () => {
-      navigation.navigate("KPIByMonthDashboard");
-      return true;
-    };
+    // const backAction = () => {
+    //   navigation.navigate("KPIByMonthDashboard");
+    //   return true;
+    // };
 
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
+    // const backHandler = BackHandler.addEventListener(
+    //   "hardwareBackPress",
+    //   backAction
+    // );
     getData(filterCondition); // gọi data thật
-    return () => {
-      backHandler.remove();
-    };
+    // return () => {
+    //   backHandler.remove();
+    // };
+    backHandler(navigation, "KPIByMonthDashboard");
+
   }, [""]);
 
   return (
@@ -177,14 +180,14 @@ const SubscriberList = () => {
           <Text style={styles.sumKpiTitle}>{text.TBTT}: </Text>
           <Text style={styles.preSub}>{postSub}      ;</Text>
 
-        <View style={styles.sumKpiContainerSecond}>
-          <Text style={styles.sumKpiTitle}>{text.TBTS}: </Text>
-          <Text style={styles.preSub}>{preSub}</Text>
-        </View>
+          <View style={styles.sumKpiContainerSecond}>
+            <Text style={styles.sumKpiTitle}>{text.TBTS}: </Text>
+            <Text style={styles.preSub}>{preSub}</Text>
+          </View>
         </View>
 
-       
-        
+
+
 
         <View style={{ flexDirection: "row", marginTop: fontScale(12) }}>
           <TableHeader style={{ flex: 1.8 }} title={text.date} />

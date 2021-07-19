@@ -32,15 +32,13 @@ const SignIn = (props) => {
                     setLoading(false);
                     await _retrieveData("userInfo").then((item) => {
                         if (item.userId.userGroupId.code == "MBF_GDV") {
-                           
                             navigation.navigate("GDVHome")
                         } else {
                             setMessage("Bạn không có quyền sử dụng app!")
                         }
                     });
 
-                } else
-                    if (res.status == "failed") {
+                } else if (res.status == "failed") {
                         setLoading(false)
                         setMessage(res.message)
                     }

@@ -10,14 +10,17 @@ import { text } from "../../../../utils/Text";
 import { getKPIByMonthDashboard, getProfile } from "../../../../api";
 import { KPIByMonthDashboard, UserObj } from "../../../../models/Data";
 import { useNavigation } from "@react-navigation/core";
-import { thoundsandSep, ToastNotif } from "../../../../utils/Logistics";
+import { backHandler, thoundsandSep, ToastNotif } from "../../../../utils/Logistics";
 import { _retrieveData } from "../../../../utils/Storage";
 import Toast from "react-native-toast-message";
+import { useIsFocused, useRoute } from "@react-navigation/native";
 
 const DashBoard = (props) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
   const [user, setUserData] = useState(UserObj);
+  const isFocused = useIsFocused();
+  const route = useRoute();
 
   const navigation = useNavigation();
 
@@ -40,7 +43,9 @@ const DashBoard = (props) => {
         }, 1000);
       }
     });
+  };
 
+  const _getProfile = async () => {
     await getProfile(navigation).then((res) => {
       if (res.status == "success") {
         setLoading(false);
@@ -50,24 +55,13 @@ const DashBoard = (props) => {
         setLoading(false);
       }
     });
-  };
+  }
 
   useEffect(() => {
-    const backAction = () => {
-      navigation.navigate("Home");
-      return true;
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
     getData();
-
-    return () => {
-      backHandler
-    };
-  }, [""]);
+    _getProfile();
+      backHandler(navigation, "Home");
+  }, [navigation]);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />

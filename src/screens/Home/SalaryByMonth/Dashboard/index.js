@@ -13,7 +13,6 @@ import { useNavigation } from '@react-navigation/core';
 import { getProfile, getSalaryByMonth } from '../../../../api';
 import { SalaryByMonth, UserObj } from '../../../../models/Data';
 import { thoundsandSep } from '../../../../utils/Logistics';
-import { useRoute } from '@react-navigation/native';
 import { useIsFocused } from "@react-navigation/native";
 import { _retrieveData } from '../../../../utils/Storage';
 import Toast from 'react-native-toast-message';
@@ -83,11 +82,14 @@ const Dashboard = (props) => {
     };
   }, [])
 
+  const _onChangeMonth = async (month) => {
+    await getData(month);
+  }
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.salaryByMonth} />
-      <DatePicker style={styles.datePicker} width={width - fontScale(164)} month={month} defaultMonth={month} onChangeDate={(date) => getData(date)} />
+      <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
       <MetricStatus title={text.numberStatus} status={data.status} style={{ alignSelf: 'center', marginTop: fontScale(13) }} />
       <Body style={{ marginTop: fontScale(10), zIndex: -10 }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
       <View style={styles.body}>

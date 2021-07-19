@@ -16,6 +16,5 @@ export const styles = StyleSheet.create({
         color:"#BAB400",
         fontWeight:"bold",
         fontSize:fontScale(14)
-
     }
 })

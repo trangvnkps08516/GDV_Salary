@@ -6,7 +6,7 @@ import { Input, Button, AuthTitle } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
-import { ToastNotif } from '../../../utils/Logistics';
+import { backHandler, ToastNotif } from '../../../utils/Logistics';
 import { styles } from './styles';
 import Toast from 'react-native-toast-message';
 
@@ -45,21 +45,7 @@ const UpdatePassword = () => {
     }
 
     useEffect(() => {
-        let isCancelled = false;
-        const backAction = () => {
-            navigation.navigate("Profile")
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        return () => {
-            backHandler.remove();
-            isCancelled = true;
-        };
-
+        backHandler(navigation,"Profile");
     }, [isFocused]);
 
     return (

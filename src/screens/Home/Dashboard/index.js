@@ -12,7 +12,6 @@ import { UserObj } from "../../../models";
 import { imgUrl } from '../../../api/untils';
 import { getProfile } from '../../../api';
 import { styles } from './style';
-import { Alert } from 'react-native';
 
 const Dashboard = (props) => {
   const navigation = useNavigation();
@@ -40,7 +39,7 @@ const Dashboard = (props) => {
   useEffect(() => {
     const backAction = () => {
       BackHandler.exitApp();
-      return true;
+      return;
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -52,7 +51,8 @@ const Dashboard = (props) => {
     return () => {
       backHandler
     };
-  }, [""])
+  }, [""]);
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />

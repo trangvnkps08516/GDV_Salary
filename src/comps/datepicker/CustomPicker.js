@@ -51,7 +51,7 @@ const MonthYearPicker = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.monthContainer}>
-                    {month_data.map((item, index) =>
+                    {props.month_data.map((item, index) =>
                         <TouchableOpacity
                             key={index}
                             onPress={() => {

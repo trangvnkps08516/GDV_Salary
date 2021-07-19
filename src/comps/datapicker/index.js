@@ -20,8 +20,7 @@ const index = (props) => {
     return (
         <View style={[styles.container, { width: props.width }, props.style]}>
             <TouchableOpacity style={[styles.picker, { width: props.width }]} onPress={() => setShowDialog(!showDialog)}>
-            <Image source={props.icon} resizeMode="contain" style={styles.leftIco}/>
-            
+                <Image source={props.icon} resizeMode="contain" style={styles.leftIco} />
                 <Text style={styles.dateLabel}>{selectedItem.value}</Text>
                 <Image source={images.arrowdown} resizeMode="contain" style={styles.arrDown} />
             </TouchableOpacity>
@@ -45,7 +44,6 @@ const index = (props) => {
                         },
                         shadowOpacity: 0.25,
                         shadowRadius: 3.84,
-                        justifyContent: "center",
                         elevation: 5, borderTopLeftRadius: fontScale(30), borderTopRightRadius: fontScale(30), paddingTop: fontScale(15), paddingBottom: fontScale(30)
                     }}>
                         <Text style={styles.dialogTitle}>{props.dialogTitle}</Text>

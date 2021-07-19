@@ -8,11 +8,11 @@ import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, ExpectedSa
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
-import Splash from './src/screens/Auth/Splash';
+import { fontScale } from './src/utils/Fonts';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const BottomTab = () => {
+const GDVBottomTab = () => {
   return (
     <Tab.Navigator tabBarOptions={
       {
@@ -28,7 +28,7 @@ const BottomTab = () => {
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size, focused }) => {
-            return <Image style={{ width: size, height: size, tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.user} />
+            return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.user} />
           }
         }} />
       <Tab.Screen
@@ -37,7 +37,7 @@ const BottomTab = () => {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size, focused }) => {
-            return <Image style={{ width: size, height: size, tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.home} />
+            return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.home} />
           }
         }} />
       <Tab.Screen
@@ -46,7 +46,7 @@ const BottomTab = () => {
         options={{
           tabBarLabel: 'Logout',
           tabBarIcon: ({ color, size, focused }) => {
-            return <Image style={{ width: size, height: size, tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.logout} />
+            return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.logout} />
           }
         }} />
     </Tab.Navigator>
@@ -96,7 +96,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={AuthStack} />
-        <Stack.Screen name="GDVHome" component={BottomTab} />
+        <Stack.Screen name="GDVHome" component={GDVBottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );

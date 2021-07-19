@@ -80,7 +80,7 @@ const TransactionInfo = (props) => {
             backHandler.remove();
         };
 
-    }, [""]);
+    }, []);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.primary, flex: 1 }}>

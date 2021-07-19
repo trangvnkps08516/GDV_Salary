@@ -5,7 +5,7 @@ import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { text } from '../../../../utils/Text';
 import { images } from '../../../../utils/Images';
-import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
+import { backHandler, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import moment from 'moment';
@@ -13,6 +13,7 @@ import { getProfile, getTempSalary } from '../../../../api';
 import { DetailTempContract, UserObj } from '../../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
+import { useIsFocused } from '@react-navigation/native';
 
 const ExpectedSalary = (props) => {
     const [data, setData] = useState(DetailTempContract);
@@ -21,6 +22,7 @@ const ExpectedSalary = (props) => {
     const [loading, setLoading] = useState(true)
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const getData = async () => {
         await getTempSalary(navigation).then((res) => {
@@ -58,21 +60,13 @@ const ExpectedSalary = (props) => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.goBack();
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        getData()
-        return () => {
-            backHandler.remove();
-        };
-
-    }, [""]);
+        getData();
+        getProfile();
+        backHandler(navigation, "KPIByMonthDashboard");
+        return ()=>{
+            
+        }
+    }, [navigation]);
 
     return (
         <SafeAreaView style={styles.container}>

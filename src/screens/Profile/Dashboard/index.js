@@ -12,7 +12,7 @@ import { getProfile } from '../../../api';
 import { imgUrl } from '../../../api/untils';
 import { useIsFocused } from "@react-navigation/native";
 import { _storeData } from '../../../utils/Storage';
-import { ToastNotif } from '../../../utils/Logistics';
+import { backHandler, ToastNotif } from '../../../utils/Logistics';
 import Toast from 'react-native-toast-message';
 
 const DashBoard = (props) => {
@@ -46,23 +46,9 @@ const DashBoard = (props) => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.navigate("Home")
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-
         getData();
-        return () => {
-            backHandler.remove();
-        };
-
+        backHandler(navigation,"Home");
     }, [isFocused]);
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -78,7 +64,7 @@ const DashBoard = (props) => {
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
-                            <ScrollView style={{paddingVertical:10}}>
+                            <ScrollView style={{ paddingVertical: 10 }}>
                                 <View>
                                     <ProfileItem icon={images.day} title={text.workingDay} size={fontScale(25)} value={userData.gdvId ? userData.gdvId.fromDate : "..."} />
                                     <ProfileItem icon={images.workingShop} title={text.workingShop} size={fontScale(25)} value={userData.shopId ? userData.shopId.shopName : "..."} />

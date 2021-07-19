@@ -8,16 +8,18 @@ import { text } from '../../../../utils/Text';
 import { useNavigation } from '@react-navigation/core';
 import { fontScale } from '../../../../utils/Fonts';
 import { getKPIByMonthAchieve, getProfile } from '../../../../api';
-import { checkn, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
+import { backHandler, checkn, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { _retrieveData } from '../../../../utils/Storage';
 import { KPIByMonthAchieve, UserObj } from '../../../../models/Data';
 import Toast from 'react-native-toast-message';
+import { useIsFocused } from '@react-navigation/native';
 
 const Achieve = (props) => {
     const [data, setData] = useState(KPIByMonthAchieve);
     const [loading, setLoading] = useState(true);
     const [user, setUserData] = useState(UserObj);
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const getData = async () => {
         await getKPIByMonthAchieve(navigation).then((res) => {
@@ -55,22 +57,9 @@ const Achieve = (props) => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.goBack();
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
         getData();
-
-        return () => {
-            backHandler.remove();
-        };
-
-    }, [""]);
+        backHandler(navigation, "KPIByMonthDashboard");
+    }, [navigation]);
 
     return (
         <SafeAreaView style={styles.container}>

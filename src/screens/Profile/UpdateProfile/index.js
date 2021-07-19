@@ -24,6 +24,7 @@ import { imgUrl } from "../../../api/untils";
 import { _storeData } from "../../../utils/Storage";
 import { useIsFocused } from "@react-navigation/native";
 import { fontScale } from "../../../utils/Fonts";
+import { backHandler } from "../../../utils/Logistics";
 
 const UpdateProfile = (props) => {
   const navigation = useNavigation();
@@ -32,7 +33,7 @@ const UpdateProfile = (props) => {
   const [displayName, setDisplayName] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [formData, setFormData] = useState(new FormData());
-  const [pickAvatar,setPickAvatar] = useState(false);
+  const [pickAvatar, setPickAvatar] = useState(false);
   const isFocused = useIsFocused();
 
   const getData = async () => {
@@ -91,22 +92,8 @@ const UpdateProfile = (props) => {
   };
 
   useEffect(() => {
-    let isCancelled = false;
-
-    const backAction = () => {
-      navigation.navigate("Profile")
-      return true;
-    };
     getData();
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
-
-    return () => {
-      backHandler.remove();
-      isCancelled = true;
-    };
+    backHandler(navigation, "Profile");
   }, [isFocused]);
 
   return (

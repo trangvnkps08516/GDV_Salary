@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
-import { height } from '../../../utils/Dimenssion';
 import { text } from '../../../utils/Text';
 
 const Splash = (props) => {
@@ -15,11 +14,15 @@ const Splash = (props) => {
         await _retrieveData("userInfo").then((data) => {
             if (data != null) {
                 setTimeout(() => {
-                    navigation.navigate('GDVHome');                    
+                    if (data.userId.userGroupId.code == "MBF_GDV") {
+                        navigation.navigate('GDVHome');
+                    } else if (data.userId.userGroupId.code == "ADMIN") {
+
+                    }
                 }, 3000);
             } else {
                 setTimeout(() => {
-                    navigation.navigate('SignIn');                    
+                    navigation.navigate('SignIn');
                 }, 3000);
             }
         });
@@ -32,7 +35,7 @@ const Splash = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
             <Image source={images.logo} style={styles.logo} />
-            <View style={{ flex: 4, justifyContent: "center" }}>
+            <View style={{ flex: 3.5, justifyContent: "center" }}>
                 <Image source={images.splashshape} style={styles.shape} />
             </View>
             <View style={{ flex: 2 }}>
