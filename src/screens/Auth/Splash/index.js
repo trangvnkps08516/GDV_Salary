@@ -5,10 +5,10 @@ import { useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
-import { height } from '../../../utils/Dimenssion';
 import { text } from '../../../utils/Text';
+import { getProfile } from '../../../api';
 
-const Splash = (props) => {
+const Splash = () => {
     const navigation = useNavigation();
 
     const getData = async () => {
@@ -30,11 +30,15 @@ const Splash = (props) => {
                     
                 }
             } else {
-                setTimeout(() => {
-                    navigation.navigate('SignIn');                    
-                }, 3000);
+                if (data.data.userGroupId.code == "MBF_GDV") {
+                    setTimeout(() => {
+                        navigation.navigate('GDVHome');
+                    }, 3000);
+                } else if (data.data.userGroupId.code == "ADMIN") {
+
+                }
             }
-        });
+        })
     }
 
     useEffect(() => {
@@ -44,7 +48,7 @@ const Splash = (props) => {
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
             <Image source={images.logo} style={styles.logo} />
-            <View style={{ flex: 4, justifyContent: "center" }}>
+            <View style={{ flex: 3.5, justifyContent: "center" }}>
                 <Image source={images.splashshape} style={styles.shape} />
             </View>
             <View style={{ flex: 2 }}>

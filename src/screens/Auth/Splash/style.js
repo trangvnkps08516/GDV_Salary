@@ -9,15 +9,15 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.primary
     },
     logo: {
-        marginTop: height / 15,
+        marginTop: fontScale(height / 15),
         resizeMode: "contain",
         alignSelf: "center",
-        width: width * 2 / 3
+        width: fontScale(width * 2 / 3)
     },
     shape: {
         resizeMode: "contain",
         alignSelf: "center",
-        width: width * 3 / 5
+        width: fontScale(width * 3.5 / 5)
     },
     appName: {
         color: colors.white,

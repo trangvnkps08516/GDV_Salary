@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../utils/Colors";
-import { height } from "../../utils/Dimenssion";
+import { height, statusbarHeight, width } from "../../utils/Dimenssion";
 import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -11,8 +11,9 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderTopLeftRadius: fontScale(40),
         borderTopRightRadius: fontScale(40),
-        height: height / 4,
-        marginTop: height * 3 / 4
+        position:"absolute",
+        width:width,
+        bottom:0
     },
     logoutMessage: {
         textAlign: "center",
@@ -45,7 +46,7 @@ export const styles = StyleSheet.create({
         marginTop: fontScale(3)
     },
     buttonContainer: {
-        marginTop: fontScale(20),
+        marginVertical: fontScale(20),
         flexDirection: "row",
         alignSelf: "center",
         justifyContent: "space-between"

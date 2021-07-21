@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/core';
 import { styles } from './styles';
 import { useEffect } from 'react';
 import { _removeData, _retrieveData } from '../../utils/Storage';
+import { backHandler } from '../../utils/Logistics';
 
 const SignOut = () => {
     const navigation = useNavigation();
@@ -16,21 +17,10 @@ const SignOut = () => {
         await signoutUser(navigation).then(async () => {
             await _removeData("userInfo");
         });
-
     }
+    
     useEffect(() => {
-        const backAction = () => {
-            navigation.navigate('Home');
-            return true;
-        };
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        return () => {
-            backHandler.remove();
-        };
-
+        backHandler(navigation,"Home");
     }, [""]);
 
     return (

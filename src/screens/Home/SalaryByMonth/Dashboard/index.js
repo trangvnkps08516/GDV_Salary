@@ -1,8 +1,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, View, StatusBar, ScrollView, BackHandler } from 'react-native';
-import { Body, Header, MenuItem, MetricStatus, TotalSalary } from '../../../../comps';
-import { DatePicker } from '../../../../comps';
+import { Body, Header, MenuItem, MetricStatus, TotalSalary,DatePicker } from '../../../../comps';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
@@ -13,7 +12,6 @@ import { useNavigation } from '@react-navigation/core';
 import { getProfile, getSalaryByMonth } from '../../../../api';
 import { SalaryByMonth, UserObj } from '../../../../models/Data';
 import { thoundsandSep } from '../../../../utils/Logistics';
-import { useRoute } from '@react-navigation/native';
 import { useIsFocused } from "@react-navigation/native";
 import { _retrieveData } from '../../../../utils/Storage';
 import Toast from 'react-native-toast-message';
@@ -29,7 +27,7 @@ const Dashboard = (props) => {
   const getData = async (month) => {
     setLoading(true);
     setMonth(month);
-    await getSalaryByMonth(month).then((res) => {
+    await getSalaryByMonth(month,navigation).then((res) => {
       if (res.status == "success") {
         setData(res.data);
         setLoading(false);
@@ -46,6 +44,14 @@ const Dashboard = (props) => {
       }
       if (res.status == "failed") {
         setLoading(false);
+        Toast.show({
+          text1: "Cảnh báo",
+          text2: res.message,
+          type: "error",
+          visibilityTime: 100,
+          autoHide: true,
+          onHide: () => navigation.navigate("Home")
+        });
       }
     });
   }
@@ -83,11 +89,14 @@ const Dashboard = (props) => {
     };
   }, [])
 
+  const _onChangeMonth = async (month) => {
+    await getData(month);
+  }
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.salaryByMonth} />
-      <DatePicker style={styles.datePicker} width={width - fontScale(164)} month={month} defaultMonth={month} onChangeDate={(date) => getData(date)} />
+      <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
       <MetricStatus title={text.numberStatus} status={data.status} style={{ alignSelf: 'center', marginTop: fontScale(13) }} />
       <Body style={{ marginTop: fontScale(10), zIndex: -10 }} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
       <View style={styles.body}>

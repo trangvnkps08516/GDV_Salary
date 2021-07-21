@@ -6,7 +6,7 @@ import { Input, Button, AuthTitle } from '../../../comps';
 import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
-import { ToastNotif } from '../../../utils/Logistics';
+import { backHandler, ToastNotif } from '../../../utils/Logistics';
 import { styles } from './styles';
 import Toast from 'react-native-toast-message';
 
@@ -33,33 +33,20 @@ const UpdatePassword = () => {
                 if (data.status == "success") {
                     ToastNotif('Thông báo', 'Cập nhật mật khẩu thành công!', 'success', true);
                     setLoading(false);
-                    navigation.navigate("Home");
+                    setTimeout(() => {
+                        navigation.navigate("Home");
+                    }, 3000);
                 }
                 if (data.status == "failed") {
                     setMessage(data.message);
                     setLoading(false);
-
                 }
-            })
+            });
         }
     }
 
     useEffect(() => {
-        let isCancelled = false;
-        const backAction = () => {
-            navigation.navigate("Profile")
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        return () => {
-            backHandler.remove();
-            isCancelled = true;
-        };
-
+        backHandler(navigation, "Profile");
     }, [isFocused]);
 
     return (

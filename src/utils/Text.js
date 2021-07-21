@@ -20,6 +20,8 @@ export const text = {
   errorRepeatPassword: "Mật khẩu và xác nhận mật khẩu không giống nhau",
   logoutMessage:"Bạn có muốn đăng xuất?",
   saveChange: "Lưu thay đổi",
+  subscriberNotFound:"Không tìm thấy số thuê bao!",
+  dataIsNull:"Không có dữ liệu!",
 
   //Home
   kpiByMonth: "KPI tháng hiện tại",

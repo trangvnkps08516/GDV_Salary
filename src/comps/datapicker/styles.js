@@ -16,7 +16,8 @@ export const styles = StyleSheet.create({
     },
     dateLabel: {
         flex: 1,
-        // textAlign: "center",
+        fontSize: fontScale(14),
+        textAlignVertical:"center",
         color: "#848484",
         paddingLeft:fontScale(145)
     },
@@ -27,12 +28,14 @@ export const styles = StyleSheet.create({
     selectItem: {
         textAlign: "center",
         paddingVertical: fontScale(15),
+        fontSize: fontScale(13),
         borderBottomColor: "#f1f1f1",
         borderBottomWidth: 1
     },
     dialogTitle: {
         textAlign: "center",
         paddingBottom: fontScale(13),
+        fontSize: fontScale(13),
         fontWeight: "bold",
     },
     arrDown: {

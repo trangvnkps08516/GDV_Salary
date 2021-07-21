@@ -9,15 +9,19 @@ import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
 import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
-import { M_SubscriberQuality, UserObj } from '../../../models/Data';
+import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
+import { Chart, VerticalAxis, HorizontalAxis, Line } from 'react-native-responsive-linechart'
+import { lineChartData } from '../../../sampledata';
 
-const SubscriberQuality = (props) => {
-    const [data, setData] = useState(M_SubscriberQuality);
+const SubscriberQuality = () => {
+    const [data, setData] = useState(SubsQuality);
     const [loading, setLoading] = useState(true)
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
+    const [fstLineChart, setFstLineChart] = useState("");
+    const [sndLineChart, setSndLineChart] = useState("");
 
     const getData = async () => {
         setLoading(true)
@@ -71,6 +75,7 @@ const SubscriberQuality = (props) => {
             backHandler.remove();
         };
     }, [""]);
+    const labels = ["jan", "feb", "mar", "apr", "may", "jun", "jul"];
 
     return (
         <SafeAreaView style={styles.container}>
@@ -106,12 +111,37 @@ const SubscriberQuality = (props) => {
                                     <ListItem icon={images.denyTwoC} title={text.denyTwoC} price={thoundsandSep(data.denyTwoC)} />
                                 </View>
                             </View>
+
+                            <View style={{ flex: 1,marginHorizontal: fontScale(17), backgroundColor: colors.white }}>
+                                <Chart
+                                    style={{ height: 300, width: '100%', backgroundColor: '#fff' }}
+                                    xDomain={{ min: 1, max: 12 }}
+                                    yDomain={{ min: -2, max: 20 }}
+                                    padding={{ left: 20, top: 10, bottom: 30, right: 10 }}
+                                    xLabels={labels}
+                                >
+                                    <VerticalAxis tickValues={[0, 4, 8, 12, 16, 20]} />
+                                    <HorizontalAxis tickCount={6} tickValues={labels} />
+                                    <Line
+                                        data={lineChartData[0]}
+                                        smoothing="cubic-spline"
+                                        theme={{ stroke: { color: 'blue', width: 2 }, scatter: { default: { width: 4, height: 4, rx: 2 } } }}
+                                        onTooltipSelect={(data, index) => setFstLineChart(lineChartData[1][index].y)}
+                                    />
+                                    <Line
+                                        data={lineChartData[1]}
+                                        onTooltipSelect={(value, index) => setSndLineChart(lineChartData[1][index].y)}
+                                        smoothing="cubic-spline"
+                                        theme={{ stroke: { color: '#ffa502', width: 2 }, scatter: { default: { width: 4, height: 4, rx: 2 } } }} />
+                                </Chart>
+                            </View>
                         </ScrollView>
                 }
 
             </View>
+
             <Toast ref={(ref) => Toast.setRef(ref)} />
-        </SafeAreaView>
+        </SafeAreaView >
     );
 }
 

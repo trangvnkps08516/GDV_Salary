@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         // flexDirection: 'row',
         alignItems: "center",
         color: "#B7B7B7",
-        // fontSize: fontScale(14),
+        fontSize: fontScale(13),
         textAlign:"center",
        
     },

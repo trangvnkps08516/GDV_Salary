@@ -29,7 +29,7 @@ const TransactionInfo = (props) => {
 
     const getData = async (month) => {
         setLoading(true)
-        await getTransactionInfo(month).then((res) => {
+        await getTransactionInfo(month,navigation).then((res) => {
             if (res.status == "success") {
                 setData(res.data);
                 setLoading(false);
@@ -80,7 +80,7 @@ const TransactionInfo = (props) => {
             backHandler.remove();
         };
 
-    }, [""]);
+    }, []);
 
     return (
         <SafeAreaView style={{ backgroundColor: colors.primary, flex: 1 }}>

@@ -5,32 +5,24 @@ import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
 import { text } from '../../../../utils/Text';
 import { images } from '../../../../utils/Images';
-import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
+import { backHandler, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import moment from 'moment';
 import { getProfile, getTempSalary } from '../../../../api';
-import { UserObj } from '../../../../models/Data';
+import { DetailTempContract, UserObj } from '../../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
+import { useIsFocused } from '@react-navigation/native';
 
 const ExpectedSalary = (props) => {
-    const [data, setData] = useState({
-        contractSalary: 1000000,
-        kpis: "",
-        prePaid: 100000,
-        postPaid: 100000,
-        vas: 100000,
-        otherService: 600000,
-        terminalDevice: 100000,
-        permanentSalary: 8000000
-    });
-
+    const [data, setData] = useState(DetailTempContract);
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"))
     const [showDate, setShowDate] = useState(false);
     const [loading, setLoading] = useState(true)
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const getData = async () => {
         await getTempSalary(navigation).then((res) => {
@@ -68,21 +60,13 @@ const ExpectedSalary = (props) => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.goBack();
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-        getData()
-        return () => {
-            backHandler.remove();
-        };
-
-    }, [""]);
+        getData();
+        getProfile();
+        backHandler(navigation, "KPIByMonthDashboard");
+        return ()=>{
+            
+        }
+    }, [navigation]);
 
     return (
         <SafeAreaView style={styles.container}>

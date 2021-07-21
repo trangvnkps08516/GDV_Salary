@@ -8,10 +8,10 @@ import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
-import { thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
+import { backHandler, thoundsandSep, ToastNotif } from '../../../../utils/Logistics';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
 // Bình Quân Tháng và Tổng Thu Nhập
@@ -22,6 +22,7 @@ function AvgIncomeByMonth(props) {
     const [data, setData] = useState(M_AvgIncomeByMonth);
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const getData = async (beginMonth, endMonth) => {
         setLoading(true)
@@ -60,21 +61,13 @@ function AvgIncomeByMonth(props) {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.goBack();
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
         getData(beginMonth, sMonth);
         _getProfile();
-        return () => {
-            backHandler.remove();
-        };
-    }, []);
+        backHandler(navigation,"Home");
+        return ()=>{
+
+        }
+    }, [navigation]);
 
     const onChangeMonth = async (value) => {
         if (value > sMonth == true) {

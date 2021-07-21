@@ -3,9 +3,11 @@
 import moment from "moment";
 import { _retrieveData } from "./Storage";
 import Toast from "react-native-toast-message";
+import { BackHandler } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 
 export const thoundsandSep = (x) => {
-  if (x != null || x!= undefined) {
+  if (x != null || x != undefined) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     return "";
@@ -13,7 +15,7 @@ export const thoundsandSep = (x) => {
 }
 
 export const checkn = (str = '') => {
-  if (str == null || str== undefined) {
+  if (str == null || str == undefined) {
     return ""
   } else {
     let element;
@@ -155,4 +157,39 @@ export const ToastNotif = (title, content, type, autohide, onhide) => {
     autoHide: autohide,
     onHide: onhide
   })
+}
+
+export const backHandler = (navigation, screenName) => {
+  const backAction = () => {
+    navigation.navigate(screenName);
+    return true;
+  };
+
+  const backHandler = BackHandler.addEventListener(
+    "hardwareBackPress",
+    backAction
+  );
+
+  return () => {
+    backHandler.remove();
+  };
+
+}
+
+export const checkInternetConnection = async () => {
+  let data= {}
+  await NetInfo.fetch().then(state => {
+    if (state.isConnected == false) {
+      data = {
+        "message": "Không có kết nối internet",
+        "status": "failed"
+      }
+    } else {
+      data = {
+        "message": "Bạn đang kết nối internet",
+        "status": "success"
+      }
+    }
+  });
+  return data;
 }

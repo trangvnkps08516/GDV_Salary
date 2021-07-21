@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StatusBar, Text, FlatList, View } from "react-native";
+import { SafeAreaView, StatusBar, Text, FlatList, View, ActivityIndicator, BackHandler } from "react-native";
 import {
   Body,
   DataPicker,
-  FlatlistItem,
   GeneralListItem,
   Header,
   MetricStatus,
@@ -15,14 +14,12 @@ import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { getProfile, getSubscriberList } from "../../../../api";
-import { UserObj } from "../../../../models/Data";
+import { getSubscriberList } from "../../../../api";
 import { useNavigation } from "@react-navigation/native";
-import { BackHandler } from "react-native";
-import { ActivityIndicator } from "react-native";
 import { width } from "../../../../utils/Dimenssion";
+import { backHandler } from "../../../../utils/Logistics";
 
-const SubscriberList = (props) => {
+const SubscriberList = () => {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [message, setMessage] = useState("");
@@ -30,12 +27,9 @@ const SubscriberList = (props) => {
   const [preSub, setPreSub] = useState("");
   const [postSub, setPostSub] = useState("");
   const [loading, setLoading] = useState(false);
-  const [user, setUserData] = useState(UserObj);
   const [filterCondition, setFilterCondition] = useState("");
   const [TBTT, setTBTT] = useState([]);
   const [TBTS, setTBTS] = useState([]);
-  const [All, setAll] = useState([]);
-  const [keyType, setKeyType] = useState("");
   const navigation = useNavigation();
 
   const getData = async (status) => {
@@ -45,7 +39,7 @@ const SubscriberList = (props) => {
       if (res.status == "success") {
         setLoading(false);
         if (res.data.length == 0 || res.data.data.length == 0) {
-          setMessage("Không tìm thấy số thuê bao!");
+          setMessage(text.subscriberNotFound);
         } else {
           if (res.data.data.length > 0) {
             setNotification(res.data.notification);
@@ -61,19 +55,8 @@ const SubscriberList = (props) => {
             }
           } else {
             filterDataType(res.data.data, "Tất cả");
-            // setMessage("Không có dữ liệu!");
           }
         }
-      }
-      if (res.status == "failed") {
-        setLoading(false);
-      }
-    });
-
-    await getProfile(navigation).then((res) => {
-      if (res.status == "success") {
-        setLoading(false);
-        setUserData(res.data);
       }
       if (res.status == "failed") {
         setLoading(false);
@@ -138,19 +121,21 @@ const SubscriberList = (props) => {
   };
 
   useEffect(() => {
-    const backAction = () => {
-      navigation.navigate("KPIByMonthKPIByMonthDashboard");
-      return true;
-    };
+    // const backAction = () => {
+    //   navigation.navigate("KPIByMonthDashboard");
+    //   return true;
+    // };
 
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
+    // const backHandler = BackHandler.addEventListener(
+    //   "hardwareBackPress",
+    //   backAction
+    // );
     getData(filterCondition); // gọi data thật
-    return () => {
-      backHandler.remove();
-    };
+    // return () => {
+    //   backHandler.remove();
+    // };
+    backHandler(navigation, "KPIByMonthDashboard");
+
   }, [""]);
 
   return (
@@ -195,14 +180,14 @@ const SubscriberList = (props) => {
           <Text style={styles.sumKpiTitle}>{text.TBTT}: </Text>
           <Text style={styles.preSub}>{postSub}      ;</Text>
 
-        <View style={styles.sumKpiContainerSecond}>
-          <Text style={styles.sumKpiTitle}>{text.TBTS}: </Text>
-          <Text style={styles.preSub}>{preSub}</Text>
-        </View>
+          <View style={styles.sumKpiContainerSecond}>
+            <Text style={styles.sumKpiTitle}>{text.TBTS}: </Text>
+            <Text style={styles.preSub}>{preSub}</Text>
+          </View>
         </View>
 
-       
-        
+
+
 
         <View style={{ flexDirection: "row", marginTop: fontScale(12) }}>
           <TableHeader style={{ flex: 1.8 }} title={text.date} />
@@ -261,51 +246,3 @@ const SubscriberList = (props) => {
 };
 
 export default SubscriberList;
-
-
-// search basic
-// const filterDataSub = (text = "") => {
-//   const newData = searchData.filter((item) => {
-//     const itemData = `${item.numberSub.toString()}`;
-//     return itemData.indexOf(text.toString()) > -1;
-//   });
-//   if (text.length > 0) {
-//     setLoading(true);
-//     setSearchData(newData);
-//     if (newData.length == 0) {
-//       setLoading(false);
-//       setMessage("Không tìm thấy số thuê bao");
-//     } else {
-//       setLoading(false);
-//       setMessage("");
-//     }
-//   } else {
-//     setLoading(false);
-//     setSearchData(data);
-//     setMessage("");
-//   }
-// };
-
-
-// search basic
-// const filterDataTT = (text = "") => {
-//   const newData = searchData.filter((item) => {
-//     const itemData = `${item.statusPaid.toString().toUpperCase()}`;
-//     return itemData.indexOf(text.toString().toUpperCase()) > -1;
-//   });
-//   if (text.length > 0) {
-//     setLoading(true);
-//     setSearchData(newData);
-//     if (newData.length == 0) {
-//       setLoading(false);
-//       setMessage("Không tìm thấy TT/TS");
-//     } else {
-//       setLoading(false);
-//       setMessage("");
-//     }
-//   } else {
-//     setLoading(false);
-//     setSearchData(data);
-//     setMessage("");
-//   }
-// };

@@ -32,7 +32,6 @@ const SignIn = (props) => {
                     setLoading(false);
                     await _retrieveData("userInfo").then((item) => {
                         if (item.userId.userGroupId.code == "MBF_GDV") {
-                           
                             navigation.navigate("GDVHome")
                         } else if (item.userId.userGroupId.code == "ADMIN") {
                             navigation.navigate("GDVHome")
@@ -41,8 +40,7 @@ const SignIn = (props) => {
                         }
                     });
 
-                } else
-                    if (res.status == "failed") {
+                } else if (res.status == "failed") {
                         setLoading(false)
                         setMessage(res.message)
                     }

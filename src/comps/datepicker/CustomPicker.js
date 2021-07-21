@@ -17,7 +17,7 @@ const MonthYearPicker = (props) => {
         { key: 9, name: 'Tháng 09' },
         { key: 10, name: 'Tháng 10' },
         { key: 11, name: 'Tháng 11' },
-        { key: 12, name: 'Tháng 12' },
+        { key: 12, name: 'Tháng 12' }
     ]
 
     const { width } = Dimensions.get('window');
@@ -51,7 +51,8 @@ const MonthYearPicker = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.monthContainer}>
-                    {month_data.map((item, index) =>
+                    {/* <Text>{props.selectedMonth}</Text> */}
+                    {props.month_data.map((item, index) =>
                         <TouchableOpacity
                             key={index}
                             onPress={() => {

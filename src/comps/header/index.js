@@ -4,9 +4,11 @@ import { styles } from './styles';
 import { useNavigation } from '@react-navigation/core';
 import { _retrieveData } from '../../utils/Storage';
 import { images } from '../../utils/Images';
+import { ActivityIndicator } from 'react-native';
+import { colors } from '../../utils/Colors';
 
 const Header = (props) => {
-    const { title} = props;
+    const { title } = props;
     const navigation = useNavigation();
 
     return (
@@ -15,7 +17,9 @@ const Header = (props) => {
                 props.profile
                     ?
                     <View style={{ flexDirection: "row" }}>
-                        <Image source={props.avatar} style={styles.avatar} />
+                        {
+                            props.loading == true ? <ActivityIndicator size="small" color={colors.primary} /> : <Image source={props.avatar} style={styles.avatar} />
+                        }
                         <View style={styles.uInfoContent}>
                             <Text style={styles.uInfo}>{props.fullName}</Text>
                             <Text style={styles.uStaff}>({props.maGDV})</Text>
