@@ -46,8 +46,8 @@ export const styles = StyleSheet.create({
     right: fontScale(50),
     top: fontScale(3),
     resizeMode: "contain",
-    width: fontScale(50),
-    height: fontScale(50),
+    width: fontScale(42),
+    height: fontScale(42),
   },
   title: {
     minHeight: fontScale(54),
