@@ -70,13 +70,15 @@ export const text = {
   incentiveCost: "Chi phí khuyến khích",
   punishment: "Chế tài",
   otherExpenses: "Chi khác",
+  skynet: "Skynet",
 
   // Tổng lương dự kiến
   expectedSalaryMenu:"Thu nhập dự kiến từ tập TB \n trong tháng",
   expectedSalary:"Thu nhập dự kiến từ tập TB trong tháng",
   kpiS:"KPIs",
 
-
+//Năng suất bình quân
+productivitySub: "Năng suất bình quân",
   // Bình quân thu nhập
   averageMonthlySalary: "BQ lương các tháng",
   averageSalaryInTheFirstQuarter: "Bình quân lương quý 1",
@@ -111,6 +113,8 @@ export const text = {
   customersCount:"Lượt khách hàng",
   transAmount:"Giao dịch Fone -> card",
   trans2CAmount:"Giao dịch chặn 2c TBTS",
+  foneCardNoMoney: "GD Fone -> card \n không nạp tiền",
+  transAmount: "Số lượng đăng ký thông tin",
 
 
   // Danh sách thuê bao

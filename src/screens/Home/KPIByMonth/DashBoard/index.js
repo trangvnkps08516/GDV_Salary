@@ -108,6 +108,14 @@ const DashBoard = (props) => {
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("SubscriberList")}
             />
+             <MenuItem
+              titleMenuStyle={{ paddingTop: fontScale(17) }}
+              style={{ marginTop: fontScale(60) }}
+              title={text.productivitySub}
+              icon={images.productivitySub}
+              width={width - fontScale(60)}
+              onPress={() => navigation.navigate("ProductivitySub")}
+            />
 
           </>
         )}

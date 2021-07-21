@@ -12,11 +12,23 @@ const Splash = (props) => {
     const navigation = useNavigation();
 
     const getData = async () => {
-        await _retrieveData("userInfo").then((data) => {
-            if (data != null) {
-                setTimeout(() => {
-                    navigation.navigate('GDVHome');                    
-                }, 3000);
+        await _retrieveData("userInfo").then((item) => {
+            if (item!= null) {
+                // setTimeout(() => {
+                //     navigation.navigate('GDVHome');                    
+                // }, 3000);
+                if (item.userId.userGroupId.code == "MBF_GDV") {
+                    setTimeout(() => {
+                        navigation.navigate("GDVHome")
+                    },3000);
+                   
+
+                } else if (item.userId.userGroupId.code == "ADMIN") {
+                    setTimeout(() => {
+                        navigation.navigate("GDVHome")
+                    },3000);
+                    
+                }
             } else {
                 setTimeout(() => {
                     navigation.navigate('SignIn');                    
