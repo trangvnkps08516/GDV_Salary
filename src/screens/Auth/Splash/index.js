@@ -6,26 +6,27 @@ import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
 import { text } from '../../../utils/Text';
+import { getProfile } from '../../../api';
 
-const Splash = (props) => {
+const Splash = () => {
     const navigation = useNavigation();
 
     const getData = async () => {
-        await _retrieveData("userInfo").then((data) => {
-            if (data != null) {
-                setTimeout(() => {
-                    if (data.userId.userGroupId.code == "MBF_GDV") {
-                        navigation.navigate('GDVHome');
-                    } else if (data.userId.userGroupId.code == "ADMIN") {
-
-                    }
-                }, 3000);
-            } else {
+        await getProfile(navigation).then((data) => {
+            if (data.data == null) {
                 setTimeout(() => {
                     navigation.navigate('SignIn');
                 }, 3000);
+            } else {
+                if (data.data.userGroupId.code == "MBF_GDV") {
+                    setTimeout(() => {
+                        navigation.navigate('GDVHome');
+                    }, 3000);
+                } else if (data.data.userGroupId.code == "ADMIN") {
+
+                }
             }
-        });
+        })
     }
 
     useEffect(() => {

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   Image,
@@ -10,7 +9,7 @@ import {
   Alert,
   BackHandler,
 } from "react-native";
-import { getProfile, updateProfile } from "../../../api";
+import { getProfile, updateAvatar, updateProfile } from "../../../api";
 import { Button, Header, ProfileItem } from "../../../comps";
 import { UserObj } from "../../../models/Data";
 import { colors } from "../../../utils/Colors";
@@ -24,7 +23,8 @@ import { imgUrl } from "../../../api/untils";
 import { _storeData } from "../../../utils/Storage";
 import { useIsFocused } from "@react-navigation/native";
 import { fontScale } from "../../../utils/Fonts";
-import { backHandler } from "../../../utils/Logistics";
+import { backHandler, ToastNotif } from "../../../utils/Logistics";
+import Toast from "react-native-toast-message";
 
 const UpdateProfile = (props) => {
   const navigation = useNavigation();
@@ -35,6 +35,7 @@ const UpdateProfile = (props) => {
   const [formData, setFormData] = useState(new FormData());
   const [pickAvatar, setPickAvatar] = useState(false);
   const isFocused = useIsFocused();
+  const [onChangeDisplayName, setOnChangeDisplayName] = useState(false)
 
   const getData = async () => {
     await getProfile(navigation).then((res) => {
@@ -46,24 +47,66 @@ const UpdateProfile = (props) => {
     });
   };
 
-  const _updateProfile = async (avatar, displayName) => {
-    formData.append('displayName', displayName);
-    await updateProfile(formData).then(async (data) => {
-      if (data.status == 200 || data.status == 202) {
-        await _storeData("userInfo");
-        Alert.alert(
-          text.notif,
-          text.updateInfoSuccess,
-          [
-            { text: "OK", onPress: () => navigation.navigate('Profile') }
-          ],
-          { cancelable: false }
-        );
-        setLoading(false);
-      } else {
+  const _updateProfile = async (displayName) => {
+    if (pickAvatar == true) {
+      formData.append('avatar', avatar);
+      await updateAvatar(formData, navigation).then(async (res) => {
+        if (res.status == "success") {
 
-      }
-    });
+          if (onChangeDisplayName == true) {
+            await updateProfile(displayName, navigation).then(async (res) => {
+              if (res.status == "success") {
+                Alert.alert(
+                  text.notif,
+                  text.updateInfoSuccess,
+                  [
+                    { text: "OK", onPress: () => navigation.navigate('Profile') }
+                  ],
+                  { cancelable: false }
+                );
+                setOnChangeDisplayName(false)
+                setLoading(false);
+              } else {
+
+              }
+            });
+          } else {
+            Alert.alert(
+              text.notif,
+              text.updateInfoSuccess,
+              [
+                { text: "OK", onPress: () => navigation.navigate('Profile') }
+              ],
+              { cancelable: false }
+            );
+          }
+
+        }
+        if (res.status == "failed") {
+          alert(res.status)
+        }
+      })
+
+    } else {
+      await updateProfile(displayName, navigation).then(async (res) => {
+        if (res.status == "success") {
+          setLoading(false);
+          Toast.show({
+            text1: "Thông báo",
+            text2: res.message,
+            type: "success",
+            visibilityTime: 500,
+            autoHide: true,
+            onHide: () => navigation.navigate("Profile")
+          })
+
+        }
+        if (res.status == "failed") {
+          ToastNotif('Cảnh báo', res.message, 'error', true);
+        }
+      });
+
+    }
   };
 
   const pickImage = async () => {
@@ -73,8 +116,8 @@ const UpdateProfile = (props) => {
       quality: 1,
     });
     if (!result.cancelled) {
-      setAvatar(result.uri);
-      setPickAvatar(true);
+
+
       let localUri = "file:///" + result.uri.split("file:/").join("");
       let filename = localUri.split("/").pop();
 
@@ -88,6 +131,10 @@ const UpdateProfile = (props) => {
         name: filename,
       });
       setFormData(fData);
+      setPickAvatar(true);
+      setAvatar(result.uri);
+    } else {
+      setPickAvatar(false)
     }
   };
 
@@ -113,7 +160,7 @@ const UpdateProfile = (props) => {
           onPress={() => pickImage()}>
           <Image
             style={styles.avatar}
-            source={userData.avatar != null ? { uri: imgUrl + userData.avatar } : images.avatar} />
+            source={pickAvatar == true ? { uri: avatar } : userData.avatar != null ? { uri: imgUrl + userData.avatar } : images.avatar} />
         </TouchableOpacity>
       </View>
       <View>
@@ -127,14 +174,15 @@ const UpdateProfile = (props) => {
               icon={images.man}
               title={text.staffName}
               size={fontScale(25)}
-              onChangeText={(value) => setDisplayName(value)} />
+              onChangeText={(value) => [setDisplayName(value), setOnChangeDisplayName(true)]} />
             <Button
               style={styles.button}
               label={text.saveChange}
-              onPress={() => _updateProfile(avatar, displayName)} />
+              onPress={() => _updateProfile(displayName)} />
           </>
         )}
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </SafeAreaView>
   );
 };

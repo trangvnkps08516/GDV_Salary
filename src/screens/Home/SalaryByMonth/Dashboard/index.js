@@ -1,8 +1,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, SafeAreaView, View, StatusBar, ScrollView, BackHandler } from 'react-native';
-import { Body, Header, MenuItem, MetricStatus, TotalSalary } from '../../../../comps';
-import { DatePicker } from '../../../../comps';
+import { Body, Header, MenuItem, MetricStatus, TotalSalary,DatePicker } from '../../../../comps';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
@@ -28,7 +27,7 @@ const Dashboard = (props) => {
   const getData = async (month) => {
     setLoading(true);
     setMonth(month);
-    await getSalaryByMonth(month).then((res) => {
+    await getSalaryByMonth(month,navigation).then((res) => {
       if (res.status == "success") {
         setData(res.data);
         setLoading(false);
@@ -45,6 +44,14 @@ const Dashboard = (props) => {
       }
       if (res.status == "failed") {
         setLoading(false);
+        Toast.show({
+          text1: "Cảnh báo",
+          text2: res.message,
+          type: "error",
+          visibilityTime: 100,
+          autoHide: true,
+          onHide: () => navigation.navigate("Home")
+        });
       }
     });
   }

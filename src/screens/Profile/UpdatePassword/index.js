@@ -33,19 +33,20 @@ const UpdatePassword = () => {
                 if (data.status == "success") {
                     ToastNotif('Thông báo', 'Cập nhật mật khẩu thành công!', 'success', true);
                     setLoading(false);
-                    navigation.navigate("Home");
+                    setTimeout(() => {
+                        navigation.navigate("Home");
+                    }, 3000);
                 }
                 if (data.status == "failed") {
                     setMessage(data.message);
                     setLoading(false);
-
                 }
-            })
+            });
         }
     }
 
     useEffect(() => {
-        backHandler(navigation,"Profile");
+        backHandler(navigation, "Profile");
     }, [isFocused]);
 
     return (

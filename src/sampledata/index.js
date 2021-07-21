@@ -1,6 +1,6 @@
 export const subscriberList = {
-    "notification":"Thuê bao phát triển từ 01/07 - 08/07",
-    "data":[
+    "notification": "Thuê bao phát triển từ 01/07 - 08/07",
+    "data": [
         {
             "date": "09/07",
             "numberSub": "393267994",
@@ -27,45 +27,78 @@ export const subscriberList = {
 
 
 export const listMenu = [
-        {
-        titleMain:"title1",
-        list:[
-             {
-            title:"SLNV...",
-            content:"17/20"
-             },
-             {
-            title:"SLNV...",
-            content:"17/20"
-             }
-        ]
-        },
-
-        {
-            titleMain:"title1",
-            list:[
-                 {
-                title:"SLNV...",
-                content:"17/20"
-                 },
-                 {
-                title:"SLNV...",
-                content:"17/20"
-                 }
-            ]
-            },
-
+    {
+        titleMain: "title1",
+        list: [
             {
-                titleMain:"title1",
-                list:[
-                     {
-                    title:"SLNV...",
-                    content:"17/20"
-                     },
-                     {
-                    title:"SLNV...",
-                    content:"17/20"
-                     }
-                ]
-                },
+                title: "SLNV...",
+                content: "17/20"
+            },
+            {
+                title: "SLNV...",
+                content: "17/20"
+            }
+        ]
+    },
+
+    {
+        titleMain: "title1",
+        list: [
+            {
+                title: "SLNV...",
+                content: "17/20"
+            },
+            {
+                title: "SLNV...",
+                content: "17/20"
+            }
+        ]
+    },
+
+    {
+        titleMain: "title1",
+        list: [
+            {
+                title: "SLNV...",
+                content: "17/20"
+            },
+            {
+                title: "SLNV...",
+                content: "17/20"
+            }
+        ]
+    },
+]
+
+export const lineChartData = [
+    // data1: Doanh thu tháng | data2: Nợ trên 90 ngày
+    data1 = [
+        { x: 1, y: 1 },
+        { x: 2, y: 0 },
+        { x: 3, y: 13 },
+        { x: 4, y: 11.5 },
+        { x: 5, y: 12 },
+        { x: 6, y: 1 },
+        { x: 7, y: 0 },
+        { x: 8, y: 13 },
+        { x: 9, y: 11.5 },
+        { x: 10, y: 12 },
+        { x: 11, y: 1 },
+        { x: 12, y: 0 },
+    ],
+    data2 = [
+        { x: 0, y: 15 },
+        { x: 1, y: 10 },
+        { x: 2, y: 12 },
+        { x: 3, y: 7 },
+        { x: 4, y: 12 },
+        { x: 5, y: 13.5 },
+        { x: 6, y: 10 },
+        { x: 7, y: 12 },
+        { x: 8, y: 7 },
+        { x: 9, y: 12 },
+        { x: 10, y: 13.5 },
+        { x: 11, y: 18 },
+        { x: 12, y: 18 }
     ]
+]

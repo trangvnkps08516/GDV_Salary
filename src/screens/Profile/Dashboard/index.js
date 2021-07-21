@@ -21,6 +21,7 @@ const DashBoard = (props) => {
     const [userData, setUserData] = useState(Profile);
     const [showModal, setShowModal] = useState(false)
     const isFocused = useIsFocused();
+    
     const getData = async () => {
         setLoading(true)
         await getProfile(navigation).then((res) => {
