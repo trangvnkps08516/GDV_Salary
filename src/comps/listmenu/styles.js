@@ -118,7 +118,7 @@ export const styles = StyleSheet.create({
   },
 
   bodyScr: {
-    marginTop: fontScale(11)
+    marginTop: fontScale(18)
   }
 
   

@@ -14,7 +14,7 @@ import SalaryByMonthArrears from "./Home/SalaryByMonth/Arrears";
 import AvgIncomeByMonth from "./Home/AvgIncome/AvgIncomeByMonth";
 import TransactionInfo from "./Home/TransactionInfo";
 import SubscriberQuality from "./Home/SubscriberQuality";
-import ProductivitySub from "./Home/ProductivitySub";
+import ProductivitySub from "./Home/KPIByMonth/ProductivitySub";
 import Profile from "./Profile/Dashboard";
 import UpdatePassword from "./Profile/UpdatePassword";
 import UpdateProfile from "./Profile/UpdateProfile";
