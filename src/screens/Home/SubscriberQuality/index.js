@@ -212,7 +212,7 @@ const SubscriberQuality = () => {
                                             onDataPointClick={(data,index) => _onDataPointClick(data)}
                                             bezier
                                             style={{
-                                                marginHorizontal: fontScale(15)
+                                                marginHorizontal: fontScale(12)
                                             }}
                                         />
                                     }
