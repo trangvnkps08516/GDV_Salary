@@ -87,7 +87,7 @@ const ProductivitySub = (props) => {
           renderItem={({ item, index }) => (
             <ListMenu
               data={item}
-
+              onPress={()=>navigation.navigation("")}
               labelData={["","TBTT:"]}
               labelDataTwo={["","Lượt KH:"]}
               labelDataThree={["","TBTS:"]}
