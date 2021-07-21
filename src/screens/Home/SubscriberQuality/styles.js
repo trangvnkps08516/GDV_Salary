@@ -37,4 +37,16 @@ export const styles = StyleSheet.create({
   subDetail: {
     marginLeft: fontScale(40),
   },
+  detailDialogInfo:{
+    justifyContent:"center",
+    alignSelf:"center",
+    width:width/3,
+    padding:fontScale(5),
+    borderRadius:fontScale(5),
+    backgroundColor:colors.lightGrey
+  },
+  detailDialogInfoText:{
+    color:colors.grey,
+    textAlign:"center"
+  }
 });

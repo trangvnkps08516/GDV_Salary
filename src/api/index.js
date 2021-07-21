@@ -558,7 +558,7 @@ export const getSubscriberQuality = async (navigation) => {
     message: "",
     status: "",
     res: null,
-    loading: null,
+    loading: true,
     error: null
   };
   await axios({
@@ -582,7 +582,7 @@ export const getSubscriberQuality = async (navigation) => {
         }
       } else if (Object.values(res.data).length > 0) {
         data = {
-          data: res.data.data,
+          data: res.data,
           isLoading: false,
           status: "success",
           length: Object.values(res.data).length,
