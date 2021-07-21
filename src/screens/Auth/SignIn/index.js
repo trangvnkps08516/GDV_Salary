@@ -33,6 +33,8 @@ const SignIn = (props) => {
                     await _retrieveData("userInfo").then((item) => {
                         if (item.userId.userGroupId.code == "MBF_GDV") {
                             navigation.navigate("GDVHome")
+                        } else if (item.userId.userGroupId.code == "ADMIN") {
+                            navigation.navigate("GDVHome")
                         } else {
                             setMessage("Bạn không có quyền sử dụng app!")
                         }

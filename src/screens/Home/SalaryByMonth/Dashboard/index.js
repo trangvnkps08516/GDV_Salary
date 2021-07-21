@@ -110,7 +110,7 @@ const Dashboard = (props) => {
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.incentiveCost} icon={images.incentiveCost} value={thoundsandSep(data.incentiveCost)} width={width - fontScale(60)} onPress={() => { }} />
                 <MenuItem style={{ marginTop: fontScale(39) }} title={text.punishment} icon={images.punishment} value={thoundsandSep(data.sanctionCost)} width={width - fontScale(60)} onPress={() => { }} />
                 <MenuItem style={{ marginTop: fontScale(39), marginBottom: fontScale(20) }} title={text.otherExpenses} icon={images.otherExpenses} value={thoundsandSep(data.others)} width={width - fontScale(60)} onPress={() => { }} />
-
+                <MenuItem style={{ marginTop: fontScale(39), marginBottom: fontScale(20) }} title={text.skynet} icon={images.skynet} iconStyle={{width: 90, height: 50, marginTop: -fontScale(5)}} value={thoundsandSep(data.skynet)} width={width - fontScale(60)} onPress={() => { }} />
               </ScrollView>
             </View>
         }

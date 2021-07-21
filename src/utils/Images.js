@@ -56,5 +56,13 @@ export const images = {
     close:require('../../assets/close.png'),
     man:require('../../assets/man.png'),
     back:require("../../assets/backicon.png"),
+    productivitySub: require("../assets/ic_productivitySub.png"),
+    company: require("../assets/ic_company.png"),
+    branch: require("../assets/ic_branch.png"),
+    store: require("../assets/ic_store.png"),
+    skynet: require("../assets/SKYNET.png"),
+    foneCardNoMoney: require("../assets/ic_foneCardNoMoney.png"),
+    transAmount: require("../assets/ic_transcAmount.png"),
+
     
 }

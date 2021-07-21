@@ -141,7 +141,7 @@ const SubscriberList = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
-      <Header title={text.subscriberList} />
+      <Header title={text.kpiByMonth} />
       <MetricStatus
         style={styles.status}
         title={text.subscriberDevelopment}

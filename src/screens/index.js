@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Home from "./Home/DashBoard";
+import Home from "./Home/Dashboard";
 import KPIByMonthDashboard from "./Home/KPIByMonth/DashBoard";
 import Achieve from "./Home/KPIByMonth/Achieve";
 import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary";
@@ -14,6 +14,7 @@ import SalaryByMonthArrears from "./Home/SalaryByMonth/Arrears";
 import AvgIncomeByMonth from "./Home/AvgIncome/AvgIncomeByMonth";
 import TransactionInfo from "./Home/TransactionInfo";
 import SubscriberQuality from "./Home/SubscriberQuality";
+import ProductivitySub from "./Home/KPIByMonth/ProductivitySub";
 import Profile from "./Profile/Dashboard";
 import UpdatePassword from "./Profile/UpdatePassword";
 import UpdateProfile from "./Profile/UpdateProfile";
@@ -36,6 +37,7 @@ export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />
 export const AvgIncomeByMonthScreen = () => {return <AvgIncomeByMonth />}
 export const TransactionInfoScreen = () => {return <TransactionInfo />}
 export const SubscriberQualityScreen = () => {return <SubscriberQuality />}
+export const ProductivitySubScreen = () => {return <ProductivitySub />}
 export const ProfileScreen = () => {return <Profile />}
 export const UpdatePasswordScreen = () => {return <UpdatePassword />}
 export const UpdateProfileScreen = () => {return <UpdateProfile />}
