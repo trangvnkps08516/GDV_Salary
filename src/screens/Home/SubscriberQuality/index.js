@@ -112,7 +112,7 @@ const SubscriberQuality = () => {
                                 </View>
                             </View>
 
-                            <View style={{ flex: 1,marginHorizontal: fontScale(17), backgroundColor: colors.white }}>
+                            {/* <View style={{ flex: 1,marginHorizontal: fontScale(17), backgroundColor: colors.white }}>
                                 <Chart
                                     style={{ height: 300, width: '100%', backgroundColor: '#fff' }}
                                     xDomain={{ min: 1, max: 12 }}
@@ -134,7 +134,7 @@ const SubscriberQuality = () => {
                                         smoothing="cubic-spline"
                                         theme={{ stroke: { color: '#ffa502', width: 2 }, scatter: { default: { width: 4, height: 4, rx: 2 } } }} />
                                 </Chart>
-                            </View>
+                            </View> */}
                         </ScrollView>
                 }
 
