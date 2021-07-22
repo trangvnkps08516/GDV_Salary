@@ -66,42 +66,6 @@ const ListMenu = (props) => {
                 ))}
               </View>
             </View>
-
-            {/* <View style={{ flexDirection: "row"}}>
-              <View style={{ flexDirection: "row", flex: 1 }}>
-                {props.labelDataThree.map((item, index) => (
-                  <Text style={styles.labelDataThree}>{item}</Text>
-                ))}
-                {props.fieldDataThree.map((item, index) => (
-                  <Text style={styles.fieldDataThree}>{item}</Text>
-                ))}
-              </View>
-
-              <View style={{ flexDirection: "row", flex: 0.8 }}>
-                {props.labelDataFour.map((item, index) => (
-                  <Text style={styles.labelDataFour}>{item}</Text>
-                ))}
-                {props.fieldDataFour.map((item, index) => (
-                  <Text style={styles.fieldDataFour}>{item}</Text>
-                ))}
-              </View>
-
-              
-            </View> */}
-
-            {/* <View style={{ flex: 3 }}>
-              {props.fieldData.map((item, index) =>
-                props.lastIcon && index == props.fieldData.length - 1 ? (
-                  <Image
-                    source={props.lastIcon}
-                    resizeMode="contain"
-                    style={{ width: 10, height: 10 }}
-                  />
-                ) : (
-                  <Text>{index == 0 ? "" : item}</Text>
-                )
-              )}
-            </View> */}
           </View>
         </View>
       </TouchableOpacity>

@@ -109,6 +109,9 @@ productivitySub: "Năng suất bình quân",
   denyTwoC: "TBTS chặn 2c",
   contractDebt: "Nợ hợp đồng",
 
+  totalDebtOverNinety:"Nợ trên 90 ngày",
+  monthRevenue:"Doanh thu tháng",
+  monthDebt:"Nợ tháng",
 
 
 //  Thông tin giao dịch

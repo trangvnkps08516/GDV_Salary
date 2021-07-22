@@ -8,7 +8,7 @@ import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
-import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
+import { roundChartDY, thoundsandSep, ToastNotif } from '../../../utils/Logistics';
 import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
@@ -21,8 +21,6 @@ import {
     ContributionGraph,
     StackedBarChart
 } from "react-native-chart-kit";
-import { lineChartData } from '../../../sampledata';
-import { Dimensions } from 'react-native';
 import { Text } from 'react-native';
 import { LogBox } from 'react-native';
 
@@ -40,6 +38,7 @@ const SubscriberQuality = () => {
     const [revenueList, setRevenueList] = useState([]);
     const [debitList, setDebitList] = useState([]);
     const [monthList, setMonthList] = useState([]);
+    LogBox.ignoreAllLogs(true)
 
     const getData = async () => {
         setLoading(true)
@@ -113,7 +112,7 @@ const SubscriberQuality = () => {
         );
         getData();
         _getProfile();
-
+        roundChartDY(revenueList,debitList)
         return () => {
             backHandler.remove();
         };
@@ -122,9 +121,18 @@ const SubscriberQuality = () => {
 
     const _onDataPointClick = (value) => {
         let month = monthList[value.index];
-        setDetailVal('Doanh thu tháng ' + month + ': ' + thoundsandSep(value.value) + '\nNợ tháng ' + month + ': ' + thoundsandSep(debitList[value.index]));
+        let revenue = "";
+        let debit = "";
+        
+        if(value.dataset.key==1){
+            revenue = thoundsandSep(value.value);
+            debit = thoundsandSep(debitList[value.index]);
+        }else{
+            revenue = thoundsandSep(revenueList[value.index]);
+            debit = thoundsandSep(value.value)
+        }
+        setDetailVal(text.monthRevenue+ ' ' + month + ': ' + revenue + '\n'+ text.monthDebt+ ': ' + debit);
         setShowDetailVal(true);
-
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -139,7 +147,6 @@ const SubscriberQuality = () => {
                 </View>
             </View>
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
                     loadingChart == true
@@ -174,7 +181,7 @@ const SubscriberQuality = () => {
                                         </View> : <View />
                                 }
                                 {
-                                    revenueList.length > 0 && debitList.length > 0 && <LineChart
+                                    revenueList.length  > 0 && debitList.length > 0 && <LineChart
                                         data={{
                                             labels: monthList,
                                             datasets: [
@@ -191,12 +198,12 @@ const SubscriberQuality = () => {
                                                     strokeWidth: 2
                                                 }
                                             ],
-                                            legend: ['Doanh thu tháng', 'Nợ trên 90 ngày']
+                                            legend: [text.monthRevenue, text.totalDebtOverNinety]
                                         }}
-                                        width={width}
+                                        width={width-10}
                                         height={350}
                                         yAxisInterval={1} // optional, defaults to 1
-                                        formatYLabel={(value) => thoundsandSep(value)}
+                                        formatYLabel={(value,index) => thoundsandSep(value)}
                                         chartConfig={{
                                             backgroundColor: "#fff",
                                             backgroundGradientFrom: "#fff",
@@ -204,6 +211,7 @@ const SubscriberQuality = () => {
                                             decimalPlaces: 0, // optional, defaults to 2dp
                                             color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
+                                            
                                             propsForDots: {
                                                 r: "2",
                                                 strokeWidth: "3"
@@ -213,6 +221,7 @@ const SubscriberQuality = () => {
                                                 fontSize: fontScale(10)
                                             }
                                         }}
+                                        verticalLabelRotation={-20}
                                         fromZero={true}
                                         renderDotContent={({ x, y, index, indexData }) => {
                                             return (
