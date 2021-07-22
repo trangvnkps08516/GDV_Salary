@@ -107,6 +107,7 @@ productivitySub: "Năng suất bình quân",
   revokeAmount: "TBTS cắt hủy",
   preToPostPaid: "Fone -> card",
   denyTwoC: "TBTS chặn 2c",
+  contractDebt: "Nợ hợp đồng",
 
 
 

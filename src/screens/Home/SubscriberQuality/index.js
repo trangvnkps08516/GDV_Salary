@@ -163,6 +163,7 @@ const SubscriberQuality = () => {
                                     <ListItem icon={images.preToPostPaid} title={text.preToPostPaid} price={thoundsandSep(data.preToPostPaid)} />
                                     <ListItem icon={images.denyTwoC} title={text.denyTwoC} price={thoundsandSep(data.denyTwoC)} />
                                 </View>
+                                <ListItem icon={images.contractDebt} title={text.contractDebt} price={thoundsandSep(data.contractDebt)} />
                             </View>
                             <View style={{ flex: 1 }}>
 

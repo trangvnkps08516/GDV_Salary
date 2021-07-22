@@ -84,7 +84,7 @@ const ProductivitySub = (props) => {
           renderItem={({ item, index }) => (
             <ListMenu
               data={item}
-              onPress={()=>navigation.navigation("")}
+              // onPress={()=>navigation.navigation("")}
               labelData={["","TBTS:"]}
               labelDataTwo={["","TBTT:"]}
               labelDataThree={["","Lượt KH:"]}
@@ -114,7 +114,7 @@ const ProductivitySub = (props) => {
                 item.transAmount,
               ]}
               
-              icon={[images.company,images.branch,images.store]}
+              icon={[images.company,images.branch,images.store,images.splashshape]}
               
               
             />
