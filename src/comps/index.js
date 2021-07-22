@@ -16,6 +16,7 @@ import TableHeader from "./tableheader";
 import GeneralListItem from "./generallistitem";
 import DataPicker from "./datapicker";
 import ListMenu from "./listmenu";
+import Table from "./table"
 
 export {
     Button,
@@ -35,5 +36,6 @@ export {
     // FlatlistItem,
     GeneralListItem,
     DataPicker,
-    ListMenu
+    ListMenu,
+    Table
 }

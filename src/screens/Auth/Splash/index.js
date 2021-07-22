@@ -13,15 +13,13 @@ const Splash = () => {
 
     const getData = async () => {
         await _retrieveData("userInfo").then((item) => {
-            if (item!= null) {
+            if (item != null) {
                 if (item.userId.userGroupId.code == "MBF_GDV") {
                     setTimeout(() => {
                         navigation.navigate("GDVHome")
-                    },3000);
-                } else if (item.userId.userGroupId.code == "ADMIN") {
-                    setTimeout(() => {
-                        
-                    },3000);
+                    }, 3000);
+                } else {
+                    navigation.navigate("SignIn")
                 }
             } else {
                 setTimeout(() => {
