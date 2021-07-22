@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 
 import { colors } from "../../../utils/Colors";
-import { width } from "../../../utils/Dimenssion";
 import { fontScale } from "../../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -38,15 +37,20 @@ export const styles = StyleSheet.create({
     marginLeft: fontScale(40),
   },
   detailDialogInfo:{
-    justifyContent:"center",
-    alignSelf:"center",
-    width:width/3,
     padding:fontScale(5),
+    // marginLeft:1.5/3*width,
+    right:fontScale(10),
     borderRadius:fontScale(5),
-    backgroundColor:colors.lightGrey
+    position:"absolute",
+    backgroundColor:colors.lightGrey,
+    zIndex:10,
+    marginTop:80
   },
   detailDialogInfoText:{
     color:colors.grey,
-    textAlign:"center"
+    textAlign:"left",
+    alignSelf:"center",
+    zIndex:10,
+    fontSize:fontScale(12)
   }
 });
