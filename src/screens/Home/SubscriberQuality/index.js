@@ -12,7 +12,7 @@ import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
 import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
-// import { Chart, VerticalAxis, HorizontalAxis, Line } from 'react-native-responsive-linechart'
+import { Svg, Text as TextSVG } from 'react-native-svg';
 import {
     LineChart,
     BarChart,
@@ -24,11 +24,13 @@ import {
 import { lineChartData } from '../../../sampledata';
 import { Dimensions } from 'react-native';
 import { Text } from 'react-native';
+import { LogBox } from 'react-native';
 
 const SubscriberQuality = () => {
     const [data, setData] = useState(SubsQuality);
     const [chartData, setChartData] = useState({})
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
+    const [loadingChart, setLoadingChart] = useState(true)
     const [user, setUserData] = useState(UserObj)
     const navigation = useNavigation();
     const [leftAxisData, setLeftAxisData] = useState([])
@@ -36,7 +38,10 @@ const SubscriberQuality = () => {
     const [revenueLineChart, setRevenueLineChart] = useState([]); //Doanh thu
     const [debitLineChart, setDebitLineChart] = useState([]); // Ghi nợ
     const [detailVal, setDetailVal] = useState(0)
-    const [showDetailVal, setShowDetailVal] = useState(false)
+    const [showDetailVal, setShowDetailVal] = useState(false);
+    const [labelX, setLabelX] = useState();
+    const [labelY, setLabelY] = useState();
+    const [index1, setIndex] = useState()
 
     const [revenueList, setRevenueList] = useState([])
     const [debitList, setDebitList] = useState([])
@@ -46,12 +51,14 @@ const SubscriberQuality = () => {
         setLoading(true)
         await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
+                console.log(res.data)
                 setData(res.data.data);
                 setLeftAxisData(res.data.chart.leftAxisData)
+                setBottomAxisData(res.data.chart.bottomAxisData)
 
                 getRenue(res.data.chart.revenue);
                 getDebit(res.data.chart.debit);
-                setLoading(false);
+
             }
             if (res.status == "failed") {
                 ToastNotif('Cảnh báo', res.message, 'error', true);
@@ -66,7 +73,7 @@ const SubscriberQuality = () => {
                     onHide: () => navigation.navigate("Home")
                 });
             }
-        });
+        }).finally(() => setLoading(false));
     }
 
     const _getProfile = async () => {
@@ -83,7 +90,7 @@ const SubscriberQuality = () => {
     }
 
     const getRenue = (revenueLineChart) => {
-        setLoading(true)
+        setLoadingChart(true)
         let revenueList = [];
         let monthList = [];
 
@@ -93,17 +100,17 @@ const SubscriberQuality = () => {
         }
         setRevenueList(revenueList)
         setMonthList(monthList)
-        setLoading(false);
+        setLoadingChart(false);
     }
 
     const getDebit = (debitLineChart) => {
-        setLoading(true)
+        setLoadingChart(true)
         let debitList = [];
         for (let i = 0; i < debitLineChart.length; i++) {
             debitList.push(debitLineChart[i].y)
         }
         setDebitList(debitList)
-        setLoading(false);
+        setLoadingChart(false);
     }
 
     useEffect(() => {
@@ -124,9 +131,10 @@ const SubscriberQuality = () => {
     }, [""]);
 
 
-    const _onDataPointClick=(value)=>{
-        setDetailVal(value.value)
-        setShowDetailVal(true)
+    const _onDataPointClick = (value) => {
+        setDetailVal(value.value);
+        setShowDetailVal(true);
+
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -143,81 +151,100 @@ const SubscriberQuality = () => {
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
 
             <View style={{ flex: 1, backgroundColor: colors.white }}>
+                {
+                    loadingChart == true
+                        ?
+                        <ActivityIndicator size="small" color={colors.primary} />
+                        : null
+                }
                 <ScrollView showsVerticalScrollIndicator={false}>
+
                     {
-                        loading == true
-                            ?
-                            <ActivityIndicator size="small" color={colors.primary} />
-                            :
-                            <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-                                <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
-                                    <ListItem icon={images.debtPercent} title={text.debtPercent} price={thoundsandSep(data.debtPercent)} />
-                                    <View style={styles.subDetail}>
-                                        <ListItem icon={images.totalDebtNinety} title={text.totalDebtNinety} price={thoundsandSep(data.totalDebtNinety)} />
-                                        <ListItem icon={images.totalRevenue} title={text.totalRevenue} price={thoundsandSep(data.totalRevenue)} />
-                                    </View>
-                                    <ListItem icon={images.newSubPrePaid} title={text.newSubPrePaid} price={thoundsandSep(data.newSubPrePaid)} />
-                                    <View style={styles.subDetail}>
-                                        <ListItem icon={images.revokeAmount} title={text.revokeAmount} price={thoundsandSep(data.revokeAmount)} />
-                                        <ListItem icon={images.preToPostPaid} title={text.preToPostPaid} price={thoundsandSep(data.preToPostPaid)} />
-                                        <ListItem icon={images.denyTwoC} title={text.denyTwoC} price={thoundsandSep(data.denyTwoC)} />
-                                    </View>
-                                </View>
-                                <View style={{ flex: 1 }}>
 
-                                    {
-                                        showDetailVal == true ? 
+                        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+                            <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
+                                <ListItem icon={images.debtPercent} title={text.debtPercent} price={thoundsandSep(data.debtPercent)} />
+                                <View style={styles.subDetail}>
+                                    <ListItem icon={images.totalDebtNinety} title={text.totalDebtNinety} price={thoundsandSep(data.totalDebtNinety)} />
+                                    <ListItem icon={images.totalRevenue} title={text.totalRevenue} price={thoundsandSep(data.totalRevenue)} />
+                                </View>
+                                <ListItem icon={images.newSubPrePaid} title={text.newSubPrePaid} price={thoundsandSep(data.newSubPrePaid)} />
+                                <View style={styles.subDetail}>
+                                    <ListItem icon={images.revokeAmount} title={text.revokeAmount} price={thoundsandSep(data.revokeAmount)} />
+                                    <ListItem icon={images.preToPostPaid} title={text.preToPostPaid} price={thoundsandSep(data.preToPostPaid)} />
+                                    <ListItem icon={images.denyTwoC} title={text.denyTwoC} price={thoundsandSep(data.denyTwoC)} />
+                                </View>
+                            </View>
+                            <View style={{ flex: 1 }}>
+
+                                {
+                                    showDetailVal == true ?
                                         <View style={styles.detailDialogInfo}>
-                                            <Text style={styles.detailDialogInfoText}>{detailVal}</Text> 
-                                            </View> : <View/>
-                                    }
-
-                                    {
-                                        revenueList.length > 0 && debitList.length > 0 && <LineChart
-                                            data={{
-                                                labels: monthList,
-                                                datasets: [
-                                                    {
-                                                        data: revenueList,
-                                                        color: (opacity = 1) => `rgba(14,77,226,${opacity})`,
-                                                        strokeWidth: 2
-                                                    },
-                                                    {
-                                                        data: debitList,
-                                                        color: (opacity = 1) => `rgba(240,119,0, ${opacity})`,
-                                                        strokeWidth: 2
-                                                    }
-                                                ],
-
-                                                legend: ['Doanh thu tháng', 'Nợ trên 90 ngày']
-                                            }}
-                                            width={width} // from react-native
-                                            height={fontScale(350)}
-                                            yAxisInterval={1} // optional, defaults to 1
-                                            chartConfig={{
-                                                backgroundColor: "#fff",
-                                                backgroundGradientFrom: "#fff",
-                                                backgroundGradientTo: "#fff",
-                                                decimalPlaces: 0, // optional, defaults to 2dp
-                                                color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
-                                                labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
-                                                style: {
-                                                    borderRadius: 16
+                                            <Text style={styles.detailDialogInfoText}>{thoundsandSep(detailVal)}</Text>
+                                        </View> : <View />
+                                }
+                                {
+                                    revenueList.length > 0 && debitList.length > 0 && <LineChart
+                                        data={{
+                                            labels: monthList,
+                                            datasets: [
+                                                {
+                                                    data: revenueList,
+                                                    color: (opacity = 1) => `rgba(14,77,226,${opacity})`,
+                                                    strokeWidth: 2
                                                 },
-                                                propsForDots: {
-                                                    r: "3",
-                                                    strokeWidth: "3"
+                                                {
+                                                    data: debitList,
+                                                    color: (opacity = 1) => `rgba(240,119,0, ${opacity})`,
+                                                    strokeWidth: 2
                                                 }
-                                            }}
-                                            onDataPointClick={(data,index) => _onDataPointClick(data)}
-                                            bezier
-                                            style={{
-                                                marginHorizontal: fontScale(15)
-                                            }}
-                                        />
-                                    }
-                                </View>
-                            </ScrollView>
+                                            ],
+                                            legend: ['Doanh thu tháng', 'Nợ trên 90 ngày']
+                                        }}
+                                        width={width} // from react-native
+                                        height={350}
+                                        yAxisInterval={1} // optional, defaults to 1
+                                        chartConfig={{
+                                            backgroundColor: "#fff",
+                                            backgroundGradientFrom: "#fff",
+                                            backgroundGradientTo: "#fff",
+                                            decimalPlaces: 0, // optional, defaults to 2dp
+                                            color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
+                                            labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
+                                            style: {
+                                                borderRadius: 16
+                                            },
+                                            propsForDots: {
+                                                r: "3",
+                                                strokeWidth: "3"
+                                            },
+                                            stackedBar: true
+                                        }}
+                                        fromZero={true}
+                                        renderDotContent={({ x, y, index, indexData }) => {
+                                            return (
+                                                <TextSVG
+                                                    key={index}
+                                                    x={x}
+                                                    y={y - 10}
+                                                    fill="black"
+                                                    fontSize="8"
+                                                    fontWeight="normal"
+                                                    textAnchor="middle">
+                                                    {showDetailVal == true && indexData == y ? indexData : null}
+                                                </TextSVG>
+                                            );
+                                        }}
+                                        onDataPointClick={(data) => _onDataPointClick(data)}
+                                        bezier
+                                        style={{
+                                            marginHorizontal: fontScale(5),
+                                            marginTop: fontScale(20)
+                                        }}
+                                    />
+                                }
+                            </View>
+                        </ScrollView>
                     }
                 </ScrollView>
             </View>
