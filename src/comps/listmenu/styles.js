@@ -5,7 +5,7 @@ import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
   container: {
-    width: width-50,
+    width: fontScale(395),
     alignSelf:"center",
     paddingTop: 20,
   },
@@ -21,7 +21,8 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: fontScale(15),
     paddingTop: -fontScale(9),
-    minHeight: fontScale(150),
+    minHeight: fontScale(100),
+    
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -68,23 +69,33 @@ export const styles = StyleSheet.create({
   
   labelDataOne: {
     color: "#151515",
-    marginLeft: fontScale(8)
+    marginLeft: fontScale(5),
+    fontSize: fontScale(15)
   },
 
   labelDataTwo: {
-    color: "#151515"
+    color: "#151515",
+    marginLeft: -fontScale(12),
+    fontSize: fontScale(15)
   },
 
   labelDataThree: {
     color: "#151515",
-    marginLeft: fontScale(8)
+    marginLeft: -fontScale(15),
+    fontSize: fontScale(15)
   },
 
   labelDataFour: {
-    color: "#151515"
-    
+    color: "#151515",
+    marginLeft: -fontScale(5),
+    fontSize: fontScale(15)
     
   },
+
+
+//   labelDataFive: {
+// marginLeft: 20
+//   },
 
 
   fieldData: {
@@ -97,24 +108,28 @@ export const styles = StyleSheet.create({
   },
   fieldDataOne: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
   },
 
   fieldDataTwo: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
   },
   fieldDataThree: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
   },
   fieldDataFour: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
     
   },
 

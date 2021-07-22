@@ -86,14 +86,7 @@ const DashBoard = (props) => {
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("Achieve")}
             />
-            <MenuItem
-              style={{ marginTop: fontScale(60) }}
-              title={text.expectedSalaryMenu}
-              icon={images.salaryByMonth}
-              value={thoundsandSep(data.provSal)}
-              width={width - fontScale(60)}
-              onPress={() => navigation.navigate("ExpectedSalary")}
-            />
+            
             <MenuItem
               titleMenuStyle={{ paddingTop: fontScale(17) }}
               style={{ marginTop: fontScale(60) }}
@@ -109,6 +102,14 @@ const DashBoard = (props) => {
               icon={images.productivitySub}
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("ProductivitySub")}
+            />
+             <MenuItem
+              style={{ marginTop: fontScale(60) }}
+              title={text.expectedSalaryMenu}
+              icon={images.salaryByMonth}
+              value={thoundsandSep(data.provSal)}
+              width={width - fontScale(60)}
+              onPress={() => navigation.navigate("ExpectedSalary")}
             />
 
           </>

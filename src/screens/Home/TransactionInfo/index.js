@@ -94,10 +94,12 @@ const TransactionInfo = (props) => {
                         <View style={styles.detailInfo}>
                             <ListItem icon={images.customer} title={text.customersCount} price={thoundsandSep(data.customerAmount)} />
                             <ListItem icon={images.transactionInformation} title={text.transactions} price={thoundsandSep(data.dealingsCount)} />
-                            <ListItem icon={images.sim} title={text.transAmount} price={thoundsandSep(data.preToPostPaid)} />
-                            <ListItem icon={images.foneCardNoMoney} iconStyle={{marginTop: fontScale(19)}} title={text.foneCardNoMoney} price={thoundsandSep(data.foneCardNoMoney)} />
+                            <ListItem icon={images.transAmount} title={text.transInfoAmount} price={thoundsandSep(data.transcInfoAmount)} />
                             <ListItem icon={images.nonesim} title={text.trans2CAmount} price={thoundsandSep(data.denyTwoC)} />
-                            <ListItem icon={images.transAmount} title={text.transAmount} price={thoundsandSep(data.transcInfoAmount)} />
+                            <ListItem icon={images.sim} title={text.transAmount} price={thoundsandSep(data.preToPostPaid)} />
+                            <ListItem style={styles.foneCardNoMoney} icon={images.foneCardNoMoney} iconStyle={{marginTop: fontScale(19), marginLeft: 25}} title={text.foneCardNoMoney} price={thoundsandSep(data.foneCardNoMoney)} />
+                            
+                           
                         </View> :
                         <ActivityIndicator size="small" color={colors.primary} />
                 }

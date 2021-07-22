@@ -116,7 +116,7 @@ productivitySub: "Năng suất bình quân",
   transAmount:"Giao dịch Fone -> card",
   trans2CAmount:"Giao dịch chặn 2c TBTS",
   foneCardNoMoney: "GD Fone -> card \n không nạp tiền",
-  transAmount: "Số lượng đăng ký thông tin",
+  transInfoAmount: "Giao dịch DKTT",
 
 
   // Danh sách thuê bao

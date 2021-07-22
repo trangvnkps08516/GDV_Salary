@@ -49,9 +49,25 @@ const ListMenu = (props) => {
                   <Text style={styles.fieldDataTwo}>{item}</Text>
                 ))}
               </View>
+              <View style={{ flexDirection: "row", flex: 0.8 }}>
+                {props.labelDataThree.map((item, index) => (
+                  <Text style={styles.labelDataThree}>{item}</Text>
+                ))}
+                {props.fieldDataThree.map((item, index) => (
+                  <Text style={styles.fieldDataThree}>{item}</Text>
+                ))}
+              </View>
+              <View style={{ flexDirection: "row", flex: 0.8 }}>
+                {props.labelDataFour.map((item, index) => (
+                  <Text style={styles.labelDataFour}>{item}</Text>
+                ))}
+                {props.fieldDataFour.map((item, index) => (
+                  <Text style={styles.fieldDataFour}>{item}</Text>
+                ))}
+              </View>
             </View>
 
-            <View style={{ flexDirection: "row", marginTop: 15 }}>
+            {/* <View style={{ flexDirection: "row"}}>
               <View style={{ flexDirection: "row", flex: 1 }}>
                 {props.labelDataThree.map((item, index) => (
                   <Text style={styles.labelDataThree}>{item}</Text>
@@ -69,7 +85,9 @@ const ListMenu = (props) => {
                   <Text style={styles.fieldDataFour}>{item}</Text>
                 ))}
               </View>
-            </View>
+
+              
+            </View> */}
 
             {/* <View style={{ flex: 3 }}>
               {props.fieldData.map((item, index) =>

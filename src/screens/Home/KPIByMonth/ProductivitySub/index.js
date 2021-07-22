@@ -85,9 +85,9 @@ const ProductivitySub = (props) => {
             <ListMenu
               data={item}
               onPress={()=>navigation.navigation("")}
-              labelData={["","TBTT:"]}
-              labelDataTwo={["","Lượt KH:"]}
-              labelDataThree={["","TBTS:"]}
+              labelData={["","TBTS:"]}
+              labelDataTwo={["","TBTT:"]}
+              labelDataThree={["","Lượt KH:"]}
               labelDataFour={["","Lượt GD:"]}
               index={index}
               fieldData={[
@@ -98,16 +98,16 @@ const ProductivitySub = (props) => {
                 // item.transAmount
               ]}
               fieldDataOne={[
-                item.preSub,
+                item.postSub,
                 // 1500000
                 ]}
 
               fieldDataTwo={[
-                item.cusAmount,
+                item.preSub,
               ]}
 
               fieldDataThree={[
-                item.postSub,
+                item.cusAmount,
               ]}
 
               fieldDataFour={[
