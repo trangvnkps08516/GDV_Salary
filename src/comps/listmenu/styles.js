@@ -5,7 +5,7 @@ import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
   container: {
-    width: width-50,
+    width: fontScale(395),
     alignSelf:"center",
     paddingTop: 20,
   },
@@ -21,7 +21,8 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: fontScale(15),
     paddingTop: -fontScale(9),
-    minHeight: fontScale(150),
+    minHeight: fontScale(100),
+    
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -68,11 +69,12 @@ export const styles = StyleSheet.create({
   
   labelDataOne: {
     color: "#151515",
-    marginLeft: fontScale(8)
+    marginLeft: fontScale(5)
   },
 
   labelDataTwo: {
-    color: "#151515"
+    color: "#151515",
+    marginLeft: -fontScale(6)
   },
 
   labelDataThree: {
@@ -87,6 +89,11 @@ export const styles = StyleSheet.create({
   },
 
 
+//   labelDataFive: {
+// marginLeft: 20
+//   },
+
+
   fieldData: {
     color: "#151515",
     marginTop: fontScale(8),
@@ -96,23 +103,23 @@ export const styles = StyleSheet.create({
   },
   fieldDataOne: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
+    marginLeft: fontScale(8),
     fontWeight: "bold"
   },
 
   fieldDataTwo: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
+    marginLeft: fontScale(8),
     fontWeight: "bold"
   },
   fieldDataThree: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
+    marginLeft: fontScale(15),
     fontWeight: "bold"
   },
   fieldDataFour: {
     color: "#00BECC",
-    marginLeft: fontScale(25),
+    marginLeft: fontScale(15),
     fontWeight: "bold"
     
   },
