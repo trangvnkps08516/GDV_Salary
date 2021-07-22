@@ -69,22 +69,26 @@ export const styles = StyleSheet.create({
   
   labelDataOne: {
     color: "#151515",
-    marginLeft: fontScale(5)
+    marginLeft: fontScale(5),
+    fontSize: fontScale(15)
   },
 
   labelDataTwo: {
     color: "#151515",
-    marginLeft: -fontScale(6)
+    marginLeft: -fontScale(12),
+    fontSize: fontScale(15)
   },
 
   labelDataThree: {
     color: "#151515",
-    marginLeft: fontScale(8)
+    marginLeft: -fontScale(15),
+    fontSize: fontScale(15)
   },
 
   labelDataFour: {
-    color: "#151515"
-    
+    color: "#151515",
+    marginLeft: -fontScale(5),
+    fontSize: fontScale(15)
     
   },
 
@@ -104,24 +108,28 @@ export const styles = StyleSheet.create({
   },
   fieldDataOne: {
     color: "#00BECC",
-    marginLeft: fontScale(8),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
   },
 
   fieldDataTwo: {
     color: "#00BECC",
-    marginLeft: fontScale(8),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
   },
   fieldDataThree: {
     color: "#00BECC",
-    marginLeft: fontScale(15),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
   },
   fieldDataFour: {
     color: "#00BECC",
-    marginLeft: fontScale(15),
-    fontWeight: "bold"
+    marginLeft: fontScale(5),
+    fontWeight: "bold",
+    fontSize: fontScale(15),
     
   },
 

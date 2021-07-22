@@ -53,15 +53,15 @@ const ListMenu = (props) => {
                 {props.labelDataThree.map((item, index) => (
                   <Text style={styles.labelDataThree}>{item}</Text>
                 ))}
-                {props.fieldDataTwo.map((item, index) => (
+                {props.fieldDataThree.map((item, index) => (
                   <Text style={styles.fieldDataThree}>{item}</Text>
                 ))}
               </View>
               <View style={{ flexDirection: "row", flex: 0.8 }}>
-                {props.labelDataTwo.map((item, index) => (
+                {props.labelDataFour.map((item, index) => (
                   <Text style={styles.labelDataFour}>{item}</Text>
                 ))}
-                {props.fieldDataTwo.map((item, index) => (
+                {props.fieldDataFour.map((item, index) => (
                   <Text style={styles.fieldDataFour}>{item}</Text>
                 ))}
               </View>
