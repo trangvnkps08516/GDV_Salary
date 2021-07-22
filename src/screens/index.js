@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Home from "./Home/DashBoard";
+import Home from "./Home/Dashboard";
 import KPIByMonthDashboard from "./Home/KPIByMonth/DashBoard";
 import Achieve from "./Home/KPIByMonth/Achieve";
 import ExpectedSalary from "./Home/KPIByMonth/ExpectedSalary";
@@ -23,6 +23,7 @@ import UpdateProfile from "./Profile/UpdateProfile";
 import SignIn from "./Auth/SignIn";
 import SignOut from "./SignOut";
 import Splash from "./Auth/Splash";
+import Test from './Test';
 
 // User's screen
 export const HomeScreen = () => {return <Home />}
@@ -49,3 +50,7 @@ export const UpdateProfileScreen = () => {return <UpdateProfile />}
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}
 export const SplashScreen = ()=>{return <Splash/>}
+
+
+export const TestScreen = ()=>{return <Test/>}
+
