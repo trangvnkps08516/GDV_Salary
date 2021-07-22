@@ -28,37 +28,29 @@ import { LogBox } from 'react-native';
 
 const SubscriberQuality = () => {
     const [data, setData] = useState(SubsQuality);
-    const [chartData, setChartData] = useState({})
-    const [loading, setLoading] = useState(true)
-    const [loadingChart, setLoadingChart] = useState(true)
-    const [user, setUserData] = useState(UserObj)
+    const [chartData, setChartData] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [loadingChart, setLoadingChart] = useState(true);
+    const [user, setUserData] = useState(UserObj);
     const navigation = useNavigation();
-    const [leftAxisData, setLeftAxisData] = useState([])
-    const [bottomAxisData, setBottomAxisData] = useState([])
-    const [revenueLineChart, setRevenueLineChart] = useState([]); //Doanh thu
-    const [debitLineChart, setDebitLineChart] = useState([]); // Ghi nợ
-    const [detailVal, setDetailVal] = useState(0)
+    const [leftAxisData, setLeftAxisData] = useState([]);
+    const [detailVal, setDetailVal] = useState(0);
     const [showDetailVal, setShowDetailVal] = useState(false);
-    const [labelX, setLabelX] = useState();
-    const [labelY, setLabelY] = useState();
-    const [index1, setIndex] = useState()
 
-    const [revenueList, setRevenueList] = useState([])
-    const [debitList, setDebitList] = useState([])
-    const [monthList, setMonthList] = useState([])
+    const [revenueList, setRevenueList] = useState([]);
+    const [debitList, setDebitList] = useState([]);
+    const [monthList, setMonthList] = useState([]);
 
     const getData = async () => {
         setLoading(true)
         await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
-                console.log(res.data)
                 setData(res.data.data);
                 setLeftAxisData(res.data.chart.leftAxisData)
-                setBottomAxisData(res.data.chart.bottomAxisData)
+                setMonthList(res.data.chart.bottomAxisData)
 
                 getRenue(res.data.chart.revenue);
                 getDebit(res.data.chart.debit);
-
             }
             if (res.status == "failed") {
                 ToastNotif('Cảnh báo', res.message, 'error', true);
@@ -92,14 +84,11 @@ const SubscriberQuality = () => {
     const getRenue = (revenueLineChart) => {
         setLoadingChart(true)
         let revenueList = [];
-        let monthList = [];
 
         for (let i = 0; i < revenueLineChart.length; i++) {
             revenueList.push(revenueLineChart[i].y)
-            monthList.push('T' + revenueLineChart[i].x)
         }
         setRevenueList(revenueList)
-        setMonthList(monthList)
         setLoadingChart(false);
     }
 
@@ -132,7 +121,8 @@ const SubscriberQuality = () => {
 
 
     const _onDataPointClick = (value) => {
-        setDetailVal(value.value);
+        let month = monthList[value.index];
+        setDetailVal('Doanh thu tháng ' + month + ': ' + thoundsandSep(value.value) + '\nNợ tháng ' + month + ': ' + thoundsandSep(debitList[value.index]));
         setShowDetailVal(true);
 
     }
@@ -158,7 +148,6 @@ const SubscriberQuality = () => {
                         : null
                 }
                 <ScrollView showsVerticalScrollIndicator={false}>
-
                     {
 
                         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
@@ -180,7 +169,7 @@ const SubscriberQuality = () => {
                                 {
                                     showDetailVal == true ?
                                         <View style={styles.detailDialogInfo}>
-                                            <Text style={styles.detailDialogInfoText}>{thoundsandSep(detailVal)}</Text>
+                                            <Text style={styles.detailDialogInfoText}>{detailVal}</Text>
                                         </View> : <View />
                                 }
                                 {
@@ -190,11 +179,13 @@ const SubscriberQuality = () => {
                                             datasets: [
                                                 {
                                                     data: revenueList,
+                                                    key: 1,
                                                     color: (opacity = 1) => `rgba(14,77,226,${opacity})`,
                                                     strokeWidth: 2
                                                 },
                                                 {
                                                     data: debitList,
+                                                    key: 2,
                                                     color: (opacity = 1) => `rgba(240,119,0, ${opacity})`,
                                                     strokeWidth: 2
                                                 }
@@ -204,6 +195,7 @@ const SubscriberQuality = () => {
                                         width={width} // from react-native
                                         height={350}
                                         yAxisInterval={1} // optional, defaults to 1
+                                        // formatYLabel={() => yLabelIterator.next().value}
                                         chartConfig={{
                                             backgroundColor: "#fff",
                                             backgroundGradientFrom: "#fff",
@@ -211,20 +203,20 @@ const SubscriberQuality = () => {
                                             decimalPlaces: 0, // optional, defaults to 2dp
                                             color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
-                                            style: {
-                                                borderRadius: 16
-                                            },
                                             propsForDots: {
-                                                r: "3",
+                                                r: "2",
                                                 strokeWidth: "3"
                                             },
-                                            stackedBar: true
+                                            stackedBar: true,
+                                            propsForLabels: {
+                                                fontSize: fontScale(10)
+                                            }
                                         }}
                                         fromZero={true}
                                         renderDotContent={({ x, y, index, indexData }) => {
                                             return (
                                                 <TextSVG
-                                                    key={index}
+                                                    key={revenueList ? index : index * 15.5}
                                                     x={x}
                                                     y={y - 10}
                                                     fill="black"
