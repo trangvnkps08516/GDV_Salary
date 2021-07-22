@@ -21,8 +21,6 @@ import {
     ContributionGraph,
     StackedBarChart
 } from "react-native-chart-kit";
-import { lineChartData } from '../../../sampledata';
-import { Dimensions } from 'react-native';
 import { Text } from 'react-native';
 import { LogBox } from 'react-native';
 
@@ -40,6 +38,7 @@ const SubscriberQuality = () => {
     const [revenueList, setRevenueList] = useState([]);
     const [debitList, setDebitList] = useState([]);
     const [monthList, setMonthList] = useState([]);
+    LogBox.ignoreAllLogs(true)
 
     const getData = async () => {
         setLoading(true)
@@ -122,9 +121,18 @@ const SubscriberQuality = () => {
 
     const _onDataPointClick = (value) => {
         let month = monthList[value.index];
-        setDetailVal('Doanh thu tháng ' + month + ': ' + thoundsandSep(value.value) + '\nNợ tháng ' + month + ': ' + thoundsandSep(debitList[value.index]));
+        let revenue = "";
+        let debit = "";
+        
+        if(value.dataset.key==1){
+            revenue = thoundsandSep(value.value);
+            debit = thoundsandSep(debitList[value.index]);
+        }else{
+            revenue = thoundsandSep(revenueList[value.index]);
+            debit = thoundsandSep(value.value)
+        }
+        setDetailVal(text.monthRevenue+ ' ' + month + ': ' + revenue + '\n'+ text.monthDebt+ ': ' + debit);
         setShowDetailVal(true);
-
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -139,7 +147,6 @@ const SubscriberQuality = () => {
                 </View>
             </View>
             <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {
                     loadingChart == true
@@ -190,7 +197,7 @@ const SubscriberQuality = () => {
                                                     strokeWidth: 2
                                                 }
                                             ],
-                                            legend: ['Doanh thu tháng', 'Nợ trên 90 ngày']
+                                            legend: [text.monthRevenue, text.totalDebtOverNinety]
                                         }}
                                         width={width-10}
                                         height={350}
