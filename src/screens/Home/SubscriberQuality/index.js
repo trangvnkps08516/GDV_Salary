@@ -8,7 +8,7 @@ import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
-import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
+import { roundChartDY, thoundsandSep, ToastNotif } from '../../../utils/Logistics';
 import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
@@ -113,7 +113,7 @@ const SubscriberQuality = () => {
         );
         getData();
         _getProfile();
-
+        roundChartDY(revenueList,debitList)
         return () => {
             backHandler.remove();
         };
@@ -173,7 +173,7 @@ const SubscriberQuality = () => {
                                         </View> : <View />
                                 }
                                 {
-                                    revenueList.length > 0 && debitList.length > 0 && <LineChart
+                                    revenueList.length  > 0 && debitList.length > 0 && <LineChart
                                         data={{
                                             labels: monthList,
                                             datasets: [
@@ -192,10 +192,10 @@ const SubscriberQuality = () => {
                                             ],
                                             legend: ['Doanh thu tháng', 'Nợ trên 90 ngày']
                                         }}
-                                        width={width}
+                                        width={width-10}
                                         height={350}
                                         yAxisInterval={1} // optional, defaults to 1
-                                        formatYLabel={(value) => thoundsandSep(value)}
+                                        formatYLabel={(value,index) => thoundsandSep(value)}
                                         chartConfig={{
                                             backgroundColor: "#fff",
                                             backgroundGradientFrom: "#fff",
@@ -203,6 +203,7 @@ const SubscriberQuality = () => {
                                             decimalPlaces: 0, // optional, defaults to 2dp
                                             color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
+                                            
                                             propsForDots: {
                                                 r: "2",
                                                 strokeWidth: "3"
@@ -212,6 +213,7 @@ const SubscriberQuality = () => {
                                                 fontSize: fontScale(10)
                                             }
                                         }}
+                                        verticalLabelRotation={-20}
                                         fromZero={true}
                                         renderDotContent={({ x, y, index, indexData }) => {
                                             return (
