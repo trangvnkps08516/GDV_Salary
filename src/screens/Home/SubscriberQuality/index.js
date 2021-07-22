@@ -192,10 +192,10 @@ const SubscriberQuality = () => {
                                             ],
                                             legend: ['Doanh thu tháng', 'Nợ trên 90 ngày']
                                         }}
-                                        width={width} // from react-native
+                                        width={width}
                                         height={350}
                                         yAxisInterval={1} // optional, defaults to 1
-                                        // formatYLabel={() => yLabelIterator.next().value}
+                                        formatYLabel={(value) => thoundsandSep(value)}
                                         chartConfig={{
                                             backgroundColor: "#fff",
                                             backgroundGradientFrom: "#fff",
