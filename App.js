@@ -9,6 +9,7 @@ import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
 import { fontScale } from './src/utils/Fonts';
+import { LogBox } from 'react-native';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -94,6 +95,7 @@ const AuthStack = () => {
 
 export default function App() {
   StatusBar.setBarStyle('light-content', true);
+  LogBox.ignoredYellowBox = ["Warning: Each", "Warning: Failed"]
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

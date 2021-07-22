@@ -5,14 +5,11 @@ import { BackHandler } from "react-native";
 import { View } from "react-native";
 import { StatusBar } from "react-native";
 import { SafeAreaView, Text } from "react-native";
-import { getProfile, getSubscriberList, getSubscriberProductivity } from "../../../../api";
-import { Body, DateView, Header, ListMenu, MetricStatus } from "../../../../comps";
+import { getProfile, getSubscriberProductivity } from "../../../../api";
+import { Body, DateView, Header, ListMenu } from "../../../../comps";
 import { styles } from "../../../../comps/listmenu/styles";
 import { UserObj } from "../../../../models";
-import { listMenu } from "../../../../sampledata";
 import { colors } from "../../../../utils/Colors";
-import { width } from "../../../../utils/Dimenssion";
-import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
 
@@ -87,7 +84,7 @@ const ProductivitySub = (props) => {
           renderItem={({ item, index }) => (
             <ListMenu
               data={item}
-
+              onPress={()=>navigation.navigation("")}
               labelData={["","TBTT:"]}
               labelDataTwo={["","Lượt KH:"]}
               labelDataThree={["","TBTS:"]}

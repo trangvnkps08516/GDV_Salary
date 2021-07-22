@@ -28,7 +28,7 @@ const ListMenu = (props) => {
                 </View> :
                  */}
 
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={props.onPress}>
         <View style={styles.bg}>
           <Text style={styles.fieldData}>{props.fieldData[0]}</Text>
           <View>

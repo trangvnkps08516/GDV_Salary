@@ -99,7 +99,8 @@ export const styles = StyleSheet.create({
     marginTop: fontScale(8),
     marginLeft: 15,
     fontWeight: "bold",
-    fontSize: fontScale(17)
+    fontSize: fontScale(16),
+    width: "75%"
   },
   fieldDataOne: {
     color: "#00BECC",
