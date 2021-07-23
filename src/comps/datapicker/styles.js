@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../utils/Colors";
+import { width } from "../../utils/Dimenssion";
 import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -53,4 +54,15 @@ export const styles = StyleSheet.create({
         left:fontScale(10),
         height: fontScale(23),
     },
+    modelContainer:{
+        width: width,
+        backgroundColor: "#fff", shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, borderTopLeftRadius: fontScale(30), borderTopRightRadius: fontScale(30), paddingTop: fontScale(15), paddingBottom: fontScale(30)
+    }
 })

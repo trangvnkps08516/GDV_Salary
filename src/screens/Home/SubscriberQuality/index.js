@@ -12,17 +12,14 @@ import { roundChartDY, thoundsandSep, ToastNotif } from '../../../utils/Logistic
 import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
-import { Svg, Text as TextSVG } from 'react-native-svg';
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
-} from "react-native-chart-kit";
+import { Text as TextSVG } from 'react-native-svg';
+import { LineChart } from "react-native-chart-kit";
 import { Text } from 'react-native';
 import { LogBox } from 'react-native';
+
+function* yLabel(array) {
+    yield* array;
+}
 
 const SubscriberQuality = () => {
     const [data, setData] = useState(SubsQuality);
@@ -112,7 +109,7 @@ const SubscriberQuality = () => {
         );
         getData();
         _getProfile();
-        roundChartDY(revenueList,debitList)
+        roundChartDY(revenueList, debitList)
         return () => {
             backHandler.remove();
         };
@@ -123,17 +120,20 @@ const SubscriberQuality = () => {
         let month = monthList[value.index];
         let revenue = "";
         let debit = "";
-        
-        if(value.dataset.key==1){
+
+        if (value.dataset.key == 1) {
             revenue = thoundsandSep(value.value);
             debit = thoundsandSep(debitList[value.index]);
-        }else{
+        } else {
             revenue = thoundsandSep(revenueList[value.index]);
             debit = thoundsandSep(value.value)
         }
-        setDetailVal(text.monthRevenue+ ' ' + month + ': ' + revenue + '\n'+ text.monthDebt+ ': ' + debit);
+        setDetailVal(text.monthRevenue + ' ' + month + ': ' + revenue + '\n' + text.monthDebt + ': ' + debit);
         setShowDetailVal(true);
     }
+
+    const yLabelIterator = yLabel(leftAxisData);
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar translucent backgroundColor={colors.primary} />
@@ -180,7 +180,7 @@ const SubscriberQuality = () => {
                                         </View> : <View />
                                 }
                                 {
-                                    revenueList.length  > 0 && debitList.length > 0 && <LineChart
+                                    revenueList.length > 0 && debitList.length > 0 && <LineChart
                                         data={{
                                             labels: monthList,
                                             datasets: [
@@ -199,10 +199,8 @@ const SubscriberQuality = () => {
                                             ],
                                             legend: [text.monthRevenue, text.totalDebtOverNinety]
                                         }}
-                                        width={width-10}
+                                        width={width - 10}
                                         height={350}
-                                        yAxisInterval={1} // optional, defaults to 1
-                                        formatYLabel={(value,index) => thoundsandSep(value)}
                                         chartConfig={{
                                             backgroundColor: "#fff",
                                             backgroundGradientFrom: "#fff",
@@ -210,7 +208,6 @@ const SubscriberQuality = () => {
                                             decimalPlaces: 0, // optional, defaults to 2dp
                                             color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
-                                            
                                             propsForDots: {
                                                 r: "2",
                                                 strokeWidth: "3"
@@ -238,6 +235,7 @@ const SubscriberQuality = () => {
                                         }}
                                         onDataPointClick={(data) => _onDataPointClick(data)}
                                         bezier
+                                        formatYLabel={() => thoundsandSep(yLabelIterator.next().value)}
                                         style={{
                                             marginHorizontal: fontScale(5),
                                             marginTop: fontScale(20)

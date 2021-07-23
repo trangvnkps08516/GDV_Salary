@@ -2,12 +2,11 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { Text } from 'react-native';
 import { ActivityIndicator } from 'react-native';
-import { LogBox } from 'react-native';
 import { Image } from 'react-native';
 import { View } from 'react-native';
-import { TableRow } from '..';
 import { colors } from '../../utils/Colors';
 import { fontScale } from '../../utils/Fonts';
+import TableRow from "./tablerow/index";
 
 const index = (props) => {
     const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading } = props;

@@ -16,7 +16,6 @@ import TableHeader from "./tableheader";
 import GeneralListItem from "./generallistitem";
 import DataPicker from "./datapicker";
 import ListMenu from "./listmenu";
-import TableRow from "./table/tablerow"
 import Table from "./table"
 
 export {
@@ -38,6 +37,5 @@ export {
     GeneralListItem,
     DataPicker,
     ListMenu,
-    TableRow,
     Table
 }

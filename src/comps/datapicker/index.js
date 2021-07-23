@@ -35,17 +35,7 @@ const index = (props) => {
                     <TouchableOpacity style={{ flex: 1 }} onPress={() => setShowDialog(!showDialog)}>
 
                     </TouchableOpacity>
-                    <View style={{
-                        width: width,
-                        backgroundColor: "#fff", shadowColor: "#000",
-                        shadowOffset: {
-                            width: 0,
-                            height: 2,
-                        },
-                        shadowOpacity: 0.25,
-                        shadowRadius: 3.84,
-                        elevation: 5, borderTopLeftRadius: fontScale(30), borderTopRightRadius: fontScale(30), paddingTop: fontScale(15), paddingBottom: fontScale(30)
-                    }}>
+                    <View style={styles.modalContainer}>
                         <Text style={styles.dialogTitle}>{props.dialogTitle}</Text>
                         <View style={{ backgroundColor: '#8a8a8a', opacity: 0.5, height: 0.7 }} />
                         {

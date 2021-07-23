@@ -4,21 +4,23 @@ import { FlatList } from "react-native";
 import { BackHandler } from "react-native";
 import { View } from "react-native";
 import { StatusBar } from "react-native";
+import { ActivityIndicator } from "react-native";
 import { SafeAreaView, Text } from "react-native";
 import { getProfile, getSubscriberProductivity } from "../../../../api";
 import { Body, DateView, Header, ListMenu } from "../../../../comps";
 import { styles } from "../../../../comps/listmenu/styles";
 import { UserObj } from "../../../../models";
 import { colors } from "../../../../utils/Colors";
+import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
 
 const ProductivitySub = (props) => {
   const [data, setData] = useState([]);
-  const [ dateRange, setDateRange] = useState([]);
+  const [dateRange, setDateRange] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [ user, setUserData] = useState(UserObj);
+  const [user, setUserData] = useState(UserObj);
   const navigation = useNavigation();
 
   const getData = async () => {
@@ -75,52 +77,53 @@ const ProductivitySub = (props) => {
       <DateView dateLabel={dateRange} style={styles.dateView} />
 
       <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-      <View style={{ backgroundColor: colors.white, flex: 1}}>
-      <Text style={styles.text}>Năng suất bình quân</Text>
-        <FlatList style= {styles.list}
-          data={data}
-          // data={listMenu}
-          keyExtractor={(index, item) => index.toString()}
-          renderItem={({ item, index }) => (
-            <ListMenu
-              data={item}
-              onPress={()=>navigation.navigation("")}
-              labelData={["","TBTS:"]}
-              labelDataTwo={["","TBTT:"]}
-              labelDataThree={["","Lượt KH:"]}
-              labelDataFour={["","Lượt GD:"]}
-              index={index}
-              fieldData={[
-                item.shopName,
-                // item.preSub,
-                // item.postSub,
-                // item.cusAmount,
-                // item.transAmount
-              ]}
-              fieldDataOne={[
-                item.postSub,
-                // 1500000
+      <View style={{ backgroundColor: colors.white, flex: 1 }}>
+        <Text style={styles.text}>Năng suất bình quân</Text>
+        {loading == true ? <ActivityIndicator size="small" color={colors.primary} style={{marginTop:fontScale(15)}}/> :
+          <FlatList style={styles.list}
+            data={data}
+            // data={listMenu}
+            keyExtractor={(index, item) => index.toString()}
+            renderItem={({ item, index }) => (
+              <ListMenu
+                data={item}
+                onPress={() => navigation.navigation("")}
+                labelData={["", "TBTS:"]}
+                labelDataTwo={["", "TBTT:"]}
+                labelDataThree={["", "Lượt KH:"]}
+                labelDataFour={["", "Lượt GD:"]}
+                index={index}
+                fieldData={[
+                  item.shopName,
+                  // item.preSub,
+                  // item.postSub,
+                  // item.cusAmount,
+                  // item.transAmount
+                ]}
+                fieldDataOne={[
+                  item.postSub,
+                  // 1500000
                 ]}
 
-              fieldDataTwo={[
-                item.preSub,
-              ]}
+                fieldDataTwo={[
+                  item.preSub,
+                ]}
 
-              fieldDataThree={[
-                item.cusAmount,
-              ]}
+                fieldDataThree={[
+                  item.cusAmount,
+                ]}
 
-              fieldDataFour={[
-                item.transAmount,
-              ]}
-              
-              icon={[images.company,images.branch,images.store]}
-              
-              
-            />
-            // <Text>{JSON.stringify(item)}</Text>
-          )}
-        />
+                fieldDataFour={[
+                  item.transAmount,
+                ]}
+
+                icon={[images.company, images.branch, images.store]}
+
+
+              />
+              // <Text>{JSON.stringify(item)}</Text>
+            )}
+          />}
       </View>
     </SafeAreaView>
   );

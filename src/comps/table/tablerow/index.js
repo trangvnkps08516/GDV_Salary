@@ -6,7 +6,7 @@ import { colors } from '../../../utils/Colors';
 import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 
-const index = (props) => {
+const TableRow = (props) => {
     const { index, fields, numColumn, lastIcon } = props;
     const viewWidth = lastIcon ? (width / numColumn) - fontScale(8) : width / numColumn - fontScale(1);
     return (
@@ -35,4 +35,4 @@ const index = (props) => {
 }
 
 
-export default index;
+export default TableRow;
