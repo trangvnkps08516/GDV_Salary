@@ -44,6 +44,7 @@ const SubscriberQuality = () => {
         setLoading(true)
         await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
+                
                 setData(res.data.data);
                 setLeftAxisData(res.data.chart.leftAxisData)
                 setMonthList(res.data.chart.bottomAxisData)
@@ -131,7 +132,7 @@ const SubscriberQuality = () => {
             revenue = thoundsandSep(revenueList[value.index]);
             debit = thoundsandSep(value.value)
         }
-        setDetailVal(text.monthRevenue+ ' ' + month + ': ' + revenue + '\n'+ text.monthDebt+ ': ' + debit);
+        setDetailVal(text.monthRevenue+ ' ' + month + ': ' + revenue + '\n'+ text.monthDebt+ ' ' + month +  ': ' + debit);
         setShowDetailVal(true);
     }
     return (

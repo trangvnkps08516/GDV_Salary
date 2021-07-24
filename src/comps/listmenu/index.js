@@ -69,8 +69,12 @@ const ListMenu = (props) => {
           </View>
         </View>
       </TouchableOpacity>
+{ props.iconOne ?  <Image source={props.icon} style={styles.icon} /> 
+:
+<Image source={props.icon[props.index]} style={styles.icon} />
+}
 
-      <Image source={props.icon[props.index]} style={styles.icon} />
+      
     </View>
   );
 };
