@@ -15,7 +15,7 @@ import { _storeData } from '../../../utils/Storage';
 import { backHandler, ToastNotif } from '../../../utils/Logistics';
 import Toast from 'react-native-toast-message';
 
-const DashBoard = (props) => {
+const DashBoard = () => {
     const [loading, setLoading] = useState(false)
     const navigation = useNavigation();
     const [userData, setUserData] = useState(Profile);

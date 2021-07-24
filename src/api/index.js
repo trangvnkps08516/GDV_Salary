@@ -56,7 +56,6 @@ export const getProfile = async (navigation) => {
     if (data != null) {
       token = data.accessToken
     }
-    console.log(token)
   });
   let data = {
     message: "",
@@ -553,7 +552,6 @@ export const getAvgIncomeByMonth = async (beginMonth, endMonth, navigation) => {
 export const getSubscriberQuality = async (navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => { token = data.accessToken });
-
   let data = {
     message: "",
     status: "",

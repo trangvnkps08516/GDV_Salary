@@ -38,7 +38,6 @@ export const styles = StyleSheet.create({
   },
   detailDialogInfo:{
     padding:fontScale(5),
-    // marginLeft:1.5/3*width,
     right:fontScale(10),
     borderRadius:fontScale(5),
     position:"absolute",

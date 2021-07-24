@@ -38,7 +38,7 @@ const UpdatePassword = () => {
                     }, 3000);
                 }
                 if (data.status == "failed") {
-                    setMessage(data.message);
+                    ToastNotif('Thông báo', data.message, 'error', true);
                     setLoading(false);
                 }
             });

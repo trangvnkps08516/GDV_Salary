@@ -23,7 +23,6 @@ function* yLabel(array) {
 
 const SubscriberQuality = () => {
     const [data, setData] = useState(SubsQuality);
-    const [chartData, setChartData] = useState({});
     const [loading, setLoading] = useState(true);
     const [loadingChart, setLoadingChart] = useState(true);
     const [user, setUserData] = useState(UserObj);
@@ -44,7 +43,6 @@ const SubscriberQuality = () => {
                 setData(res.data.data);
                 setLeftAxisData(res.data.chart.leftAxisData)
                 setMonthList(res.data.chart.bottomAxisData)
-
                 getRenue(res.data.chart.revenue);
                 getDebit(res.data.chart.debit);
             }
@@ -128,7 +126,7 @@ const SubscriberQuality = () => {
             revenue = thoundsandSep(revenueList[value.index]);
             debit = thoundsandSep(value.value)
         }
-        setDetailVal(text.monthRevenue + ' ' + month + ': ' + revenue + '\n' + text.monthDebt + ': ' + debit);
+        setDetailVal('Doanh thu của TB tháng ' + month + ': ' + revenue + '\n' + 'Nợ >= 90 của TB tháng ' + month + ': ' + debit);
         setShowDetailVal(true);
     }
 
@@ -156,7 +154,6 @@ const SubscriberQuality = () => {
                 }
                 <ScrollView showsVerticalScrollIndicator={false}>
                     {
-
                         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                             <View style={[styles.detailInfo, { marginBottom: fontScale(20) }]}>
                                 <ListItem icon={images.debtPercent} title={text.debtPercent} price={thoundsandSep(data.debtPercent)} />
@@ -210,11 +207,11 @@ const SubscriberQuality = () => {
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
                                             propsForDots: {
                                                 r: "2",
-                                                strokeWidth: "3"
+                                                strokeWidth: "2"
                                             },
                                             stackedBar: true,
                                             propsForLabels: {
-                                                fontSize: fontScale(10)
+                                                fontSize: fontScale(11)
                                             }
                                         }}
                                         verticalLabelRotation={-20}
@@ -222,13 +219,14 @@ const SubscriberQuality = () => {
                                         renderDotContent={({ x, y, index, indexData }) => {
                                             return (
                                                 <TextSVG
-                                                    key={revenueList ? index : index * 15.5}
+                                                    key={Math.random()}
                                                     x={x}
                                                     y={y - 10}
                                                     fill="black"
                                                     fontSize="8"
                                                     fontWeight="normal"
-                                                    textAnchor="middle">
+                                                    textAnchor="middle"
+                                                >
                                                     {showDetailVal == true && indexData == y ? indexData : null}
                                                 </TextSVG>
                                             );

@@ -29,13 +29,11 @@ const ProductivitySub = (props) => {
     await getSubscriberProductivity(navigation).then((res) => {
       if (res.status == "success") {
         if (res.data.length > 0 || res.data.data.length > 0) {
-          // console.log(res.data);
           setDateRange(res.data.dateRange);
           setData(res.data.data);
         } else {
           setMessage("Ko có dữ liệu");
         }
-        // console.log(res)
       }
 
       if (res.status == "failed") {
@@ -118,10 +116,9 @@ const ProductivitySub = (props) => {
                 ]}
 
                 icon={[images.company, images.branch, images.store]}
-
-
+                iconOne
+                icon={images.check}
               />
-              // <Text>{JSON.stringify(item)}</Text>
             )}
           />}
       </View>

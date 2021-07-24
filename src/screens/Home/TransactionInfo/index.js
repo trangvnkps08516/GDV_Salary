@@ -14,7 +14,6 @@ import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
-
 const TransactionInfo = (props) => {
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
     const [data, setData] = useState(Transactioninfo);
