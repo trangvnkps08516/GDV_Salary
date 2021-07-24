@@ -114,9 +114,9 @@ const ProductivitySub = (props) => {
                 item.transAmount,
               ]}
               
-              iconOne
-              icon={images.company}
-              // icon={[images.company,images.branch,images.store,images.splashshape]}
+              // iconOne
+              // icon={images.company}
+              icon={[images.company,images.branch,images.store,images.splashshape]}
               
               
             />
