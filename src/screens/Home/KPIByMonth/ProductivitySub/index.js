@@ -75,32 +75,31 @@ const ProductivitySub = (props) => {
       <DateView dateLabel={dateRange} style={styles.dateView} />
 
       <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-      <View style={{ backgroundColor: colors.white, flex: 1 }}>
-        <Text style={styles.text}>Năng suất bình quân</Text>
-        {loading == true ? <ActivityIndicator size="small" color={colors.primary} style={{marginTop:fontScale(15)}}/> :
-          <FlatList style={styles.list}
-            data={data}
-            // data={listMenu}
-            keyExtractor={(index, item) => index.toString()}
-            renderItem={({ item, index }) => (
-              <ListMenu
-                data={item}
-                onPress={() => navigation.navigation("")}
-                labelData={["", "TBTS:"]}
-                labelDataTwo={["", "TBTT:"]}
-                labelDataThree={["", "Lượt KH:"]}
-                labelDataFour={["", "Lượt GD:"]}
-                index={index}
-                fieldData={[
-                  item.shopName,
-                  // item.preSub,
-                  // item.postSub,
-                  // item.cusAmount,
-                  // item.transAmount
-                ]}
-                fieldDataOne={[
-                  item.postSub,
-                  // 1500000
+      <View style={{ backgroundColor: colors.white, flex: 1}}>
+      <Text style={styles.text}>Năng suất bình quân</Text>
+        <FlatList style= {styles.list}
+          data={data}
+          // data={listMenu}
+          keyExtractor={(index, item) => index.toString()}
+          renderItem={({ item, index }) => (
+            <ListMenu
+              data={item}
+              // onPress={()=>navigation.navigation("")}
+              labelData={["","TBTS:"]}
+              labelDataTwo={["","TBTT:"]}
+              labelDataThree={["","Lượt KH:"]}
+              labelDataFour={["","Lượt GD:"]}
+              index={index}
+              fieldData={[
+                item.shopName,
+                // item.preSub,
+                // item.postSub,
+                // item.cusAmount,
+                // item.transAmount
+              ]}
+              fieldDataOne={[
+                item.postSub,
+                // 1500000
                 ]}
 
                 fieldDataTwo={[
@@ -115,12 +114,16 @@ const ProductivitySub = (props) => {
                   item.transAmount,
                 ]}
 
-                icon={[images.company, images.branch, images.store]}
-                iconOne
-                icon={images.check}
-              />
-            )}
-          />}
+              fieldDataFour={[
+                item.transAmount,
+              ]}
+              // iconOne
+              // icon={images.company}
+              icon={[images.company,images.branch,images.store,images.splashshape]}
+            />
+            // <Text>{JSON.stringify(item)}</Text>
+          )}
+        />
       </View>
     </SafeAreaView>
   );
