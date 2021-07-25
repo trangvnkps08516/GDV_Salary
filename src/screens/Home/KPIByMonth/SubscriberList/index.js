@@ -36,11 +36,13 @@ const SubscriberList = () => {
     setMessage("");
     setLoading(true);
     await getSubscriberList(navigation).then((res) => {
+      setLoading(false);
       if (res.status == "success") {
         setLoading(false);
         if (res.data.length == 0 || res.data.data.length == 0) {
           setMessage(text.subscriberNotFound);
         } else {
+          setLoading(false);
           if (res.data.data.length > 0) {
             setNotification(res.data.notification);
             setPreSub(res.data.preSub);
@@ -121,13 +123,22 @@ const SubscriberList = () => {
   };
 
   useEffect(() => {
-    let mounted = true;
+    // const backAction = () => {
+    //   navigation.navigate("KPIByMonthDashboard");
+    //   return true;
+    // };
 
-    if (mounted) {
-      getData(filterCondition);
-    }
-    return () => mounted = false;
-  });
+    // const backHandler = BackHandler.addEventListener(
+    //   "hardwareBackPress",
+    //   backAction
+    // );
+    getData(filterCondition); // gọi data thật
+    // return () => {
+    //   backHandler.remove();
+    // };
+    backHandler(navigation, "KPIByMonthDashboard");
+
+  }, [""]);
 
   return (
     <SafeAreaView style={styles.container}>

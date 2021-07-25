@@ -67,7 +67,7 @@ const DashBoard = (route) => {
       _getProfile();
     }
     return () => mounted = false;
-  });
+  },[navigation]);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />

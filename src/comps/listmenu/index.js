@@ -33,36 +33,36 @@ const ListMenu = (props) => {
           <Text style={styles.fieldData}>{props.fieldData[0]}</Text>
           <View>
             <View style={{ flexDirection: "row", marginTop: 20 }}>
-              <View style={{ flexDirection: "row", flex: 1 }}>
+              <View style={{ flexDirection: "row", flex: 1 }}  key={Math.random()}>
                 {props.labelData.map((item, index) => (
-                  <Text style={styles.labelDataOne}>{item}</Text>
+                  <Text style={styles.labelDataOne} key={Math.random()}>{item}</Text>
                 ))}
                 {props.fieldDataOne.map((item, index) => (
-                  <Text style={styles.fieldDataOne}>{item}</Text>
+                  <Text style={styles.fieldDataOne} key={Math.random()}>{item}</Text>
                 ))}
               </View>
               <View style={{ flexDirection: "row", flex: 0.8 }}>
                 {props.labelDataTwo.map((item, index) => (
-                  <Text style={styles.labelDataTwo}>{item}</Text>
+                  <Text style={styles.labelDataTwo} key={Math.random()}>{item}</Text>
                 ))}
                 {props.fieldDataTwo.map((item, index) => (
-                  <Text style={styles.fieldDataTwo}>{item}</Text>
+                  <Text style={styles.fieldDataTwo} key={Math.random()}>{item}</Text>
                 ))}
               </View>
               <View style={{ flexDirection: "row", flex: 0.8 }}>
                 {props.labelDataThree.map((item, index) => (
-                  <Text style={styles.labelDataThree}>{item}</Text>
+                  <Text style={styles.labelDataThree} key={Math.random()}>{item}</Text>
                 ))}
                 {props.fieldDataThree.map((item, index) => (
-                  <Text style={styles.fieldDataThree}>{item}</Text>
+                  <Text style={styles.fieldDataThree} key={Math.random()}>{item}</Text>
                 ))}
               </View>
               <View style={{ flexDirection: "row", flex: 0.8 }}>
                 {props.labelDataFour.map((item, index) => (
-                  <Text style={styles.labelDataFour}>{item}</Text>
+                  <Text style={styles.labelDataFour} key={Math.random()}>{item}</Text>
                 ))}
                 {props.fieldDataFour.map((item, index) => (
-                  <Text style={styles.fieldDataFour}>{item}</Text>
+                  <Text style={styles.fieldDataFour} key={Math.random()}>{item}</Text>
                 ))}
               </View>
             </View>

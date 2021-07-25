@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, StatusBar, BackHandler } from 'react-native';
+import { SafeAreaView, View, StatusBar, BackHandler, ToastAndroid } from 'react-native';
 import { MenuItem, Header, Body } from '../../../comps';
 import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
@@ -42,13 +42,32 @@ const Dashboard = (route) => {
   }
 
   useEffect(() => {
-
-    const unsubscribe = navigation.addListener('focus', () => {
-      getData();
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (!navigation.isFocused()) {
+        return false;
+      } else {
+        BackHandler.exitApp();
+        return true;
+      }
     });
-
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (!navigation.isFocused()) {
+        return false;
+      } else {
+        BackHandler.exitApp();
+        return true;
+      }
+    });
+    getData();
     return () => {
-      unsubscribe
+      BackHandler.removeEventListener('hardwareBackPress', () => {
+        if (!navigation.isFocused()) {
+          return false; 
+        } else {
+          BackHandler.exitApp();
+          return true;
+        }
+      });
     };
   }, [navigation]);
 

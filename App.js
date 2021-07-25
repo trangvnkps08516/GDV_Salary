@@ -10,6 +10,7 @@ import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
 import { fontScale } from './src/utils/Fonts';
 import { LogBox } from 'react-native';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -67,8 +68,8 @@ const ProfileStack = () => {
 
 const GDVStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
-      <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false,gestureEnabled:true }} >
+      <Stack.Screen name="Home" component={HomeScreen}/>
       <Stack.Screen name="KPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
       <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
@@ -80,7 +81,6 @@ const GDVStack = () => {
       <Stack.Screen name="SubscriberList" component={SubscriberListScreen} />
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
       <Stack.Screen name="ProductivitySub" component={ProductivitySubScreen} />
-
     </Stack.Navigator>
   )
 }

@@ -6,6 +6,7 @@ import { View } from "react-native";
 import { StatusBar } from "react-native";
 import { ActivityIndicator } from "react-native";
 import { SafeAreaView, Text } from "react-native";
+import Toast from "react-native-toast-message";
 import { getProfile, getSubscriberProductivity } from "../../../../api";
 import { Body, DateView, Header, ListMenu } from "../../../../comps";
 import { styles } from "../../../../comps/listmenu/styles";
@@ -13,6 +14,7 @@ import { UserObj } from "../../../../models";
 import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
+import { ToastNotif } from "../../../../utils/Logistics";
 import { text } from "../../../../utils/Text";
 
 const ProductivitySub = (props) => {
@@ -31,13 +33,18 @@ const ProductivitySub = (props) => {
         if (res.data.length > 0 || res.data.data.length > 0) {
           setDateRange(res.data.dateRange);
           setData(res.data.data);
+          setLoading(false);
+
         } else {
           setMessage("Ko có dữ liệu");
+          setLoading(false)
         }
       }
 
       if (res.status == "failed") {
-        setMessage(res.message);
+        ToastNotif("Cảnh báo", res.message, "error", true);
+        setLoading(false)
+
       }
     });
 
@@ -54,7 +61,7 @@ const ProductivitySub = (props) => {
 
   useEffect(() => {
     const backAction = () => {
-      navigation.navigate("KPIByMonthDashboard");
+      navigation.goBack();
       return true;
     };
     const backHandler = BackHandler.addEventListener(
@@ -72,12 +79,16 @@ const ProductivitySub = (props) => {
       {/* <ListMenu data={listMenu[1]} icon={images.arrears}/> */}
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.kpiByMonth} />
+      <Toast ref={(ref) => Toast.setRef(ref)} />
       <DateView dateLabel={dateRange} style={styles.dateView} />
 
       <Body style={styles.bodyScr} displayName={user.displayName} maGDV={user.gdvId.maGDV} />
-      <View style={{ backgroundColor: colors.white, flex: 1}}>
-      <Text style={styles.text}>Năng suất bình quân</Text>
-        <FlatList style= {styles.list}
+      <View style={{ backgroundColor: colors.white, flex: 1 }}>
+        <Text style={styles.text}>Năng suất bình quân</Text>
+        {
+          loading == true ? <ActivityIndicator size="small" color={colors.primary} style={{marginTop:fontScale(20)}}/> : null
+        }
+        <FlatList style={styles.list}
           data={data}
           // data={listMenu}
           keyExtractor={(index, item) => index.toString()}
@@ -85,41 +96,36 @@ const ProductivitySub = (props) => {
             <ListMenu
               data={item}
               // onPress={()=>navigation.navigation("")}
-              labelData={["","TBTS:"]}
-              labelDataTwo={["","TBTT:"]}
-              labelDataThree={["","Lượt KH:"]}
-              labelDataFour={["","Lượt GD:"]}
+              labelData={["TBTS:"]}
+              labelDataTwo={["TBTT:"]}
+              labelDataThree={["Lượt KH:"]}
+              labelDataFour={["Lượt GD:"]}
               index={index}
               fieldData={[
-                item.shopName,
-                // item.preSub,
-                // item.postSub,
-                // item.cusAmount,
-                // item.transAmount
+                item.shopName
               ]}
               fieldDataOne={[
-                item.postSub,
-                // 1500000
-                ]}
+                item.postSub
+              ]}
 
-                fieldDataTwo={[
-                  item.preSub,
-                ]}
+              fieldDataTwo={[
+                item.preSub
+              ]}
 
-                fieldDataThree={[
-                  item.cusAmount,
-                ]}
-
-                fieldDataFour={[
-                  item.transAmount,
-                ]}
+              fieldDataThree={[
+                item.cusAmount
+              ]}
 
               fieldDataFour={[
-                item.transAmount,
+                item.transAmount
+              ]}
+
+              fieldDataFour={[
+                item.transAmount
               ]}
               // iconOne
               // icon={images.company}
-              icon={[images.company,images.branch,images.store,images.splashshape]}
+              icon={[images.company, images.branch, images.store, images.splashshape]}
             />
             // <Text>{JSON.stringify(item)}</Text>
           )}

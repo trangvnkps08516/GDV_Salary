@@ -23,7 +23,6 @@ import UpdateProfile from "./Profile/UpdateProfile";
 import SignIn from "./Auth/SignIn";
 import SignOut from "./SignOut";
 import Splash from "./Auth/Splash";
-import Test from './Test';
 
 // User's screen
 export const HomeScreen = (route) => {return <Home route={route}/>}
@@ -50,7 +49,4 @@ export const UpdateProfileScreen = () => {return <UpdateProfile />}
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}
 export const SplashScreen = ()=>{return <Splash/>}
-
-
-export const TestScreen = ()=>{return <Test/>}
 

@@ -98,20 +98,9 @@ const SubscriberQuality = () => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.goBack();
-            return true;
-        };
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
         getData();
         _getProfile();
-        roundChartDY(revenueList, debitList)
-        return () => {
-            backHandler.remove();
-        };
+        roundChartDY(revenueList, debitList);
     }, [""]);
 
 
@@ -171,7 +160,6 @@ const SubscriberQuality = () => {
                                 <ListItem icon={images.contractDebt} title={text.contractDebt} price={thoundsandSep(data.contractDebt)} />
                             </View>
                             <View style={{ flex: 1 }}>
-
                                 {
                                     showDetailVal == true ?
                                         <View style={styles.detailDialogInfo}>
@@ -179,7 +167,9 @@ const SubscriberQuality = () => {
                                         </View> : <View />
                                 }
                                 {
-                                    revenueList.length > 0 && debitList.length > 0 && <LineChart
+                                    revenueList.length > 0 && debitList.length > 0 && 
+                                    <ScrollView horizontal>
+                                        <LineChart
                                         data={{
                                             labels: monthList,
                                             datasets: [
@@ -198,9 +188,10 @@ const SubscriberQuality = () => {
                                             ],
                                             legend: [text.monthRevenue, text.totalDebtOverNinety]
                                         }}
-                                        width={width - 10}
-                                        height={350}
+                                        width={width}
+                                        height={fontScale(350)}
                                         chartConfig={{
+                                            flex:1,
                                             backgroundColor: "#fff",
                                             backgroundGradientFrom: "#fff",
                                             backgroundGradientTo: "#fff",
@@ -208,16 +199,16 @@ const SubscriberQuality = () => {
                                             color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
                                             propsForDots: {
-                                                r: fontScale(4)+'',
+                                                r: fontScale(5)+'',
                                                 strokeWidth: "2"
                                             },
                                             stackedBar: true,
                                             propsForLabels: {
-                                                fontSize: fontScale(11),
-
+                                                fontSize: fontScale(11)
+                                                
                                             }
                                         }}
-                                        verticalLabelRotation={-20}
+                                        verticalLabelRotation={fontScale(20)}
                                         fromZero={true}
                                         renderDotContent={({ x, y, index, indexData }) => {
                                             return (
@@ -228,8 +219,7 @@ const SubscriberQuality = () => {
                                                     fill="black"
                                                     fontSize="8"
                                                     fontWeight="normal"
-                                                    textAnchor="middle"
-                                                >
+                                                    textAnchor="middle">
                                                     {showDetailVal == true && indexData == y ? indexData : null}
                                                 </TextSVG>
                                             );
@@ -237,10 +227,10 @@ const SubscriberQuality = () => {
                                         onDataPointClick={(data) => _onDataPointClick(data)}
                                         bezier
                                         formatYLabel={() => thoundsandSep(yLabelIterator.next().value)}
-                                        style={{
-                                            marginHorizontal: fontScale(5)
-                                        }}
-                                    />
+                                        yLabelsOffset={fontScale(6)}
+                                        xLabelsOffset={-5}
+                                        />
+                                    </ScrollView>
                                 }
                             </View>
                         </ScrollView>

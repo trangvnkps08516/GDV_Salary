@@ -63,7 +63,6 @@ function AvgIncomeByMonth(props) {
     useEffect(() => {
         getData(beginMonth, sMonth);
         _getProfile();
-        backHandler(navigation,"Home");
     }, [""]);
 
     const onChangeMonth = async (value) => {
