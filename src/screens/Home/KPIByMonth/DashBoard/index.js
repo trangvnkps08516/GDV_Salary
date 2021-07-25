@@ -15,12 +15,12 @@ import { _retrieveData } from "../../../../utils/Storage";
 import Toast from "react-native-toast-message";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 
-const DashBoard = (props) => {
+const DashBoard = (route) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
   const [user, setUserData] = useState(UserObj);
   const isFocused = useIsFocused();
-  const route = useRoute();
+  // const route = useRoute();
 
   const navigation = useNavigation();
 
@@ -57,11 +57,17 @@ const DashBoard = (props) => {
     });
   }
 
+
+
   useEffect(() => {
-    getData();
-    _getProfile();
-      backHandler(navigation, "Home");
-  }, [navigation]);
+    let mounted = true;
+
+    if (mounted) {
+      getData();
+      _getProfile();
+    }
+    return () => mounted = false;
+  });
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
@@ -86,7 +92,7 @@ const DashBoard = (props) => {
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("Achieve")}
             />
-            
+
             <MenuItem
               titleMenuStyle={{ paddingTop: fontScale(17) }}
               style={{ marginTop: fontScale(60) }}
@@ -95,7 +101,7 @@ const DashBoard = (props) => {
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("SubscriberList")}
             />
-             <MenuItem
+            <MenuItem
               titleMenuStyle={{ paddingTop: fontScale(17) }}
               style={{ marginTop: fontScale(60) }}
               title={text.productivitySub}
@@ -103,7 +109,7 @@ const DashBoard = (props) => {
               width={width - fontScale(60)}
               onPress={() => navigation.navigate("ProductivitySub")}
             />
-             <MenuItem
+            <MenuItem
               style={{ marginTop: fontScale(60) }}
               title={text.expectedSalaryMenu}
               icon={images.salaryByMonth}

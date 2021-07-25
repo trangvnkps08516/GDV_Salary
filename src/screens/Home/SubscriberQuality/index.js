@@ -126,7 +126,7 @@ const SubscriberQuality = () => {
             revenue = thoundsandSep(revenueList[value.index]);
             debit = thoundsandSep(value.value)
         }
-        setDetailVal('Doanh thu của TB tháng ' + month + ': ' + revenue + '\n' + 'Nợ >= 90 của TB tháng ' + month + ': ' + debit);
+        setDetailVal('Doanh thu của tập TB tháng ' + month + ': ' + revenue + '\n' + 'Nợ của tập TB tháng ' + month + ': ' + debit);
         setShowDetailVal(true);
     }
 
@@ -206,12 +206,13 @@ const SubscriberQuality = () => {
                                             color: (opacity = 1) => `rgba(0, 110, 199, ${opacity})`,
                                             labelColor: (opacity = 1) => `rgba(0, 0, 180, ${opacity})`,
                                             propsForDots: {
-                                                r: "2",
+                                                r: fontScale(4)+'',
                                                 strokeWidth: "2"
                                             },
                                             stackedBar: true,
                                             propsForLabels: {
-                                                fontSize: fontScale(11)
+                                                fontSize: fontScale(11),
+
                                             }
                                         }}
                                         verticalLabelRotation={-20}
@@ -235,8 +236,7 @@ const SubscriberQuality = () => {
                                         bezier
                                         formatYLabel={() => thoundsandSep(yLabelIterator.next().value)}
                                         style={{
-                                            marginHorizontal: fontScale(5),
-                                            marginTop: fontScale(20)
+                                            marginHorizontal: fontScale(5)
                                         }}
                                     />
                                 }

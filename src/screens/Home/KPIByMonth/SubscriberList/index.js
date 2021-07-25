@@ -121,22 +121,13 @@ const SubscriberList = () => {
   };
 
   useEffect(() => {
-    // const backAction = () => {
-    //   navigation.navigate("KPIByMonthDashboard");
-    //   return true;
-    // };
+    let mounted = true;
 
-    // const backHandler = BackHandler.addEventListener(
-    //   "hardwareBackPress",
-    //   backAction
-    // );
-    getData(filterCondition); // gọi data thật
-    // return () => {
-    //   backHandler.remove();
-    // };
-    backHandler(navigation, "KPIByMonthDashboard");
-
-  }, [""]);
+    if (mounted) {
+      getData(filterCondition);
+    }
+    return () => mounted = false;
+  });
 
   return (
     <SafeAreaView style={styles.container}>

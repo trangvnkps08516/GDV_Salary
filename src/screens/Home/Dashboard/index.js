@@ -16,11 +16,12 @@ import { ToastNotif } from '../../../utils/Logistics';
 import Toast from 'react-native-toast-message';
 import { useIsFocused } from '@react-navigation/native';
 
-const Dashboard = (props) => {
+const Dashboard = (route) => {
   const navigation = useNavigation();
 
   const [user, setUserData] = useState(UserObj);
   const [loading, setLoading] = useState(false);
+  const isFocus = useIsFocused();
 
   const getData = async () => {
     setLoading(true)
@@ -41,22 +42,13 @@ const Dashboard = (props) => {
   }
 
   useEffect(() => {
-    const backAction = () => {
-      BackHandler.exitApp();
-      return;
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction
-    );
 
     const unsubscribe = navigation.addListener('focus', () => {
       getData();
-    })
+    });
+
     return () => {
       unsubscribe
-      backHandler
     };
   }, [navigation]);
 

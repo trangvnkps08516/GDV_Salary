@@ -64,10 +64,7 @@ function AvgIncomeByMonth(props) {
         getData(beginMonth, sMonth);
         _getProfile();
         backHandler(navigation,"Home");
-        return ()=>{
-
-        }
-    }, [navigation]);
+    }, [""]);
 
     const onChangeMonth = async (value) => {
         if (value > sMonth == true) {

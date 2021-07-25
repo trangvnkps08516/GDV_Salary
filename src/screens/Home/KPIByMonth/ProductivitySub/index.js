@@ -54,7 +54,7 @@ const ProductivitySub = (props) => {
 
   useEffect(() => {
     const backAction = () => {
-      navigation.navigate("KPIByMonthKPIByMonthDashboard");
+      navigation.navigate("KPIByMonthDashboard");
       return true;
     };
     const backHandler = BackHandler.addEventListener(

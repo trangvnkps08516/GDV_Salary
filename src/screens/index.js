@@ -26,12 +26,12 @@ import Splash from "./Auth/Splash";
 import Test from './Test';
 
 // User's screen
-export const HomeScreen = () => {return <Home />}
-export const KPIByMonthDashboardScreen = () => {return <KPIByMonthDashboard />}
+export const HomeScreen = (route) => {return <Home route={route}/>}
+export const KPIByMonthDashboardScreen = (route) => {return <KPIByMonthDashboard route={route}/>}
 export const AchieveScreen = () => {return <Achieve />}
 export const ExpectedSalaryScreen = () => {return <ExpectedSalary />}
 export const SubscriberListScreen = () => {return <SubscriberList />}
-export const SalaryByMonthDashboardScreen = () => {return <SalaryByMonthDashboard />}
+export const SalaryByMonthDashboardScreen = (route) => {return <SalaryByMonthDashboard  route={route}/>}
 export const SalaryByMonthFixedwageScreen = () => {return <SalaryByMonthFixedwage />}
 export const SalaryByMonthContractScreen = () => {return <SalaryByMonthContract />}
 export const SalaryByMonthArrearsScreen = () => {return <SalaryByMonthArrears />}

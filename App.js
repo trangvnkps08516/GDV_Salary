@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { Image, StatusBar} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -39,7 +39,8 @@ const GDVBottomTab = () => {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size, focused }) => {
             return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.home} />
-          }
+          },
+
         }} />
       <Tab.Screen
         name="SignOut"
@@ -67,7 +68,7 @@ const ProfileStack = () => {
 const GDVStack = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
-      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="KPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
       <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
@@ -96,6 +97,24 @@ const AuthStack = () => {
 export default function App() {
   StatusBar.setBarStyle('light-content', true);
   LogBox.ignoredYellowBox = ["Warning: Each", "Warning: Failed"]
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const checkLogin = async () => {
+    await _retrieveData("userInfo").then((data) => {
+      if (data != null) {
+        console.log('not expiried')
+        setIsLoggedIn(true);
+        const routeNameRef = React.createRef();
+        console.log(routeNameRef)
+      } else {
+        console.log('token null')
+        setIsLoggedIn(false)
+      }
+    });
+  }
+  useEffect(() => {
+    checkLogin();
+
+  })
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>

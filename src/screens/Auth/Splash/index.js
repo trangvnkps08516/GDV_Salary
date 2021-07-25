@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, View, Text, Image, ActivityIndicator } from 'react-native';
 import { _removeData, _retrieveData } from '../../../utils/Storage';
-import { useNavigation } from '@react-navigation/core';
+import { useIsFocused, useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
@@ -10,10 +10,10 @@ import { getProfile } from '../../../api';
 
 const Splash = () => {
     const navigation = useNavigation();
-
+    const isFocus = useIsFocused()
     const getData = async () => {
         await _retrieveData("userInfo").then((item) => {
-            if (item != null) {
+            if (item!=undefined) {
                 if (item.userId.userGroupId.code == "MBF_GDV") {
                     setTimeout(() => {
                         navigation.navigate("GDVHome")
@@ -30,7 +30,13 @@ const Splash = () => {
     }
 
     useEffect(() => {
-        getData();
+        setTimeout(() => {
+            if(isFocus){
+                getData();
+            }else{
+                
+            }
+        }, 3000);
     })
     return (
         <SafeAreaView style={styles.container}>
