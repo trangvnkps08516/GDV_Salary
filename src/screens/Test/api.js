@@ -211,13 +211,13 @@ export const getFixedWageSalary = async(month,sort,branchCode,shopCode,empCode) 
     }).catch( (error) => {
         if (error) {
             console.log(error)
-            data = {
-              message: error.response.data.message,
-              isLoading: false,
-              status: "failed",
-              length: 0,
-              error: error.response.data
-            };
+            // data = {
+            //   message: error.response.data.message,
+            //   isLoading: false,
+            //   status: "failed",
+            //   length: 0,
+            //   error: error.response.data
+            // };
         }
     });
     return data;

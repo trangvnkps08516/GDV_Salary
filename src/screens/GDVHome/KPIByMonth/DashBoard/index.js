@@ -15,12 +15,12 @@ import { _retrieveData } from "../../../../utils/Storage";
 import Toast from "react-native-toast-message";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 
-const DashBoard = (route) => {
+const DashBoard = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(KPIByMonthDashboard);
   const [user, setUserData] = useState(UserObj);
   const isFocused = useIsFocused();
-  // const route = useRoute();
+  const route = useRoute();
 
   const navigation = useNavigation();
 
