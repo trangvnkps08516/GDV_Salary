@@ -47,7 +47,7 @@ const Test = (props) => {
             "position": "Engineer"
         },
         {
-            "name": "Nguyen Thi A",
+            "name": "Nguyen Thi Giang",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
@@ -70,10 +70,11 @@ const Test = (props) => {
             <Table
                 data={data}
                 table
-                numColumn={4}
+                numColumn={4}   
                 headers={["Họ tên", "Địa Chỉ", "Công ty", "Vị trí"]}
                 headerStyle={{ icon: { size: 15 }, text: { size: 12 } }}
-                headerIcons={[images.user, images.debtPercent, images.company, images.productivitySub]}
+                headerIcons={[images.top10highest, images.top10lowest, images.workingShop, images.close]}
+                widthArray={[150,150,150,150]}
                 fields={
                     data.map((item) => [
                         item.name,
@@ -425,4 +426,4 @@ const styles = StyleSheet.create({
     title: { flex: 1, textAlign: 'center', marginTop: 10, alignSelf: 'center', fontSize: height * 0.0221674876847291, fontWeight: 'bold' },
     closeIcon: { width: 20, height: 20, alignSelf: 'flex-end' }
 })
-export default TestThree;
+export default Test;

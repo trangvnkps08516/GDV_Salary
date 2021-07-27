@@ -7,16 +7,15 @@ import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 
 const TableRow = (props) => {
-    const { index, fields, numColumn, lastIcon } = props;
-    const viewWidth = lastIcon ? (width / numColumn) - fontScale(8) : width / numColumn - fontScale(1);
+    const { index, fields, numColumn, lastIcon,widthArray } = props;
     return (
         <View
             style={{ flex: 1, backgroundColor: index % 2 ? colors.lightGrey : colors.white, paddingVertical: fontScale(8) }}>
             <View key={index} style={{ flexDirection: "row" }}>
                 <View style={{ flexDirection: "row" }}>
-                    {
+                    {   
                         fields.map((item, i) =>
-                            <View style={{ width: viewWidth, justifyContent: "center" }}>
+                            <View style={{ width: widthArray&&widthArray[i], justifyContent: "center" }}>
                                 <Text style={{ fontSize: fontScale(14), textAlignVertical: "center", marginLeft: fontScale(5) }}>{fields[index][i]}</Text>
                                 {lastIcon ? i == numColumn ?
                                     <View style={{width: fontScale(10), height: fontScale(10) }}>

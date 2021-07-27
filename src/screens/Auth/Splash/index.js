@@ -20,7 +20,7 @@ const Splash = () => {
 
             }
         }, 3000);
-    })
+    },[navigation])
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
