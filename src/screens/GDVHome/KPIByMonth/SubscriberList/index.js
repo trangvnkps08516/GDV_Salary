@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StatusBar, Text, FlatList, View, ActivityIndicator, BackHandler } from "react-native";
+import { SafeAreaView, StatusBar, Text, FlatList, View, ActivityIndicator } from "react-native";
 import {
   Body,
   DataPicker,

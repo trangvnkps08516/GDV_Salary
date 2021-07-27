@@ -429,7 +429,7 @@ export const getSalaryByMonth = async (month, navigation) => {
   return data;
 };
 
-// 8. Home > Lương Theo Tháng > Lương Khoán sản phẩm
+// 08. Home > Lương Theo Tháng > Lương Khoán sản phẩm
 export const getContractSalaryByMonth = async (month, navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => { token = data.accessToken });
@@ -769,7 +769,7 @@ export const updateAvatar = async (formData, navigation) => {
   return data;
 };
 
-// 15. UpdatePassword
+// 14. UpdatePassword
 export const updatePassword = async (oldPassword, newPassword) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => { token = data.accessToken });
@@ -813,7 +813,7 @@ export const updatePassword = async (oldPassword, newPassword) => {
   return data;
 };
 
-// 16. Sign Out
+// 15. Sign Out
 export const signoutUser = async (navigation) => {
   let data = {
     message: "",
@@ -865,7 +865,7 @@ export const signoutUser = async (navigation) => {
   return data;
 };
 
-// Năng suất bình quân
+// 16. Năng suất bình quân
 export const getSubscriberProductivity = async (navigation) => {
   let token = "";
   await _retrieveData("userInfo").then((data) => {

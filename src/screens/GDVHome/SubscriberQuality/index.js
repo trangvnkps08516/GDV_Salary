@@ -8,7 +8,7 @@ import { images } from '../../../utils/Images';
 import { text } from '../../../utils/Text';
 import { fontScale } from '../../../utils/Fonts';
 import { getProfile, getSubscriberQuality } from '../../../api';
-import { roundChartDY, thoundsandSep, ToastNotif } from '../../../utils/Logistics';
+import { thoundsandSep, ToastNotif } from '../../../utils/Logistics';
 import { SubsQuality, UserObj } from '../../../models/Data';
 import { useNavigation } from '@react-navigation/core';
 import Toast from 'react-native-toast-message';
@@ -40,7 +40,6 @@ const SubscriberQuality = () => {
         setLoading(true)
         await getSubscriberQuality(navigation).then((res) => {
             if (res.status == "success") {
-                
                 setData(res.data.data);
                 setLeftAxisData(res.data.chart.leftAxisData)
                 setMonthList(res.data.chart.bottomAxisData)
@@ -100,7 +99,6 @@ const SubscriberQuality = () => {
     useEffect(() => {
         getData();
         _getProfile();
-        roundChartDY(revenueList, debitList);
     }, [""]);
 
 

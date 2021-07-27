@@ -78,8 +78,3 @@ const styles = StyleSheet.create({
 });
 
 export default NormalHeader;
-
-// List of Props
-//  - goBack
-//  - screenName (Title of Screen)
-//  - optionType

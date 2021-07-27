@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Modal, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView, FlatList } from 'react-native';
-import { Table } from '../../comps';
+import { Search, Table } from '../../comps';
 import YearMonthPicker from '../../comps/datepicker';
 import { colors } from '../../utils/Colors';
 import { fontScale } from '../../utils/Fonts';
@@ -105,42 +105,42 @@ const TestTwo = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [openBranch, setOpenBranch] = useState(true);
     const [openDistrict, setOpenDistrict] = useState(true);
-    const [buttonColorHighest,setButtonColorHighest] = useState(colors.lightGrey)
-    const [buttonColorLowest,setButtonColorLowest] = useState('#fff')
-    
+    const [buttonColorHighest, setButtonColorHighest] = useState(colors.lightGrey)
+    const [buttonColorLowest, setButtonColorLowest] = useState('#fff')
+
     const [empSearch, setEmpSearch] = useState('')
     const [empListSelect, setEmpListSelect] = useState([]);
 
-    const [branchCode,setBranchCode] = useState('');
-    const [shopCode,setShopCode] = useState('');
-    const [empCode,setEmpCode] = useState('');
-    
+    const [branchCode, setBranchCode] = useState('');
+    const [shopCode, setShopCode] = useState('');
+    const [empCode, setEmpCode] = useState('');
 
-    const [topHighest,setTopHighest] = useState(true)
-    const [topLowest,setTopLowest] = useState(false);
-    const [sort,setSort] = useState(0)
+
+    const [topHighest, setTopHighest] = useState(true)
+    const [topLowest, setTopLowest] = useState(false);
+    const [sort, setSort] = useState(0)
 
     const _showAreaPicker = () => {
         setAreaShowPicker(true);
     }
     const _setDate = async (value) => {
         setMonth(value);
-        await _onFilter(value,sort,branchCode,shopCode,empCode);
+        await _onFilter(value, sort, branchCode, shopCode, empCode);
     }
     const onClickHighest = () => {
-        setTopHighest(true);setTopLowest(false);
+        setTopHighest(true); setTopLowest(false);
         setButtonColorHighest(colors.lightGrey);
         setButtonColorLowest(colors.white)
         setSort(0)
-        
+
     }
     const onClickLowest = () => {
-        setTopLowest(true);setTopHighest(false);
+        setTopLowest(true); setTopHighest(false);
         setButtonColorHighest(colors.white)
         setButtonColorLowest(colors.lightGrey);
         setSort(1)
     }
-   
+
     const getBranch = async () => {
         await getBranchList().then((data) => {
             if (data.status == "success") {
@@ -161,14 +161,14 @@ const TestTwo = (props) => {
                 setBranchCodeLabel(branchCode)
             }
             if (data.status == 'failed') {
-                
+
             }
         })
     }
 
-    const _onChangeShop = async(shopCode) => {
+    const _onChangeShop = async (shopCode) => {
         setShopCode(shopCode)
-        await getEmpList(branchCode,shopCode).then((data)=>{
+        await getEmpList(branchCode, shopCode).then((data) => {
             if (data.status == "success") {
                 setEmpList(data.data);
                 setShopCode(shopCode);
@@ -184,32 +184,32 @@ const TestTwo = (props) => {
         setEmpCode(empCode)
     }
 
-    const onShowSelectPicker=()=>{
+    const onShowSelectPicker = () => {
         setAreaShowPicker(false)
         setBranchCode('')
         setShopCode('');
         setEmpCode('');
-
     }
     useEffect(() => {
-       getBranch();
-    },[]);
+        getBranch();
+        _onFilter(month, 0, '', '', '')
+    }, []);
 
-    const _onFilter = async(month,sort,branchCode,shopCode,empCode) => {
+    const _onFilter = async (month, sort, branchCode, shopCode, empCode) => {
+        console.log(month, sort, branchCode, shopCode, empCode)
         setAreaShowPicker(false)
-        await getFixedWageSalary(month,sort,branchCode,shopCode,empCode).then((data)=>{
-           if(data.status=="success"){
-               setDetailEmployeeList(data.data)
-               console.log(data.data.length)
-           }
-           if(data.status=="failed"){
-            console.log(data.message)
-        }
+        await getFixedWageSalary(month, sort, branchCode, shopCode, empCode).then((data) => {
+            if (data.status == "success") {
+                setDetailEmployeeList(data.data)
+            }
+            if (data.status == "failed") {
+                console.log(data.message)
+            }
         })
     }
 
     return (
-        <SafeAreaView style={{backgroundColor:colors.primary}}> 
+        <SafeAreaView style={{ backgroundColor: colors.primary }}>
             <NormalHeader extStyle={{ marginTop: statusbarHeight }} screenName={"Luong co dinh"} selectOption={() => navigation.navigate("LogoutModal")} />
             <YearMonthPicker width={width - fontScale(164)} style={{ alignSelf: 'center', marginTop: -fontScale(10) }} onChangeDate={(date) => _setDate(date)} date={month} />
             <View>
@@ -236,10 +236,10 @@ const TestTwo = (props) => {
                 borderTopRightRadius: fontScale(30)
             }}>
                 {
-                    isLoading == true ? <ActivityIndicator size="small" color={colors.primary}/>
-                        :null
+                    isLoading == true ? <ActivityIndicator size="small" color={colors.primary} />
+                        : null
                 }
-                 <Text style={styles.messageStyle}>{message}</Text>
+                <Text style={styles.messageStyle}>{message}</Text>
                 <FlatList
                     data={detailEmployeeList}
                     showsVerticalScrollIndicator={true}
@@ -248,7 +248,7 @@ const TestTwo = (props) => {
                     onEndReachedThreshold={0}
                     key={(item, index) => 'item-' + index}
                     keyExtractor={(item, index) => 'item-' + index}
-                    renderItem={({ item, index }) => <OneItemAdmin item={item} index={index} title={[item.newSubAmount,item.pckAmount,item.totalMoney,item.vlrRatio]} screen={"AdminFixedWagesSalary"} />} />
+                    renderItem={({ item, index }) => <OneItemAdmin item={item} index={index} title={[item.newSubAmount, item.pckAmount, item.totalMoney, item.vlrRatio]} screen={"AdminFixedWagesSalary"} />} />
             </View>
             <Modal
                 animationType="slide"
@@ -272,7 +272,7 @@ const TestTwo = (props) => {
                         <View style={{ flexDirection: 'row', top: fontScale(20), alignSelf: 'center', justifyContent: 'center', marginBottom: fontScale(50) }}>
                             <Button text="Top 10 Highest" icon={images.top10highest} color="white"
                                 iconStyle={{ marginTop: fontScale(8) }}
-                                styleText={{ color: "#707070", paddingRight: fontScale(5), marginLeft: -fontScale(5), marginTop: fontScale(8) }} 
+                                styleText={{ color: "#707070", paddingRight: fontScale(5), marginLeft: -fontScale(5), marginTop: fontScale(8) }}
                                 color={buttonColorHighest}
                                 style={{
                                     marginRight: 18.2, width: fontScale(181),
@@ -289,7 +289,7 @@ const TestTwo = (props) => {
                             <Button text="Top 10 Lowest" icon={images.top10lowest} color="white"
                                 iconStyle={{ marginTop: fontScale(8) }}
                                 color={buttonColorLowest}
-                                styleText={{ color: "#707070", paddingRight: fontScale(5), marginLeft: -fontScale(5), marginTop: fontScale(8) }} 
+                                styleText={{ color: "#707070", paddingRight: fontScale(5), marginLeft: -fontScale(5), marginTop: fontScale(8) }}
                                 style={{
                                     width: fontScale(181),
                                     shadowColor: "#000",
@@ -338,12 +338,12 @@ const TestTwo = (props) => {
                             }}
                             itemsContainerStyle={{ maxHeight: 200 }}
                         />
-                        <AreaPicker open={openBranch}  label={branchCodeLabel} title="Chi nhánh" placeholder="Chi nhánh" style={{ marginTop: fontScale(18) }} data={branchList} code="branch" onChangeText={(item) => _onChangeBranch(item.shop_code,item.shop_name)} />
+                        <AreaPicker open={openBranch} label={branchCodeLabel} title="Chi nhánh" placeholder="Chi nhánh" style={{ marginTop: fontScale(18) }} data={branchList} code="branch" onChangeText={(item) => _onChangeBranch(item.shop_code, item.shop_name)} />
                         <AreaPicker open={openDistrict} label={shopCodeLabel} title="Khu vực" placeholder="Khu vực" style={{ marginTop: fontScale(18) }} data={shopList} code="district" onChangeText={(item) => _onChangeShop(item.shop_code)} />
                         <AreaPicker open={true} label={empCodeLabel} title="Nhân viên bán hàng" placeholder="Nhân viên bán hàng" style={{ marginTop: fontScale(18) }} data={empList} code="member" onChangeText={(item) => _onChangeEmp(item.member_code)} />
                         <View style={{ flexDirection: 'row', top: fontScale(40), alignSelf: 'center', justifyContent: 'center' }}>
                             <Button text="Hủy" icon={images.cancle} color="#F80022" style={{ marginRight: 13.2 }} onClick={() => onShowSelectPicker()} />
-                            <Button text="Tìm kiếm" icon={images.search} color="#2092ED" onClick={() => _onFilter(month,sort,branchCode,shopCode,empCode)} />
+                            <Button text="Tìm kiếm" icon={images.search} color="#2092ED" onClick={() => _onFilter(month, sort, branchCode, shopCode, empCode)} />
                         </View>
                     </View>
                 </View>
@@ -352,6 +352,26 @@ const TestTwo = (props) => {
     )
 }
 
+const phoneArray = [
+    { "id": 1, "phoneNumber": "Thuan","address":"ABC" },
+    { "id": 2, "phoneNumber": '988334377',"address":"DEF" },
+    { "id": 3, "phoneNumber": "0989554123","address":"GHI" },
+    { "id": 4, "phoneNumber": "0989667453","address":"KLM" },
+    { "id": 5, "phoneNumber": "0355196256","address":"XYZ" }
+]
+
+const TestThree = () => {
+    return (
+        <SafeAreaView>
+            <Search withDropdown placeholder="Nhập mã nhân viên" dataNotFoundText="Không tìm thấy nhân viên" data={phoneArray}
+                fieldSearch={phoneArray.map((item)=>item.phoneNumber)}
+                onSelectValue={(value)=>console.log(value)}
+                style={{marginTop:50,marginHorizontal:10}}
+                width={width-20}
+                 />
+        </SafeAreaView>
+    )
+}
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.primary,
@@ -405,4 +425,4 @@ const styles = StyleSheet.create({
     title: { flex: 1, textAlign: 'center', marginTop: 10, alignSelf: 'center', fontSize: height * 0.0221674876847291, fontWeight: 'bold' },
     closeIcon: { width: 20, height: 20, alignSelf: 'flex-end' }
 })
-export default TestTwo;
+export default TestThree;

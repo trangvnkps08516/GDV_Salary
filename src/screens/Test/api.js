@@ -181,14 +181,15 @@ export const getFixedWageSalary = async(month,sort,branchCode,shopCode,empCode) 
 
     await axios({
         method: GET,
-        url: `https://hochiminh.mobifone.vn/salary/api/ScreenSalaryManagement/getFixedWageSalary?branchCode=${branchCode}&month=01/${month}&shopCode=${shopCode}&empCode=${empCode}&sort=${sort}`,
+        url: `http://hochiminh.mobifone.vn/salary/api/ScreenSalaryManagement/getFixedWageSalary?branchCode=${branchCode}&month=01/${month}&shopCode=${shopCode}&empCode=${empCode}&sort=${sort}`,
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `${variable.token}`,
+            Authorization: `a1a72d00-f418-4fb0-8dcd-b32744aae086`,
         },
     }).then(async (res) => {
         if (res.status == 200) {
+          console.log(res.data)
             if (res.data.V_ERROR) {
               data = {
                 message: "Chức năng này đang được bảo trì",
@@ -211,13 +212,13 @@ export const getFixedWageSalary = async(month,sort,branchCode,shopCode,empCode) 
     }).catch( (error) => {
         if (error) {
             console.log(error)
-            // data = {
-            //   message: error.response.data.message,
-            //   isLoading: false,
-            //   status: "failed",
-            //   length: 0,
-            //   error: error.response.data
-            // };
+            data = {
+              message: error.response.data.message,
+              isLoading: false,
+              status: "failed",
+              length: 0,
+              error: error.response.data
+            };
         }
     });
     return data;

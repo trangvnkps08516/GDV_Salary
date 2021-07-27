@@ -14,10 +14,6 @@ export const thoundsandSep = (x) => {
   }
 }
 
-export const roundChartDY = (arrOne,arrTwo) => {
-    
-} 
-
 export const checkn = (str = '') => {
   if (str == null || str == undefined) {
     return ""
@@ -181,7 +177,7 @@ export const backHandler = (navigation, screenName) => {
 }
 
 export const checkInternetConnection = async () => {
-  let data= {}
+  let data = {}
   await NetInfo.fetch().then(state => {
     if (state.isConnected == false) {
       data = {
@@ -196,4 +192,22 @@ export const checkInternetConnection = async () => {
     }
   });
   return data;
+}
+
+export const checkLogin = async (navigation) => {
+  await _retrieveData("userInfo").then((item) => {
+    if (item != null) {
+      console.log('token not null')
+      if (item.userId.userGroupId.code == "MBF_GDV") {
+        setTimeout(() => {
+          navigation.navigate("GDVHome")
+        }, 3000);
+      } else {
+        return "Bạn không có quyền sử dụng app!"
+      }
+    } else {
+      console.log('token null')
+      navigation.navigate("SignIn")
+    }
+  });
 }

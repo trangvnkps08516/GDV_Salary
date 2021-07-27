@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../utils/Colors";
 import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
@@ -22,5 +23,6 @@ export const styles = StyleSheet.create({
         width: fontScale(25),
         height: fontScale(25),
         right:fontScale(-5)
-    }
+    },
+    message:{ textAlign: "center", color: colors.primary, marginVertical: fontScale(5) }
 })

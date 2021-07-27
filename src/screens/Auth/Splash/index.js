@@ -6,35 +6,18 @@ import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
 import { text } from '../../../utils/Text';
-import { getProfile } from '../../../api';
+import { checkLogin } from '../../../utils/Logistics';
 
 const Splash = () => {
     const navigation = useNavigation();
-    const isFocus = useIsFocused()
-    const getData = async () => {
-        await _retrieveData("userInfo").then((item) => {
-            if (item!=undefined) {
-                if (item.userId.userGroupId.code == "MBF_GDV") {
-                    setTimeout(() => {
-                        navigation.navigate("GDVHome")
-                    }, 3000);
-                } else {
-                    navigation.navigate("SignIn")
-                }
-            } else {
-                setTimeout(() => {
-                    navigation.navigate('SignIn');
-                }, 3000);
-            }
-        })
-    }
+    const isFocus = useIsFocused();
 
     useEffect(() => {
-        setTimeout(() => {
-            if(isFocus){
-                getData();
-            }else{
-                
+        setTimeout(async() => {
+            if (isFocus) {
+                await checkLogin(navigation);
+            } else {
+
             }
         }, 3000);
     })
