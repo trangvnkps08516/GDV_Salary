@@ -10,32 +10,35 @@ import { fontScale } from '../../utils/Fonts';
 import TableRow from "./tablerow/index";
 
 const index = (props) => {
-    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading,widthArray } = props;
-    useEffect(()=>{
-        if(!numColumn){
-            console.warn("You must be provide numColumn variable")
+    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray,lastIconHeader,main,style } = props;
+    useEffect(() => {
+        if (!data) {
+            console.warn("Table Component\nYou must provide the required array of data")
         }
-        if(!widthArray){
-            console.warn("You must be provide widthArray variable")
+        if (!numColumn) {
+            console.warn("Table Component\nYou must be provide numColumn variable")
         }
-        if(numColumn!=widthArray.length){
-            console.warn("The numColumn must have as same as number of element in widthArray")
+        if (!widthArray) {
+            console.warn("Table Component\nYou must be provide widthArray variable")
         }
-        if(headerIcons&&numColumn!=headerIcons.length){
-            console.warn("The numColumn must have as same as number of element in headerIcons")
+        if (numColumn != widthArray.length) {
+            console.warn("Table Component\nThe numColumn must be equal to number of element in widthArray")
+        }
+        if (headerIcons && numColumn != headerIcons.length) {
+            console.warn("Table Component\nThe numColumn must be equal to number of element in headerIcons")
         }
     })
     return (
         <View>
             {
                 table ?
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={style}>
                         <View>
                             {
                                 headers ?
                                     <View style={{ flexDirection: "row" }}>
                                         {
-                                            headerIcons ? headers.map((item, index) => <View style={{ width:widthArray&&widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
+                                            headerIcons ? headers.map((item, index) => <View style={{ width: widthArray && widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
                                                 <Image source={headerIcons[index]} resizeMode="contain" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} />
                                                 <Text style={{ marginLeft: fontScale(5), color: headersTextColor }}>{item}</Text>
                                             </View>) :
@@ -44,7 +47,7 @@ const index = (props) => {
                                                 </View>)
                                         }
                                         {
-                                            lastIcon ? <View style={{ width: fontScale(35) }}><Image source={lastIcon} resizeMode="cover" style={{width:20,height:20}}/></View> : null
+                                            lastIcon ? <View style={{ width: fontScale(35) }}><Image source={lastIconHeader} resizeMode="cover" style={{ width: 20, height: 20 }} /></View> : null
                                         }
                                     </View> : null
                             }
@@ -53,24 +56,22 @@ const index = (props) => {
                             }
                             {
                                 data ?
-                                    <View>
-                                        <FlatList
-                                            showsVerticalScrollIndicator={false}
-                                            data={data}
-                                            style={{ marginTop: fontScale(10) }}
-                                            keyExtractor={(item, index) => index.toString()}
-                                            key={({ item }) => item.numberSub.toString()}
-                                            renderItem={({ item, index }) => (
-                                                <TableRow
-                                                    item={item}
-                                                    index={index}
-                                                    widthArray={widthArray&&widthArray}
-                                                    fields={props.fields}
-                                                    numColumn={numColumn}
-                                                    lastIcon={lastIcon}
-                                                />
-                                            )}/>
-                                    </View> : null
+                                    <FlatList
+                                        showsVerticalScrollIndicator={false}
+                                        data={data}
+                                        style={{ marginTop: fontScale(10) }}
+                                        keyExtractor={(item, index) => index.toString()}
+                                        key={({ item }) => item.numberSub.toString()}
+                                        renderItem={({ item, index }) => (
+                                            <TableRow
+                                                item={item}
+                                                index={index}
+                                                widthArray={widthArray && widthArray}
+                                                fields={props.fields}
+                                                numColumn={numColumn}
+                                                main={main}
+                                                lastIcon={lastIcon} />
+                                        )} /> : null
                             }
                         </View>
                     </ScrollView> : null

@@ -3,14 +3,13 @@ import { Text } from 'react-native';
 import { Image } from 'react-native';
 import { View } from 'react-native';
 import { colors } from '../../../utils/Colors';
-import { width } from '../../../utils/Dimenssion';
 import { fontScale } from '../../../utils/Fonts';
 
 const TableRow = (props) => {
-    const { index, fields, numColumn, lastIcon,widthArray } = props;
+    const { index, fields, numColumn, lastIcon,widthArray,main } = props;
     return (
         <View
-            style={{ flex: 1, backgroundColor: index % 2 ? colors.lightGrey : colors.white, paddingVertical: fontScale(8) }}>
+            style={{ flex: 1, backgroundColor: main&&main[index]===true ? colors.lightGrey : !main&&index % 2 ? colors.lightGrey : colors.white, paddingVertical: fontScale(8) }}>
             <View key={index} style={{ flexDirection: "row" }}>
                 <View style={{ flexDirection: "row" }}>
                     {   

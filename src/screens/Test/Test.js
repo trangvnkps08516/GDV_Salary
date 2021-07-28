@@ -18,9 +18,11 @@ import { statusbarHeight, width, height } from '../../utils/Dimenssion';
 import { images } from './Images';
 import { getBranchList, getEmpList, getFixedWageSalary, getShopList } from './api';
 import { ActivityIndicator } from 'react-native';
+import SearchDemo from '../../comps/search/demo';
+import TableDemo from '../../comps/table/demo';
 
 const Test = (props) => {
-    const [loading, setLoading] = useState(false)
+    
     const data = [
         {
             "name": "Nguyen Thi A",
@@ -66,8 +68,11 @@ const Test = (props) => {
         },
     ]
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <Table
+        <SafeAreaView style={{ flex: 1,backgroundColor:colors.white }}>
+            {/* <Search withDropdown data={data} dataNotFoundText="Data not found"/> */}
+            <SearchDemo />
+            <TableDemo/>
+            {/* <Table
                 data={data}
                 table
                 numColumn={4}   
@@ -85,7 +90,7 @@ const Test = (props) => {
                 }
                 loading={loading}
                 lastIcon={images.check}
-            />
+            /> */}
         </SafeAreaView>
     );
 }
@@ -397,14 +402,6 @@ const styles = StyleSheet.create({
     },
     col3Style: {
         color: '#20B8B8', fontSize: fontScale(16), fontWeight: 'bold', textAlign: "center", width: width / fontScale(7)
-        // ...Platform.select({
-        //     ios: {
-        //         width: fontScale(45)
-        //     },
-        //     android: {
-        //         width: width / fontScale(7)
-        //     }
-        // })
     },
     col4Style: {
         color: '#20B8B8', fontSize: fontScale(16), fontWeight: 'bold', width: width / fontScale(6), textAlign: "center"
