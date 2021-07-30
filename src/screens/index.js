@@ -1,7 +1,7 @@
 // import all of screens path here
 
 import React from 'react';
-
+// GDV screen's path
 import Home from "./GDVHome/Dashboard";
 import KPIByMonthDashboard from "./GDVHome/KPIByMonth/DashBoard";
 import Achieve from "./GDVHome/KPIByMonth/Achieve";
@@ -25,7 +25,25 @@ import SignOut from "./SignOut";
 import Splash from "./Auth/Splash";
 import TestThree from './Test/Test';
 
-// User's screen
+// Admin screen's path
+import AdminHome from "./AdminHome/Dashboard" //AdminHome
+import AdminKPIDashboard from "./AdminHome/KPI/Dashboard"; // AdminHome > KPI
+    import AdminTopTellersKPI from "./AdminHome/KPI/TopTeller"; // AdminHome > KPI > Top GDV
+    import AdminKPIGroupKPI from "./AdminHome/KPI/KPIGroup"; // AdminHome > KPI > Nhóm KPI
+    import AdminKPIMonth from "./AdminHome/KPI/KPIMonth"; // AdminHome > KPI > KPI tháng
+    import AdminProductivitySub from "./AdminHome/KPI/ProductivitySub"; // AdminHome > KPI > Năng suất bình quân
+import AdminSalaryByMonthDashboard from "./AdminHome/SalaryByMonth/Dashboard";  // AdminHome > Lương theo tháng
+    import AdminExpenseManagement from "./AdminHome/SalaryByMonth/ExpenseManagement"; // AdminHome > Lương theo tháng > Quản lý chi phí
+    import AdminTopSellers from "./AdminHome/SalaryByMonth/TopSellers"; // AdminHome > Lương theo tháng >Top GDV
+    import AdminSalaryGroup from "./AdminHome/SalaryByMonth/SalaryGroup"; // AdminHome > Lương theo tháng > Nhóm lương
+    import AdminMonthSalary from "./AdminHome/SalaryByMonth/MonthSalary"; // AdminHome > Lương theo tháng > Lương tháng
+import AdminAvgIncomeDashboard from "./AdminHome/AvgIncome/Dashboard"; // AdminHome > Bình quân thu nhập
+    import AdminAvgIncomeTopSellers from "./AdminHome/AvgIncome/TopSellers"; // AdminHome > Bình quân thu nhập > Top GDV
+    import AdminAvgIncomeSalaryGroup from "./AdminHome/AvgIncome/AvgSalaryGroup"; // Admin > Bình quân thu nhập > Nhóm lương BQ
+    import AdminAvgIncome from "./AdminHome/AvgIncome/AvgSalary"; // Admin > Bình quân thu nhập > Lương BQ
+
+
+// GDV's screen
 export const HomeScreen = (route) => {return <Home route={route}/>}
 export const KPIByMonthDashboardScreen = (route) => {return <KPIByMonthDashboard route={route}/>}
 export const AchieveScreen = () => {return <Achieve />}
@@ -44,11 +62,27 @@ export const UpdatePasswordScreen = () => {return <UpdatePassword />}
 export const UpdateProfileScreen = () => {return <UpdateProfile />}
 
 // Admin's screen
-
+export const AdminHomeScreen = () => {return <AdminHome/>}
+    export const AdminKPIDashboardScreen = () => {return <AdminKPIDashboard/>}
+        export const AdminTopTellersKPIScreen = () => {return <AdminTopTellersKPI/>}
+        export const AdminKPIGroupKPIScreen = () => {return <AdminKPIGroupKPI/>}
+        export const AdminKPIMonthScreen = () => {return <AdminKPIMonth/>}
+        export const AdminProductivitySubScreen = () => {return <AdminProductivitySub />}
+    export const AdminSalaryByMonthDashboardScreen = () => {return <AdminSalaryByMonthDashboard />}
+        export const AdminExpenseManagementScreen = () => {return <AdminExpenseManagement />}
+        export const AdminTopSellersScreen = () => {return <AdminTopSellers />}
+        export const AdminSalaryGroupScreen = () => {return <AdminSalaryGroup />}
+        export const AdminMonthSalaryScreen = () => {return <AdminMonthSalary />}
+    export const AdminAvgIncomeDashboardScreen = () => {return <AdminAvgIncomeDashboard />}
+        export const AdminAvgIncomeTopSellersScreen = () => {return <AdminAvgIncomeTopSellers />}
+        export const AdminAvgIncomeSalaryGroupScreen = () => {return <AdminAvgIncomeSalaryGroup />}
+        export const AdminAvgIncomeScreen = () => {return <AdminAvgIncome />}
+        
 
 // Auth's screen
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}
 export const SplashScreen = ()=>{return <Splash/>}
-
 export const TestScreen = () => {return <TestThree />}
+
+// export const TestScreen = () => {return <TestThree />}

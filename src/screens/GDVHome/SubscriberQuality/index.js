@@ -99,7 +99,7 @@ const SubscriberQuality = () => {
     useEffect(() => {
         getData();
         _getProfile();
-    }, [""]);
+    }, [navigation]);
 
 
     const _onDataPointClick = (value) => {

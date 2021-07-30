@@ -10,7 +10,7 @@ import { fontScale } from '../../utils/Fonts';
 import TableRow from "./tablerow/index";
 
 const index = (props) => {
-    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray,lastIconHeader,main,style } = props;
+    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray, lastIconHeader, main, style } = props;
     useEffect(() => {
         if (!data) {
             console.warn("Table Component\nYou must provide the required array of data")
@@ -38,16 +38,16 @@ const index = (props) => {
                                 headers ?
                                     <View style={{ flexDirection: "row" }}>
                                         {
-                                            headerIcons ? headers.map((item, index) => <View style={{ width: widthArray && widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
+                                            headerIcons ? headers.map((item, index) => <View key={index} style={{ width: widthArray && widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
                                                 <Image source={headerIcons[index]} resizeMode="contain" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} />
-                                                <Text style={{ marginLeft: fontScale(5), color: headersTextColor }}>{item}</Text>
+                                                <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold" }}>{item}</Text>
                                             </View>) :
                                                 headers.map((item) => <View style={{ flex: 1, paddingHorizontal: fontScale(4) }}>
-                                                    <Text style={{ marginLeft: fontScale(5), color: headersTextColor }}>{item}</Text>
+                                                    <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold" }}>{item}</Text>
                                                 </View>)
                                         }
                                         {
-                                            lastIcon ? <View style={{ width: fontScale(35) }}><Image source={lastIconHeader} resizeMode="cover" style={{ width: 20, height: 20 }} /></View> : null
+                                            lastIcon ? <View style={{ width: fontScale(35) }}><Image source={lastIconHeader} resizeMode="cover" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} /></View> : null
                                         }
                                     </View> : null
                             }

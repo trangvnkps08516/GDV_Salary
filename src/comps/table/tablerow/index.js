@@ -4,17 +4,17 @@ import { Image } from 'react-native';
 import { View } from 'react-native';
 import { colors } from '../../../utils/Colors';
 import { fontScale } from '../../../utils/Fonts';
-
+import {styles} from "./styles";
 const TableRow = (props) => {
     const { index, fields, numColumn, lastIcon,widthArray,main } = props;
     return (
         <View
-            style={{ flex: 1, backgroundColor: main&&main[index]===true ? colors.lightGrey : !main&&index % 2 ? colors.lightGrey : colors.white, paddingVertical: fontScale(8) }}>
+            style={[styles.container,{backgroundColor: main&&main[index]===true ? colors.lightGrey : !main&&index % 2 ? colors.lightGrey : colors.white }]}>
             <View key={index} style={{ flexDirection: "row" }}>
                 <View style={{ flexDirection: "row" }}>
                     {   
                         fields.map((item, i) =>
-                            <View style={{ width: widthArray&&widthArray[i], justifyContent: "center" }}>
+                            <View key={i} style={{ width: widthArray&&widthArray[i], justifyContent: "center" }}>
                                 <Text style={{ fontSize: fontScale(14), textAlignVertical: "center", marginLeft: fontScale(5) }}>{fields[index][i]}</Text>
                                 {lastIcon ? i == numColumn ?
                                     <View style={{width: fontScale(10), height: fontScale(10) }}>

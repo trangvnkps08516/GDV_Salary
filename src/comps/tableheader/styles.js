@@ -1,13 +1,11 @@
 import { StyleSheet } from "react-native";
-import { height } from "../../utils/Dimenssion";
 import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginRight: height * 0.0246305418719212,
-        // flex: 1
+        marginRight: fontScale(2)
     },
     icon: {
         width: fontScale(15),

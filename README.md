@@ -21,7 +21,7 @@
 
 # Sigin: Đăng nhập
 # RecoveryPassword: Khôi phục mật khẩu
-# Home: Trang chủ
+# GDVHome: Trang chủ GDV
 #   Dashboard: Dashboard màn hình Home
 #   KPIByMonth: KPI tháng hiện tại
 #       Dashboard: Dashboard KPI tháng hiện tại
@@ -56,3 +56,29 @@
 #       sumKpi:""
 #            
 # }
+
+# AdminHome: Màn hình chính Admin
+#   Dashboard: Dashboard màn hình AdminHome
+#   KPI: KPI
+#       Dashboard: Màn hình chính
+#       TopTeller: Top GDV
+#       KPIGroup: Nhóm KPI
+#       KPIMonth: KPI tháng
+#           KPIMonth: 
+#       ProductivitySub: Năng suất bình quân
+#   SalaryByMonth: Lương theo tháng
+#       Dashboard: Màn hình chính
+#       ExpenseManagement: Quản lý chi phí
+#       TopSellers: Top GDV
+#       SalaryGroup: Nhóm lương
+#       MonthSalary: Lương tháng
+#   AvgIncome: Bình quân thu nhập
+#       Dashboard: Màn hình chính
+#       TopSellers: Top GDV
+#       AvgSalaryGroup: Nhóm lương bình quân
+#       AvgSalary: Lương bình quân
+#   SubscriberQuality: Chất lượng thuê bao
+#       Dashboard: Màn hình chính
+#       ViolationWarning: Cảnh báo vi phạm
+#       Summary: Thống kê
+#   UnitInfo: Thông tin đơn vị

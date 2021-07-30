@@ -40,8 +40,7 @@ const GDVBottomTab = () => {
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size, focused }) => {
             return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.home} />
-          },
-
+          }
         }} />
       <Tab.Screen
         name="SignOut"
@@ -56,20 +55,10 @@ const GDVBottomTab = () => {
   );
 }
 
-const ProfileStack = () => {
-  return (
-    <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Profile" component={ProfileScreen} />
-      <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
-      <Stack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
-    </Stack.Navigator>
-  )
-}
-
 const GDVStack = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, gestureEnabled: true }} >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen}/>
       <Stack.Screen name="KPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
       <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
@@ -81,6 +70,20 @@ const GDVStack = () => {
       <Stack.Screen name="SubscriberList" component={SubscriberListScreen} />
       <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} />
       <Stack.Screen name="ProductivitySub" component={ProductivitySubScreen} />
+    </Stack.Navigator>
+  )
+}
+
+const AdminStack = () => {
+
+}
+
+const ProfileStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="UpdateProfile" component={UpdateProfileScreen} />
+      <Stack.Screen name="UpdatePassword" component={UpdatePasswordScreen} />
     </Stack.Navigator>
   )
 }
@@ -101,8 +104,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Splash" component={TestScreen} />
-        <Stack.Screen name="GDVHome" component={GDVBottomTab} />
+        <Stack.Screen name="Splash" component={AuthStack} />
+        <Stack.Screen name="GDVHome" component={GDVBottomTab}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

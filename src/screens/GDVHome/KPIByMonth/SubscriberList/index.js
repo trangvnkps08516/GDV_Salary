@@ -152,7 +152,9 @@ const SubscriberList = () => {
       <Search
         style={styles.search}
         leftIcon={images.simlist}
+        data={data}
         rightIcon={images.searchlist}
+        dataNotFoundText="Không tìm thấy dữ liệu"
         onChangeText={(value) => searchSub(value)}
         placeholder={text.searchSub}
         keyboardType="number-pad"

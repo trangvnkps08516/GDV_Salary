@@ -7,42 +7,49 @@ function demo(props) {
     const [loading, setLoading] = useState(false)
     const data = [
         {
+            "id":0,
             "name": "Nguyen Thi A",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
         },
         {
+            "id":1,
             "name": "Do Van B",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
         },
         {
+            "id":2,
             "name": "Nguyen Thi Hoang C",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
         },
         {
+            "id":4,
             "name": "Nguyen Thi A",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
         },
         {
+            "id":3,
             "name": "Nguyen Thi Giang",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
         },
         {
+            "id":6,
             "name": "Nguyen Thi A",
             "address": "TP.HCM",
             "company": "Mobifone",
             "position": "Engineer"
         },
         {
+            "id":80,
             "name": "Nguyen Thi A",
             "address": "TP.HCM",
             "company": "Mobifone",

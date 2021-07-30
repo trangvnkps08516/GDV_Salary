@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView, BackHandler } from 'react-native';
+import { SafeAreaView, View, Text, StatusBar, ActivityIndicator, ScrollView } from 'react-native';
 import { DateView, Header, Body, ListItem } from '../../../../comps';
 import { styles } from './styles';
 import { colors } from '../../../../utils/Colors';
@@ -12,14 +12,12 @@ import { backHandler, checkn, thoundsandSep, ToastNotif } from '../../../../util
 import { _retrieveData } from '../../../../utils/Storage';
 import { KPIByMonthAchieve, UserObj } from '../../../../models/Data';
 import Toast from 'react-native-toast-message';
-import { useIsFocused } from '@react-navigation/native';
 
 const Achieve = (props) => {
     const [data, setData] = useState(KPIByMonthAchieve);
     const [loading, setLoading] = useState(true);
     const [user, setUserData] = useState(UserObj);
     const navigation = useNavigation();
-    const isFocused = useIsFocused();
 
     const getData = async () => {
         await getKPIByMonthAchieve(navigation).then((res) => {

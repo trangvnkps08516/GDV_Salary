@@ -11,7 +11,7 @@ import { images } from '../../../utils/Images';
 import { thoundsandSep } from '../../../utils/Logistics';
 import { text } from '../../../utils/Text';
 import { styles } from './styles';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 
 const TransactionInfo = (props) => {
@@ -28,7 +28,7 @@ const TransactionInfo = (props) => {
 
     const getData = async (month) => {
         setLoading(true)
-        await getTransactionInfo(month,navigation).then((res) => {
+        await getTransactionInfo(month, navigation).then((res) => {
             if (res.status == "success") {
                 setData(res.data);
                 setLoading(false);
@@ -62,6 +62,16 @@ const TransactionInfo = (props) => {
         })
     }
 
+    useFocusEffect(
+        React.useCallback(() => {
+            console.log('Transaction Info was focused');
+            getData(month);
+            _getProfile();
+            return () => {
+                console.log('Transaction Info was unfocused');
+            };
+        }, [])
+    );
 
     useEffect(() => {
         const backAction = () => {
@@ -73,8 +83,7 @@ const TransactionInfo = (props) => {
             "hardwareBackPress",
             backAction
         );
-        getData(month);
-        _getProfile();
+
         return () => {
             backHandler.remove();
         };
@@ -96,9 +105,9 @@ const TransactionInfo = (props) => {
                             <ListItem icon={images.transAmount} title={text.transInfoAmount} price={thoundsandSep(data.transcInfoAmount)} />
                             <ListItem icon={images.nonesim} title={text.trans2CAmount} price={thoundsandSep(data.denyTwoC)} />
                             <ListItem icon={images.sim} title={text.transAmount} price={thoundsandSep(data.preToPostPaid)} />
-                            <ListItem style={styles.foneCardNoMoney} icon={images.foneCardNoMoney} iconStyle={{marginTop: fontScale(19), marginLeft: 25}} title={text.foneCardNoMoney} price={thoundsandSep(data.foneCardNoMoney)} />
-                            
-                           
+                            <ListItem style={styles.foneCardNoMoney} icon={images.foneCardNoMoney} iconStyle={{ marginTop: fontScale(19), marginLeft: 25 }} title={text.foneCardNoMoney} price={thoundsandSep(data.foneCardNoMoney)} />
+
+
                         </View> :
                         <ActivityIndicator size="small" color={colors.primary} />
                 }

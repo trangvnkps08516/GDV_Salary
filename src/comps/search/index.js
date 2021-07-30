@@ -10,7 +10,7 @@ import { fontScale } from '../../utils/Fonts';
 import { images } from '../../utils/Images';
 import { styles } from './styles';
 
-const SearchDemo = (props) => {
+const Search = (props) => {
     const { withDropdown, data, dataNotFoundText, keyboardType, style,main } = props;
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
@@ -82,4 +82,4 @@ const SearchDemo = (props) => {
 
 
 
-export default SearchDemo;
+export default Search;
