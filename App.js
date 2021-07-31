@@ -10,6 +10,7 @@ import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
 import { fontScale } from './src/utils/Fonts';
 import { LogBox } from 'react-native';
+import Splash from './src/screens/Auth/Splash';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -109,7 +110,7 @@ const ProfileStack = () => {
 const AuthStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
     </Stack.Navigator>
   )

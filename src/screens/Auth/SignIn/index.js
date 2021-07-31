@@ -34,7 +34,7 @@ const SignIn = (props) => {
                         if (item.userId.userGroupId.code == "MBF_GDV") {
                             navigation.navigate("GDVHome")
                         } else if (item.userId.userGroupId.code == "ADMIN") {
-                            navigation.navigate("GDVHome")
+                            navigation.navigate("AdminHome")
                         } else {
                             setMessage("Bạn không có quyền sử dụng app!")
                         }

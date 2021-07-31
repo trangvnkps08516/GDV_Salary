@@ -67,5 +67,9 @@ export const images = {
     eye:require("../assets/eye.png"),
     money:require("../../assets/money.png"),
     growth:require("../../assets/growth.png"),
+    unitInformation: require("../../assets/ic_unitinformation.png"),
+    toptellers: require("../../assets/ic_toptellers.png"),
+    groupkpi: require("../../assets/ic_groupkpi.png")
+
     
 }
