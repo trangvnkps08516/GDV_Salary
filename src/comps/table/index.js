@@ -2,15 +2,18 @@ import React, { useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { Text } from 'react-native';
 import { ActivityIndicator } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { ScrollView } from 'react-native';
 import { Image } from 'react-native';
 import { View } from 'react-native';
 import { colors } from '../../utils/Colors';
+import { getDimesions, width } from '../../utils/Dimenssion';
 import { fontScale } from '../../utils/Fonts';
+import { images } from '../../utils/Images';
 import TableRow from "./tablerow/index";
 
 const index = (props) => {
-    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray, lastIconHeader, main, style } = props;
+    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray, lastIconHeader, main, style, hideFirstColHeader, rowBg, onPress } = props;
     useEffect(() => {
         if (!data) {
             console.warn("Table Component\nYou must provide the required array of data")
@@ -38,13 +41,22 @@ const index = (props) => {
                                 headers ?
                                     <View style={{ flexDirection: "row" }}>
                                         {
-                                            headerIcons ? headers.map((item, index) => <View key={index} style={{ width: widthArray && widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
-                                                <Image source={headerIcons[index]} resizeMode="contain" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} />
-                                                <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold" }}>{item}</Text>
-                                            </View>) :
-                                                headers.map((item) => <View style={{ flex: 1, paddingHorizontal: fontScale(4) }}>
-                                                    <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold" }}>{item}</Text>
-                                                </View>)
+                                            headerIcons
+                                                ?
+                                                headers.map((item, index) => hideFirstColHeader && index == 0 ? <View style={{paddingHorizontal: fontScale(4), width: widthArray[0] }}/> :
+                                                    <View  onLayout={(event) => {getDimesions(event.nativeEvent.layout)}} key={index} style={{ width: widthArray && widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
+                                                        <Image source={headerIcons[index]} resizeMode="contain" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} />
+                                                        <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold", fontSize: headerStyle.text.size }}>{item}</Text>
+                                                    </View>) :
+                                                headers.map((item, index) => hideFirstColHeader && index == 0
+                                                    ?
+                                                    <View key={index} style={{ paddingHorizontal: fontScale(4), width: widthArray[index],marginLeft:1 }}>
+                                                        <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold" }} />
+                                                    </View>
+                                                    :
+                                                    <View key={index} style={{ flex: 1, paddingHorizontal: fontScale(4), width: widthArray[index],marginLeft:1 }}>
+                                                        <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold", fontSize: headerStyle.text.size,textAlign:"center" }}>{item}</Text>
+                                                    </View>)
                                         }
                                         {
                                             lastIcon ? <View style={{ width: fontScale(35) }}><Image source={lastIconHeader} resizeMode="cover" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} /></View> : null
@@ -63,15 +75,42 @@ const index = (props) => {
                                         keyExtractor={(item, index) => index.toString()}
                                         key={({ item }) => item.numberSub.toString()}
                                         renderItem={({ item, index }) => (
-                                            <TableRow
-                                                item={item}
-                                                index={index}
-                                                widthArray={widthArray && widthArray}
-                                                fields={props.fields}
-                                                numColumn={numColumn}
-                                                main={main}
-                                                lastIcon={lastIcon} />
-                                        )} /> : null
+                                            props.onPress ?
+                                                <TouchableOpacity style={{ backgroundColor: index == 0 ? props.firstRowBg : rowBg[index],width:widthArray[index] }} 
+                                                    onPress={props.onPress}
+                                                >
+                                                    <TableRow
+                                                        item={item}
+                                                        index={index}
+                                                        textColor={props.textColor}
+                                                        fontWeight={props.fontWeight}
+                                                        widthArray={widthArray}
+                                                        fields={props.fields}
+                                                        numColumn={numColumn}
+                                                        rowWidth={widthArray[index]}
+                                                        hideFirstColHeader={hideFirstColHeader}
+                                                        main={main}
+                                                        textAlign="center"
+                                                        lastIcon={lastIcon&&lastIcon[index]} />
+                                                </TouchableOpacity> :
+                                                <View style={{backgroundColor: index == 0 ? props.firstRowBg : rowBg[index] }}>
+                                                    <TableRow
+                                                        item={item}
+                                                        index={index}
+                                                        textColor={props.textColor[index]}
+                                                        fontWeight={props.fontWeight}
+                                                        widthArray={widthArray}
+                                                        fields={props.fields}
+                                                        numColumn={numColumn}
+                                                        boldFirstColumn={props.boldFirstColumn}
+                                                        rowWidth={widthArray[index]}
+                                                        main={main}
+                                                        lastIconStyle={props.lastIconStyle}
+                                                        textAlign="center"
+                                                        lastIcon={lastIcon&&lastIcon[index]} />
+                                                </View>
+                                        )} />
+                                    : null
                             }
                         </View>
                     </ScrollView> : null

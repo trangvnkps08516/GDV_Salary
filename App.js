@@ -4,7 +4,7 @@ import { Image, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen, ProductivitySubScreen, TestScreen } from './src/screens';
+import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen, ProductivitySubScreen, TestScreen, AdminHomeScreen, AdminKPIDashboardScreen, AdminTopTellersKPIScreen, AdminKPIGroupKPIScreen, AdminKPIMonthScreen, AdminProductivitySubScreen, AdminSalaryByMonthDashboardScreen, AdminExpenseManagementScreen, AdminTopSellersScreen, AdminSalaryGroupScreen, AdminMonthSalaryScreen, AdminAvgIncomeDashboardScreen, AdminAvgIncomeTopSellersScreen, AdminAvgIncomeSalaryGroupScreen, AdminAvgIncomeScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
@@ -58,7 +58,7 @@ const GDVBottomTab = () => {
 const GDVStack = () => {
   return (
     <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, gestureEnabled: true }} >
-      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="KPIByMonthDashboard" component={KPIByMonthDashboardScreen} />
       <Stack.Screen name="Achieve" component={AchieveScreen} />
       <Stack.Screen name="SalaryByMonthDashboard" component={SalaryByMonthDashboardScreen} />
@@ -75,7 +75,25 @@ const GDVStack = () => {
 }
 
 const AdminStack = () => {
-
+  return (
+    <Stack.Navigator initialRouteName="AdminTopSellers" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="AdminHome" component={AdminHomeScreen} />
+      <Stack.Screen name="AdminKPIDashboard" component={AdminKPIDashboardScreen} />
+      <Stack.Screen name="AdminTopTellersKPI" component={AdminTopTellersKPIScreen} />
+      <Stack.Screen name="AdminKPIGroupKPI" component={AdminKPIGroupKPIScreen} />
+      <Stack.Screen name="AdminKPIMonth" component={AdminKPIMonthScreen} />
+      <Stack.Screen name="AdminProductivitySub" component={AdminProductivitySubScreen} />
+      <Stack.Screen name="AdminSalaryByMonthDashboard" component={AdminSalaryByMonthDashboardScreen} />
+      <Stack.Screen name="AdminTopSellers" component={AdminTopSellersScreen} />
+      <Stack.Screen name="AdminSalaryGroup" component={AdminSalaryGroupScreen} />
+      <Stack.Screen name="AdminMonthSalary" component={AdminMonthSalaryScreen} />
+      <Stack.Screen name="AdminAvgIncomeTopSellers" component={AdminAvgIncomeTopSellersScreen} />
+      <Stack.Screen name="AdminAvgIncomeSalaryGroup" component={AdminAvgIncomeSalaryGroupScreen} />
+      <Stack.Screen name="AdminAvgIncome" component={AdminAvgIncomeScreen} />
+      <Stack.Screen name="AdminExpenseManagement" component={AdminExpenseManagementScreen} />
+      {/* AdminExpenseManagementScreen || AdminKPIGroupKPI || AdminTopSellers*/}
+    </Stack.Navigator>
+  )
 }
 
 const ProfileStack = () => {
@@ -104,8 +122,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Splash" component={AuthStack} />
-        <Stack.Screen name="GDVHome" component={GDVBottomTab}/>
+        <Stack.Screen name="Splash" component={AdminStack} />
+        <Stack.Screen name="GDVHome" component={GDVBottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );

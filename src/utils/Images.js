@@ -63,7 +63,9 @@ export const images = {
     skynet: require("../assets/SKYNET.png"),
     foneCardNoMoney: require("../assets/ic_foneCardNoMoney.png"),
     transAmount: require("../assets/ic_transcAmount.png"),
-    contractDebt: require("../assets/ic_contractdebt.png")
-
+    contractDebt: require("../assets/ic_contractdebt.png"),
+    eye:require("../assets/eye.png"),
+    money:require("../../assets/money.png"),
+    growth:require("../../assets/growth.png"),
     
 }

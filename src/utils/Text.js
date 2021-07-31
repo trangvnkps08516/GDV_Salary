@@ -155,5 +155,25 @@ productivitySub: "Năng suất bình quân",
 
   // SignOut
   yes:"Có",
-  cancle:"Hủy"
+  cancle:"Hủy",
+
+
+  //Admin > KPI Group
+  kpi:"KPI",
+  kpiGroup: "Nhóm KPI",
+
+  //Admin > Lương theo tháng > Quản lý chi phí
+  expenseManagement:"Quản lý chi phí",
+  bussinessSupport:"Tổng chi HTKD",
+  empOutcome:"Tổng chi GDV",
+  totalSupportOutcome:"Tổng chi hỗ trợ",
+  supportOutcome:"Chi hỗ trợ",
+  totalIncome: "Tổng thu",
+  fixedDifferent:"Chênh lệch cố định",
+  openingRemaining:"Dư đầu kỳ",
+  remainDiff:"Chênh lệch còn lại",
+  endRemaining:"Tồn cuối kỳ",
+  fixed:"Cố định",
+  incentive:"Khoán sp",
+  topSeller:"Top GDV"
 };
