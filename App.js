@@ -4,12 +4,13 @@ import { Image, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen, ProductivitySubScreen, TestScreen } from './src/screens';
+import { AchieveScreen, AvgIncomeByMonthScreen, SubscriberListScreen, ExpectedSalaryScreen, HomeScreen, KPIByMonthDashboardScreen, ProfileScreen, SalaryByMonthContractScreen, SalaryByMonthDashboardScreen, SalaryByMonthFixedwageScreen, SignInScreen, SignOutScreen, SplashScreen, SubscriberQualityScreen, TransactionInfoScreen, UpdatePasswordScreen, UpdateProfileScreen, ProductivitySubScreen, TestScreen, AdminHomeScreen, AdminKPIDashboardScreen, AdminSalaryByMonthDashboardScreen, AdminAvgIncomeDashboardScreen } from './src/screens';
 import { colors } from './src/utils/Colors';
 import { images } from './src/utils/Images';
 import { _retrieveData } from './src/utils/Storage';
 import { fontScale } from './src/utils/Fonts';
 import { LogBox } from 'react-native';
+import Splash from './src/screens/Auth/Splash';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -75,6 +76,15 @@ const GDVStack = () => {
 }
 
 const AdminStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false, gestureEnabled: true }} >
+      <Stack.Screen name="AdminHome" component={AdminHomeScreen}/>
+      <Stack.Screen name="AdminKPIDashboard" component={AdminKPIDashboardScreen}/>
+      <Stack.Screen name="AdminSalaryByMonthDashboard" component={AdminSalaryByMonthDashboardScreen}/>
+      <Stack.Screen name="AdminAvgIncomeDashboard" component={AdminAvgIncomeDashboardScreen}/>
+     
+    </Stack.Navigator>
+  )
 
 }
 
@@ -91,7 +101,7 @@ const ProfileStack = () => {
 const AuthStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={SplashScreen} />
+      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
     </Stack.Navigator>
   )
@@ -104,8 +114,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Splash" component={AuthStack} />
-        <Stack.Screen name="GDVHome" component={GDVBottomTab}/>
+        {/* <Stack.Screen name="Splash" component={SignInScreen} /> */}
+        <Stack.Screen name="AdminHome" component={AdminStack}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

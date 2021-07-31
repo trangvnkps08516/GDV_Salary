@@ -25,16 +25,25 @@ export const text = {
 
   //Home
   kpiByMonth: "KPI tháng hiện tại",
+  kpi: "KPI",
   salaryByMonth: "Lương theo tháng",
   averageIncome: "Bình quân thu nhập",
   subscriberQuality: "Chất lượng thuê bao",
   transactionInformation: "Thông tin giao dịch",
   subscriberList: "Danh sách thuê bao",
+  unitInformation: "Thông tin đơn vị",
 
 
   //KPI theo tháng
   kpiAchieved: "KPI đạt được", 
   provisionalSalary: "Tổng lương dự kiến",
+
+
+  //Admin KPI Dasboard
+  topTellers: "Top GDV",
+  groupKPI: "Nhóm KPI",
+  kpiMonth: "KPI tháng",
+  productivityAverage: "Năng suất bình quân",
 
 
   //KPI đạt được
@@ -73,6 +82,18 @@ export const text = {
   punishment: "Chế tài",
   otherExpenses: "Chi khác",
   skynet: "Skynet",
+
+// Admin Lương theo tháng Dasboard
+costManagement: "Quản lý chi phí",
+topTellers: "Top GDV",
+groupSalary: "Nhóm lương",
+salaryMonth: "Lương tháng",
+
+
+// Admin Bình quân thu nhập
+groupSalaryAverage: "Nhóm lương BQ",
+salaryAverage: "Lương BQ",
+
 
   // Tổng lương dự kiến
   expectedSalaryMenu:"Thu nhập dự kiến từ tập TB \n trong tháng",
@@ -134,6 +155,9 @@ productivitySub: "Năng suất bình quân",
   searchStatusPaid: "Nhập TT/TS",
   TBTT: "TBTT",
   TBTS: "TBTS",
+
+  // Admin
+  
 
   // Profile
   profile: "Thông tin cá nhân",
