@@ -34,7 +34,7 @@ import AdminKPIDashboard from "./AdminHome/KPI/Dashboard"; // AdminHome > KPI
     import AdminProductivitySub from "./AdminHome/KPI/ProductivitySub"; // AdminHome > KPI > Năng suất bình quân
 import AdminSalaryByMonthDashboard from "./AdminHome/SalaryByMonth/Dashboard";  // AdminHome > Lương theo tháng
     import AdminExpenseManagement from "./AdminHome/SalaryByMonth/ExpenseManagement"; // AdminHome > Lương theo tháng > Quản lý chi phí
-    import AdminTopSellers from "./AdminHome/SalaryByMonth/TopSellers"; // AdminHome > Lương theo tháng >Top GDV
+    import AdminTopTellers from "./AdminHome/SalaryByMonth/TopSellers"; // AdminHome > Lương theo tháng >Top GDV
     import AdminSalaryGroup from "./AdminHome/SalaryByMonth/SalaryGroup"; // AdminHome > Lương theo tháng > Nhóm lương
     import AdminMonthSalary from "./AdminHome/SalaryByMonth/MonthSalary"; // AdminHome > Lương theo tháng > Lương tháng
 import AdminAvgIncomeDashboard from "./AdminHome/AvgIncome/Dashboard"; // AdminHome > Bình quân thu nhập
@@ -70,7 +70,7 @@ export const AdminHomeScreen = () => {return <AdminHome/>}
         export const AdminProductivitySubScreen = () => {return <AdminProductivitySub />}
     export const AdminSalaryByMonthDashboardScreen = () => {return <AdminSalaryByMonthDashboard />}
         export const AdminExpenseManagementScreen = () => {return <AdminExpenseManagement />}
-        export const AdminTopSellersScreen = () => {return <AdminTopSellers />}
+        export const AdminTopTellersScreen = () => {return <AdminTopTellers />}
         export const AdminSalaryGroupScreen = () => {return <AdminSalaryGroup />}
         export const AdminMonthSalaryScreen = () => {return <AdminMonthSalary />}
     export const AdminAvgIncomeDashboardScreen = () => {return <AdminAvgIncomeDashboard />}
