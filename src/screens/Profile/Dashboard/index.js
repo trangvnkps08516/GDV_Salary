@@ -59,7 +59,7 @@ const DashBoard = () => {
                 <Image source={images.profileHeader} resizeMode="cover" style={styles.headerShape} />
                 <View style={styles.personInfo}>
                     <Text style={styles.staffCode}>{userData.displayName}</Text>
-                    <Text style={styles.staffName}>({userData.gdvId.maGDV})</Text>
+                    <Text style={styles.staffName}>({userData&&userData.userGroupId.code})</Text>
                     <Image style={styles.avatar} source={userData.avatar == null ? images.avatar : { uri: imgUrl + userData.avatar }} />
                 </View>
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

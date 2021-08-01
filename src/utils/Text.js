@@ -204,5 +204,6 @@ productivitySub: "Năng suất bình quân",
   endRemaining:"Tồn cuối kỳ",
   fixed:"Cố định",
   incentive:"Khoán sp",
-  topSeller:"Top GDV"
+  topSeller:"Top GDV",
+  search:"Tìm kiếm"
 };

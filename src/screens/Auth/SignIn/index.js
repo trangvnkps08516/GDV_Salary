@@ -10,6 +10,7 @@ import { login } from '../../../api';
 import { _retrieveData, _storeData } from '../../../utils/Storage';
 import { text } from '../../../utils/Text';
 import { images } from '../../../utils/Images';
+import { checkLogin } from '../../../utils/Logistics';
 
 const SignIn = (props) => {
     const [userName, setUsername] = useState('')
@@ -30,15 +31,16 @@ const SignIn = (props) => {
             await login(userName, password, navigation).then(async (res) => {
                 if (res.status == "success") {
                     setLoading(false);
-                    await _retrieveData("userInfo").then((item) => {
-                        if (item.userId.userGroupId.code == "MBF_GDV") {
-                            navigation.navigate("GDVHome")
-                        } else if (item.userId.userGroupId.code == "ADMIN") {
-                            navigation.navigate("AdminHome")
-                        } else {
-                            setMessage("Bạn không có quyền sử dụng app!")
-                        }
-                    });
+                    // await _retrieveData("userInfo").then((item) => {
+                    //     if (item.userId.userGroupId.code == "MBF_GDV") {
+                    //         navigation.navigate("GDVHome")
+                    //     } else if (item.userId.userGroupId.code == "ADMIN") {
+                    //         navigation.navigate("AdminHome")
+                    //     } else {
+                    //         setMessage("Bạn không có quyền sử dụng app!")
+                    //     }
+                    // });
+                    checkLogin(navigation);
 
                 } else if (res.status == "failed") {
                         setLoading(false)
