@@ -194,20 +194,69 @@ export const checkInternetConnection = async () => {
   return data;
 }
 
-export const checkLogin = async (navigation) => {
+export const checkUserRole = async () => {
+  let role = '';
   await _retrieveData("userInfo").then((item) => {
     if (item != null) {
-      console.log('token not null')
       if (item.userId.userGroupId.code == "MBF_GDV") {
-        setTimeout(() => {
-          navigation.navigate("GDVHome")
-        }, 3000);
-      } else {
-        return "Bạn không có quyền sử dụng app!"
+        role = 'GROUP_GDV'
+      } else if (item.userId.userGroupId.code == "ADMIN" || item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
+        role = "GROUP_ADMIN"
+      }
+      else {
+        role = "Bạn không có quyền sử dụng app"
       }
     } else {
       console.log('token null')
       navigation.navigate("SignIn")
     }
   });
+
+  return role;
+}
+
+export const checkLogin = async (navigation) => {
+  await _retrieveData("userInfo").then((item) => {
+    if (item != null) {
+      console.log('token not null')
+      console.log(item.userId.userGroupId.code)
+      if (item.userId.userGroupId.code == "MBF_GDV") {
+        setTimeout(() => {
+          navigation.navigate("GDVHome")
+        }, 3000);
+      }
+      else if (item.userId.userGroupId.code == "ADMIN" || item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
+        navigation.navigate("AdminHome")
+      }
+      // else if (item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
+      //     navigation.navigate("AdminHome")
+      //   }
+      else {
+        return "Bạn không có quyền sử dụng app"
+      }
+    } else {
+      console.log('token null')
+      navigation.navigate("SignIn")
+    }
+  });
+}
+
+//get nth item in ọbj
+export const nth = (obj, n) => {
+  var key, i;
+
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) // always do this when you scan an object
+    {
+      if (key.indexOf("item") === 0) // this is the filter
+      {
+        i = parseInt(key.substring(4), 10); // parse the numeral after "item"
+        if (i === n) {
+          return obj[key]; // return this value
+        }
+      }
+    }
+  }
+
+  return null;
 }

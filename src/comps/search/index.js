@@ -3,20 +3,27 @@ import { FlatList } from 'react-native';
 import { Image } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+import { Modal } from 'react-native';
 import { View, TextInput, Text } from 'react-native';
 import { colors } from '../../utils/Colors';
-import { width } from '../../utils/Dimenssion';
+import { height, width } from '../../utils/Dimenssion';
 import { fontScale } from '../../utils/Fonts';
 import { images } from '../../utils/Images';
+import { text } from '../../utils/Text';
 import { styles } from './styles';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import DataPicker from '../datapicker/index';
 
 const Search = (props) => {
-    const { withDropdown, data, dataNotFoundText, keyboardType, style,main } = props;
+    const { withDropdown, data, dataNotFoundText, keyboardType, style, main } = props;
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
     const [searchData, setSearchData] = useState(data);
     const [searchValue, setSearchValue] = useState('');
-    const [searchAlert, setSearchAlert] = useState(false)
+    const [searchAlert, setSearchAlert] = useState(false);
+
+    const [selectModal, setSelectModal] = useState(false);
+    const [value3Index, setValue3Index] = useState('')
 
     const onChangeText = (text = '') => {
         setSearchAlert(true)
@@ -43,9 +50,19 @@ const Search = (props) => {
     }
 
     useEffect(() => {
-        if (!data) console.warn("Search Component\nYou must provide the required array of data")
-        if (!dataNotFoundText) console.warn("Search Component\nYou must provide 'data not found' text while data was not founded")
+        if (withDropdown && !data) console.warn("Search Component\nYou must provide the required array of data")
+        if (withDropdown && !dataNotFoundText) console.warn("Search Component\nYou must provide 'data not found' text while data was not founded")
     })
+
+    var radio_props = [
+        { label: 'Top cao nhất', value: 0 },
+        { label: 'Top thấp nhất', value: 1 }
+    ];
+
+    const onRadioPress = (value) => {
+        console.log(value)
+    }
+
     return (
         withDropdown
             ?
@@ -63,7 +80,7 @@ const Search = (props) => {
                             data={searchData}
                             keyExtractor={(item, key) => key.toString()}
                             renderItem={({ item, index }) => {
-                                return <TouchableOpacity style={{ width: width, backgroundColor: main==true ? colors.lightGrey : index % 2 == 0 ? colors.lightGrey : colors.white }} onPress={() => [setSearchValue(Object.values(item)[props.searchIndex]), setSearchAlert(!searchAlert), props.onSelectValue(Object.values(item)[props.searchIndex])]}>
+                                return <TouchableOpacity style={{ width: width, backgroundColor: main == true ? colors.lightGrey : index % 2 == 0 ? colors.lightGrey : colors.white }} onPress={() => [setSearchValue(Object.values(item)[props.searchIndex]), setSearchAlert(!searchAlert), props.onSelectValue(Object.values(item)[props.searchIndex])]}>
                                     <Text style={{ padding: fontScale(10) }}>{Object.values(item)[props.searchIndex]}</Text>
                                 </TouchableOpacity>
                             }} />
@@ -72,11 +89,80 @@ const Search = (props) => {
                 }
             </View>
             :
-            <View style={[{ flexDirection: 'row', width: props.width, marginHorizontal: width - (width - props.width / 12), backgroundColor: "white" }, props.style, styles.homeSearch]}>
-                <Image resizeMode="contain" source={props.leftIcon} style={styles.leftIco} />
-                <TextInput keyboardType={props.keyboardType} placeholder={props.placeholder} style={[styles.homeSearch, { width: width - fontScale(150) }]} onChangeText={props.onChangeText} placeholderTextColor={colors.grey} />
-                <Image resizeMode="contain" source={props.rightIcon} style={styles.rightIco} />
-            </View>
+            props.searchSelectModal
+                ?
+                <View>
+                    <TouchableOpacity onPress={() => setSelectModal(!selectModal)} style={[{ flexDirection: 'row', width: props.width, paddingVertical: fontScale(2), marginHorizontal: width - (width - props.width / 12), backgroundColor: "white" }, props.style, styles.homeSearch]}>
+                        <Image resizeMode="contain" source={props.leftIcon} style={styles.leftIco} />
+                        <View style={{ flex: 1, justifyContent: "center", alignContent: "center" }}>
+                            <Text style={[styles.placeholder]}>{text.search}</Text>
+                        </View>
+                        <Image resizeMode="contain" source={props.rightIcon} style={styles.rightIco} />
+                    </TouchableOpacity>
+
+                    <Modal
+                        statusBarTranslucent={true}
+                        animationType={'slide'}
+                        transparent={true}
+                        visible={selectModal}
+                        onRequestClose={() => setSelectModal(!selectModal)}>
+                        <TouchableOpacity style={{ flex: 1 }} onPress={() => setSelectModal(!selectModal)}>
+
+                        </TouchableOpacity>
+                        <View style={styles.modalContainer}>
+                            <Text style={styles.modalTitle}>{props.modalTitle}</Text>
+                            <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: fontScale(30), marginTop: fontScale(20) }}>
+                                <RadioForm
+                                    radio_props={radio_props}
+                                    initial={0}
+                                    formHorizontal
+                                    labelStyle={{ marginRight: fontScale(90) }}
+                                    onPress={(value) => { console.log(value) }}
+                                />
+                            </View>
+                            {
+                                props.loading == true ? <ActivityIndicator color={colors.primary} size="small" /> : null
+                            }
+                            {
+                                props.showPicker[0] == true && props.dataOne?
+                                    <DataPicker
+                                        advancedSearch
+                                        data={props.dataOne&&props.dataOne}
+                                        width={width - fontScale(65)}
+                                        field={props.fieldOne}
+                                        fieldKey={props.fieldOne}
+                                        onPress={props.onChangePickerOne}
+                                        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
+                                    /> : null
+                            }
+                            {
+                                props.showPicker[1] == true && props.dataTwo?
+                                    <DataPicker
+                                        advancedSearch
+                                        data={props.dataTwo&&props.dataTwo}
+                                        width={width - fontScale(65)}
+                                        field={props.fieldTwo}
+                                        fieldKey={props.fieldTwo}
+                                        onPress={props.onChangePickerTwo}
+                                        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
+                                    /> : null
+                            }
+                            {
+                                props.showPicker[2] == true && props.dataThree?
+                                    <DataPicker
+                                        advancedSearch
+                                        data={props.dataThree&&props.dataThree}
+                                        width={width - fontScale(65)}
+                                        field={props.fieldThree}
+                                        fieldKey={props.fieldThree}
+                                        onPress={props.onChangePickerThree}
+                                        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
+                                    /> : null
+                            }
+
+                        </View>
+                    </Modal>
+                </View> : null
     );
 }
 

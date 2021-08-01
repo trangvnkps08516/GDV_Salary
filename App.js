@@ -11,6 +11,8 @@ import { _retrieveData } from './src/utils/Storage';
 import { fontScale } from './src/utils/Fonts';
 import { LogBox } from 'react-native';
 import Splash from './src/screens/Auth/Splash';
+import { View } from 'react-native';
+import { Text } from 'react-native';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,6 +39,47 @@ const GDVBottomTab = () => {
       <Tab.Screen
         name="Home"
         component={GDVStack}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size, focused }) => {
+            return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.home} />
+          }
+        }} />
+      <Tab.Screen
+        name="SignOut"
+        component={SignOutScreen}
+        options={{
+          tabBarLabel: 'Logout',
+          tabBarIcon: ({ color, size, focused }) => {
+            return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.logout} />
+          }
+        }} />
+    </Tab.Navigator>
+  );
+}
+
+const AdminBottomTab = () => {
+  return (
+    <Tab.Navigator tabBarOptions={
+      {
+        activeTintColor: colors.primary,
+        inactiveTintColor: '#A2A1A1'
+      }
+    }
+      initialRouteName="Home"
+    >
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStack}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size, focused }) => {
+            return <Image style={{ width: fontScale(size), height: fontScale(size), tintColor: focused == false ? colors.grey : colors.primary }} resizeMode="cover" source={images.user} />
+          }
+        }} />
+      <Tab.Screen
+        name="Home"
+        component={AdminStack}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size, focused }) => {
@@ -123,7 +166,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Splash" component={AdminStack} />
+        <Stack.Screen name="Splash" component={AuthStack} />
+        <Stack.Screen name="AdminHome" component={AdminBottomTab} />
         <Stack.Screen name="GDVHome" component={GDVBottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
