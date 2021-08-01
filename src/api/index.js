@@ -1113,8 +1113,8 @@ export const getAllEmp= async (navigation,branchCode) => {
   return data;
 };
 
-export const getAdminKPITopTeller = async (navigation, branchCode, month, sort) => {
-  console.log(branchCode, month, sort)
+export const getAdminKPIMonthTopTeller = async (navigation, branchCode, month, sort) => {
+  
   let token = "";
   await _retrieveData("userInfo").then((data) => {
     if (data != null) {
@@ -1141,6 +1141,7 @@ export const getAdminKPITopTeller = async (navigation, branchCode, month, sort) 
   })
     .then((res) => {
       if (res.status == 200) {
+        console.log(branchCode+'\n'+ month+'\n'+ sort+'\n'+token+'\n'+res.data)
         if (res.data.V_ERROR) {
           data = {
             message: "Chức năng này đang được bảo trì",
@@ -1157,6 +1158,15 @@ export const getAdminKPITopTeller = async (navigation, branchCode, month, sort) 
             status: "success",
             length: Object.values(res.data.data).length,
             error: null
+          };
+        }else{
+          data = {
+            data: res.data,
+            isLoading: false,
+            status: "success",
+            length: Object.values(res.data.data).length,
+            error: null,
+            message:"Không có dữ liệu"
           };
         }
       }

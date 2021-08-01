@@ -15,14 +15,14 @@ import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { getAdminKPITopTeller } from "../../../../api";
+import { getAdminKPIMonthTopTeller, getAllBranch, getAllShop } from "../../../../api";
 import { useNavigation } from "@react-navigation/native";
 import { width } from "../../../../utils/Dimenssion";
 import { BackHandler } from "react-native";
 import moment from "moment";
+import Toast from 'react-native-toast-message';
 
-
-const SubscriberList = () => {
+const AdminTopTeller = () => {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [message, setMessage] = useState("");
@@ -30,34 +30,99 @@ const SubscriberList = () => {
   const [preSub, setPreSub] = useState("");
   const [postSub, setPostSub] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(false);
   const [filterCondition, setFilterCondition] = useState("");
   const [TBTT, setTBTT] = useState([]);
   const [TBTS, setTBTS] = useState([]);
   const navigation = useNavigation();
-  const [branchCode, setbranchCode] = useState("2MFHCM1");
+  const [branchCode, setBranchCode] = useState("2MFHCM1");
+  const [branchList, setBranchList] = useState([]);
+  const [shopList, setShopList] = useState([]);
+  const [shopCode, setShopCode] = useState('');
+  const [empCode, setEmpCode] = useState('');
+
+  const [empList, setEmpList] = useState([])
+    
   const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
   const [sort, setSort] = useState(0);
 
-  const getData = async (branchCode, month, sort) => {
-    setMessage("");
-    setLoading(true);
-    await getAdminKPITopTeller(navigation, branchCode, month, sort).then((res) => {
-        console.log(res);
-      setLoading(false);
+  const getBranchList = async () => {
+    setLoading(true)
+    await getAllBranch(navigation).then((res) => {
       if (res.status == "success") {
-        if(res.data.length > 0 || res.data.data.length > 0) {
-            setData(res.data.data);
-            setLoading(false);
+        setLoading(false);
+        setBranchList(res.data);
+        console.log(res.data)
+        setBranchCode(res.data[0].shopCode);
+
+      }
+      if (res.status == "failed") {
+        setLoading(false);
+      }
+      if (res.status == "v_error") {
+        Toast.show({
+          text1: "Cảnh báo",
+          text2: res.message,
+          type: "error",
+          visibilityTime: 1000,
+          autoHide: true,
+          onHide: () => navigation.navigate("AdminHome")
+        })
+      }
+    })
+  }
+
+  const onChangeBranch = async (value) => {
+    console.log(value)
+    setLoading(true)
+    setBranchCode(branchCode);
+    await getAllShop(navigation, branchCode).then((res) => {
+      if (res.status == "success") {
+        setLoading(false);
+        setShopList(res.data);
+
+      }
+      if (res.status == "failed") {
+        setLoading(false);
+      }
+      if (res.status == "v_error") {
+        Toast.show({
+          text1: "Cảnh báo",
+          text2: res.message,
+          type: "error",
+          visibilityTime: 1000,
+          autoHide: true,
+          onHide: () => navigation.navigate("AdminHome")
+        })
+      }
+    })
+  }
+
+  const getData = async (branchCode, month, sort) => {
+    console.log(branchCode, month, sort)
+
+    setMessage("");
+    setLoadingData(true);
+    await getAdminKPIMonthTopTeller(navigation, branchCode, month, sort).then((res) => {
+      setLoadingData(false);
+      if (res.status == "success") {
+        if (res.data.length > 0 || res.data.data.length > 0) {
+          setData(res.data.data);
+          setLoadingData(false);
+        } else {
+          setData([])
+          setMessage(res.message)
+          setLoadingData(false);
         }
       }
       if (res.status == "failed") {
         setMessage("Không có dữ liệu")
-        setLoading(false);
+        setLoadingData(false);
       }
     });
   };
 
-  
+
 
   useEffect(() => {
     const backAction = () => {
@@ -69,6 +134,7 @@ const SubscriberList = () => {
       "hardwareBackPress",
       backAction
     );
+    getBranchList();
     getData(branchCode, month, sort); // gọi data thật
     return () => {
       backHandler.remove();
@@ -78,38 +144,35 @@ const SubscriberList = () => {
 
   const _onChangeMonth = async (value) => {
     setMonth(value);
-    await getData( branchCode,value, sort)
-}
+    await getData(branchCode, value, sort)
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
       <Header title={text.topTellers} />
       <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
-      {/* <Search
-        style={styles.search}
-        leftIcon={images.simlist}
-        data={data}
-        rightIcon={images.searchlist}
-        dataNotFoundText="Không tìm thấy dữ liệu"
-        onChangeText={(value) => searchSub(value)}
-        placeholder={text.searchSub}
-        keyboardType="number-pad"
-        width={width - fontScale(65)}
-      /> */}
+      <Search
 
-      {/* <DataPicker
-        dialogTitle="Chọn dữ liệu"
-        icon={images.sim}
-        data={[
-          { id: 0, value: "Tất cả" },
-          { id: 1, value: "TT" },
-          { id: 2, value: "TS" },
-        ]}
-        width={width - fontScale(65)}
-        onPress={(value) => filterDataType(data, value.value)}
-        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
-      /> */}
+        loading={loading}
+        modalTitle="Vui lòng chọn" 
+        searchSelectModal 
+        width={width - fontScale(60)} 
+        style={{ marginTop: fontScale(20) }} 
+        leftIcon={images.teamwork}
+        dataOne={branchList}
+        dataTwo={shopList}
+        dataThree={empList}
+        index={branchList.map((item, index) => index)}
+        fieldOne={branchList.map((item) => item.shopName)}
+        fieldTwo={shopList.map((item) => item.shopName)}
+        fieldThree={empList.map((item, index) => item.maGDV)}
+        onChangePickerOne={(value, index) => onChangeBranch(value.shopCode)}
+        // onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
+        // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
+        showPicker={[true, false, true]}
+        onPressOK={(value)=>getData(value.branchCode,month,value.sort)}
+      />
 
       <Body
         showInfo={false}
@@ -135,9 +198,9 @@ const SubscriberList = () => {
           <TableHeader style={{ width: (width * 2.5) / 10 }} title={text.sumKPI} />
           <TableHeader style={{ width: (width * 1.21) / 10 }} title={text.TBTT} />
           <TableHeader style={{ width: (width * 2.5) / 10 }} title={text.TBTS} />
-          
+
         </View>
-        {loading == true ? (
+        {loadingData == true ? (
           <ActivityIndicator
             size="small"
             color={colors.primary}
@@ -162,7 +225,7 @@ const SubscriberList = () => {
                 item.sumKpi,
                 item.postPaid,
                 item.prePaid,
-                
+
               ]}
               style={[
                 [styles.dateCol, { width: (width * 3.9) / 10 }],
@@ -182,8 +245,9 @@ const SubscriberList = () => {
           )}
         />
       </View>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </SafeAreaView>
   );
 };
 
-export default SubscriberList;
+export default AdminTopTeller;

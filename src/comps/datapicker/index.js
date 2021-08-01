@@ -52,7 +52,7 @@ const index = (props) => {
                         <View style={{ backgroundColor: '#8a8a8a', opacity: 0.5, height: 0.7 }} />
                         {
                             props.data.map((item, index) => {
-                                return <TouchableOpacity key={item.id} onPress={() => _onPress(item)} style={[styles.selectContent, { backgroundColor: selectedItem.id == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{props.field[index]}</Text></TouchableOpacity>
+                                return <TouchableOpacity key={index} onPress={() => _onPress(item)} style={[styles.selectContent, { backgroundColor: selectedItem.id == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{props.field[index]}</Text></TouchableOpacity>
                             })
                         }
                     </View>

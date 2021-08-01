@@ -168,7 +168,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={AuthStack} />
         <Stack.Screen name="GDVHome" component={GDVBottomTab} />
-        <Stack.Screen name="AdminHome" component={AdminStack} />
+        <Stack.Screen name="AdminHome" component={AdminBottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
   );
