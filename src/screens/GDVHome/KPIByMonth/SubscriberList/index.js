@@ -32,6 +32,12 @@ const SubscriberList = () => {
   const [TBTS, setTBTS] = useState([]);
   const navigation = useNavigation();
 
+  const pickerData = [
+      { id: 0, value: "Tất cả" },
+      { id: 1, value: "TT" },
+      { id: 2, value: "TS" },
+    ]
+
   const getData = async (status) => {
     setMessage("");
     setLoading(true);
@@ -164,10 +170,8 @@ const SubscriberList = () => {
       <DataPicker
         dialogTitle="Chọn dữ liệu"
         icon={images.sim}
-        data={[
-          { id: 0, value: "Tất cả" },
-          { id: 1, value: "TT" },
-          { id: 2, value: "TS" },
+        data={pickerData}
+        field={[pickerData[0].value,pickerData[1].value,pickerData[2].value
         ]}
         width={width - fontScale(65)}
         onPress={(value) => filterDataType(data, value.value)}

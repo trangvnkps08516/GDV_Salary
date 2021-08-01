@@ -6,7 +6,7 @@ import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
 import { text } from '../../../utils/Text';
-import { checkLogin } from '../../../utils/Logistics';
+import { checkLogin, checkUserRole } from '../../../utils/Logistics';
 
 const Splash = () => {
     const navigation = useNavigation();
@@ -15,7 +15,7 @@ const Splash = () => {
     useEffect(() => {
         setTimeout(async() => {
             if (isFocus) {
-                await checkLogin(navigation);
+                checkLogin(navigation)
             } else {
 
             }

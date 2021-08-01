@@ -26,10 +26,10 @@ const Dashboard=(route)=> {
     const getData = async () => {
         setLoading(true)
         await getProfile(navigation).then((res) => {
-            console.log(res)
+            console.log(res.data.displayName)
             if(res.status == "success") {
                 setLoading(false)
-                setUserData(res.data)
+                setUserData(res.data) 
             }
             if(res.status == "v_error") {
                 ToastNotif('Cảnh báo', res.message,'error', true);
@@ -76,9 +76,8 @@ const Dashboard=(route)=> {
         <SafeAreaView style={styles.container}>
         <StatusBar translucent backgroundColor={colors.primary} />
         {
-          <Header showBack={false} profile avatar={user.avatar != null ? { uri: imgUrl + user.avatar } : images.avatar} fullName={user.displayName} maGDV={user.gdvId.maGDV} />
+          <Header showBack={false} profile avatar={user.avatar != null ? { uri: imgUrl + user.avatar } : images.avatar} fullName={user.displayName} maGDV={user.shopId.shopCode} />
         }
-        {/* <Text>{JSON.stringify(user)}</Text> */}
         <Body style={{ marginTop: fontScale(27) }} showInfo={false} />
         <View style={styles.body}>
           <MenuItem style={{ marginTop: fontScale(30) }} title={text.kpi} titleMenuStyle={{ paddingTop: fontScale(17) }} icon={images.kpiByMonth} width={width - fontScale(60)} onPress={() => navigation.navigate("AdminKPIDashboard")} />

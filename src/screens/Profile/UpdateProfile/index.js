@@ -154,7 +154,7 @@ const UpdateProfile = (props) => {
       />
       <View style={styles.personInfo}>
         <Text style={styles.staffName}>{userData.displayName}</Text>
-        <Text style={styles.staffCode}>{userData.gdvId.maGDV}</Text>
+        <Text style={styles.staffCode}>{userData.gdvId ? userData.gdvId.maGDV : userData.shopId.shopCode}</Text>
         <TouchableOpacity
           style={styles.avatarContainer}
           onPress={() => pickImage()}>

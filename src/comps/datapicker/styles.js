@@ -64,5 +64,11 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, borderTopLeftRadius: fontScale(30), borderTopRightRadius: fontScale(30), paddingTop: fontScale(15), paddingBottom: fontScale(30)
+    },
+    advancedPicker:{
+        backgroundColor:colors.lightGrey,
+        paddingVertical:fontScale(15),
+        borderRadius:fontScale(10),
+        flexDirection:"row"
     }
 })

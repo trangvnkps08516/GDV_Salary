@@ -5440,6 +5440,11 @@ react-native-simple-month-year-picker@^1.2.1:
   resolved "https://registry.yarnpkg.com/react-native-simple-month-year-picker/-/react-native-simple-month-year-picker-1.2.1.tgz#a219d13abab97f540c6b8e0de94fad800f4355b5"
   integrity sha512-nEdjhXByNIt85mw+Eu3Y/cUC+fD2duBqRG1W8BYjElDNfzpXbfr5x8UMdGd73/fLt0jsU0VmU4IbLR0Ms0AUYQ==
 
+react-native-simple-radio-button@^2.7.4:
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/react-native-simple-radio-button/-/react-native-simple-radio-button-2.7.4.tgz#86e2dbe8af9e6bf60eee088f60466f7a975e7758"
+  integrity sha512-QOZNmJUn0ViBGU+at7wAG/uGzd5PfXi0kMHr9lfTCLXknW/f9f2fOVjxjdHvOCdf/zA/eMJBjGjtusSDzQf1+w==
+
 react-native-size-matters@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"

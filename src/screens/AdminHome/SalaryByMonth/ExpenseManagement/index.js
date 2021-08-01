@@ -29,9 +29,9 @@ const index = (props) => {
             // "shopType": "company",
             // "detail": false,
 
-                "employee": "20tr",
-                "bussinessSupport": "20tr",
-                "different": "0"
+            "employee": "20tr",
+            "bussinessSupport": "20tr",
+            "different": "0"
 
         },
         {
@@ -169,37 +169,37 @@ const index = (props) => {
                         </View>
                     </View>
                     <View style={styles.top}>
-                    <Table
-                    data={data}
-                    table
-                    numColumn={4}
-                    headers={["", "GDV", "HTKD", "Chênh lệch"]}
-                    headersTextColor={colors.primary}
-                    headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
-                    // headerIcons={[images.branch, images.company, images.workingShop, images.close]}
-                    // lastIconHeader={images.day}
-                    widthArray={[fontScale(100), fontScale(100), fontScale(100), fontScale(100)]}
+                        <Table
+                            data={data}
+                            table
+                            numColumn={4}
+                            headers={["", "GDV", "HTKD", "Chênh lệch"]}
+                            headersTextColor={colors.primary}
+                            headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
+                            // headerIcons={[images.branch, images.company, images.workingShop, images.close]}
+                            // lastIconHeader={images.day}
+                            widthArray={[fontScale(100), fontScale(100), fontScale(100), fontScale(100)]}
 
-                    fields={
-                        data.map((item,index) => [
-                            fields[index],
-                            item.employee,
-                            item.bussinessSupport,
-                            item.different
-                        ])
-                    }
-                    loading={loading}
-                    hideFirstColHeader
-                    boldFirstColumn
-                    // firstRowBg={"#FBFDC3"}
-                    lastIcon={data.map((item, index) => item.detail==true ? images.eye:null)}
-                    lastIconStyle={{ tintColor: colors.grey }}
-                    canPress={data.map((item, index) => item.detail==true ? true : false)}
-                    boldFirstColText
-                    style={{ marginTop: fontScale(30) }}
-                    textColor={data.map((item, index) => colors.primary)}
-                    rowBg={"#fff"}
-                />
+                            fields={
+                                data.map((item, index) => [
+                                    fields[index],
+                                    item.employee,
+                                    item.bussinessSupport,
+                                    item.different
+                                ])
+                            }
+                            loading={loading}
+                            hideFirstColHeader
+                            boldFirstColumn
+                            // firstRowBg={"#FBFDC3"}
+                            lastIcon={data.map((item, index) => item.detail == true ? images.eye : null)}
+                            lastIconStyle={{ tintColor: colors.grey }}
+                            canPress={data.map((item, index) => item.detail == true ? true : false)}
+                            boldFirstColText
+                            style={{ marginTop: fontScale(30) }}
+                            textColor={data.map((item, index) => colors.primary)}
+                            rowBg={"#fff"}
+                        />
                     </View>
                 </ScrollView>
             </View>

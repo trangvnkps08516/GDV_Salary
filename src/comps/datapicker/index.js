@@ -15,15 +15,27 @@ const index = (props) => {
     const _onPress = (value) => {
         setSelectedItem(value);
         setShowDialog(!showDialog);
-        props.onPress(value)
+        props.onPress(value);
     }
     return (
         <View style={[styles.container, { width: props.width }, props.style]}>
-            <TouchableOpacity style={[styles.picker, { width: props.width }]} onPress={() => setShowDialog(!showDialog)}>
-                <Image source={props.icon} resizeMode="contain" style={styles.leftIco} />
-                <Text style={styles.dateLabel}>{selectedItem.value}</Text>
-                <Image source={images.arrowdown} resizeMode="contain" style={styles.arrDown} />
-            </TouchableOpacity>
+            {props.advancedSearch ?
+                <TouchableOpacity style={[styles.advancedPicker, { width: props.width }]} onPress={() => setShowDialog(!showDialog)}>
+                    <Text style={{ flex:1,paddingHorizontal: fontScale(15) }}>{props.fieldKey }</Text>
+                    <Image source={images.arrowdown} resizeMode="contain" style={{
+                        width: fontScale(20),
+                        height: fontScale(20),
+                        right: 0,
+                        marginRight: fontScale(15)
+                    }} />
+                </TouchableOpacity>
+                :
+                <TouchableOpacity style={[styles.picker, { width: props.width }]} onPress={() => setShowDialog(!showDialog)}>
+                    <Image source={props.icon} resizeMode="contain" style={styles.leftIco} />
+                    <Text style={styles.dateLabel}>{selectedItem.value || props.placeholder}</Text>
+                    <Image source={images.arrowdown} resizeMode="contain" style={styles.arrDown} />
+                </TouchableOpacity>
+            }
 
             <Modal
                 statusBarTranslucent={true}
@@ -39,8 +51,8 @@ const index = (props) => {
                         <Text style={styles.dialogTitle}>{props.dialogTitle}</Text>
                         <View style={{ backgroundColor: '#8a8a8a', opacity: 0.5, height: 0.7 }} />
                         {
-                            props.data.map((item) => {
-                                return <TouchableOpacity key={item.id} onPress={() => _onPress(item)} style={[styles.selectContent, { backgroundColor: selectedItem.id == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{item.value}</Text></TouchableOpacity>
+                            props.data.map((item, index) => {
+                                return <TouchableOpacity key={item.id} onPress={() => _onPress(item)} style={[styles.selectContent, { backgroundColor: index == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{props.field[index]}</Text></TouchableOpacity>
                             })
                         }
                     </View>
