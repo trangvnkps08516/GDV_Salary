@@ -26,6 +26,9 @@ const Search = (props) => {
     const [selectModal, setSelectModal] = useState(false);
     const [value3Index, setValue3Index] = useState('')
 
+    const [valueOne,setValueOne] = useState('');
+    const [radioValue,setRadioValue] = useState(1);
+
     const onChangeText = (text = '') => {
         setSearchAlert(true)
         let newData = data.filter((item) => {
@@ -56,12 +59,23 @@ const Search = (props) => {
     })
 
     var radio_props = [
-        { label: 'Top cao nhất', value: 0 },
-        { label: 'Top thấp nhất', value: 1 }
+        { label: 'Top cao nhất', value: 1 },
+        { label: 'Top thấp nhất', value: 0 }
     ];
 
     const onChangePickerOne = (value) => {
         props.onChangePickerOne(value);
+        setValueOne(value)
+    }
+
+    const onPressOK=()=>{
+        props.onPressOK({"branchCode":valueOne.shopCode,"sort":radioValue})
+        setSelectModal(!selectModal);
+    }
+
+    const onRadioPress=(value)=>{
+        setRadioValue(value)
+        console.log(value)
     }
 
     return (
@@ -118,7 +132,7 @@ const Search = (props) => {
                                     initial={0}
                                     formHorizontal
                                     labelStyle={{ marginRight: fontScale(90) }}
-                                    onPress={(value) => { console.log(value) }}
+                                    onPress={(value) =>  onRadioPress(value)}
                                 />
                             </View>
                             <View style={{marginBottom:fontScale(5)}}>
@@ -165,7 +179,7 @@ const Search = (props) => {
                             } */}
                             <View style={{ flexDirection: "row", alignSelf: "center", position: "absolute", bottom: fontScale(50) }}>
                                 <Button wIcon style={{ marginRight: fontScale(30) }} label={text.cancle} color="red" width={fontScale(100)} icon={images.cancle} onPress={() => setSelectModal(!selectModal)} />
-                                <Button wIcon style={{ marginLeft: fontScale(30) }} label={text.yes} color="green" width={fontScale(100)} icon={images.check} onPress={() => logoutUser()} />
+                                <Button wIcon style={{ marginLeft: fontScale(30) }} label={text.yes} color="green" width={fontScale(100)} icon={images.check} onPress={()=>onPressOK()} />
                             </View>
                         </View>
                     </Modal>
