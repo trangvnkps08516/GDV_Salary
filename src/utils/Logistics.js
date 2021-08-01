@@ -196,13 +196,20 @@ export const checkInternetConnection = async () => {
 
 export const checkLogin = async (navigation) => {
   await _retrieveData("userInfo").then((item) => {
+    console.log(item)
     if (item != null) {
       console.log('token not null')
       if (item.userId.userGroupId.code == "MBF_GDV") {
         setTimeout(() => {
-          navigation.navigate("GDVHome")
+          // navigation.navigate("GDVHome")
         }, 3000);
-      } else {
+      } 
+      if (item.userId.userGroupId.code == "ADMIN") {
+        setTimeout(() => {
+          navigation.navigate("AdminHome");
+        }, 3000);
+      } 
+      else {
         return "Bạn không có quyền sử dụng app!"
       }
     } else {
