@@ -13,6 +13,7 @@ import { text } from '../../utils/Text';
 import { styles } from './styles';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import DataPicker from '../datapicker/index';
+import Button from '../button';
 
 const Search = (props) => {
     const { withDropdown, data, dataNotFoundText, keyboardType, style, main } = props;
@@ -59,8 +60,8 @@ const Search = (props) => {
         { label: 'Top thấp nhất', value: 1 }
     ];
 
-    const onRadioPress = (value) => {
-        console.log(value)
+    const onChangePickerOne = (value) => {
+        props.onChangePickerOne(value);
     }
 
     return (
@@ -106,7 +107,7 @@ const Search = (props) => {
                         transparent={true}
                         visible={selectModal}
                         onRequestClose={() => setSelectModal(!selectModal)}>
-                        <TouchableOpacity style={{ flex: 1 }} onPress={() => setSelectModal(!selectModal)}>
+                        <TouchableOpacity style={{ flex: 2 }} onPress={() => setSelectModal(!selectModal)}>
 
                         </TouchableOpacity>
                         <View style={styles.modalContainer}>
@@ -120,22 +121,25 @@ const Search = (props) => {
                                     onPress={(value) => { console.log(value) }}
                                 />
                             </View>
+                            <View style={{marginBottom:fontScale(5)}}>
                             {
-                                props.loading == true ? <ActivityIndicator color={colors.primary} size="small" /> : null
+                                props.loading == true ? <ActivityIndicator color={colors.primary} style={{position:"absolute",alignSelf:"center",marginTop:-fontScale(5)}} size="small" /> : null
                             }
+                            </View>
                             {
-                                props.showPicker[0] == true && props.dataOne?
+                                props.showPicker[0] == true && props.dataOne ?
                                     <DataPicker
                                         advancedSearch
-                                        data={props.dataOne&&props.dataOne}
+                                        data={props.dataOne && props.dataOne}
                                         width={width - fontScale(65)}
                                         field={props.fieldOne}
-                                        fieldKey={props.fieldOne}
-                                        onPress={props.onChangePickerOne}
+                                        fieldKey={props.fieldOne[0]}
+                                        onPress={(item, index) => onChangePickerOne(item)}
                                         style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
                                     /> : null
                             }
-                            {
+
+                            {/* {
                                 props.showPicker[1] == true && props.dataTwo?
                                     <DataPicker
                                         advancedSearch
@@ -158,8 +162,11 @@ const Search = (props) => {
                                         onPress={props.onChangePickerThree}
                                         style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
                                     /> : null
-                            }
-
+                            } */}
+                            <View style={{ flexDirection: "row", alignSelf: "center", position: "absolute", bottom: fontScale(50) }}>
+                                <Button wIcon style={{ marginRight: fontScale(30) }} label={text.cancle} color="red" width={fontScale(100)} icon={images.cancle} onPress={() => setSelectModal(!selectModal)} />
+                                <Button wIcon style={{ marginLeft: fontScale(30) }} label={text.yes} color="green" width={fontScale(100)} icon={images.check} onPress={() => logoutUser()} />
+                            </View>
                         </View>
                     </Modal>
                 </View> : null
