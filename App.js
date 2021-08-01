@@ -77,7 +77,7 @@ const GDVStack = () => {
 
 const AdminStack = () => {
   return (
-    <Stack.Navigator initialRouteName="AdminTopTellersKPI" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="AdminHome" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="AdminHome" component={AdminHomeScreen} />
       <Stack.Screen name="AdminKPIDashboard" component={AdminKPIDashboardScreen} />
       <Stack.Screen name="AdminTopTellersKPI" component={AdminTopTellersKPIScreen} />
@@ -110,7 +110,7 @@ const ProfileStack = () => {
 const AuthStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={AdminTopTellersKPIScreen} />
+      <Stack.Screen name="Splash" component={SignInScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
     </Stack.Navigator>
   )
