@@ -107,7 +107,7 @@ const index = (props) => {
     }
 
     const getData=async()=>{
-        await 
+       
     }
 
     useEffect(() => {
