@@ -186,6 +186,11 @@ productivitySub: "Năng suất bình quân",
   kpi:"KPI",
   kpiGroup: "Nhóm KPI",
 
+  //Admin > KPI Top GDV
+  GDV:"GDV",
+  sumKPI:"KPI tổng",
+  
+
   //Admin > Lương theo tháng > Quản lý chi phí
   expenseManagement:"Quản lý chi phí",
   bussinessSupport:"Tổng chi HTKD",

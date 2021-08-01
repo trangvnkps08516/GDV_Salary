@@ -8,10 +8,11 @@ import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
 import { text } from '../../../../utils/Text';
 import { styles } from './style';
+import { useNavigation } from "@react-navigation/native";
 
 
 const KPIHome=(props)=> {
-  
+  const navigation = useNavigation();
     return (   
         <SafeAreaView style={styles.container}>
         <StatusBar translucent backgroundColor={colors.primary} />
