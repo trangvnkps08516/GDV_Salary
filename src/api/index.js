@@ -1,7 +1,8 @@
-​​import { GET, POST, PUT, PATCH, DELETE } from "./method";
+
 import { baseUrl } from "./untils";
 import axios from "axios";
 import { _removeData, _retrieveData, _storeData } from "../utils/Storage";
+import { POST ,GET,PUT,DELETE} from "./method";
  
 // 1. Login Screen
 export const login = async (userName, password) => {
