@@ -153,7 +153,7 @@ const ProfileStack = () => {
 const AuthStack = () => {
   return (
     <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Splash" component={SignInScreen} />
+      <Stack.Screen name="Splash" component={AdminTopSellersScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
     </Stack.Navigator>
   )
