@@ -14,11 +14,15 @@ import { getExpenseManagement } from '../../../../api';
 import { useEffect } from 'react';
 import { expenseManagement } from '../../../../models/Admin';
 import { ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import Toast from 'react-native-toast-message';
+import { ToastNotif } from '../../../../utils/Logistics';
 
 const index = (props) => {
     const [month, setMonth] = useState(moment(new Date()).subtract(1, "months").format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
-    const [data,setData] = useState(expenseManagement)
+    const [data,setData] = useState(expenseManagement);
+    const navigation = useNavigation();
 
     const getData = async(month) => {
         setLoading(true)
@@ -32,10 +36,11 @@ const index = (props) => {
                     setMessage(text.dataIsNull);
                     setLoading(false)
                 }
+                
             }
             if (res.status == "failed") {
+                setLoading(false);
                 ToastNotif('Cảnh báo', res.message, 'error', true);
-                setLoading(false)
             }
 
             if (res.status == "v_error") {
@@ -112,6 +117,7 @@ const index = (props) => {
                     </View>
                 </ScrollView>
             </View>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }

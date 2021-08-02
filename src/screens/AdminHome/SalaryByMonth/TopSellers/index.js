@@ -9,6 +9,8 @@ import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
+import { getLoginInfo } from '../../../../utils/Logistics';
+import { _retrieveData } from '../../../../utils/Storage';
 import { text } from '../../../../utils/Text';
 import { styles } from './style'
 
@@ -20,6 +22,7 @@ const index = (props) => {
     const [shopList, setShopList] = useState([]);
     const [shopCode, setShopCode] = useState('');
     const [empCode, setEmpCode] = useState('');
+    const [sort,setSort] = useState(0)
 
     const [empList, setEmpList] = useState([])
     const navigation = useNavigation();
@@ -29,8 +32,9 @@ const index = (props) => {
         await getAllBranch(navigation).then((res) => {
             if (res.status == "success") {
                 setLoading(false);
-                setBranchList(res.data);
-                setBranchCode(res.data[0].shopCode);
+                if(res.length>0){
+                    setBranchList(res.data)
+                }
             }
             if (res.status == "failed") {
                 setLoading(false);
@@ -56,7 +60,7 @@ const index = (props) => {
             if (res.status == "success") {
                 setLoading(false);
                 setShopList(res.data);
-                
+
             }
             if (res.status == "failed") {
                 setLoading(false);
@@ -77,7 +81,7 @@ const index = (props) => {
     const onChangeShop = async (shopCode) => {
         setLoading(true)
         setShopCode(shopCode);
-        await getAllEmp(navigation, branchCode, shopCode,'').then((res) => {
+        await getAllEmp(navigation, branchCode, shopCode, '').then((res) => {
             if (res.status == "success") {
                 setLoading(false);
                 setEmpList(res.data);
@@ -102,20 +106,17 @@ const index = (props) => {
         setEmpCode(empCode)
     }
 
-    const getData=async(branchCode,month,sort)=>{
-        console.log(branchCode, month,sort)
+    const getData = async (branchCode, month, sort) => {
+        
     }
 
     useEffect(() => {
-        if (branchList.length > 0) {
-
-        } else {
-            getBranchList();
-        }
-    }, [branchList])
+        getBranchList();
+        getData('',month,sort);
+    }, [month])
 
     const _setMonth = () => {
-        
+
     }
 
     return (
@@ -131,17 +132,17 @@ const index = (props) => {
                 index={branchList.map((item, index) => index)}
                 fieldOne={branchList.map((item) => item.shopName)}
                 fieldTwo={shopList.map((item) => item.shopName)}
-                fieldThree={empList.map((item,index) => item.maGDV)}
-                onChangePickerOne={(value,index) => onChangeBranch(value.shopCode)}
+                fieldThree={empList.map((item, index) => item.maGDV)}
+                onChangePickerOne={(value, index) => onChangeBranch(value.shopCode)}
                 // onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
                 // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
                 showPicker={[true, false, true]}
-                onPressOK={(value)=>getData(value.branchCode,month,value.sort)}
+                onPressOK={(value) => getData(value.branchCode, month, value.sort)}
 
             />
             <Body />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
-                
+
             </View>
         </SafeAreaView>
     );

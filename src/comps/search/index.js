@@ -140,12 +140,13 @@ const Search = (props) => {
                                 props.loading == true ? <ActivityIndicator color={colors.primary} style={{position:"absolute",alignSelf:"center",marginTop:-fontScale(5)}} size="small" /> : null
                             }
                             </View>
+                            <Text style={{height:0}}>{JSON.stringify(props.dataOne)}</Text>
                             {
                                 props.showPicker[0] == true && props.dataOne ?
                                     <DataPicker
                                         advancedSearch
                                         placeholder={props.placeholder}
-                                        data={props.dataOne && props.dataOne}
+                                        data={props.dataOne}
                                         width={width - fontScale(65)}
                                         field={props.fieldOne}
                                         fieldKey={props.fieldOne[0]}

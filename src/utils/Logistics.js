@@ -222,7 +222,7 @@ export const checkLogin = async (navigation) => {
       console.log('token not null')
       if (item.userId.userGroupId.code == "MBF_GDV") {
         setTimeout(() => {
-          // navigation.navigate("GDVHome")
+          navigation.navigate("GDVHome")
         }, 3000);
       }
       else if (item.userId.userGroupId.code == "ADMIN" || item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
