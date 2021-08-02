@@ -35,7 +35,7 @@ const GeneralListItem = (props) => {
         <View style={{ flexDirection: "row" }}>
           {
             props.titleArray.map((item, index) => <View style={{ flex: 1 }} >
-              <Text style={{ textAlign: "center", fontWeight: "bold", fontSize: fontScale(12), color: colors.grey }}>{item}</Text>
+              <Text key={index}  style={{ textAlign: "center", fontWeight: "bold", fontSize: fontScale(12), color: colors.grey }}>{item}</Text>
               <Text style={{ textAlign: "center", fontWeight: "bold", color: colors.primary, fontSize: fontScale(14),marginTop:fontScale(10) }}>{props.item[index]}</Text>
             </View>)
           }
@@ -52,7 +52,7 @@ const GeneralListItem = (props) => {
         <View style={{ flexDirection: "row" }}>
           {
             props.titleArray.map((item, index) => <View style={{ flex: 1 }} >
-              <Text style={{ textAlign: "center", fontWeight: "bold", fontSize: fontScale(12), color: colors.grey }}>{item}</Text>
+              <Text key={index} style={{ textAlign: "center", fontWeight: "bold", fontSize: fontScale(12), color: colors.grey }}>{item}</Text>
               <Text style={{ textAlign: "center", fontWeight: "bold", color: colors.primary, fontSize: fontScale(14) }}>{props.item[index]}</Text>
             </View>)
           }
