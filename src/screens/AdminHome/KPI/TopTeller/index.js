@@ -93,27 +93,60 @@ const AdminTopTeller = () => {
     })
   }
 
+  // const getData = async (branchCode, month, sort) => {
+  //   console.log(branchCode, month, sort)
+
+  //   setMessage("");
+  //   setLoadingData(true);
+  //   await getAdminKPIMonthTopTeller(navigation, branchCode, month, sort).then((res) => {
+  //     setLoadingData(false);
+  //     if (res.status == "success") {
+  //       if (res.data.length > 0 || res.data.data.length > 0) {
+  //         setData(res.data.data);
+  //         setLoadingData(false);
+  //       } else {
+  //         setData([])
+  //         setMessage(res.message)
+  //         setLoadingData(false);
+  //       }
+  //     }
+  //     if (res.status == "failed") {
+  //       setMessage("Không có dữ liệu")
+  //       setLoadingData(false);
+  //     }
+  //     if (res.status == "v_error") {
+  //       Toast.show({
+  //         text1: "Cảnh báo",
+  //         text2: res.message,
+  //         type: "error",
+  //         visibilityTime: 1000,
+  //         autoHide: true,
+  //         onHide: () => navigation.navigate("AdminHome")
+  //       })
+  //     }
+  //   })
+  // }
+
   const getData = async (branchCode, month, sort) => {
     console.log(branchCode, month, sort)
-
     setMessage("");
     setLoadingData(true);
     await getAdminKPIMonthTopTeller(navigation, branchCode, month, sort).then((res) => {
       setLoadingData(false);
-      if (res.status == "success") {
-        if (res.data.length > 0 || res.data.data.length > 0) {
-          setData(res.data.data);
-          setLoadingData(false);
-        } else {
-          setData([])
-          setMessage(res.message)
+        if (res.status == "success") {
+          if (res.data.length > 0 || res.data.data.length > 0) {
+            setData(res.data.data);
+            setLoadingData(false);
+          } else {
+            setData([])
+            setMessage(res.message)
+            setLoadingData(false);
+          }
+        }
+        if (res.status == "failed") {
+          setMessage("Không có dữ liệu")
           setLoadingData(false);
         }
-      }
-      if (res.status == "failed") {
-        setMessage("Không có dữ liệu")
-        setLoadingData(false);
-      }
     });
   };
 
@@ -135,7 +168,6 @@ const AdminTopTeller = () => {
     return () => {
       backHandler.remove();
     };
-
   }, [""]);
 
   const _onChangeMonth = async (value) => {
@@ -149,7 +181,6 @@ const AdminTopTeller = () => {
       <Header title={text.topTellers} />
       <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
       <Search
-
         loading={loading}
         modalTitle="Vui lòng chọn" 
         placeholder={placeHolder}

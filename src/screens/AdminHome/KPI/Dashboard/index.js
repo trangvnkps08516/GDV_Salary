@@ -19,7 +19,6 @@ const KPIHome=(props)=> {
         {
           <Header title={text.kpi}/>
         }
-        {/* <Text>{JSON.stringify(user)}</Text> */}
         <Body style={{ marginTop: fontScale(27) }} showInfo={false} />
         <View style={styles.body}>
           <MenuItem style={{ marginTop: fontScale(30) }} title={text.topTellers} titleMenuStyle={{ paddingTop: fontScale(17) }} icon={images.toptellers} width={width - fontScale(60)} onPress={() => navigation.navigate("AdminTopTellersKPI")} />
