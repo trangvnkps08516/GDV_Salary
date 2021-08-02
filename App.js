@@ -131,6 +131,7 @@ const AdminStack = () => {
       <Stack.Screen name="AdminTopTellers" component={AdminTopTellersScreen} />
       <Stack.Screen name="AdminSalaryGroup" component={AdminSalaryGroupScreen} />
       <Stack.Screen name="AdminMonthSalary" component={AdminMonthSalaryScreen} />
+      <Stack.Screen name="AdminAvgIncomeDashboard" component={AdminAvgIncomeDashboardScreen} />
       <Stack.Screen name="AdminAvgIncomeTopSellers" component={AdminAvgIncomeTopSellersScreen} />
       <Stack.Screen name="AdminAvgIncomeSalaryGroup" component={AdminAvgIncomeSalaryGroupScreen} />
       <Stack.Screen name="AdminAvgIncome" component={AdminAvgIncomeScreen} />

@@ -39,7 +39,7 @@ import AdminSalaryByMonthDashboard from "./AdminHome/SalaryByMonth/Dashboard";  
     import AdminSalaryGroup from "./AdminHome/SalaryByMonth/SalaryGroup"; // AdminHome > Lương theo tháng > Nhóm lương
     import AdminMonthSalary from "./AdminHome/SalaryByMonth/MonthSalary"; // AdminHome > Lương theo tháng > Lương tháng
 import AdminAvgIncomeDashboard from "./AdminHome/AvgIncome/Dashboard"; // AdminHome > Bình quân thu nhập
-    import AdminAvgIncomeTopSellers from "./AdminHome/AvgIncome/TopSellers"; // AdminHome > Bình quân thu nhập > Top GDV
+    import AdminAvgIncomeTopSellers from "./AdminHome/AvgIncome/TopTellers"; // AdminHome > Bình quân thu nhập > Top GDV
     import AdminAvgIncomeSalaryGroup from "./AdminHome/AvgIncome/AvgSalaryGroup"; // Admin > Bình quân thu nhập > Nhóm lương BQ
     import AdminAvgIncome from "./AdminHome/AvgIncome/AvgSalary"; // Admin > Bình quân thu nhập > Lương BQ
 

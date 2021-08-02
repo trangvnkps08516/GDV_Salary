@@ -2,14 +2,12 @@ import { useNavigation } from '@react-navigation/core';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { set } from 'react-native-reanimated';
 import { getAllBranch, getAllShop, getAllEmp } from '../../../../api';
 import { Body, DatePicker, Header, Search } from '../../../../comps';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
 import { fontScale } from '../../../../utils/Fonts';
 import { images } from '../../../../utils/Images';
-import { getLoginInfo } from '../../../../utils/Logistics';
 import { _retrieveData } from '../../../../utils/Storage';
 import { text } from '../../../../utils/Text';
 import { styles } from './style'
@@ -60,7 +58,6 @@ const index = (props) => {
             if (res.status == "success") {
                 setLoading(false);
                 setShopList(res.data);
-
             }
             if (res.status == "failed") {
                 setLoading(false);
@@ -119,6 +116,10 @@ const index = (props) => {
 
     }
 
+    const _setMonth = () => {
+        
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <Header title={text.topSeller} />
@@ -132,17 +133,15 @@ const index = (props) => {
                 index={branchList.map((item, index) => index)}
                 fieldOne={branchList.map((item) => item.shopName)}
                 fieldTwo={shopList.map((item) => item.shopName)}
-                fieldThree={empList.map((item, index) => item.maGDV)}
-                onChangePickerOne={(value, index) => onChangeBranch(value.shopCode)}
+                fieldThree={empList.map((item,index) => item.maGDV)}
+                onChangePickerOne={(value,index) => onChangeBranch(value.shopCode)}
                 // onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
                 // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
                 showPicker={[true, false, true]}
-                onPressOK={(value) => getData(value.branchCode, month, value.sort)}
-
             />
             <Body />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
-
+                
             </View>
         </SafeAreaView>
     );

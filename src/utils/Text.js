@@ -189,6 +189,9 @@ productivitySub: "Năng suất bình quân",
   //Admin > KPI Top GDV
   GDV:"GDV",
   sumKPI:"KPI tổng",
+
+  //Admin > AvgIncome Top GDV
+  sumSalary: "Tổng lương",
   
 
   //Admin > Lương theo tháng > Quản lý chi phí

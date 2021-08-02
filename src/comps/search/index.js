@@ -27,7 +27,7 @@ const Search = (props) => {
     const [value3Index, setValue3Index] = useState('')
 
     const [valueOne,setValueOne] = useState('');
-    const [radioValue,setRadioValue] = useState(0);
+    const [radioValue,setRadioValue] = useState(1);
 
     const onChangeText = (text = '') => {
         setSearchAlert(true)
@@ -65,7 +65,7 @@ const Search = (props) => {
 
     const onChangePickerOne = (value) => {
         props.onChangePickerOne(value);
-        setValueOne(value)
+        setValueOne(value);
     }
 
     const _onPressOK=()=>{
@@ -129,7 +129,7 @@ const Search = (props) => {
                             <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: fontScale(30), marginTop: fontScale(20) }}>
                                 <RadioForm
                                     radio_props={radio_props}
-                                    initial={radioValue==1 ? 0 : 1}
+                                    initial={radioValue==1?0:1}
                                     formHorizontal
                                     labelStyle={{ marginRight: fontScale(90) }}
                                     onPress={(value) =>  onRadioPress(value)}
@@ -140,24 +140,11 @@ const Search = (props) => {
                                 props.loading == true ? <ActivityIndicator color={colors.primary} style={{position:"absolute",alignSelf:"center",marginTop:-fontScale(5)}} size="small" /> : null
                             }
                             </View>
-                            <Text style={{height:0}}>{JSON.stringify(props.dataOne)}</Text>
                             {
                                 props.showPicker[0] == true && props.dataOne ?
                                     <DataPicker
                                         advancedSearch
                                         placeholder={props.placeholder}
-                                        data={props.dataOne}
-                                        width={width - fontScale(65)}
-                                        field={props.fieldOne}
-                                        fieldKey={props.fieldOne[0]}
-                                        onPress={(item, index) => onChangePickerOne(item)}
-                                        style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
-                                    /> : null
-                            }
-                            {/* {
-                                props.showPicker[0] == true && props.dataOne ?
-                                    <DataPicker
-                                        advancedSearch
                                         data={props.dataOne && props.dataOne}
                                         width={width - fontScale(65)}
                                         field={props.fieldOne}
@@ -167,7 +154,7 @@ const Search = (props) => {
                                     /> : null
                             }
 
-                            {
+                            {/* {
                                 props.showPicker[1] == true && props.dataTwo?
                                     <DataPicker
                                         advancedSearch
