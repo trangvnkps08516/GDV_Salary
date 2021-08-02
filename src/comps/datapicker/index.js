@@ -9,7 +9,7 @@ import { images } from '../../utils/Images';
 import { styles } from './styles';
 
 const index = (props) => {
-    const [selectedItem, setSelectedItem] = useState(props.data[0]);
+    const [selectedItem, setSelectedItem] = useState(props.placeholder);
     const [showDialog, setShowDialog] = useState(false);
     const [selectedIndex,setSelectedIndex] = useState(null)
 
@@ -23,7 +23,8 @@ const index = (props) => {
         <View style={[styles.container, { width: props.width }, props.style]}>
             {props.advancedSearch ?
                 <TouchableOpacity style={[styles.advancedPicker, { width: props.width }]} onPress={() => setShowDialog(!showDialog)}>
-                    <Text key={Object.values(selectedItem)[1]} style={{ flex:1,paddingHorizontal: fontScale(15) }}>{Object.values(selectedItem)[1]}</Text>
+                    <Text key={Object.values(selectedItem)[1]} style={{ flex:1,paddingHorizontal: fontScale(15) }}>{selectedIndex==null ? props.placeholder : Object.values(selectedItem)[1]}</Text>
+
                     <Image source={images.arrowdown} resizeMode="contain" style={{
                         width: fontScale(20),
                         height: fontScale(20),

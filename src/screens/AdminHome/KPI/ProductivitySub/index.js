@@ -23,7 +23,6 @@ const index = (props) => {
     const getData = async(month) => {
         setLoading(true)
         await getProductivitySubByMonth(navigation,month).then((res)=>{
-            console.log(res)
             if (res.status == "success") {
                 if (res.data.length > 0 || res.data.data.length > 0) {
                   setData(res.data.data);
@@ -35,14 +34,14 @@ const index = (props) => {
                 }
               }
               if (res.status == "failed") {
-                setMessage("Không có dữ liệu")
+                setMessage(res.message)
                 setLoading(false);
               }
         })
         // console.log(month)
     }
     const _setMonth = async(value) => {
-        console.log(value)
+      setMonth(value)
        await getData(value);
     }
 
@@ -98,8 +97,7 @@ const index = (props) => {
                     lastIcon={data.map((item, index) => item.detail=="true" ? images.eye:null)}
                     lastIconStyle={{ tintColor: colors.grey }}
                     seeDetail={data.map((item, index) => {return item.detail})}
-                    onPress={"AdminDetailProductivitySub"}
-                    param = {data.map((item, index) =>({"shopCode":item.shopCode}))}
+                    onPress={(item)=>navigation.navigate("AdminDetailProductivitySub",{"shopCode":item.shopCode,"querymonth":month})}
                     // navigation.navigate("AdminDetailProductivitySub",{"shopCode":item.shopCode})
                     fontWeight={data.map((item, index) => index == 0 || item.shopType == "branch" ? "bold" : "normal")}
                     textColor={data.map((item, index) => item.shopType == "branch" ? "#000" : item.shopType == "shop" ? "#D19E01" : "#000")}

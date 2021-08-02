@@ -15,9 +15,9 @@ const index = (props) => {
     const [month, setMonth] = useState(moment(new Date()).subtract(1, "months").format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
 
-    const data = [
-        {
-            "id": -1,
+    // const data = [
+    //     {
+    //         "id": -1,
             // "shopCode": "CT2",
             // "shopName": "CTY 2",
             // "prePaid": 30,
@@ -29,13 +29,13 @@ const index = (props) => {
             // "shopType": "company",
             // "detail": false,
 
-            "employee": "20tr",
-            "bussinessSupport": "20tr",
-            "different": "0"
+        //     "employee": "20tr",
+        //     "bussinessSupport": "20tr",
+        //     "different": "0"
 
-        },
-        {
-            "id": 0,
+        // },
+        // {
+        //     "id": 0,
             // "shopCode": "2MFHCM1",
             // "shopName": "2MFHCM1",
             // "prePaid": 30,
@@ -47,14 +47,14 @@ const index = (props) => {
             // "shopType": "branch",
             // "detail": false,
 
-            "employee": "20tr",
-            "bussinessSupport": "20tr",
-            "different": "0"
+        //     "employee": "20tr",
+        //     "bussinessSupport": "20tr",
+        //     "different": "0"
 
 
-        },
-        {
-            "id": 1,
+        // },
+        // {
+        //     "id": 1,
             // "shopCode": "ND",
             // "shopName": "CH ND",
             // "prePaid": 30,
@@ -66,13 +66,13 @@ const index = (props) => {
             // "shopType": "shop",
             // "detail": true,
 
-            "employee": "20tr",
-            "bussinessSupport": "20tr",
-            "different": "0"
+        //     "employee": "20tr",
+        //     "bussinessSupport": "20tr",
+        //     "different": "0"
 
-        },
-        {
-            "id": 2,
+        // },
+        // {
+        //     "id": 2,
             // "shopCode": "LQD",
             // "shopName": "CH LQD",
             // "prePaid": 20,
@@ -83,13 +83,13 @@ const index = (props) => {
             // "shopType": "shop",
             // "detail": true,
 
-            "employee": "20tr",
-            "bussinessSupport": "20tr",
-            "different": "0"
+        //     "employee": "20tr",
+        //     "bussinessSupport": "20tr",
+        //     "different": "0"
 
-        },
-        {
-            "id": 3,
+        // },
+        // {
+        //     "id": 3,
             // "shopCode": "LQD",
             // "shopName": "CH LQD",
             // "prePaid": 20,
@@ -100,12 +100,12 @@ const index = (props) => {
             // "shopType": "shop",
             // "detail": true,
 
-            "employee": "20tr",
-            "bussinessSupport": "20tr",
-            "different": "0"
+        //     "employee": "20tr",
+        //     "bussinessSupport": "20tr",
+        //     "different": "0"
 
-        },
-    ]
+        // },
+    // ]
     // const data = {
     //     "general": {
     //         "openingRemaining": 500000,
@@ -140,7 +140,7 @@ const index = (props) => {
 
 
     const _setMonth = (value) => {
-
+        
     }
 
     const fields = [text.totalIncome, text.fixed, text.incentive, text.supportOutcome, text.otherExpenses]

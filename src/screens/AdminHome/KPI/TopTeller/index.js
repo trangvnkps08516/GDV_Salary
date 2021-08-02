@@ -24,7 +24,7 @@ import Toast from 'react-native-toast-message';
 
 const AdminTopTeller = () => {
   const [data, setData] = useState([]);
-  const [searchData, setSearchData] = useState([]);
+  const [placeHolder, setPlaceHolder] = useState('');
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(false);
@@ -127,10 +127,10 @@ const AdminTopTeller = () => {
     );
     getBranchList();
     getData(branchCode, month, sort); // gọi data thật
+    setPlaceHolder("Chọn chi nhánh")
     return () => {
       backHandler.remove();
     };
-
   }, [""]);
 
   const _onChangeMonth = async (value) => {
@@ -146,6 +146,7 @@ const AdminTopTeller = () => {
       <Search
         loading={loading}
         modalTitle="Vui lòng chọn" 
+        placeholder={placeHolder}
         searchSelectModal 
         width={width - fontScale(60)} 
         style={{ marginTop: fontScale(20) }} 
