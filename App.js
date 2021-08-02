@@ -120,7 +120,7 @@ const GDVStack = () => {
 
 const AdminStack = () => {
   return (
-    <Stack.Navigator initialRouteName="AdminHome" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="AdminAvgIncomeTopSellers" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="AdminHome" component={AdminHomeScreen} />
       <Stack.Screen name="AdminKPIDashboard" component={AdminKPIDashboardScreen} />
       <Stack.Screen name="AdminTopTellersKPI" component={AdminTopTellersKPIScreen} />

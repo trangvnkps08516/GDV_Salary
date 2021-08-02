@@ -116,10 +116,6 @@ const index = (props) => {
 
     }
 
-    const _setMonth = () => {
-        
-    }
-
     return (
         <SafeAreaView style={styles.container}>
             <Header title={text.topSeller} />

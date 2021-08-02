@@ -15,13 +15,13 @@ import { colors } from "../../../../utils/Colors";
 import { fontScale } from "../../../../utils/Fonts";
 import { images } from "../../../../utils/Images";
 import { text } from "../../../../utils/Text";
-import { getAdminKPIMonthTopTeller, getAllBranch, getAllShop } from "../../../../api";
+import { getAllBranch, getAllShop } from "../../../../api";
 import { useNavigation } from "@react-navigation/native";
 import { width } from "../../../../utils/Dimenssion";
 import { BackHandler } from "react-native";
 import moment from "moment";
 import Toast from 'react-native-toast-message';
-import { getAdminKPIMonthTopTeller, getAllBranch, getAllShop } from "../../../../adminapi";
+import { getAdminKPIMonthTopTeller} from "../../../../adminapi";
 
 const AdminTopTeller = () => {
   const [data, setData] = useState([]);
