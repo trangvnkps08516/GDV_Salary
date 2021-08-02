@@ -1113,71 +1113,9 @@ export const getAllEmp= async (navigation,branchCode) => {
    });
  return data;
 };
- 
-export const getAdminKPITopTeller = async (navigation, branchCode, month, sort) => {
- console.log(branchCode, month, sort)
- let token = "";
- await _retrieveData("userInfo").then((data) => {
-   if (data != null) {
-     token = data.accessToken
-   } else {
-     navigation.navigate("SignIn")
-   }
- });
- let data = {
-   message: "",
-   status: "",
-   res: null,
-   loading: null,
-   error: null,
- };
- await axios({
-   method: GET,
-   url: `${baseUrl}adminScreens/getKPIMonthTopTeller?branchCode=${branchCode}&month=01/${month}&sort=${sort}`,
-   headers: {
-     Accept: "application/json",
-     "Content-Type": "application/json",
-     Authorization: `${token}`,
-   },
- })
-   .then((res) => {
-     if (res.status == 200) {
-       if (res.data.V_ERROR) {
-         data = {
-           message: "Chức năng này đang được bảo trì",
-           data: null,
-           isLoading: false,
-           status: "v_error",
-           length: 0,
-           error: null
-         }
-       } else if (Object.values(res.data.data).length > 0) {
-         data = {
-           data: res.data,
-           isLoading: false,
-           status: "success",
-           length: Object.values(res.data.data).length,
-           error: null
-         };
-       }
-     }
-   })
-   .catch((error) => {
-     if (error) {
-       data = {
-         message: error.response.data.message,
-         isLoading: false,
-         status: "failed",
-         length: 0,
-         error: error.response.data
-       };
-     }
-   });
- return data;
-};
 
-export const getKPIGroup = async (navigation, month) => {
-  console.log( month)
+export const getAdminKPIMonthTopTeller = async (navigation, branchCode, month, sort) => {
+  
   let token = "";
   await _retrieveData("userInfo").then((data) => {
     if (data != null) {
@@ -1195,7 +1133,7 @@ export const getKPIGroup = async (navigation, month) => {
   };
   await axios({
     method: GET,
-    url: `${baseUrl}adminScreens/getKPIGroup?month=01/${month}`,
+    url: `${baseUrl}adminScreens/getKPIMonthTopTeller?branchCode=${branchCode}&month=01/${month}&sort=${sort}`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -1204,6 +1142,7 @@ export const getKPIGroup = async (navigation, month) => {
   })
     .then((res) => {
       if (res.status == 200) {
+        console.log(branchCode+'\n'+ month+'\n'+ sort+'\n'+token+'\n'+res.data)
         if (res.data.V_ERROR) {
           data = {
             message: "Chức năng này đang được bảo trì",
@@ -1221,6 +1160,15 @@ export const getKPIGroup = async (navigation, month) => {
             length: Object.values(res.data.data).length,
             error: null
           };
+        }else{
+          data = {
+            data: res.data,
+            isLoading: false,
+            status: "success",
+            length: Object.values(res.data.data).length,
+            error: null,
+            message:"Không có dữ liệu"
+          };
         }
       }
     })
@@ -1236,4 +1184,4 @@ export const getKPIGroup = async (navigation, month) => {
       }
     });
   return data;
- };
+};
