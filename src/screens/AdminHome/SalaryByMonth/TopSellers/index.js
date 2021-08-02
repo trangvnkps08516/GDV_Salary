@@ -50,15 +50,15 @@ const index = (props) => {
         })
     }
 
-    const onChangeBranch = async (branchCode) => {
-        console.log(branchCode)
+    const onChangeBranch = async (value) => {
+        console.log(value)
         setLoading(true)
         setBranchCode(branchCode);
         await getAllShop(navigation, branchCode).then((res) => {
             if (res.status == "success") {
                 setLoading(false);
                 setShopList(res.data);
-                console.log(res.data)
+                
             }
             if (res.status == "failed") {
                 setLoading(false);
@@ -106,6 +106,10 @@ const index = (props) => {
         setEmpCode(empCode)
     }
 
+    const getData=async()=>{
+       
+    }
+
     useEffect(() => {
         if (branchList.length > 0) {
 
@@ -113,6 +117,10 @@ const index = (props) => {
             getBranchList();
         }
     }, [branchList])
+
+    const _setMonth = () => {
+        
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -129,13 +137,13 @@ const index = (props) => {
                 fieldTwo={shopList.map((item) => item.shopName)}
                 fieldThree={empList.map((item,index) => item.maGDV)}
                 onChangePickerOne={(value,index) => onChangeBranch(value.shopCode)}
-                onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
-                onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
-                showPicker={[true, true, true]}
+                // onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
+                // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
+                showPicker={[true, false, true]}
             />
             <Body />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
-
+                
             </View>
         </SafeAreaView>
     );

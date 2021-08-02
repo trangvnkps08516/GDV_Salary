@@ -16,6 +16,7 @@ const Splash = () => {
         setTimeout(async() => {
             if (isFocus) {
                 checkLogin(navigation)
+                // navigation.navigate("AdminHome")
             } else {
 
             }

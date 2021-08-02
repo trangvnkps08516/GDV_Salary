@@ -12,12 +12,12 @@ const TableRow = (props) => {
     return (
         <View
             style={[styles.container, props.style]}>
-            <View key={index} style={{ flexDirection: "row",paddingVertical:fontScale(8) }}>
+            <View key={index} style={{ flexDirection: "row",paddingVertical:fontScale(2) }}>
                 <View style={{ flexDirection: "row" }}>
                     {
                         fields.map((item, i) =>
                             <View key={i} style={{ width: widthArray && widthArray[i] }}>
-                                <Text style={{ fontWeight:props.fontWeight[index], fontSize: fontScale(14), textAlignVertical: "center",textAlign:i==0 ? "left":props.textAlign, marginLeft:i==0 || index==fields.length?fontScale(20):fontScale(0), color: i==0 ? colors.black : props.textColor }}>{fields[index][i]}</Text>
+                                <Text style={{ fontWeight:props.fontWeight[index], fontSize: fontScale(14),textAlign:i==0 ? "left":props.textAlign, marginLeft:i==0 || index==fields.length?fontScale(20):fontScale(0), color: i==0 ? colors.black : props.textColor }}>{fields[index][i]}</Text>
                                 {i == numColumn?
                                     <View style={{ width: fontScale(10), height: fontScale(10) }}>
                                         <View style={{ marginTop: -fontScale(10), position: "absolute", left: fontScale(0) }}>

@@ -192,6 +192,7 @@ const index = (props) => {
                             hideFirstColHeader
                             boldFirstColumn
                             // firstRowBg={"#FBFDC3"}
+                            fontWeight={"bold"}
                             lastIcon={data.map((item, index) => item.detail == true ? images.eye : null)}
                             lastIconStyle={{ tintColor: colors.grey }}
                             canPress={data.map((item, index) => item.detail == true ? true : false)}
