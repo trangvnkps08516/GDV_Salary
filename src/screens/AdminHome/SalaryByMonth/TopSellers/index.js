@@ -30,9 +30,7 @@ const index = (props) => {
             if (res.status == "success") {
                 setLoading(false);
                 setBranchList(res.data);
-                console.log(res.data)
                 setBranchCode(res.data[0].shopCode);
-
             }
             if (res.status == "failed") {
                 setLoading(false);
@@ -53,8 +51,8 @@ const index = (props) => {
     const onChangeBranch = async (value) => {
         console.log(value)
         setLoading(true)
-        setBranchCode(branchCode);
-        await getAllShop(navigation, branchCode).then((res) => {
+        setBranchCode(value);
+        await getAllShop(navigation, value).then((res) => {
             if (res.status == "success") {
                 setLoading(false);
                 setShopList(res.data);
@@ -80,7 +78,6 @@ const index = (props) => {
         setLoading(true)
         setShopCode(shopCode);
         await getAllEmp(navigation, branchCode, shopCode,'').then((res) => {
-            console.log(res.data)
             if (res.status == "success") {
                 setLoading(false);
                 setEmpList(res.data);
@@ -102,12 +99,11 @@ const index = (props) => {
     }
 
     const onChangeEmp = (empCode) => {
-        console.log(empCode)
         setEmpCode(empCode)
     }
 
-    const getData=async()=>{
-       
+    const getData=async(branchCode,month,sort)=>{
+        console.log(branchCode, month,sort)
     }
 
     useEffect(() => {
@@ -140,6 +136,8 @@ const index = (props) => {
                 // onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
                 // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
                 showPicker={[true, false, true]}
+                onPressOK={(value)=>getData(value.branchCode,month,value.sort)}
+
             />
             <Body />
             <View style={{ flex: 1, backgroundColor: colors.white }}>

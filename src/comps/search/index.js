@@ -68,7 +68,7 @@ const Search = (props) => {
         setValueOne(value)
     }
 
-    const onPressOK=()=>{
+    const _onPressOK=()=>{
         props.onPressOK({"branchCode":valueOne.shopCode,"sort":radioValue})
         setSelectModal(!selectModal);
     }
@@ -153,7 +153,7 @@ const Search = (props) => {
                                     /> : null
                             }
 
-                            {/* {
+                            {
                                 props.showPicker[1] == true && props.dataTwo?
                                     <DataPicker
                                         advancedSearch
@@ -176,10 +176,10 @@ const Search = (props) => {
                                         onPress={props.onChangePickerThree}
                                         style={{ marginTop: fontScale(20), marginRight: fontScale(5) }}
                                     /> : null
-                            } */}
+                            }
                             <View style={{ flexDirection: "row", alignSelf: "center", position: "absolute", bottom: fontScale(50) }}>
                                 <Button wIcon style={{ marginRight: fontScale(30) }} label={text.cancle} color="red" width={fontScale(100)} icon={images.cancle} onPress={() => setSelectModal(!selectModal)} />
-                                <Button wIcon style={{ marginLeft: fontScale(30) }} label={text.yes} color="green" width={fontScale(100)} icon={images.check} onPress={()=>onPressOK()} />
+                                <Button wIcon style={{ marginLeft: fontScale(30) }} label={text.yes} color="green" width={fontScale(100)} icon={images.check} onPress={()=>_onPressOK()} />
                             </View>
                         </View>
                     </Modal>

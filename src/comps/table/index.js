@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React, { useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { Text } from 'react-native';
@@ -13,7 +14,9 @@ import { images } from '../../utils/Images';
 import TableRow from "./tablerow/index";
 
 const index = (props) => {
-    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray, lastIconHeader, main, style, hideFirstColHeader, rowBg, onPress } = props;
+    const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray, lastIconHeader, main, style, hideFirstColHeader, rowBg, onPress,loadingIconStyle,message } = props;
+    const navigation = useNavigation();
+    
     useEffect(() => {
         if (!data) {
             console.warn("Table Component\nYou must provide the required array of data")
@@ -63,36 +66,21 @@ const index = (props) => {
                                         }
                                     </View> : null
                             }
+                            {/* <View style={{flex:1}}> */}
                             {
-                                loading == true ? <ActivityIndicator style={{ marginTop: fontScale(20) }} size="small" color={colors.primary} /> : null
+                                loading == true ? <ActivityIndicator style={[loadingIconStyle,{marginVertical:fontScale(20)}]} size="small" color={colors.primary} /> : null
+                            }
+                            {
+                                message ? <Text  style={{ color: colors.white, textAlign: "center", marginTop: fontScale(15) }}>{message}</Text> : null
                             }
                             {
                                 data ?
                                     <FlatList
                                         showsVerticalScrollIndicator={false}
                                         data={data}
-                                        style={{ marginTop: fontScale(10) }}
                                         keyExtractor={(item, index) => index.toString()}
                                         key={({ item }) => item.numberSub.toString()}
                                         renderItem={({ item, index }) => (
-                                            props.onPress ?
-                                                <TouchableOpacity style={{ backgroundColor: index == 0 ? props.firstRowBg : rowBg[index],width:widthArray[index] }} 
-                                                    onPress={props.onPress}
-                                                >
-                                                    <TableRow
-                                                        item={item}
-                                                        index={index}
-                                                        textColor={props.textColor}
-                                                        fontWeight={props.fontWeight}
-                                                        widthArray={widthArray}
-                                                        fields={props.fields}
-                                                        numColumn={numColumn}
-                                                        rowWidth={widthArray[index]}
-                                                        hideFirstColHeader={hideFirstColHeader}
-                                                        main={main}
-                                                        textAlign="center"
-                                                        lastIcon={lastIcon&&lastIcon[index]} />
-                                                </TouchableOpacity> :
                                                 <View style={{backgroundColor: index == 0 ? props.firstRowBg : rowBg[index] }}>
                                                     <TableRow
                                                         item={item}
@@ -100,6 +88,7 @@ const index = (props) => {
                                                         textColor={props.textColor[index]}
                                                         fontWeight={props.fontWeight}
                                                         widthArray={widthArray}
+                                                        onPress = {()=>navigation.navigate(props.onPress,props.param)}
                                                         fields={props.fields}
                                                         numColumn={numColumn}
                                                         boldFirstColumn={props.boldFirstColumn}

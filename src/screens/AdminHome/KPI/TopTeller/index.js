@@ -26,16 +26,10 @@ const AdminTopTeller = () => {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [message, setMessage] = useState("");
-  const [notification, setNotification] = useState("");
-  const [preSub, setPreSub] = useState("");
-  const [postSub, setPostSub] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(false);
-  const [filterCondition, setFilterCondition] = useState("");
-  const [TBTT, setTBTT] = useState([]);
-  const [TBTS, setTBTS] = useState([]);
   const navigation = useNavigation();
-  const [branchCode, setBranchCode] = useState("2MFHCM1");
+  const [branchCode, setBranchCode] = useState("");
   const [branchList, setBranchList] = useState([]);
   const [shopList, setShopList] = useState([]);
   const [shopCode, setShopCode] = useState('');
@@ -52,7 +46,6 @@ const AdminTopTeller = () => {
       if (res.status == "success") {
         setLoading(false);
         setBranchList(res.data);
-        console.log(res.data)
         setBranchCode(res.data[0].shopCode);
 
       }
@@ -73,7 +66,6 @@ const AdminTopTeller = () => {
   }
 
   const onChangeBranch = async (value) => {
-    console.log(value)
     setLoading(true)
     setBranchCode(branchCode);
     await getAllShop(navigation, branchCode).then((res) => {
@@ -100,25 +92,24 @@ const AdminTopTeller = () => {
 
   const getData = async (branchCode, month, sort) => {
     console.log(branchCode, month, sort)
-
     setMessage("");
     setLoadingData(true);
     await getAdminKPIMonthTopTeller(navigation, branchCode, month, sort).then((res) => {
       setLoadingData(false);
-      if (res.status == "success") {
-        if (res.data.length > 0 || res.data.data.length > 0) {
-          setData(res.data.data);
-          setLoadingData(false);
-        } else {
-          setData([])
-          setMessage(res.message)
+        if (res.status == "success") {
+          if (res.data.length > 0 || res.data.data.length > 0) {
+            setData(res.data.data);
+            setLoadingData(false);
+          } else {
+            setData([])
+            setMessage(res.message)
+            setLoadingData(false);
+          }
+        }
+        if (res.status == "failed") {
+          setMessage("Không có dữ liệu")
           setLoadingData(false);
         }
-      }
-      if (res.status == "failed") {
-        setMessage("Không có dữ liệu")
-        setLoadingData(false);
-      }
     });
   };
 
@@ -153,7 +144,6 @@ const AdminTopTeller = () => {
       <Header title={text.topTellers} />
       <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _onChangeMonth(date)} />
       <Search
-
         loading={loading}
         modalTitle="Vui lòng chọn" 
         searchSelectModal 
@@ -172,6 +162,7 @@ const AdminTopTeller = () => {
         // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
         showPicker={[true, false, true]}
         onPressOK={(value)=>getData(value.branchCode,month,value.sort)}
+        radioChange={(value)=>console.log(value)}
       />
 
       <Body

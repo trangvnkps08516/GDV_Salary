@@ -11,9 +11,11 @@ import { styles } from './styles';
 const index = (props) => {
     const [selectedItem, setSelectedItem] = useState(props.data[0]);
     const [showDialog, setShowDialog] = useState(false);
+    const [selectedIndex,setSelectedIndex] = useState(null)
 
-    const _onPress = (value) => {
+    const _onPress = (value,index) => {
         setSelectedItem(value);
+        setSelectedIndex(index)
         setShowDialog(!showDialog);
         props.onPress(value);
     }
@@ -52,7 +54,7 @@ const index = (props) => {
                         <View style={{ backgroundColor: '#8a8a8a', opacity: 0.5, height: 0.7 }} />
                         {
                             props.data.map((item, index) => {
-                                return <TouchableOpacity key={index} onPress={() => _onPress(item)} style={[styles.selectContent, { backgroundColor: selectedItem.id == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{props.field[index]}</Text></TouchableOpacity>
+                                return <TouchableOpacity key={index} onPress={() => _onPress(item,index)} style={[styles.selectContent, { backgroundColor: selectedItem.id == item.id ? "#f1f1f1" : "#fff" }]}><Text style={styles.selectItem} >{props.field[index]}</Text></TouchableOpacity>
                             })
                         }
                     </View>

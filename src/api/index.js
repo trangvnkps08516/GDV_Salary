@@ -1113,8 +1113,9 @@ export const getAllEmp= async (navigation,branchCode) => {
   return data;
 };
 
+//Home > KPI Tháng hiện tại > Top GDV
 export const getAdminKPIMonthTopTeller = async (navigation, branchCode, month, sort) => {
-  
+  console.log("getKPIMonthTopTeller")
   let token = "";
   await _retrieveData("userInfo").then((data) => {
     if (data != null) {
@@ -1141,7 +1142,6 @@ export const getAdminKPIMonthTopTeller = async (navigation, branchCode, month, s
   })
     .then((res) => {
       if (res.status == 200) {
-        console.log(branchCode+'\n'+ month+'\n'+ sort+'\n'+token+'\n'+res.data)
         if (res.data.V_ERROR) {
           data = {
             message: "Chức năng này đang được bảo trì",
@@ -1184,3 +1184,77 @@ export const getAdminKPIMonthTopTeller = async (navigation, branchCode, month, s
     });
   return data;
 };
+
+// AdminHome > KPI > Năng suất bình quân
+export const getProductivitySubByMonth = async (navigation, month) => {
+  console.log("getProductivitySubByMonth"+month);
+  let token = "";
+  await _retrieveData("userInfo").then((data) => {
+    if (data != null) {
+      token = data.accessToken
+    } else {
+      navigation.navigate("SignIn")
+    }
+  });
+  let data = {
+    message: "",
+    status: "",
+    res: null,
+    loading: null,
+    error: null,
+  };
+  await axios({
+    method: GET,
+    url: `${baseUrl}adminScreens/getProductivitySubByMonth?month=01/${month}`,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `${token}`,
+    },
+  })
+    .then((res) => {
+      if (res.status == 200) {
+        console.log(res.data.data)
+        if (res.data.V_ERROR) {
+          data = {
+            message: "Chức năng này đang được bảo trì",
+            data: null,
+            isLoading: false,
+            status: "v_error",
+            length: 0,
+            error: null
+          }
+        } else if (Object.values(res.data.data).length > 0) {
+          data = {
+            data: res.data,
+            isLoading: false,
+            status: "success",
+            length: Object.values(res.data.data).length,
+            error: null
+          };
+        }else{
+          data = {
+            data: res.data,
+            isLoading: false,
+            status: "success",
+            length: Object.values(res.data.data).length,
+            error: null,
+            message:"Không có dữ liệu"
+          };
+        }
+      }
+    })
+    .catch((error) => {
+      if (error) {
+        data = {
+          message: error.response.data.message,
+          isLoading: false,
+          status: "failed",
+          length: 0,
+          error: error.response.data
+        };
+      }
+    });
+  return data;
+};
+
