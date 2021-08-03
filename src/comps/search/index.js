@@ -112,7 +112,7 @@ const Search = (props) => {
                             keyExtractor={(item, key) => key.toString()}
                             renderItem={({ item, index }) => {
                                 return <TouchableOpacity style={{ width: width, backgroundColor: main == true ? colors.lightGrey : index % 2 == 0 ? colors.lightGrey : colors.white }} onPress={() => [setSearchValue(Object.values(item)[props.searchIndex]), setSearchAlert(!searchAlert), props.onSelectValue(Object.values(item)[props.searchIndex])]}>
-                                    <Text style={{ padding: fontScale(10) }}>{Object.values(item)[props.searchIndex]}</Text>
+                                    <Text style={{ padding: fontScale(10) }}>{item?Object.values(item)[props.searchIndex] : null}</Text>
                                 </TouchableOpacity>
                             }} />
                         :

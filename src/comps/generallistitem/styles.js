@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
     container:{
         marginHorizontal:fontScale(10),
         marginVertical:fontScale(15),
-        backgroundColor: "#fff", shadowColor: "#000",
+        backgroundColor: "#fff",
+         shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 2,

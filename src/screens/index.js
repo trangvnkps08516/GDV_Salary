@@ -30,7 +30,9 @@ import AdminHome from "./AdminHome/Dashboard" //AdminHome
 import AdminKPIDashboard from "./AdminHome/KPI/Dashboard"; // AdminHome > KPI
     import AdminTopTellersKPI from "./AdminHome/KPI/TopTeller"; // AdminHome > KPI > Top GDV
     import AdminKPIGroupKPI from "./AdminHome/KPI/KPIGroup"; // AdminHome > KPI > Nhóm KPI
-    import AdminKPIMonth from "./AdminHome/KPI/KPIMonth"; // AdminHome > KPI > KPI tháng
+    import AdminKPIMonth from "./AdminHome/KPI/KPIMonth/Company"; // AdminHome > KPI > KPI tháng
+        import AdminKPIMonthShop from "./AdminHome/KPI/KPIMonth/Shop"; 
+        import AdminKPIMonthGDV from "./AdminHome/KPI/KPIMonth/GDV"; 
     import AdminProductivitySub from "./AdminHome/KPI/ProductivitySub"; // AdminHome > KPI > Năng suất bình quân
         import AdminDetailProductivitySub from "./AdminHome/KPI/ProductivitySub/Detail"; // AdminHome > KPI > Năng suất bình quân > Chi tiết năng suất bình quân
 import AdminSalaryByMonthDashboard from "./AdminHome/SalaryByMonth/Dashboard";  // AdminHome > Lương theo tháng
@@ -68,6 +70,8 @@ export const AdminHomeScreen = () => {return <AdminHome/>}
         export const AdminTopTellersKPIScreen = () => {return <AdminTopTellersKPI/>}
         export const AdminKPIGroupKPIScreen = () => {return <AdminKPIGroupKPI/>}
         export const AdminKPIMonthScreen = () => {return <AdminKPIMonth/>}
+            export const AdminKPIMonthShopScreen = () => {return <AdminKPIMonthShop/>}
+            export const AdminKPIMonthGDVScreen = () => {return <AdminKPIMonthGDV/>}
         export const AdminProductivitySubScreen = () => {return <AdminProductivitySub />}
             export const AdminDetailProductivitySubScreen = () => {return <AdminDetailProductivitySub />}
     export const AdminSalaryByMonthDashboardScreen = () => {return <AdminSalaryByMonthDashboard />}

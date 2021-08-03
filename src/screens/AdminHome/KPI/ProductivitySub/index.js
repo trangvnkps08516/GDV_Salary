@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/core';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Text } from 'react-native';
-import { ActivityIndicator } from 'react-native';
 import { BackHandler } from 'react-native';
 import { SafeAreaView, View } from 'react-native';
 import { getProductivitySubByMonth } from '../../../../api';
@@ -17,9 +16,7 @@ import { styles } from './style';
 const index = (props) => {
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
-    const [data,setData] = useState([]);
-    const [message,setMessage] = useState("");
-    const navigation = useNavigation();
+    // const [data,setData] = useState([])
 
     const getData = async(month) => {
         setLoading(true)
@@ -72,12 +69,15 @@ const index = (props) => {
                 {loading==true ? <ActivityIndicator size="small" color={colors.primary} style={{marginBottom:fontScale(10)}}/> : null}
                 <Table
                     data={data}
+                    loading={loading}
                     table
                     numColumn={6}
                     headers={["", "TBTS", "TBTT", "Lượt KH", "Lượt GD", "SL GDV"]}
                     headersTextColor={colors.primary}
                     headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
                     message={message}
+                    // headerIcons={[images.branch, images.company, images.workingShop, images.close]}
+                    // lastIconHeader={images.day}
                     widthArray={[fontScale(100), fontScale(100), fontScale(100), fontScale(100), fontScale(100), fontScale(90)]}
                     loadingIconStyle={{marginLeft:-fontScale(height/4)}}
                     fields={
@@ -93,8 +93,6 @@ const index = (props) => {
                     loading={loading}
                     hideFirstColHeader
                     firstRowBg={"#FBFDC3"}
-                    firstColCenter
-                    textAlign="center"
                     lastIcon={data.map((item, index) => item.detail=="true" ? images.eye:null)}
                     lastIconStyle={{ tintColor: colors.grey }}
                     seeDetail={data.map((item, index) => {return item.detail})}
@@ -109,4 +107,4 @@ const index = (props) => {
     );
 }
 
-export default index;
+export default index
