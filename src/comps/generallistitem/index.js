@@ -8,7 +8,7 @@ import { styles } from './styles';
 const GeneralListItem = (props) => {
   return (
     props.company ? 
-      <View style={styles.compContainer}>
+      <View style={[styles.compContainer,props.style,{backgroundColor:props.backgroundColor || "#EFFEFF"}]}>
           <Text style={{fontSize:fontScale(18),marginLeft:fontScale(10),fontWeight:"bold",color:"#D19E01"}}>{props.title}</Text>
           <Image source={props.icon} style={{width:fontScale(47),height:fontScale(47),position:"absolute",right:fontScale(20),top:-fontScale(23)}} resizeMode="contain"/>
           <View style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:fontScale(5),marginVertical:fontScale(10)}}>
@@ -17,7 +17,7 @@ const GeneralListItem = (props) => {
           <Item title={props.titleArray[2]} content={props.item[2]} />
           <Item title={props.titleArray[3]} content={props.item[3]} />
           </View>
-          <View style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:fontScale(5),marginTop:fontScale(20)}}>
+          <View style={{flexDirection:"row",justifyContent:"space-between",marginHorizontal:fontScale(5),marginTop:fontScale(10)}}>
           <Item title={props.titleArray[4]} content={props.item[4]} />
           <Item title={props.titleArray[5]} content={props.item[5]} />
           <Item title={props.titleArray[6]} content={props.item[6]} />
@@ -27,7 +27,7 @@ const GeneralListItem = (props) => {
       </View>
     :
     props.columns ? props.onPress ?
-      <TouchableOpacity style={[styles.container, props.style]}>
+      <TouchableOpacity style={[styles.container, props.style]} onPress={props.onPress}>
         {
           props.rightIcon ? <Image source={props.rightIcon} resizeMode="contain" style={{ width: fontScale(40), height: fontScale(40), position: "absolute", right: fontScale(20), top: -fontScale(20) }} /> : null
         }
