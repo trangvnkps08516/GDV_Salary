@@ -42,23 +42,23 @@ const index = (props) => {
                         <View>
                             {
                                 headers ?
-                                    <View style={{ flexDirection: "row" }}>
+                                    <View style={{ flexDirection: "row",paddingVertical:fontScale(10),marginLeft:-fontScale(30) }}>
                                         {
                                             headerIcons
                                                 ?
-                                                headers.map((item, index) => hideFirstColHeader && index == 0 ? <View style={{paddingHorizontal: fontScale(4), width: widthArray[0] }}/> :
+                                                headers.map((item, index) => hideFirstColHeader && index == 0 ? <View style={{paddingLeft: fontScale(6), width: widthArray[0] }}/> :
                                                     <View  onLayout={(event) => {getDimesions(event.nativeEvent.layout)}} key={index} style={{ width: widthArray && widthArray[index], flexDirection: "row", alignItems: "center", paddingHorizontal: fontScale(4) }}>
                                                         <Image source={headerIcons[index]} resizeMode="contain" style={{ width: headerStyle.icon.size, height: headerStyle.icon.size }} />
                                                         <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold", fontSize: headerStyle.text.size }}>{item}</Text>
                                                     </View>) :
                                                 headers.map((item, index) => hideFirstColHeader && index == 0
                                                     ?
-                                                    <View key={index} style={{ paddingHorizontal: fontScale(4), width: widthArray[index],marginLeft:1 }}>
+                                                    <View key={index} style={{ justifyContent:"center",alignItems:"center", width: widthArray[1]+fontScale(25)}}>
                                                         <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold" }} />
                                                     </View>
                                                     :
-                                                    <View key={index} style={{ flex: 1, paddingHorizontal: fontScale(4), width: widthArray[index],marginLeft:1 }}>
-                                                        <Text style={{ marginLeft: fontScale(5), color: headersTextColor, fontWeight: "bold", fontSize: headerStyle.text.size,textAlign:"center" }}>{item}</Text>
+                                                    <View key={index} style={{ marginRight:1,width: widthArray[index]}}>
+                                                        <Text style={{ color: headersTextColor, fontWeight: "bold", fontSize: headerStyle.text.size,textAlign:"center" }}>{item}</Text>
                                                     </View>)
                                         }
                                         {
@@ -66,13 +66,10 @@ const index = (props) => {
                                         }
                                     </View> : null
                             }
-                            {/* <View style={{flex:1}}> */}
                             {
-                                loading == true ? <ActivityIndicator style={[loadingIconStyle,{marginVertical:fontScale(20)}]} size="small" color={colors.primary} /> : null
+                                message&&message.length>0 ? <Text  style={{ color: colors.primary, textAlign: "center", marginTop: fontScale(15),width:width }}>{message}</Text> : null
                             }
-                            {
-                                message ? <Text  style={{ color: colors.white, textAlign: "center", marginTop: fontScale(15) }}>{message}</Text> : null
-                            }
+
                             {
                                 data ?
                                     <FlatList
@@ -81,7 +78,7 @@ const index = (props) => {
                                         keyExtractor={(item, index) => index.toString()}
                                         key={({ item }) => item.numberSub.toString()}
                                         renderItem={({ item, index }) => (
-                                                <View style={{backgroundColor: index == 0 ? props.firstRowBg : rowBg[index] }}>
+                                                <View style={{backgroundColor: index == 0 ? props.firstRowBg : rowBg[index],flex:1,justifyContent:"center" }}>
                                                     <TableRow
                                                         item={item}
                                                         index={index}
@@ -93,9 +90,11 @@ const index = (props) => {
                                                         numColumn={numColumn}
                                                         boldFirstColumn={props.boldFirstColumn}
                                                         rowWidth={widthArray[index]}
+                                                        firstColCenter={props.firstColCenter}
+                                                        loading={loading}
                                                         main={main}
                                                         lastIconStyle={props.lastIconStyle}
-                                                        textAlign="center"
+                                                        textAlign={props.textAlign || "left"}
                                                         lastIcon={lastIcon&&lastIcon[index]} />
                                                 </View>
                                         )} />

@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/core';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Text } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { BackHandler } from 'react-native';
 import { SafeAreaView, View } from 'react-native';
 import { getProductivitySubByMonth } from '../../../../api';
@@ -68,17 +69,15 @@ const index = (props) => {
             <DatePicker month={month} width={width - fontScale(120)} style={{ alignSelf: "center" }} onChangeDate={(date) => _setMonth(date)} />
             <Body />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
+                {loading==true ? <ActivityIndicator size="small" color={colors.primary} style={{marginBottom:fontScale(10)}}/> : null}
                 <Table
                     data={data}
-                    loading={loading}
                     table
                     numColumn={6}
                     headers={["", "TBTS", "TBTT", "Lượt KH", "Lượt GD", "SL GDV"]}
                     headersTextColor={colors.primary}
                     headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
                     message={message}
-                    // headerIcons={[images.branch, images.company, images.workingShop, images.close]}
-                    // lastIconHeader={images.day}
                     widthArray={[fontScale(100), fontScale(100), fontScale(100), fontScale(100), fontScale(100), fontScale(90)]}
                     loadingIconStyle={{marginLeft:-fontScale(height/4)}}
                     fields={
@@ -94,6 +93,8 @@ const index = (props) => {
                     loading={loading}
                     hideFirstColHeader
                     firstRowBg={"#FBFDC3"}
+                    firstColCenter
+                    textAlign="center"
                     lastIcon={data.map((item, index) => item.detail=="true" ? images.eye:null)}
                     lastIconStyle={{ tintColor: colors.grey }}
                     seeDetail={data.map((item, index) => {return item.detail})}
