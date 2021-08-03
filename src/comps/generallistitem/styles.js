@@ -4,7 +4,7 @@ import { fontScale } from "../../utils/Fonts";
 export const styles = StyleSheet.create({
     container:{
         marginHorizontal:fontScale(10),
-        marginVertical:fontScale(15),
+        marginVertical:fontScale(25),
         backgroundColor: "#fff",
          shadowColor: "#000",
         shadowOffset: {
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, borderRadius: fontScale(17),
-        paddingTop:fontScale(10),
+        paddingTop:fontScale(5),
         paddingBottom:fontScale(15)
     },
     compContainer:{

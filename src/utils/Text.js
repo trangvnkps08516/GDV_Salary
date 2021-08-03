@@ -93,6 +93,7 @@ salaryMonth: "Lương tháng",
 // Admin Bình quân thu nhập
 groupSalaryAverage: "Nhóm lương BQ",
 salaryAverage: "Lương BQ",
+salAverage: "Lương bình quân",
 
 
   // Tổng lương dự kiến

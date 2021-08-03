@@ -44,6 +44,8 @@ import AdminAvgIncomeDashboard from "./AdminHome/AvgIncome/Dashboard"; // AdminH
     import AdminAvgIncomeTopTellers from "./AdminHome/AvgIncome/TopTellers"; // AdminHome > Bình quân thu nhập > Top GDV
     import AdminAvgIncomeSalaryGroup from "./AdminHome/AvgIncome/AvgSalaryGroup"; // Admin > Bình quân thu nhập > Nhóm lương BQ
     import AdminAvgIncome from "./AdminHome/AvgIncome/AvgSalary"; // Admin > Bình quân thu nhập > Lương BQ
+        import AdminAvgIncomeShop from "./AdminHome/AvgIncome/AvgSalary/Shop"; // Admin > Bình quân thu nhập > Lương BQ > Cửa hàng
+        import AdminAvgIncomeTellers from "./AdminHome/AvgIncome/AvgSalary/Shop/Tellers"; // Admin > Bình quân thu nhập > Lương BQ > Cửa hàng > Giao dịch viên
 
 
 // GDV's screen
@@ -83,8 +85,12 @@ export const AdminHomeScreen = () => {return <AdminHome/>}
         export const AdminAvgIncomeTopSellersScreen = () => {return <AdminAvgIncomeTopTellers />}
         export const AdminAvgIncomeSalaryGroupScreen = () => {return <AdminAvgIncomeSalaryGroup />}
         export const AdminAvgIncomeScreen = () => {return <AdminAvgIncome />}
-        
+            export const AdminAvgIncomeShopScreen = () => {return <AdminAvgIncomeShop />}
+                export const AdminAvgIncomeTellersScreen = () => {return <AdminAvgIncomeTellers />}
 
+            // AdminAvgIncomeTellers
+        
+        
 // Auth's screen
 export const SignInScreen = () => {return <SignIn />}
 export const SignOutScreen = () => {return <SignOut />}

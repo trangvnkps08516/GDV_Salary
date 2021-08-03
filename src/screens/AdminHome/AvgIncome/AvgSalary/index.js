@@ -10,17 +10,28 @@ import { ToastNotif } from '../../../../utils/Logistics';
 import Toast from 'react-native-toast-message';
 import { FlatList } from 'react-native';
 import { images } from '../../../../utils/Images';
+import { AvgSalary } from '../../../../models/Admin';
+import { fontScale } from '../../../../utils/Fonts';
+import moment from 'moment';
+import { ActivityIndicator } from 'react-native';
+import { colors } from '../../../../utils/Colors';
 
 const index=(props)=> {
-    const [data,setData] = useState({});
+    const [data,setData] = useState(AvgSalary);
+    const [generalData, setGeneralData] = useState(AvgSalary.general);
+    const [notification,setNotification] = useState('')
     const navigation = useNavigation();
+
     const [loading, setLoading] = useState(false);
 
     const getData=async()=>{
+        setLoading(true)
         await getAllAvgIncome(navigation,'','').then((res)=>{
             if (res.status == "success") {
                 if (res.data.data.length > 0) {
                     setData(res.data.data);
+                    setGeneralData(res.data.general)
+                    setNotification(res.data.notification)
                     setLoading(false)
                 } else {
                     setData([]);
@@ -54,15 +65,23 @@ const index=(props)=> {
     return (
         <SafeAreaView style={styles.container}>
              <Header title={text.averageIncome}/>
-             <Text style={styles.notif}>Số liệu hiển thị từ tháng 01/2021 đến tháng 06/2021</Text>
+             <Text style={styles.notif}>{notification}</Text>
              <Body />
              <View style={styles.body}>
+                 {loading==true ? <ActivityIndicator size="small" color={colors.primary}/> : null}
                 <FlatList 
+                    showsVerticalScrollIndicator={false}
                     data={data}
-                    key={(item,key)=>key.toString()}
-                    renderItem={({item})=><GeneralListItem columns titleArray={["Lương BQ/GDV","Khoán sp/GDV","SL GDV"]} item={[item.avgIcome,item.contractSalary]}rightIcon={images.avgIcome}/>}
-                />
-                <GeneralListItem columns titleArray={["Lương BQ/GDV","Khoán sp/GDV","SL GDV"]} item={[14,12,1]} rightIcon={images.avgIcome}/>
+                    keyExtractor={(item,key)=>item.shopCode.toString()}
+                    renderItem={({item,index})=>
+                    <View>
+                        <GeneralListItem onPress={()=>navigation.navigate("AdminAvgIncomeShop",{branchItem:item})} key={index} columns title={item.shopName} titleArray={["Lương BQ/GDV","Khoán sp/GDV","SL GDV"]} item={[item.avgIcome,item.contractSalary]} rightIcon={images.shop}/>
+                        {
+                            index==data.length-1 ? <GeneralListItem style={{marginTop:fontScale(30)}} fourColumnCompany title={generalData.shopName} titleArray={["BQ lương 1 tháng/GDV","BQ lương cố định","BQ lương khoán SP","BQ lương KK","BQ chi hỗ trợ"]} item={[generalData.avgIncome,generalData.permanentSalary,generalData.contractSalary,generalData.incentiveSalary,generalData.spenSupport]} icon={images.company}/> : null
+                        }
+                    </View>
+                    }/>
+                
              </View>
             <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
