@@ -8,8 +8,9 @@ import { images } from '../../../../utils/Images';
 import { width } from '../../../../utils/Dimenssion';
 import { colors } from '../../../../utils/Colors';
 import { fontScale } from '../../../../utils/Fonts';
-
+import { useNavigation } from "@react-navigation/native";
 const index=(props)=> {
+  const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
              <StatusBar translucent backgroundColor={colors.primary} />
