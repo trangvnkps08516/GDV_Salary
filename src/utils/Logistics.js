@@ -3,9 +3,11 @@
 import moment from "moment";
 import { _retrieveData } from "./Storage";
 import Toast from "react-native-toast-message";
+import { BackHandler } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 
 export const thoundsandSep = (x) => {
-  if (x != null || x!= undefined) {
+  if (x != null || x != undefined) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     return "";
@@ -13,7 +15,7 @@ export const thoundsandSep = (x) => {
 }
 
 export const checkn = (str = '') => {
-  if (str == null || str== undefined) {
+  if (str == null || str == undefined) {
     return ""
   } else {
     let element;
@@ -155,4 +157,106 @@ export const ToastNotif = (title, content, type, autohide, onhide) => {
     autoHide: autohide,
     onHide: onhide
   })
+}
+
+export const backHandler = (navigation, screenName) => {
+  const backAction = () => {
+    navigation.navigate(screenName);
+    return true;
+  };
+
+  const backHandler = BackHandler.addEventListener(
+    "hardwareBackPress",
+    backAction
+  );
+
+  return () => {
+    backHandler.remove();
+  };
+
+}
+
+export const checkInternetConnection = async () => {
+  let data = {}
+  await NetInfo.fetch().then(state => {
+    if (state.isConnected == false) {
+      data = {
+        "message": "Không có kết nối internet",
+        "status": "failed"
+      }
+    } else {
+      data = {
+        "message": "Bạn đang kết nối internet",
+        "status": "success"
+      }
+    }
+  });
+  return data;
+}
+
+export const checkUserRole = async () => {
+  let role = '';
+  await _retrieveData("userInfo").then((item) => {
+    if (item != null) {
+      if (item.userId.userGroupId.code == "MBF_GDV") {
+        role = 'GROUP_GDV'
+      } else if (item.userId.userGroupId.code == "ADMIN" || item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
+        role = "GROUP_ADMIN"
+      }
+      else {
+        role = "Bạn không có quyền sử dụng app"
+      }
+    } else {
+      console.log('token null')
+      navigation.navigate("SignIn")
+    }
+  });
+
+  return role;
+}
+
+export const checkLogin = async (navigation) => {
+  await _retrieveData("userInfo").then((item) => {
+    console.log(item)
+    if (item != null) {
+      console.log('token not null')
+      if (item.userId.userGroupId.code == "MBF_GDV") {
+        setTimeout(() => {
+          navigation.navigate("GDVHome")
+        }, 3000);
+      }
+      else if (item.userId.userGroupId.code == "ADMIN" || item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
+        navigation.navigate("AdminHome")
+      }
+      // else if (item.userId.userGroupId.code == "VMS_CTY" || item.userId.userGroupId.code == "MBF_CHINHANH" || item.userId.userGroupId.code == "MBF_CUAHANG") {
+      //     navigation.navigate("AdminHome")
+      //   }
+      else {
+        return "Bạn không có quyền sử dụng app"
+      }
+    } else {
+      console.log('token null')
+      navigation.navigate("SignIn")
+    }
+  });
+}
+
+//get nth item in ọbj
+export const nth = (obj, n) => {
+  var key, i;
+
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) // always do this when you scan an object
+    {
+      if (key.indexOf("item") === 0) // this is the filter
+      {
+        i = parseInt(key.substring(4), 10); // parse the numeral after "item"
+        if (i === n) {
+          return obj[key]; // return this value
+        }
+      }
+    }
+  }
+
+  return null;
 }

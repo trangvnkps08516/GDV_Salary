@@ -18,7 +18,7 @@ export const KPIByMonthAchieve = {
   "ratePostPaid": "",
 }
 
-// Home > KPI Tháng hiện tại > Tổng lương dự kiến | getTempSalaryDashboard
+// Home > KPI Tháng hiện tại | getTempSalaryDashboard
 export const TempSalaryDashboard = {
   "dateRange": "",
   "expectedSalary": "",
@@ -31,7 +31,7 @@ export const TempSalaryDashboard = {
   "terminalDevice": "",
 }
 
-// Home > KPI Tháng hiện tại > Lương tạm tính | getDetailTempContract
+// Home > KPI Tháng hiện tại > Thu nhập dự kiến từ tập TB tháng n | getDetailTempContract
 export const DetailTempContract = {
   "dateRange": "",
   "expectedSalary": "",
@@ -92,7 +92,7 @@ export const M_AvgIncomeByMonth = {
 }
 
 // Home > Chất Lượng Thuê Bao | getSubscriberQuality
-export const M_SubscriberQuality = {
+export const SubsQuality = {
   "beginMonth": null,
   "endMonth": "",
   "debtPercent": "",

@@ -1,38 +1,32 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, View, Text, Image, ActivityIndicator } from 'react-native';
 import { _removeData, _retrieveData } from '../../../utils/Storage';
-import { useNavigation } from '@react-navigation/core';
+import { useIsFocused, useNavigation } from '@react-navigation/core';
 import { colors } from '../../../utils/Colors';
 import { images } from '../../../utils/Images';
 import { styles } from './style';
-import { height } from '../../../utils/Dimenssion';
 import { text } from '../../../utils/Text';
+import { checkLogin, checkUserRole } from '../../../utils/Logistics';
 
-const Splash = (props) => {
+const Splash = () => {
     const navigation = useNavigation();
-
-    const getData = async () => {
-        await _retrieveData("userInfo").then((data) => {
-            if (data != null) {
-                setTimeout(() => {
-                    navigation.navigate('GDVHome');                    
-                }, 3000);
-            } else {
-                setTimeout(() => {
-                    navigation.navigate('SignIn');                    
-                }, 3000);
-            }
-        });
-    }
+    const isFocus = useIsFocused();
 
     useEffect(() => {
-        getData();
-    })
+        setTimeout(async() => {
+            if (isFocus) {
+                checkLogin(navigation)
+                // navigation.navigate("AdminHome")
+            } else {
+
+            }
+        }, 3000);
+    },[navigation])
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar backgroundColor={colors.primary} />
             <Image source={images.logo} style={styles.logo} />
-            <View style={{ flex: 4, justifyContent: "center" }}>
+            <View style={{ flex: 3.5, justifyContent: "center" }}>
                 <Image source={images.splashshape} style={styles.shape} />
             </View>
             <View style={{ flex: 2 }}>

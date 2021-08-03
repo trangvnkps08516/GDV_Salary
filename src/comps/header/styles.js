@@ -14,6 +14,10 @@ export const styles = StyleSheet.create({
     uInfoContainer:{
         marginLeft:fontScale(10)
     },
+    uInfoContent:{
+        height:fontScale(50),
+        justifyContent:"center"
+    },
     backIcon:{
         width:fontScale(50),
         left:-fontScale(30)
@@ -33,6 +37,8 @@ export const styles = StyleSheet.create({
         textAlignVertical:"center",
         color:'#FCEEEE',
         fontWeight:"bold",
+        fontSize:fontScale(15),
+        maxHeight:fontScale(25),
         marginTop:fontScale(5)
     },
     uStaff:{
@@ -40,6 +46,8 @@ export const styles = StyleSheet.create({
         textAlignVertical:"center",
         color:'#AFBFC1',
         fontWeight:"bold",
+        maxHeight:fontScale(25),
+        fontSize:fontScale(12),
         marginTop:fontScale(2)
     },
     backIconImg:{width:fontScale(30),height:fontScale(25),tintColor:colors.white},

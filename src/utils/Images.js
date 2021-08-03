@@ -55,5 +55,23 @@ export const images = {
     pencil:require("../../assets/pencil.png"),
     close:require('../../assets/close.png'),
     man:require('../../assets/man.png'),
-    back:require("../../assets/backicon.png")
+    back:require("../../assets/backicon.png"),
+    productivitySub: require("../assets/ic_productivitySub.png"),
+    company: require("../assets/ic_company.png"),
+    branch: require("../assets/ic_branch.png"),
+    store: require("../assets/ic_store.png"),
+    skynet: require("../assets/SKYNET.png"),
+    foneCardNoMoney: require("../assets/ic_foneCardNoMoney.png"),
+    transAmount: require("../assets/ic_transcAmount.png"),
+    contractDebt: require("../assets/ic_contractdebt.png"),
+    eye:require("../assets/eye.png"),
+    money:require("../../assets/money.png"),
+    growth:require("../../assets/growth.png"),
+    unitInformation: require("../../assets/ic_unitinformation.png"),
+    toptellers: require("../../assets/ic_toptellers.png"),
+    groupkpi: require("../../assets/ic_groupkpi.png"),
+    teamwork: require("../../assets/teamwork.png"),
+    shop: require("../assets/shop.png"),
+
+    
 }

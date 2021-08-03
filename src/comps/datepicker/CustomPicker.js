@@ -5,20 +5,7 @@ import { height } from '../../utils/Dimenssion';
 import { fontScale } from '../../utils/Fonts';
 
 const MonthYearPicker = (props) => {
-    const month_data = [
-        { key: 1, name: 'Tháng 01' },
-        { key: 2, name: 'Tháng 02' },
-        { key: 3, name: 'Tháng 03' },
-        { key: 4, name: 'Tháng 04' },
-        { key: 5, name: 'Tháng 05' },
-        { key: 6, name: 'Tháng 06' },
-        { key: 7, name: 'Tháng 07' },
-        { key: 8, name: 'Tháng 08' },
-        { key: 9, name: 'Tháng 09' },
-        { key: 10, name: 'Tháng 10' },
-        { key: 11, name: 'Tháng 11' },
-        { key: 12, name: 'Tháng 12' },
-    ]
+    const month_data = props.month_data;
 
     const { width } = Dimensions.get('window');
     const [month, setMonth] = useState(props.selectedMonth || month_data[new Date().getMonth()]);
@@ -51,7 +38,7 @@ const MonthYearPicker = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.monthContainer}>
-                    {month_data.map((item, index) =>
+                    {props.month_data.map((item, index) =>
                         <TouchableOpacity
                             key={index}
                             onPress={() => {

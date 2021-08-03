@@ -12,15 +12,16 @@ import { getProfile } from '../../../api';
 import { imgUrl } from '../../../api/untils';
 import { useIsFocused } from "@react-navigation/native";
 import { _storeData } from '../../../utils/Storage';
-import { ToastNotif } from '../../../utils/Logistics';
+import { backHandler, ToastNotif } from '../../../utils/Logistics';
 import Toast from 'react-native-toast-message';
 
-const DashBoard = (props) => {
+const DashBoard = () => {
     const [loading, setLoading] = useState(false)
     const navigation = useNavigation();
     const [userData, setUserData] = useState(Profile);
     const [showModal, setShowModal] = useState(false)
     const isFocused = useIsFocused();
+    
     const getData = async () => {
         setLoading(true)
         await getProfile(navigation).then((res) => {
@@ -29,9 +30,14 @@ const DashBoard = (props) => {
                 setUserData(res.data)
             }
             if (res.status == "v_error") {
-                setTimeout(() => {
-                    navigation.navigate('Home')
-                }, 2000);
+                Toast.show({
+                    text1: "Cảnh báo",
+                    text2: res.message,
+                    type: "error",
+                    visibilityTime: 5000,
+                    autoHide: true,
+                    onHide: () => navigation.navigate("Home")
+                })
             }
             if (res.status == "failed") {
                 setLoading(false)
@@ -41,46 +47,33 @@ const DashBoard = (props) => {
     }
 
     useEffect(() => {
-        const backAction = () => {
-            navigation.navigate("Home")
-            return true;
-        };
-
-        const backHandler = BackHandler.addEventListener(
-            "hardwareBackPress",
-            backAction
-        );
-
         getData();
-        return () => {
-            backHandler.remove();
-        };
-
+        backHandler(navigation,"Home");
     }, [isFocused]);
-
 
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="dark-content" translucent backgroundColor={colors.primary} />
-            <Toast ref={(ref) => Toast.setRef(ref)} />
             <View style={{ backgroundColor: colors.white, flex: 1 }}>
                 <Header title={text.profile} />
                 <Image source={images.profileHeader} resizeMode="cover" style={styles.headerShape} />
                 <View style={styles.personInfo}>
                     <Text style={styles.staffCode}>{userData.displayName}</Text>
-                    <Text style={styles.staffName}>({userData.gdvId.maGDV})</Text>
+                    <Text style={styles.staffName}>({userData&&userData.userGroupId.code})</Text>
                     <Image style={styles.avatar} source={userData.avatar == null ? images.avatar : { uri: imgUrl + userData.avatar }} />
                 </View>
-                <View style={{ marginTop: fontScale(50) }}>
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                     {
                         loading == true ? <ActivityIndicator size="small" color={colors.primary} /> :
-                            <View>
-                                <ProfileItem icon={images.day} title={text.workingDay} size={fontScale(25)} value={userData.gdvId ? userData.gdvId.fromDate : "..."} />
-                                <ProfileItem icon={images.workingShop} title={text.workingShop} size={fontScale(25)} value={userData.shopId ? userData.shopId.shopName : "..."} />
-                                <ProfileItem icon={images.traderRating} title={text.traderRating} size={fontScale(25)} value={"..."} />
-                                <ProfileItem icon={images.traderRating} title={text.storeRating} size={fontScale(25)} value={"..."} />
-                                <ProfileItem linking icon={images.pdf} title={text.PDF} size={fontScale(25)} value={"..."} openLink={() => Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')} />
-                            </View>
+                            <ScrollView style={{ paddingVertical: 10 }}>
+                                <View>
+                                    <ProfileItem icon={images.day} title={text.workingDay} size={fontScale(25)} value={userData.gdvId ? userData.gdvId.fromDate : "..."} />
+                                    <ProfileItem icon={images.workingShop} title={text.workingShop} size={fontScale(25)} value={userData.shopId ? userData.shopId.shopName : "..."} />
+                                    <ProfileItem icon={images.traderRating} title={text.traderRating} size={fontScale(25)} value={"..."} />
+                                    <ProfileItem icon={images.traderRating} title={text.storeRating} size={fontScale(25)} value={"..."} />
+                                    <ProfileItem linking icon={images.pdf} title={text.PDF} size={fontScale(25)} value={"..."} openLink={() => Linking.openURL('http://hochiminh.mobifone.vn/HDSD_AppNVBH.pdf')} />
+                                </View>
+                            </ScrollView>
                     }
                 </View>
                 <TouchableOpacity onPress={() => setShowModal(true)} style={{ backgroundColor: colors.primary, width: fontScale(50), height: fontScale(50), padding: fontScale(13), position: "absolute", bottom: fontScale(22), right: fontScale(22), borderRadius: fontScale(25) }}>
@@ -107,6 +100,7 @@ const DashBoard = (props) => {
                     </View>
                 </Modal>
             </View>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }

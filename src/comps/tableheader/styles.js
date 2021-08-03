@@ -1,13 +1,11 @@
 import { StyleSheet } from "react-native";
-import { height } from "../../utils/Dimenssion";
 import { fontScale } from "../../utils/Fonts";
 
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginRight: fontScale(20),
-        flex: 1
+        marginRight: fontScale(2)
     },
     icon: {
         width: fontScale(15),
@@ -16,7 +14,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         color: '#20B8B8',
-        fontSize: fontScale(16),
+        fontSize: fontScale(14),
         fontWeight: 'bold',
         marginLeft:fontScale(4),
         marginHorizontal: fontScale(5)

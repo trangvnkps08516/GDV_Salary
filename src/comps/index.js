@@ -12,8 +12,11 @@ import TotalSalary from "./totalsalry";
 import ProfileItem from "./profileItem";
 import Search from "./search";
 import TableHeader from "./tableheader";
-import FlatlistItem from "./flatlistItem";
+// import FlatlistItem from "./flatlistItem";
 import GeneralListItem from "./generallistitem";
+import DataPicker from "./datapicker";
+import ListMenu from "./listmenu";
+import Table from "./table"
 
 export {
     Button,
@@ -30,6 +33,9 @@ export {
     ProfileItem,
     Search,
     TableHeader,
-    FlatlistItem,
-    GeneralListItem
+    // FlatlistItem,
+    GeneralListItem,
+    DataPicker,
+    ListMenu,
+    Table
 }

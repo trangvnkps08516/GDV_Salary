@@ -20,7 +20,7 @@ const ListItem = (props) => {
                     }
                 </> : <>
                     <View style={styles.titleContain}>
-                        <Image source={icon} resizeMode="contain" style={styles.icon} />
+                        <Image source={icon} resizeMode="contain" style={[styles.icon, props.iconStyle]} />
                         <Text style={styles.title}>{title}</Text>
                     </View>
                     {
