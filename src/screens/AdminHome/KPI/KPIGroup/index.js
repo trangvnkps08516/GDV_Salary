@@ -75,6 +75,7 @@ const index = () => {
       <Body />
       <View style={{ flex: 1, backgroundColor: colors.white, }}>
         {loading==true ? <ActivityIndicator style={{marginVertical:fontScale(5)}} color={colors.primary} size="small"/>:null}
+      <View style={{marginTop: -30}}>
         <Table
           style={styles.table}
           data={data}
@@ -90,6 +91,7 @@ const index = () => {
           ]}
           headersTextColor={"#00BECC"}
           headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
+          headerMarginLeft = {fontScale(14)}
           // headerIcons={[images.branch, images.company, images.workingShop, images.close]}
           // lastIconHeader={images.day}
           widthArray={[
@@ -115,6 +117,7 @@ const index = () => {
             index == 0 || item.shopType == "BRANCH" ? "bold" : "normal"
           )}
           style={{ marginTop: fontScale(30) }}
+          textAlign = "center"
           textColor={data.map((item, index) =>
             item.shopType=="BRANCH" || index==0? "#000" : "#D19E01"
           )}
@@ -124,6 +127,7 @@ const index = () => {
           headerMarginLeft={-fontScale(26)}
           textAlign="center"
         />
+      </View>
       </View>
     </SafeAreaView>
   );

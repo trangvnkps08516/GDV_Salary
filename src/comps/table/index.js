@@ -12,7 +12,7 @@ import { getDimesions, width } from '../../utils/Dimenssion';
 import { fontScale } from '../../utils/Fonts';
 import { images } from '../../utils/Images';
 import TableRow from "./tablerow/index";
-
+ 
 const index = (props) => {
     const { data, numColumn, table, headers, headerIcons, headersTextColor, headerStyle, lastIcon, loading, widthArray, lastIconHeader, main, style, hideFirstColHeader, rowBg, onPress,loadingIconStyle,message } = props;
     const navigation = useNavigation();
@@ -107,5 +107,4 @@ const index = (props) => {
         </View>
     );
 }
-
 export default index;
