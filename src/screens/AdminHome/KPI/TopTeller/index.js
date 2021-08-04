@@ -211,8 +211,8 @@ const AdminTopTeller = () => {
         <View style={{ flexDirection: "row", marginTop: fontScale(2) }}>
           <TableHeader style={{ width: (width * 3.9) / 10 }} title={text.GDV} />
           <TableHeader style={{ width: (width * 2.5) / 10 }} title={text.sumKPI} />
-          <TableHeader style={{ width: (width * 1.21) / 10 }} title={text.TBTT} />
-          <TableHeader style={{ width: (width * 2.5) / 10 }} title={text.TBTS} />
+          <TableHeader style={{ width: (width * 1.21) / 10 }} title={text.TBTS} />
+          <TableHeader style={{ width: (width * 2.5) / 10 }} title={text.TBTT} />
 
         </View>
         {loadingData == true ? (
