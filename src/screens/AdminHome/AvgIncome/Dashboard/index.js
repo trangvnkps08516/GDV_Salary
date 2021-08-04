@@ -16,6 +16,7 @@ import { User } from '../../../../models/Admin';
 const index = (props) => {
   const navigation = useNavigation();
   const [user,setUser] = useState(User)
+
   const checkAdminAvgIncomeRole = async () => {
     await _retrieveData("userInfo").then((item) => {
       let role = user?.userId.userGroupId.code;
@@ -31,8 +32,7 @@ const index = (props) => {
       }
     })
   }
-  useEffect(() => {
-  })
+  
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor={colors.primary} />
@@ -40,7 +40,7 @@ const index = (props) => {
       <Body style={{ marginTop: fontScale(27) }} showInfo={false} />
       <View style={styles.body}>
         <MenuItem style={{ marginTop: fontScale(60) }} title={text.topTellers} titleMenuStyle={{ paddingTop: fontScale(17) }} icon={images.toptellers} iconStyle={{ width: fontScale(60), height: fontScale(80), marginTop: -15 }} width={width - fontScale(60)} onPress={() => navigation.navigate("AdminAvgIncomeTopSellers")} />
-        <MenuItem style={{ marginTop: fontScale(60) }} title={text.groupSalaryAverage} titleMenuStyle={{ paddingTop: fontScale(17) }} icon={images.otherExpenses} width={width - fontScale(60)} onPress={() => navigation.navigate("KPIByMonthDashboard")} />
+        <MenuItem style={{ marginTop: fontScale(60) }} title={text.groupSalaryAverage} titleMenuStyle={{ paddingTop: fontScale(17) }} icon={images.otherExpenses} width={width - fontScale(60)} onPress={() => navigation.navigate("AdminAvgIncomeSalaryGroup")} />
         <MenuItem style={{ marginTop: fontScale(60) }} title={text.salaryAverage} titleMenuStyle={{ paddingTop: fontScale(17) }} icon={images.salaryByMonth} width={width - fontScale(60)} onPress={() => checkAdminAvgIncomeRole()} />
       </View>
       <Toast ref={(ref) => Toast.setRef(ref)} />

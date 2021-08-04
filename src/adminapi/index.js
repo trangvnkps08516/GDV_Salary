@@ -194,7 +194,6 @@ export const getAdminKPIMonthTopTeller = async (
   month,
   sort
 ) => {
-  console.log(branchCode, month, sort);
   let token = "";
   await _retrieveData("userInfo").then((data) => {
     if (data != null) {
@@ -203,6 +202,7 @@ export const getAdminKPIMonthTopTeller = async (
       navigation.navigate("SignIn");
     }
   });
+  console.log(branchCode, month, sort,token);
   let data = {
     message: "",
     status: "",

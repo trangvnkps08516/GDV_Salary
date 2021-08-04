@@ -192,7 +192,7 @@ const index = (props) => {
                     headers={["GDV", "Tổng lương", "Lương khoán sp", "KPI"]}
                     headersTextColor={"#D19E01"}
                     headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
-                    widthArray={[fontScale(190), fontScale(100), fontScale(110), fontScale(100)]}
+                    widthArray={[fontScale(220), fontScale(100), fontScale(110), fontScale(100)]}
                     fields={
                         data.map((item, index) => [
                             `${item.empName}\n(${item.shopName})`,

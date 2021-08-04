@@ -42,7 +42,7 @@ const index = (props) => {
                         <View>
                             {
                                 headers ?
-                                    <View style={{ flexDirection: "row",paddingVertical:fontScale(10),marginLeft:-fontScale(30) }}>
+                                    <View style={{ flexDirection: "row",paddingVertical:fontScale(10),marginLeft:props.headerMarginLeft }}>
                                         {
                                             headerIcons
                                                 ?
@@ -66,7 +66,6 @@ const index = (props) => {
                                         }
                                     </View> : null
                             }
-                            {/* <View style={{flex:1}}> */}
                             {
                                 message&&message.length>0 ? <Text  style={{ color: colors.primary, textAlign: "center", marginTop: fontScale(15),width:width }}>{message}</Text> : null
                             }
@@ -83,7 +82,7 @@ const index = (props) => {
                                                     <TableRow
                                                         item={item}
                                                         index={index}
-                                                        textColor={props.textColor[index]}
+                                                        textColor={props.textColor[index] || props.textColor}
                                                         fontWeight={props.fontWeight}
                                                         widthArray={widthArray}
                                                         onPress = {()=>props.onPress(item,index)}
@@ -93,10 +92,11 @@ const index = (props) => {
                                                         rowWidth={widthArray[index]}
                                                         firstColCenter={props.firstColCenter}
                                                         loading={loading}
+                                                        seeDetail={props.seeDetail}
                                                         main={main}
                                                         lastIconStyle={props.lastIconStyle}
                                                         textAlign={props.textAlign || "left"}
-                                                        lastIcon={lastIcon&&lastIcon[index]} />
+                                                        lastIcon={props.lastIcon&&props.lastIcon[index]} />
                                                 </View>
                                         )} />
                                     : null

@@ -162,7 +162,9 @@ const Search = (props) => {
                                         advancedSearch
                                         placeholder={props.placeholder}
                                         data={props.dataOne && props.dataOne}
+                                        fixed={props.fixed}
                                         width={width - fontScale(65)}
+                                        fixedData={props.fixedData}
                                         field={props.fieldOne}
                                         fieldKey={props.fieldOne[0]}
                                         onPress={(item, index) => onChangePickerOne(item)}
@@ -170,10 +172,11 @@ const Search = (props) => {
                                     /> : null : 
                                     <DataPicker
                                         advancedSearch
-                                        fixed
+                                        fixed={props.fixed}
                                         placeholder={props.placeholder}
                                         data={props.dataOne && props.dataOne}
                                         width={width - fontScale(65)}
+                                        fixedData={props.fixedData}
                                         field={props.fieldOne}
                                         fieldKey={props.fieldOne[0]}
                                         onPress={(item, index) => onChangePickerOne(item)}

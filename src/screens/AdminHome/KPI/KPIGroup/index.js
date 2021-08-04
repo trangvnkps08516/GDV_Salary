@@ -98,7 +98,7 @@ const index = () => {
             fontScale(100),
             fontScale(100),
             fontScale(100),
-            fontScale(90),
+            fontScale(100),
           ]}
           fields={data.map((item) => [
             item.shopName,
@@ -116,15 +116,12 @@ const index = () => {
           )}
           style={{ marginTop: fontScale(30) }}
           textColor={data.map((item, index) =>
-            item.shopType == "BRANCH"
-              ? "#000"
-              : item.shopType == "SHOP"
-                ? "#D19E01"
-                : "#000"
+            item.shopType=="BRANCH" || index==0? "#000" : "#D19E01"
           )}
           rowBg={data.map((item, index) =>
             item.shopType == "BRANCH" ? "#EBFDFD" : "#fff"
           )}
+          headerMarginLeft={-fontScale(26)}
           textAlign="center"
         />
       </View>

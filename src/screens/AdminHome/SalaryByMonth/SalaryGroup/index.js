@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView ,View,Text} from 'react-native';
 
 const index=(props)=> {
     return (
