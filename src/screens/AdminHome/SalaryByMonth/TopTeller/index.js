@@ -5,7 +5,7 @@ import { ActivityIndicator } from 'react-native';
 import { Text } from 'react-native';
 import { SafeAreaView, View } from 'react-native';
 import Toast from 'react-native-toast-message';
-import { getAllBranch, getAllShop, getAllEmp, getMonthSalaryTopTeller } from '../../../../api';
+import { getAllBranch, getAllShop, getAllEmp, getMonthSalaryTopTeller, getProfile } from '../../../../api';
 import { Body, DatePicker, Header, Search, Table } from '../../../../comps';
 import { colors } from '../../../../utils/Colors';
 import { width } from '../../../../utils/Dimenssion';
@@ -20,15 +20,19 @@ const index = (props) => {
     const [month, setMonth] = useState(moment(new Date()).format("MM/YYYY"));
     const [loading, setLoading] = useState(false);
     const [branchList, setBranchList] = useState([]);
-    const [branchCode, setBranchCode] = useState('')
+    const [branchCode, setBranchCode] = useState('2MFHCM1')
     const [shopList, setShopList] = useState([]);
     const [shopCode, setShopCode] = useState('');
     const [empCode, setEmpCode] = useState('');
-    const [sort, setSort] = useState(0);
+    const [sort, setSort] = useState(1);
     const [message, setMessage] = useState('')
     const [data, setData] = useState([]);
     const [empList, setEmpList] = useState([])
     const navigation = useNavigation();
+    const [placeHolder, setPlaceHolder] = useState('')
+    const [role, setRole] = useState();
+    const [defaultShopCode, setDefaultShopCode] = useState('')
+    const [defaultShopName, setDefaultShopName] = useState('')
 
     const getBranchList = async () => {
         setLoading(true)
@@ -53,59 +57,6 @@ const index = (props) => {
                 })
             }
         })
-    }
-
-    const onChangeBranch = async (value) => {
-        console.log(value)
-        setLoading(true)
-        setBranchCode(value);
-        await getAllShop(navigation, value).then((res) => {
-            if (res.status == "success") {
-                setLoading(false);
-                setShopList(res.data);
-            }
-            if (res.status == "failed") {
-                setLoading(false);
-            }
-            if (res.status == "v_error") {
-                Toast.show({
-                    text1: "Cảnh báo",
-                    text2: res.message,
-                    type: "error",
-                    visibilityTime: 1000,
-                    autoHide: true,
-                    onHide: () => navigation.navigate("AdminHome")
-                })
-            }
-        })
-    }
-
-    const onChangeShop = async (shopCode) => {
-        setLoading(true)
-        setShopCode(shopCode);
-        await getAllEmp(navigation, branchCode, shopCode, '').then((res) => {
-            if (res.status == "success") {
-                setLoading(false);
-                setEmpList(res.data);
-            }
-            if (res.status == "failed") {
-                setLoading(false);
-            }
-            if (res.status == "v_error") {
-                Toast.show({
-                    text1: "Cảnh báo",
-                    text2: res.message,
-                    type: "error",
-                    visibilityTime: 1000,
-                    autoHide: true,
-                    onHide: () => navigation.navigate("AdminHome")
-                })
-            }
-        })
-    }
-
-    const onChangeEmp = (empCode) => {
-        setEmpCode(empCode)
     }
 
     const getData = async (month, branchCode, shopCode, empCode, sort) => {
@@ -141,21 +92,56 @@ const index = (props) => {
                     type: "error",
                     visibilityTime: 1000,
                     autoHide: true,
-                    onHide: () => navigation.navigate("AdminHome")
+                    onHide: () => navigation.goBack()
                 })
             }
         })
     }
 
+    const onChangeBranch = async (value) => {
+        setLoading(true)
+        setBranchCode(value);
+        await getAllShop(navigation, branchCode).then((res) => {
+          if (res.status == "success") {
+            setLoading(false);
+            setShopList(res.data);
+    
+          }
+          if (res.status == "failed") {
+            setLoading(false);
+          }
+          if (res.status == "v_error") {
+            Toast.show({
+              text1: "Cảnh báo",
+              text2: res.message,
+              type: "error",
+              visibilityTime: 1000,
+              autoHide: true,
+              onHide: () => navigation.navigate("AdminHome")
+            })
+          }
+        })
+      }
+
+      const checkRole = async () => {
+        await _retrieveData("userInfo").then((user) => {
+          let role = user?.userId.userGroupId.code;
+          setDefaultShopName(user?.userId.shopId.shopName);
+          setDefaultShopCode(user?.userId.shopId.shopCode)
+          setRole(role) 
+        })
+      }
+
     useEffect(() => {
         getBranchList();
         getData(month, branchCode, shopCode, empCode, sort);
-        checkUserRole().then((item) => console.log(item))
-    }, [month])
+        setPlaceHolder("Chọn chi nhánh");
+        checkRole();
+    }, [""])
 
-    const _setMonth = (value) => {
-        console.log(value, branchCode, shopCode, empCode, sort)
-        getData(value, branchCode, shopCode, empCode, sort)
+    const _setMonth = async (value) => {
+        setMonth(value)
+        await getData(value, branchCode, shopCode, empCode, sort)
     }
 
     return (
@@ -173,16 +159,16 @@ const index = (props) => {
                 fieldOne={branchList.map((item) => item.shopName)}
                 fieldTwo={shopList.map((item) => item.shopName)}
                 fieldThree={empList.map((item, index) => item.maGDV)}
-                onChangePickerOne={(value, index) => setBranchCode(value.shopCode)}
-                // onChangePickerTwo={(value) => onChangeShop(value.shopCode)}
-                // onChangePickerThree={(value) => onChangeEmp(value.maGDV)}
-                showPicker={[true, false, true]}
+                onChangePickerOne={(value, index) => onChangeBranch(value.shopCode)}
+                showPicker={[true, true, false]}
                 onPressOK={() => getData(month, branchCode, shopCode, empCode, sort)}
+                fixed={role!="VMS_CTY" ? true : false}
+                fixedData={defaultShopName}
             />
             <Body />
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {loading == true ? <ActivityIndicator style={{ marginVertical: fontScale(5) }} color={colors.primary} size="small" /> : null}
-                
+
 
                 <Table
                     data={data}
@@ -192,7 +178,7 @@ const index = (props) => {
                     headers={["GDV", "Tổng lương", "Lương khoán sp", "KPI"]}
                     headersTextColor={"#D19E01"}
                     headerStyle={{ icon: { size: 15 }, text: { size: fontScale(14) } }}
-                    widthArray={[fontScale(190), fontScale(100), fontScale(110), fontScale(100)]}
+                    widthArray={[fontScale(160), fontScale(100), fontScale(80), fontScale(70)]}
                     fields={
                         data.map((item, index) => [
                             `${item.empName}\n(${item.shopName})`,
@@ -202,13 +188,13 @@ const index = (props) => {
                         ])
                     }
                     fontWeight={["normal"]}
-                    textColor={colors.grey}
+                    textColor={'#000'}
                     firstRowBg={colors.lightGrey}
-                    firstColCenter
                     textAlign="center"
                     rowBg={data.map((item, index) => index % 2 == 0 ? colors.lightGrey : colors.white)}
                 />
             </View>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
         </SafeAreaView>
     );
 }
