@@ -131,6 +131,7 @@ const AdminTopTeller = () => {
     console.log(branchCode, month, sort)
     setMessage("");
     setLoadingData(true);
+    setData([])
     await getAdminKPIMonthTopTeller(navigation, branchCode, month, sort).then((res) => {
       setLoadingData(false);
         if (res.status == "success") {
