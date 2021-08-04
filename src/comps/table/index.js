@@ -78,7 +78,7 @@ const index = (props) => {
                                         keyExtractor={(item, index) => index.toString()}
                                         key={({ item }) => item.numberSub.toString()}
                                         renderItem={({ item, index }) => (
-                                                <View style={{backgroundColor: index == 0 ? props.firstRowBg : rowBg[index],flex:1,justifyContent:"center" }}>
+                                                <View style={{backgroundColor: index == 0 ? props.firstRowBg : rowBg[index],flex:1,justifyContent:"center",paddingBottom:fontScale(5) }}>
                                                     <TableRow
                                                         item={item}
                                                         index={index}

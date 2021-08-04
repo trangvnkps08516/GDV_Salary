@@ -77,7 +77,7 @@ const index = (props) => {
             <View style={styles.body}>
                 {message ? <Text style={styles.message}>{message}</Text> : null}
                 {loading == true ? <ActivityIndicator size="small" color={colors.primary} /> : null}
-                { }
+                <View style={{flex:1}}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={data}
@@ -86,10 +86,11 @@ const index = (props) => {
                         <View>
                             <GeneralListItem key={index} columns title={item.shopName} titleArray={["Lương BQ", "Khoán sp"]} item={[item.avgIncome, item.contractSalary]} />
                             {
-                                index == data.length - 1 ? <GeneralListItem style={{ marginTop: fontScale(30) }} fourColumnCompany title={generalData.shopName} titleArray={["Bình quân chi 1 tháng", "BQ lương cố định", "BQ lương khoán SP", "BQ lương KK", "BQ chi hỗ trợ"]} item={[generalData.avgIncome, generalData.permanentSalary, generalData.contractSalary, generalData.incentiveSalary, generalData.spenSupport]} icon={images.store} /> : null
+                                index == data.length - 1 ? <GeneralListItem styleCol2={{marginLeft:fontScale(0)}} styleCol4={{marginLeft:fontScale(0)}} style={{ marginBottom: fontScale(70),marginTop:-fontScale(20) }} fourColumnCompany title={generalData.shopName} titleArray={["Bình quân chi 1 tháng", "BQ lương cố định", "BQ lương khoán SP", "BQ lương KK", "BQ chi hỗ trợ"]} item={[generalData.avgIncome, generalData.permanentSalary, generalData.contractSalary, generalData.incentiveSalary, generalData.spenSupport]} icon={images.store} /> : null
                             }
                         </View>
                     } />
+                </View>
 
             </View>
             <Toast ref={(ref) => Toast.setRef(ref)} />
